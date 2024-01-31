@@ -47,12 +47,8 @@
 - Twitter - [@HopplaGe](https://twitter.com/HopplaGe)
 - Facebook - [Hoppla.Ge](https://www.facebook.com/HopplaGe)
 - LinkedIn - [Hoppla.Ge](https://www.linkedin.com/company/hoppla-ge)
-- Instagram - [Hoppla.Ge](https://www.instagram.com/hoppla.ge/)
-- Telegram - [Hoppla.Ge](https://t.me/hoppla_ge)
 - Discord - [Hoppla.Ge](https://discord.gg/3q3QYJ9)
-- YouTube - [Hoppla.Ge](https://www.youtube.com/channel/UCQ6ZQXqjXjxvqXZ3gqZ9Zjw)
-- GitHub - [Hoppla.Ge] ()
-- GitLab - [Hoppla.Ge](https://gitlab.com/hoppla.ge)
+- GitHub - [Hoppla.Ge](https://github.com/HopplaGe/Hoppla)
 
 ### Requirements
 
