@@ -42,7 +42,7 @@
 
 ## Stay in touch
 
-- Author - [Giorgi Magradze](
+- Author - [Giorgi Magradze](https://magradze.dev/)
 - Website - [https://hoppla.ge/](https://hoppla.ge/)
 - Twitter - [@HopplaGe](https://twitter.com/HopplaGe)
 - Facebook - [Hoppla.Ge](https://www.facebook.com/HopplaGe)
