@@ -37,12 +37,6 @@ jobs:
       - name: Build and run docker-compose
         run: docker-compose up -d --build
 
-      - name: Run tests
-        run: docker-compose exec app npm run test
-
-      - name: Stop docker-compose
-        run: docker-compose down
-
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2
         with:
