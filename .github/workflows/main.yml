@@ -35,14 +35,9 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Deploy to AWS ECS
-        uses: aws-actions/amazon-ecs-deploy@v1
+      - name: Deploy to AWS ECS task definition
+        uses: aws-actions/amazon-ecs-run-task@v1
         with:
           cluster: hoppla-cluster
-          service: hoppla-service
-          task_definition: hoppla-task
-          container_name: hoppla-container
-          image: ${{ secrets.DOCKER_USERNAME }}/hoppla:latest
-          desired_count: 1
-          wait-for-service-stability: true
-          timeout: 300
+          task-definition: hoppla-task
+          container-overrides: '[{"name":"hoppla","command":["npm","run","start"],"environment":[{"name":"NODE_ENV","value":"production"},{"name":"PORT","value":"80"},{"name":"DATABASE_URL","value":"${{ secrets.DATABASE_URL }}"},{"name":"JWT_SECRET","value":"${{ secrets.JWT_SECRET }}"},{"name":"JWT_EXPIRES_IN","value":"${{ secrets.JWT_EXPIRES_IN }}"},{"name":"JWT_COOKIE_EXPIRES_IN","value":"${{ secrets.JWT_COOKIE_EXPIRES_IN }}"}]}]'
