@@ -7,12 +7,12 @@ services:
       dockerfile: Dockerfile
     container_name: HopplaWebApp
     environment:
-      - NODE_ENV=${secrets.NODE_ENV}
-      - PORT=${secrets.PORT}
-      - DATABASE_URL=${secrets.DATABASE_URL}
-      - JWT_SECRET=${secrets.JWT_SECRET}
-      - JWT_EXPIRES_IN=${secrets.JWT_EXPIRES_IN}
-      - JWT_COOKIE_EXPIRES_IN=${secrets.JWT_COOKIE_EXPIRES_IN}
+      - NODE_ENV=${{secrets.NODE_ENV}}
+      - PORT=${{secrets.PORT}}
+      - DATABASE_URL=${{secrets.DATABASE_URL}}
+      - JWT_SECRET=${{secrets.JWT_SECRET}}
+      - JWT_EXPIRES_IN=${{secrets.JWT_EXPIRES_IN}}
+      - JWT_COOKIE_EXPIRES_IN=${{secrets.JWT_COOKIE_EXPIRES_IN}}
     ports:
       - "3000:3000"
     volumes:
@@ -28,9 +28,9 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: ${secrets.POSTGRES_USER}
-      POSTGRES_PASSWORD: ${secrets.POSTGRES_PASSWORD}
-      POSTGRES_DB: ${secrets.POSTGRES_DB}
+      POSTGRES_USER: ${{secrets.POSTGRES_USER}}
+      POSTGRES_PASSWORD: ${{secrets.POSTGRES_PASSWORD}}
+      POSTGRES_DB: ${{secrets.POSTGRES_DB}}
     container_name: postgres
     ports:
       - "5432:5432"
@@ -42,8 +42,8 @@ services:
     restart: always
     container_name: pgadmin4
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${secrets.PGADMIN_DEFAULT_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${secrets.PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_DEFAULT_EMAIL: ${{secrets.PGADMIN_DEFAULT_EMAIL}}
+      PGADMIN_DEFAULT_PASSWORD: ${{secrets.PGADMIN_DEFAULT_PASSWORD}}
     ports:
       - "5050:80"
     depends_on:
