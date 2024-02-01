@@ -11,17 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - name: Login to Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
       - name: Build and run docker-compose
         run: docker-compose up -d --build
+
       - name: Run tests
         run: docker-compose exec app npm run test
+
       - name: Stop docker-compose
         run: docker-compose down
+
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2
         with:
@@ -29,15 +34,3 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ secrets.DOCKER_USERNAME }}/hoppla
           tags: latest
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - name: Deploy to AWS ECS task definition
-        uses: aws-actions/amazon-ecs-run-task@v1
-        with:
-          cluster: hoppla-cluster
-          task-definition: hoppla-task
-          container-overrides: '[{"name":"hoppla","command":["npm","run","start"],"environment":[{"name":"NODE_ENV","value":"production"},{"name":"PORT","value":"80"},{"name":"DATABASE_URL","value":"${{ secrets.DATABASE_URL }}"},{"name":"JWT_SECRET","value":"${{ secrets.JWT_SECRET }}"},{"name":"JWT_EXPIRES_IN","value":"${{ secrets.JWT_EXPIRES_IN }}"},{"name":"JWT_COOKIE_EXPIRES_IN","value":"${{ secrets.JWT_COOKIE_EXPIRES_IN }}"}]}]'
