@@ -1,4 +1,6 @@
-## This is a [Hoppla.Ge](https://hoppla.ge/) project.
+## [<img width="200" src="https://hoppla.netlify.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.24489d28.png&w=256&q=75">](https://hoppla.ge/)
+
+### Car pooling platform for Georgia
 
 ## Installation
 
@@ -7,6 +9,7 @@
     $ cd hoppla
     $ npm install
     ```
+
 ## Running the app
 
     ```bash
@@ -30,6 +33,7 @@
     # test coverage
     $ npm run test:cov
     ```
+
 ## Docker
 
     ```bash
@@ -42,7 +46,10 @@
 
 ## Stay in touch
 
-- Author - [Giorgi Magradze](https://magradze.dev/)
+- Authors
+    - [Giorgi Magradze](https://magradze.dev/)
+    - [Demetre Shonia](https://hoppla.ge/)
+    - [Mikheil Dzuliashvili](https://hoppla.ge/)
 - Website - [https://hoppla.ge/](https://hoppla.ge/)
 - Twitter - [@HopplaGe](https://twitter.com/HopplaGe)
 - Facebook - [Hoppla.Ge](https://www.facebook.com/HopplaGe)
@@ -61,3 +68,18 @@
 - [Tailwind CSS](https://tailwindcss.com/)
 - [ESLint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
+
+### License
+
+Hoppla.Ge is [MIT licensed]().
+
+### Support
+
+    Hoppla.Ge is an MIT-licensed open source project. It can grow thanks to the support of the community. If you'd like to join them, please consider:
+
+- [Become a backer or sponsor on Patreon](https://www.patreon.com/hopplage).
+- [Become a backer or sponsor on Open Collective](https://opencollective.com/hopplage).
+- [One-time donation via PayPal](https://www.paypal.me/hopplage).
+
+<a href="https://www.patreon.com/hopplage"><img width="20" src="https://upload.wikimedia.org/wikipedia/commons/9/94/Patreon_logo.svg?avatarHeight=36&width=60"></a>
+<a href="https://www.paypal.me/hopplage"><img src="https://img.shields.io/badge/Donate-PayPal-blue.svg"></a>
