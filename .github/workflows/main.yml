@@ -1,0 +1,48 @@
+name: Hoppla CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build and run docker-compose
+        run: docker-compose up -d --build
+      - name: Run tests
+        run: docker-compose exec app npm run test
+      - name: Stop docker-compose
+        run: docker-compose down
+      - name: Push to Docker Hub
+        uses: docker/build-push-action@v2
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: ${{ secrets.DOCKER_USERNAME }}/hoppla
+          tags: latest
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Deploy to AWS ECS
+        uses: aws-actions/amazon-ecs-deploy@v1
+        with:
+          cluster: hoppla-cluster
+          service: hoppla-service
+          task_definition: hoppla-task
+          container_name: hoppla-container
+          image: ${{ secrets.DOCKER_USERNAME }}/hoppla:latest
+          desired_count: 1
+          wait-for-service-stability: true
+          timeout: 300
