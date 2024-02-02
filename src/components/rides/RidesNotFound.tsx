@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import noData from "@/assets/banners/no-data.svg";
+import noData from "@/assets/images/banners/no-data.svg";
 
 const RidesNotFound = () => {
     return (

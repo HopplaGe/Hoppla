@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from "next/image";
-import lariSymbol from "@/assets/lari.svg";
+import lariSymbol from "@/assets/images/lari.svg";
 import {Input} from "@/components/ui/input";
 import {Label} from "@/components/ui/label";
 

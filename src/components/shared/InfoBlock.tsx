@@ -1,9 +1,9 @@
 import React from 'react';
 import Image, {StaticImageData} from "next/image";
 import {Button} from "@/components/ui/button";
-import qrImage from '@/assets/banners/hoppla-qr.png'
-import appleLogo from '@/assets/icons/apple-logo.svg'
-import androidLogo from '@/assets/icons/android-logo.svg'
+import qrImage from '@/assets/images/banners/hoppla-qr.png'
+import appleLogo from '@/assets/images/icons/apple-logo.svg'
+import androidLogo from '@/assets/images/icons/android-logo.svg'
 
 interface IInfoBlock {
     image: string | StaticImageData;

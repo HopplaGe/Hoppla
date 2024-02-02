@@ -4,7 +4,7 @@ import {
     Marker,
     DirectionsRenderer,
 } from '@react-google-maps/api';
-import locationImg from "@/assets/location-pin.png";
+import locationImg from "@/assets/images/location-pin.png";
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 // type DirectionsResult = google.maps.DirectionsResult;
