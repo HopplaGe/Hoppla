@@ -13,7 +13,7 @@ RUN npm install
 COPY . .
 
 # Expose port 3000
-EXPOSE 3000
+EXPOSE 80
 
 # Run the app
 RUN npm run build
