@@ -17,14 +17,15 @@ services:
       - JWT_COOKIE_EXPIRES_IN=${JWT_COOKIE_EXPIRES_IN}
     ports:
       - "80:80"
+    restart: always
     volumes:
       - .:/app
       - /app/node_modules
+      - /app/.next
     depends_on:
       - db
     networks:
       - default
-    restart: always
 
   db:
     image: postgres
