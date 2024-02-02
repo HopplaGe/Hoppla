@@ -37,7 +37,7 @@ jobs:
         id: task-def
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          task-definition: taskdef.json
+          task-definition: hoppla-task-definition-revision1.json
           container-name: hoppla
           image: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
 
