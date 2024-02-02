@@ -101,7 +101,8 @@ jobs:
         with:
           task-definition: hoppla-task-definition-revision1.json
           container-name: hoppla
-          image: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
+          image: ${{ secrets.DOCKER_USERNAME }}/hoppla
+      #          image: ${{ steps.login-ecr.outputs.registry }}/${{ secrets.ECR_REPOSITORY }}:${{ github.sha }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
