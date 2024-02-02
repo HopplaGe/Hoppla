@@ -1,8 +1,8 @@
 "use client"
 import React from 'react';
-import {Button} from "../../../../../../../Documents/Projects/hoppla/src/components/ui/button";
+import {Button} from "@/components/ui/button";
 import {Minus, Plus} from "lucide-react";
-import {InputProps} from "../../../../../../../Documents/Projects/hoppla/src/components/ui/input";
+import {InputProps} from "@/components/ui/input";
 
 const NumberSelector = React.forwardRef<HTMLInputElement, InputProps>(
     ({className, type, ...props}, ref) => {

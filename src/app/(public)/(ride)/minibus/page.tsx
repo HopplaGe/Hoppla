@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBox from "@/components/partial/SearchBox";
+import SearchBox from "@/components/partials/SearchBox";
 
 const Minibus = () => {
     return (
