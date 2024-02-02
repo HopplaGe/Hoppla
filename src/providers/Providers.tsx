@@ -7,8 +7,11 @@ type ProvidersProps = {
 };
 
 const Providers = ({children}: ProvidersProps) => {
+
     return (
-        <NextUIProvider>{children}</NextUIProvider>
+        <NextUIProvider>
+            {children}
+        </NextUIProvider>
     );
 };
 
