@@ -43,7 +43,7 @@ const Search = async ({searchParams}: ISearchProps) => {
                                     <div
                                         className="divide-y-0 divide-gray-50 text-sm leading-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                                         <Suspense fallback={<div>Loading...</div>}>
-                                            {rides?.length ? rides.map((ride, index) => (
+                                            {rides?.length ? rides.map((ride: any, index: number) => (
                                                 // @ts-ignore
                                                 <RideCard key={index}
                                                           {...ride}
