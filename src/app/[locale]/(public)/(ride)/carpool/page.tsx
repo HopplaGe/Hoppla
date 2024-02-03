@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {FC} from 'react';
 import SearchBox from "@/components/partials/SearchBox";
 
-const Carpool = () => {
+interface pageProps {
+}
+
+const page: FC<pageProps> = async () => {
     return (
         <main className="relative isolate z-10">
             <div className="page-wrapper">
@@ -16,5 +19,5 @@ const Carpool = () => {
     );
 };
 
-export default Carpool;
+export default page;
 
