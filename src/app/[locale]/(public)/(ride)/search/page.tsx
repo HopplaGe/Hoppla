@@ -1,6 +1,5 @@
-import React, {FC} from 'react';
+import React from 'react';
 import SearchBox from "@/components/partials/SearchBox";
-import {useTranslations} from "next-intl";
 
 interface pageProps {
     searchParams: {
@@ -25,7 +24,7 @@ const Search = ({searchParams}: pageProps) => {
                     <p>To: {searchParams.to}</p>
                     <p>Date: {searchParams.date}</p>
                     <p>Seats: {searchParams.seats}</p>
-                    
+
                 </div>
             </div>
         </>
