@@ -14,7 +14,19 @@
     "MiniBuses": "Mini Buses",
     "Buses": "Buses",
     "PublishToRide": "Publish to ride",
-    "Authorization": "Authorization"
+    "Authorization": "Authorization",
+    "UserActions": "User actions",
+    "UserMenu": {
+      "SignedInAs": "Signed in as",
+      "Profile": "Profile",
+      "MyRides": "My Rides",
+      "MyVehicles": "My Vehicles",
+      "MyTickets": "My Tickets",
+      "MyPayments": "My Payments",
+      "Analytics": "Analytics",
+      "Settings": "Settings",
+      "LogOut": "Log out"
+    }
   },
   "Footer": {
     "Pronounce": "Travel to your desired destination with the help of HOPPLA. Get the latest information and book a ticket with your smartphone.",
