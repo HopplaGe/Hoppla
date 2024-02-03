@@ -1,6 +1,6 @@
 {
   "Index": {
-    "title": "Hello world!"
+    "title": "Travel to your desired destination with the help of HOPPLA"
   },
   "LanguageSwitch": {
     "choose-language": "Choose language"
@@ -39,5 +39,37 @@
     "AboutUs": "About us",
     "Support": "Support",
     "Careers": "Careers"
+  },
+  "SearchForm": {
+    "From": "From",
+    "To": "To",
+    "Date": "Date",
+    "Passenger": "Passenger",
+    "Search": "Search"
+  },
+  "Cities": {
+    "Tbilisi": "Tbilisi",
+    "Batumi": "Batumi",
+    "Kutaisi": "Kutaisi",
+    "Rustavi": "Rustavi",
+    "Gori": "Gori",
+    "Poti": "Poti",
+    "Zugdidi": "Zugdidi",
+    "Telavi": "Telavi",
+    "Mtskheta": "Mtskheta",
+    "Akhaltsikhe": "Akhaltsikhe",
+    "Borjomi": "Borjomi",
+    "Bakuriani": "Bakuriani",
+    "Kobuleti": "Kobuleti",
+    "Ureki": "Ureki",
+    "Sighnaghi": "Sighnaghi",
+    "Bakuriani": "Bakuriani",
+    "Gudauri": "Gudauri",
+    "Borjomi": "Borjomi",
+    "Kazbegi": "Kazbegi",
+    "Anaklia": "Anaklia",
+    "Mestia": "Mestia",
+    "Stepantsminda": "Stepantsminda",
+    "Kvareli": "Kvareli"
   }
 }

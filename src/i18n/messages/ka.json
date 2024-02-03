@@ -1,6 +1,6 @@
 {
   "Index": {
-    "title": "გამარჯობა სამყარო!"
+    "title": "გაემგზავრე HOPPLA-ს დახმარებით სასურველ ადგილას."
   },
   "LanguageSwitch": {
     "choose-language": "აირჩიეთ ენა"
@@ -39,5 +39,37 @@
     "AboutUs": "ჩვენს შესახებ",
     "Support": "დახმარება",
     "Careers": "კარიერა"
+  },
+  "SearchForm": {
+    "From": "საიდან",
+    "To": "სად",
+    "Date": "თარიღი",
+    "Passenger": "მგზავრები",
+    "Search": "ძებნა"
+  },
+  "Cities": {
+    "Tbilisi": "თბილისი",
+    "Batumi": "ბათუმი",
+    "Kutaisi": "ქუთაისი",
+    "Rustavi": "რუსთავი",
+    "Gori": "გორი",
+    "Poti": "ფოთი",
+    "Zugdidi": "ზუგდიდი",
+    "Telavi": "თელავი",
+    "Mtskheta": "მცხეთა",
+    "Akhaltsikhe": "ახალციხე",
+    "Borjomi": "ბორჯომი",
+    "Bakuriani": "ბაკურიანი",
+    "Kobuleti": "ქობულეთი",
+    "Ureki": "ურეკი",
+    "Sighnaghi": "სიღნაღი",
+    "Bakuriani": "ბაკურიანი",
+    "Gudauri": "გუდაური",
+    "Borjomi": "ბორჯომი",
+    "Kazbegi": "ყაზბეგი",
+    "Anaklia": "ანაკლია",
+    "Mestia": "მესტია",
+    "Stepantsminda": "სტეფანწმინდა",
+    "Kvareli": "ყვარელი"
   }
 }

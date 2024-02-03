@@ -13,8 +13,7 @@ import Image from "next/image";
 import hopplaLogo from "@/assets/images/logo.png";
 import {Plus} from "lucide-react";
 import {useTranslations} from "next-intl";
-import {signIn, useSession} from "next-auth/react";
-import {User} from "@nextui-org/user";
+import {useSession} from "next-auth/react";
 import AuthBlock from "@/components/shared/AuthBlock";
 
 const navItems = [
@@ -32,7 +31,7 @@ const NavBar = () => {
 
     const t = useTranslations("NavBar");
     return (
-        <Navbar maxWidth="xl" className="fira-go bg-white">
+        <Navbar maxWidth="xl" className="fira-go bg-white/50">
             <NavbarContent className="hidden sm:flex gap-4 ml-2" justify="start">
                 <NavbarBrand className="flex-none">
                     <Link href="/">
