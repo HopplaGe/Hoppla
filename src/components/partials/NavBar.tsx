@@ -4,6 +4,7 @@ import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nex
 import Image from "next/image";
 import hopplaLogo from "@/assets/images/logo.png";
 import {Plus} from "lucide-react";
+import {signIn} from "next-auth/react";
 
 const navitems = [
     {name: "მსუბუქი ავტომობილები", href: "/carpool"},
@@ -34,7 +35,7 @@ const NavBar = () => {
                     </Button>
                 </NavbarItem>
                 <NavbarItem>
-                    <Button as={Link} color="default" href="#" variant="solid" startContent={
+                    <Button color="default" variant="solid" startContent={
                         //google svg logo icon
                         <svg viewBox="0 0 18 18" fill="currentColor"
                              className="w-6 h-6"
@@ -52,7 +53,9 @@ const NavBar = () => {
                                 d="M9 3.58c1.31 0 2.485.45 3.41 1.33l2.557-2.558C13.46.891 11.43 0 9 0A8.996 8.996 0 0 0 .957 3.004L4.014 5.34A5.41 5.41 0 0 1 9 3.58z"
                                 fill="#EA4335"/>
                         </svg>
-                    }>
+                    }
+                            onClick={() => signIn("google")}
+                    >
                         ავტორიზაცია
                     </Button>
                 </NavbarItem>
