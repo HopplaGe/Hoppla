@@ -70,8 +70,8 @@
 
 @font-face {
     font-family: "FiraGO";
-    src: url("http://localhost/fonts/firago/FiraGO-Regular.woff2") format("woff2"),
-    url("http://localhost/fonts/firago/FiraGO-Regular.woff") format("woff");
+    src: url("https://hopplaassets.s3.amazonaws.com/fonts/firago/FiraGO-Regular.woff2") format("woff2"),
+    url("https://hopplaassets.s3.amazonaws.com/fonts/firago/FiraGO-Regular.woff") format("woff");
 }
 
 @layer base {
