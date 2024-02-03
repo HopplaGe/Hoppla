@@ -7,5 +7,25 @@
   },
   "CarpoolPage": {
     "title": "Carpool"
+  },
+  "NavBar": {
+    "Home": "Home",
+    "Carpool": "Carpool",
+    "MiniBuses": "Mini Buses",
+    "Buses": "Buses",
+    "PublishToRide": "Publish to ride",
+    "Authorization": "Authorization"
+  },
+  "Footer": {
+    "Pronounce": "Travel to your desired destination with the help of HOPPLA. Get the latest information and book a ticket with your smartphone.",
+    "RidesOfTheDay": "Rides of the day",
+    "Blog": "Blog",
+    "LearnMore": "Learn more",
+    "PopularPlaces": "Popular places",
+    "PopularRoutes": "Popular routes",
+    "HowItWorks": "How it works",
+    "AboutUs": "About us",
+    "Support": "Support",
+    "Careers": "Careers"
   }
 }
