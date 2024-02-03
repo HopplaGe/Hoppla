@@ -52,19 +52,6 @@ const authMiddleware = auth((req) => {
         return intlMiddleware(new NextRequest(req));
     }
 })
-// const authMiddleware = withAuth(
-//   function onSuccess(req) {
-//     return intlMiddleware(req);
-//   },
-//   {
-//     callbacks: {
-//       authorized: ({ token }) => token != null,
-//     },
-//     pages: {
-//       signIn: "/login",
-//     },
-//   }
-// );
 
 export default function middleware(req: NextRequest) {
     const publicPathnameRegex = RegExp(
