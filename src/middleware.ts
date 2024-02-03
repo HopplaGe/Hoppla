@@ -9,7 +9,7 @@ const {auth} = NextAuth(authConfig);
 const publicRoutes = ["/", "/login", "/carpool", "/minibuses", "/buses"];
 const privateRoutes = ["/dashboard"];
 const apiAuthRoute = "/api/auth";
-const defaultLoginRedirect = "/dashboard";
+// const defaultLoginRedirect = "/dashboard";
 
 const intlMiddleware = createIntlMiddleware({
     locales,
