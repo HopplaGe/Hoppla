@@ -22,11 +22,11 @@ const authMiddleware = auth((req) => {
     const isLoggedIn = !!req.auth;
     const currentLocale = intlMiddleware(new NextRequest(req)).cookies.get("NEXT_LOCALE")?.value;
 
-    const publicPagesWithLocale = publicRoutes.map((p) => '/' + currentLocale + p);
+    // const publicPagesWithLocale = publicRoutes.map((p) => '/' + currentLocale + p);
     const privatePagesWithLocale = privateRoutes.map((p) => '/' + currentLocale + p);
 
     const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthRoute);
-    const isPublicRoute = publicPagesWithLocale.includes(nextUrl.pathname);
+    // const isPublicRoute = publicPagesWithLocale.includes(nextUrl.pathname);
     const isPrivateRoute = privatePagesWithLocale.includes(nextUrl.pathname);
 
     // console.log("pathname", nextUrl.pathname);
@@ -39,10 +39,10 @@ const authMiddleware = auth((req) => {
     if (isApiAuthRoute) {
         return true;
     }
-
-    if (isPublicRoute) {
-        return intlMiddleware(new NextRequest(req));
-    }
+    //
+    // if (isPublicRoute) {
+    //     return intlMiddleware(new NextRequest(req));
+    // }
 
     if (isPrivateRoute && !isLoggedIn) {
         return Response.redirect(new URL(`/${currentLocale}/?redirect=${nextUrl.pathname}`, req.nextUrl.origin).toString(), 302);
