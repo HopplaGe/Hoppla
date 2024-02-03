@@ -1,1 +1,0 @@
-export const calculatePrice = (distance: number): number => distance * 0.3 * 2

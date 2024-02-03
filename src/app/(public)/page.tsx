@@ -1,9 +1,7 @@
-import Hero from "@/components/partials/Hero";
-
 export default function Home() {
     return (
-        <main className="relative isolate">
-            <Hero/>
+        <main className="relative isolate page-wrapper">
+            Main Page
         </main>
     );
 }

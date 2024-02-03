@@ -4,7 +4,6 @@ import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nex
 import Image from "next/image";
 import hopplaLogo from "@/assets/images/logo.png";
 import {Plus} from "lucide-react";
-import {signIn} from "next-auth/react";
 
 const navitems = [
     {name: "მსუბუქი ავტომობილები", href: "/carpool"},
@@ -54,7 +53,6 @@ const NavBar = () => {
                                 fill="#EA4335"/>
                         </svg>
                     }
-                            onClick={() => signIn("google")}
                     >
                         ავტორიზაცია
                     </Button>

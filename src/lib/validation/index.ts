@@ -1,9 +1,0 @@
-export {default as LoginSchema} from './LoginSchema';
-export {default as RegisterSchema} from './RegisterSchema';
-export {default as RegisterConfirmSchema} from './RegisterConfirmScheme';
-export {default as SearchSchema} from './SearchScheme';
-export {default as UserSchema} from './UserSchema';
-export {default as ChangePasswordScheme} from './ChangePasswordScheme';
-export {default as CarSchema} from './CarSchema';
-export {default as CompanyScheme} from './CompanyScheme';
-export {default as DirectionScheme} from './DirectionScheme';
