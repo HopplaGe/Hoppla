@@ -4,6 +4,8 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers/Providers";
 import {notFound} from "next/navigation";
+import {SessionProvider} from "next-auth/react";
+import {auth} from "@/lib/auth";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -26,12 +28,16 @@ export default async function RootLayout({
     } catch (error) {
         notFound();
     }
+
+    const session = await auth()
+
     return (
         <html lang={locale}>
         <body className={inter.className}>
         <Providers locale={locale} messages={messages}>
-
-            {children}
+            <SessionProvider session={session}>
+                {children}
+            </SessionProvider>
         </Providers>
         </body>
         </html>

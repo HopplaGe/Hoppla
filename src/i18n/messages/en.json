@@ -69,5 +69,36 @@
     "Mestia": "Mestia",
     "Stepantsminda": "Stepantsminda",
     "Kvareli": "Kvareli"
+  },
+  "UserRoles": {
+    "ADMIN": "Administrator",
+    "USER": "User"
+  },
+  "Admin": {
+    "MainStats": {
+      "TotalUsers": "Total Users",
+      "TotalRides": "Total Rides",
+      "TotalRevenue": "Total Revenue",
+      "TotalCashOuts": "Total Cash Outs"
+    }
+  },
+  "MyCars": {
+    "MyVehicles": "My Vehicles",
+    "AddVehicle": "Add Vehicle",
+    "VehicleBrand": "Brand",
+    "VehicleModel": "Model",
+    "VehicleYear": "Year",
+    "VehicleColor": "Color",
+    "VehiclePlateNumber": "Plate Number",
+    "NoVehicles": "You have no vehicles"
+  },
+  "Actions": {
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Add": "Add",
+    "Close": "Close",
+    "Back": "Back"
   }
 }

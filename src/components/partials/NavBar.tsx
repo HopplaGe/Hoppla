@@ -15,6 +15,7 @@ import {Plus} from "lucide-react";
 import {useTranslations} from "next-intl";
 import {useSession} from "next-auth/react";
 import AuthBlock from "@/components/shared/AuthBlock";
+import Logo from "@/components/shared/Logo";
 
 const navItems = [
     {name: "Carpool", href: "/carpool"},
@@ -32,13 +33,11 @@ const NavBar = () => {
     const t = useTranslations("NavBar");
     return (
         <Navbar maxWidth="xl" className="fira-go bg-white/50">
-            <NavbarContent className="hidden sm:flex gap-4 ml-2" justify="start">
+            <NavbarContent className=" sm:flex gap-4 ml-2" justify="start">
                 <NavbarBrand className="flex-none">
-                    <Link href="/">
-                        <Image src={hopplaLogo} alt="Hoppla.ge" width={150}/>
-                    </Link>
+                    <Logo/>
                 </NavbarBrand>
-                <div className="flex-initial w-full flex gap-4">
+                <div className="hidden flex-initial w-full lg:flex gap-4">
                     {navItems.map((item, index) => (
                         <NavbarItem key={index}>
                             <Link href={item.href} className="text-secondary">

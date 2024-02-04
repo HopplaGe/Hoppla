@@ -69,5 +69,36 @@
     "Mestia": "მესტია",
     "Stepantsminda": "სტეფანწმინდა",
     "Kvareli": "ყვარელი"
+  },
+  "UserRoles": {
+    "ADMIN": "ადმინისტრატორი",
+    "USER": "მომხმარებელი"
+  },
+  "Admin": {
+    "MainStats": {
+      "TotalUsers": "სულ მომხმარებელი",
+      "TotalRides": "სულ მგზავრობა",
+      "TotalRevenue": "სულ შემოსავლები",
+      "TotalCashOuts": "სულ გადახდები"
+    }
+  },
+  "MyCars": {
+    "MyVehicles": "ჩემი ავტომობილები",
+    "AddVehicle": "ავტომობილის დამატება",
+    "VehicleBrand": "მწარმოებელი",
+    "VehicleModel": "მოდელი",
+    "VehicleYear": "წელი",
+    "VehicleColor": "ფერი",
+    "VehiclePlateNumber": "სარეგისტრაციო ნომერი",
+    "NoVehicles": "ავტომობილი არ არის დამატებული"
+  },
+  "Actions": {
+    "Edit": "რედაქტირება",
+    "Delete": "წაშლა",
+    "Save": "შენახვა",
+    "Cancel": "გაუქმება",
+    "Add": "დამატება",
+    "Close": "დახურვა",
+    "Back": "უკან"
   }
 }

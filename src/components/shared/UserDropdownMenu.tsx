@@ -2,6 +2,8 @@ import React from 'react';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
 import {User} from "@nextui-org/user";
 import {signOut} from "next-auth/react";
+import {useTranslations} from "next-intl";
+import {ShieldCheck, Users} from "lucide-react";
 
 type UserDropdownMenuProps = {
     user: any;
@@ -21,6 +23,7 @@ const userMenuItems = [
 
 
 const UseDropdownMenu = ({user, t}: UserDropdownMenuProps) => {
+    const t2 = useTranslations("UserRoles");
     return (
         <Dropdown placement="bottom-start">
             <DropdownTrigger>
@@ -40,9 +43,18 @@ const UseDropdownMenu = ({user, t}: UserDropdownMenuProps) => {
             </DropdownTrigger>
             <DropdownMenu aria-label={t('NavBar.UserActions')} variant="flat" className="fira-go" items={userMenuItems}>
 
-                <DropdownItem key="profile" className="h-14 gap-2">
-                    <p className="font-semibold">{t('UserMenu.SignedInAs')}</p>
-                    <p className="font-semibold">{user?.email}</p>
+                <DropdownItem key="profile"
+                              className="h-14"
+                              color={user?.role === "ADMIN" ? "success" : "default"}
+                              variant="flat"
+                              endContent={user?.role === "ADMIN" ? <ShieldCheck size={18}/> : <Users size={18}/>}
+                >
+                    <div className="w-full gap-2 flex flex-row justify-between items-center">
+                        <div className="flex flex-col items-start gap-0.5">
+                            <p className="font-semibold">{t('UserMenu.SignedInAs')}</p>
+                            <p className="font-semibold">{user?.email}</p>
+                        </div>
+                    </div>
                 </DropdownItem>
                 <DropdownItem key="dashboard" href="/dashboard">
                     {t(`UserMenu.Profile`)}
