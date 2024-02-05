@@ -1,6 +1,6 @@
 {
   "Index": {
-    "title": "Hello world!"
+    "title": "Travel to your desired destination with the help of HOPPLA"
   },
   "LanguageSwitch": {
     "choose-language": "Choose language"
@@ -39,5 +39,83 @@
     "AboutUs": "About us",
     "Support": "Support",
     "Careers": "Careers"
+  },
+  "SearchForm": {
+    "From": "From",
+    "To": "To",
+    "Date": "Date",
+    "Passenger": "Passenger",
+    "Search": "Search"
+  },
+  "Cities": {
+    "Tbilisi": "Tbilisi",
+    "Batumi": "Batumi",
+    "Kutaisi": "Kutaisi",
+    "Rustavi": "Rustavi",
+    "Gori": "Gori",
+    "Poti": "Poti",
+    "Zugdidi": "Zugdidi",
+    "Telavi": "Telavi",
+    "Mtskheta": "Mtskheta",
+    "Akhaltsikhe": "Akhaltsikhe",
+    "Kobuleti": "Kobuleti",
+    "Ureki": "Ureki",
+    "Sighnaghi": "Sighnaghi",
+    "Bakuriani": "Bakuriani",
+    "Gudauri": "Gudauri",
+    "Borjomi": "Borjomi",
+    "Kazbegi": "Kazbegi",
+    "Anaklia": "Anaklia",
+    "Mestia": "Mestia",
+    "Stepantsminda": "Stepantsminda",
+    "Kvareli": "Kvareli"
+  },
+  "UserRoles": {
+    "ADMIN": "Administrator",
+    "USER": "User"
+  },
+  "Admin": {
+    "MainStats": {
+      "TotalUsers": "Total Users",
+      "TotalRides": "Total Rides",
+      "TotalRevenue": "Total Revenue",
+      "TotalCashOuts": "Total Cash Outs"
+    }
+  },
+  "MyCars": {
+    "MyVehicles": "My Vehicles",
+    "AddVehicle": "Add Vehicle",
+    "VehicleBrand": "Brand",
+    "VehicleModel": "Model",
+    "VehicleYear": "Year",
+    "VehicleColor": "Color",
+    "VehiclePlateNumber": "Plate Number",
+    "NoVehicles": "You have no vehicles"
+  },
+  "Actions": {
+    "Edit": "Edit",
+    "Delete": "Delete",
+    "Save": "Save",
+    "Cancel": "Cancel",
+    "Add": "Add",
+    "Close": "Close",
+    "Back": "Back"
+  },
+  "Dashboard": {
+    "DashSidebar": {
+      "Navigation": "Navigation",
+      "Manage": "Manage",
+      "Home": "Home",
+      "Rides": "Rides",
+      "ManageRides": "Manage Rides",
+      "Tickets": "Tickets",
+      "ManageTickets": "Manage Tickets",
+      "Rates": "Rates",
+      "ManageRates": "Manage Rates",
+      "Payments": "Payments",
+      "ManagePayments": "Manage Payments",
+      "Settings": "Settings",
+      "ManageSettings": "Manage Settings"
+    }
   }
 }

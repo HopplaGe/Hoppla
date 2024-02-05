@@ -40,14 +40,33 @@ model Session {
   @@map("sessions")
 }
 
+enum userRole {
+  ADMIN
+  USER
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime? @map("email_verified")
   image         String?
+  role          userRole  @default(USER)
+  address       String?
+  phone         String?
+  birthdate     DateTime?
+  gender        Gender    @default(OTHER)
   accounts      Account[]
   sessions      Session[]
+  Car           Car[]
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @default(now()) @map("updated_at")
 
   @@map("users")
 }
@@ -59,4 +78,20 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verificationtokens")
+}
+
+// Cars model
+model Car {
+  id          String   @id @default(cuid())
+  brand       String
+  model       String
+  year        Int
+  color       String
+  plateNumber String   @map("plate_number")
+  owner       User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  ownerId     String   @map("owner_id")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @default(now()) @map("updated_at")
+
+  @@map("cars")
 }

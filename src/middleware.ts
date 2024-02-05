@@ -1,15 +1,8 @@
-import createIntlMiddleware from "next-intl/middleware";
 import {NextRequest} from "next/server";
+import {auth} from "./lib/auth";
+import createIntlMiddleware from "next-intl/middleware";
 import {locales, defaultLocale, localePrefix} from "./i18n/locales";
-import NextAuth from "next-auth";
-import authConfig from "@/config/auth.config";
-
-const {auth} = NextAuth(authConfig);
-
-const publicRoutes = ["/", "/login", "/carpool", "/minibuses", "/buses"];
-const privateRoutes = ["/dashboard"];
-const apiAuthRoute = "/api/auth";
-// const defaultLoginRedirect = "/dashboard";
+import {getRouteType, redirect} from "./lib/middlewareFunctions";
 
 const intlMiddleware = createIntlMiddleware({
     locales,
@@ -17,59 +10,28 @@ const intlMiddleware = createIntlMiddleware({
     defaultLocale,
 });
 
-const authMiddleware = auth((req) => {
-    const {nextUrl} = req;
-    const isLoggedIn = !!req.auth;
-    const currentLocale = intlMiddleware(new NextRequest(req)).cookies.get("NEXT_LOCALE")?.value;
+export const publicRoutes = ["/", "/login", "/carpool", "/minibuses", "/buses"];
+export const adminRoutes = ["/admin"];
 
-    const publicPagesWithLocale = publicRoutes.map((p) => '/' + currentLocale + p);
-    const privatePagesWithLocale = privateRoutes.map((p) => '/' + currentLocale + p);
-
-    const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthRoute);
-    const isPublicRoute = publicPagesWithLocale.includes(nextUrl.pathname);
-    const isPrivateRoute = privatePagesWithLocale.includes(nextUrl.pathname);
-
-    // console.log("pathname", nextUrl.pathname);
-    // console.log("currentLocale", currentLocale);
-    // console.log("privatePagesWithLocale", privatePagesWithLocale);
-    // console.log("isLoggedIn", isLoggedIn);
-    // console.log("isPublicRoute", isPublicRoute);
-    // console.log("isPrivateRoute", isPrivateRoute);
-
-    if (isApiAuthRoute) {
-        return true;
+export default function middleware(request: NextRequest) {
+    const routeType = getRouteType(request);
+    if (routeType === "public") {
+        return intlMiddleware(request);
     }
-
-    if (isPublicRoute) {
-        return intlMiddleware(new NextRequest(req));
-    }
-
-    if (isPrivateRoute && !isLoggedIn) {
-        return Response.redirect(new URL(`/${currentLocale}/?redirect=${nextUrl.pathname}`, req.nextUrl.origin).toString(), 302);
-    }
-
-    if (isLoggedIn) {
-        return intlMiddleware(new NextRequest(req));
-    }
-})
-
-export default function middleware(req: NextRequest) {
-    const publicPathnameRegex = RegExp(
-        `^(/(${locales.join("|")}))?(${publicRoutes
-      .flatMap((p) => (p === "/" ? ["", "/"] : p))
-      .join("|")})/?$`,
-        "i"
-    );
-    const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
-    // return intlMiddleware(req);
-    // for future use
-    if (isPublicPage) {
-        return intlMiddleware(req);
-    } else {
-        return (authMiddleware as any)(req);
-    }
+    return auth((req) => {
+        const isLoggedIn = !!req.auth;
+        const userRole = req.auth?.user.role;
+        if (!isLoggedIn) {
+            return redirect(request, "/login");
+        }
+        if (routeType === "admin" && userRole !== "ADMIN") {
+            return redirect(request, "/");
+        }
+        return intlMiddleware(request);
+    })(request, {});
 }
 
 export const config = {
-    matcher: ["/((?!api|_next|.*\\..*).*)"],
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+    // matcher: "/((?!api|static|.\..|_next).*)",
 };

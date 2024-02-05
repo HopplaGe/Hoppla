@@ -4,6 +4,8 @@ import {Inter} from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers/Providers";
 import {notFound} from "next/navigation";
+import {SessionProvider} from "next-auth/react";
+import {auth} from "@/lib/auth";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
     title: "Hoppla - Ride with us",
     description:
         "გაემგზავრე Hoppla-ით და მიიღე საუკეთესო მანქანა და მარშუტი შენი მიზნისთვის",
+    icons: []
 };
 
 export default async function RootLayout({
@@ -26,6 +29,9 @@ export default async function RootLayout({
     } catch (error) {
         notFound();
     }
+
+    // const session = await auth()
+
     return (
         <html lang={locale}>
         <body className={inter.className}>

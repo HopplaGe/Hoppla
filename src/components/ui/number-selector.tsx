@@ -3,10 +3,11 @@ import React from 'react';
 import {Button} from "@/components/ui/button";
 import {Minus, Plus} from "lucide-react";
 import {InputProps} from "@/components/ui/input";
+import {useTranslations} from "next-intl";
 
 const NumberSelector = React.forwardRef<HTMLInputElement, InputProps>(
     ({className, type, ...props}, ref) => {
-
+        const t = useTranslations("SearchForm");
 
         const increment = () => {
             if (props.onChange) {
@@ -42,7 +43,7 @@ const NumberSelector = React.forwardRef<HTMLInputElement, InputProps>(
             <>
                 <div
                     className="hidden lg:relative lg:flex lg:flex-col justify-between items-start gap-2 px-4 py-2 bg-white lg:rounded-md">
-                    <div className="flex flex-grow fira-go text-gray-400 text-sm">მგზავრი</div>
+                    <div className="flex flex-grow fira-go text-gray-400 text-sm">{t(`Passenger`)}</div>
                     <div className="flex flex-grow-o justify-between items-center">
                         <Button variant="secondary" size="sm"
                                 onClick={decrement}
@@ -70,7 +71,7 @@ const NumberSelector = React.forwardRef<HTMLInputElement, InputProps>(
                 </div>
 
                 <div className="lg:hidden">
-                    <div className="flex flex-grow fira-go text-gray-400 text-sm">მგზავრი</div>
+                    <div className="flex flex-grow fira-go text-gray-400 text-sm">{t(`Passenger`)}</div>
                     <div className="flex flex-grow-o justify-between items-center">
                         <Button variant="secondary" size="sm"
                                 onClick={decrement}
