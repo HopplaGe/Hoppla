@@ -9,8 +9,6 @@ import {
     Link,
     Button,
 } from "@nextui-org/react";
-import Image from "next/image";
-import hopplaLogo from "@/assets/images/logo.png";
 import {Plus} from "lucide-react";
 import {useTranslations} from "next-intl";
 import {useSession} from "next-auth/react";
@@ -32,7 +30,7 @@ const NavBar = () => {
 
     const t = useTranslations("NavBar");
     return (
-        <Navbar maxWidth="xl" className="fira-go bg-white/50">
+        <Navbar maxWidth="xl" className="fira-go bg-white">
             <NavbarContent className=" sm:flex gap-4 ml-2" justify="start">
                 <NavbarBrand className="flex-none">
                     <Logo/>
@@ -40,7 +38,7 @@ const NavBar = () => {
                 <div className="hidden flex-initial w-full lg:flex gap-4">
                     {navItems.map((item, index) => (
                         <NavbarItem key={index}>
-                            <Link href={item.href} className="text-secondary">
+                            <Link className="text-secondary">
                                 {t(`${item.name}`)}
                             </Link>
                         </NavbarItem>

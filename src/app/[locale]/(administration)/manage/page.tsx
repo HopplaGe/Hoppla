@@ -2,6 +2,9 @@ import {FC} from "react";
 import {Plus} from "lucide-react";
 import MainStats from "@/components/administration/stats/MainStats";
 
+import {rolePermissions} from "@/lib/tools/rolePermissions";
+import {auth} from "@/lib/auth";
+
 type pageProps = {}
 
 const secondaryNavigation = [
@@ -11,6 +14,18 @@ const secondaryNavigation = [
 ]
 
 const page: FC<pageProps> = async () => {
+    const session = await auth()
+
+    const user = session?.user
+
+    const permissions = rolePermissions(user?.role as string)
+    // const parsedPermissions = permissions.can.map((item) => item)
+    //
+    // const canManage = parsedPermissions.includes('create:invoice')
+    // //|| parsedPermissions.includes('read') || parsedPermissions.includes('update') || parsedPermissions.includes('delete')
+
+    console.log(permissions)
+
     return (
         <div className="relative isolate overflow-hidden ">
             {/* Secondary navigation */}

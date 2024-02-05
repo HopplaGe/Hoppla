@@ -15,7 +15,7 @@ const MyVehicles = ({cars}: myVehicles) => {
         <>
             <h2 className="font-bold text-xl mb-4 fira-go">{t("MyVehicles")}</h2>
             <div role="list"
-                 className={cn(`grid grid-cols-4 gap-4 justify-center items-center relative`)}>
+                 className={cn(`grid grid-cols-10 gap-4 justify-center items-center relative`)}>
                 <AddCarModel/>
                 {cars && cars.length > 0 ? cars.map((car, index) => (
                         <Popover key={index} showArrow placement="bottom">

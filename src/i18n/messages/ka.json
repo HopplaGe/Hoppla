@@ -100,5 +100,22 @@
     "Add": "დამატება",
     "Close": "დახურვა",
     "Back": "უკან"
+  },
+  "Dashboard": {
+    "DashSidebar": {
+      "Navigation": "ნავიგაცია",
+      "Manage": "მართვა",
+      "Home": "მთავარი",
+      "Rides": "მგზავრობები",
+      "ManageRides": "მგზავრობების მართვა",
+      "Tickets": "ბილეთები",
+      "ManageTickets": "ბილეთების მართვა",
+      "Rates": "შეფასებები",
+      "ManageRates": "შეფასებების მართვა",
+      "Payments": "გადახდები",
+      "ManagePayments": "გადახდების მართვა",
+      "Settings": "პარამეტრები",
+      "ManageSettings": "პარამეტრების მართვა"
+    }
   }
 }

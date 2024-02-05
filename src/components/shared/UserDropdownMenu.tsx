@@ -2,7 +2,6 @@ import React from 'react';
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
 import {User} from "@nextui-org/user";
 import {signOut} from "next-auth/react";
-import {useTranslations} from "next-intl";
 import {ShieldCheck, Users} from "lucide-react";
 import {Link} from "@/i18n/navigation";
 import {cn} from "@/lib/utils";
@@ -25,7 +24,6 @@ const userMenuItems = [
 
 
 const UseDropdownMenu = ({user, t}: UserDropdownMenuProps) => {
-    const t2 = useTranslations("UserRoles");
     return (
         <Dropdown placement="bottom-start">
             <DropdownTrigger>
@@ -54,32 +52,29 @@ const UseDropdownMenu = ({user, t}: UserDropdownMenuProps) => {
                     <div className="w-full gap-2 flex flex-row justify-between items-center">
                         <div className="flex flex-col items-start gap-0.5">
                             <p className="font-semibold">{t('UserMenu.SignedInAs')}</p>
-                            <p className="font-semibold">{user?.role}</p>
+                            <p className="font-semibold">{user?.email}</p>
                         </div>
                     </div>
                 </DropdownItem>
 
-                <DropdownItem key="manage" className={cn(user?.role === "ADMIN" ? "flex" : "hidden")}>
-                    <Link href={"/manage"}>
-                        {/*{t(`UserMenu.Profile`)}*/}
-                        ადმინისტრირება
-                    </Link>
+                <DropdownItem key="manage" className={cn(user?.role === "ADMIN" ? "flex" : "hidden")} href="/manage">
+                    ადმინისტრირება
                 </DropdownItem>
-                <DropdownItem key="dashboard">
+                <DropdownItem key="dashboard" href={"/dashboard"}>
                     <Link href={"/dashboard"}>
                         {t(`UserMenu.Profile`)}
                     </Link>
                 </DropdownItem>
-                <DropdownItem key="my-rides" href="/dashboard/my-rides">
+                <DropdownItem key="my-rides" href="/dashboard/rides">
                     {t(`UserMenu.MyRides`)}
                 </DropdownItem>
-                <DropdownItem key="my-vehicles" href="/dashboard/my-vehicles">
+                <DropdownItem key="my-vehicles" href={"/dashboard/vehicles"}>
                     {t(`UserMenu.MyVehicles`)}
                 </DropdownItem>
-                <DropdownItem key="my-tickets" href="/dashboard/my-tickets">
+                <DropdownItem key="my-tickets" href={"/dashboard/tickets"}>
                     {t(`UserMenu.MyTickets`)}
                 </DropdownItem>
-                <DropdownItem key="my-payments" href="/dashboard/my-payments">
+                <DropdownItem key="my-payments" href={"/dashboard/payments"}>
                     {t(`UserMenu.MyPayments`)}
                 </DropdownItem>
                 <DropdownItem key="analytics" href="/dashboard/analytics">

@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 import {LayoutProps} from "@/types/layoutProps";
-import AdminSidebar from "@/components/administration/AdminSidebar";
-import AdminNavbar from "@/components/administration/AdminNavbar";
-import AdminAside from "@/components/administration/AdminAside";
+import NavBar from "@/components/partials/NavBar";
+import Footer from "@/components/partials/Footer";
+import DashSidebar from "@/components/dashboard/DashSidebar";
 
 const PrivateLayout = ({children}: LayoutProps) => {
     return (
         <>
-            <AdminSidebar/>
-            <div className="lg:pl-20">
-                <AdminNavbar/>
-                <main className="xl:pl-96">
+            <NavBar/>
+            <main className="page-wrapper py-6 grid grid-cols-4 gap-6 justify-between items-start">
+                <DashSidebar/>
+                <div className="col-span-3">
                     {children}
-                </main>
-            </div>
-            <AdminAside/>
+                </div>
+            </main>
+            <Footer/>
         </>
     );
 };

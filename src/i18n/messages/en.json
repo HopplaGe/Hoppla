@@ -100,5 +100,22 @@
     "Add": "Add",
     "Close": "Close",
     "Back": "Back"
+  },
+  "Dashboard": {
+    "DashSidebar": {
+      "Navigation": "Navigation",
+      "Manage": "Manage",
+      "Home": "Home",
+      "Rides": "Rides",
+      "ManageRides": "Manage Rides",
+      "Tickets": "Tickets",
+      "ManageTickets": "Manage Tickets",
+      "Rates": "Rates",
+      "ManageRates": "Manage Rates",
+      "Payments": "Payments",
+      "ManagePayments": "Manage Payments",
+      "Settings": "Settings",
+      "ManageSettings": "Manage Settings"
+    }
   }
 }

@@ -9,6 +9,7 @@ import {useSession} from "next-auth/react";
 import UserDropdownMenu from "@/components/shared/UserDropdownMenu";
 import {useTranslations} from "next-intl";
 import LanguageSwitch from "@/components/partials/LanguageSwitch";
+import Logo from "@/components/shared/Logo";
 
 const navigation = [
     {name: 'Dashboard', href: '#', icon: HomeIcon, current: true},
@@ -23,8 +24,8 @@ const AdminNavbar = () => {
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const session = useSession()
     const {data} = session;
-    const isLoggedIn = !!data;
-    const userRole = data?.user?.role;
+    // const isLoggedIn = !!data;
+    // const userRole = data?.user?.role;
     const t = useTranslations("NavBar");
 
     return (
@@ -122,11 +123,7 @@ const AdminNavbar = () => {
                                 <div
                                     className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2 ring-1 ring-white/10">
                                     <div className="flex h-16 shrink-0 items-center">
-                                        <img
-                                            className="h-8 w-auto"
-                                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                                            alt="Your Company"
-                                        />
+                                        <Logo/>
                                     </div>
                                     <nav className="flex flex-1 flex-col">
                                         <ul role="list" className="-mx-2 flex-1 space-y-1">
