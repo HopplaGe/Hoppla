@@ -2,6 +2,7 @@
 import React from "react";
 import {NextUIProvider} from "@nextui-org/react";
 import {NextIntlClientProvider} from "next-intl";
+import {SessionProvider} from "next-auth/react";
 
 type ProvidersProps = {
     children: React.ReactNode;
@@ -18,7 +19,11 @@ const Providers = ({children, locale, messages}: ProvidersProps) => {
             locale={locale}
             messages={messages}
         >
-            <NextUIProvider>{children}</NextUIProvider>
+            <NextUIProvider>
+                <SessionProvider>
+                    {children}
+                </SessionProvider>
+            </NextUIProvider>
         </NextIntlClientProvider>
     );
 };

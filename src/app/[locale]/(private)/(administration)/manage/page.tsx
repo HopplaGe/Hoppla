@@ -1,5 +1,4 @@
 import {FC} from "react";
-import {auth} from "@/lib/auth";
 import {Plus} from "lucide-react";
 import MainStats from "@/components/administration/stats/MainStats";
 

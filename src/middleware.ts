@@ -6,8 +6,8 @@ import authConfig from "@/config/auth.config";
 
 const {auth} = NextAuth(authConfig);
 
-const publicRoutes = ["/", "/login", "/carpool", "/minibuses", "/buses"];
-const privateRoutes = ["/dashboard"];
+const publicRoutes = ["/", "/login", "/minibuses", "/buses", "/carpool"];
+const privateRoutes = ["/dashboard", "/settings", "/manage"];
 const apiAuthRoute = "/api/auth";
 // const defaultLoginRedirect = "/dashboard";
 
@@ -17,8 +17,9 @@ const intlMiddleware = createIntlMiddleware({
     defaultLocale,
 });
 
-const authMiddleware = auth((req) => {
+export const authMiddleware = auth((req: NextRequest) => {
     const {nextUrl} = req;
+    //@ts-ignore
     const isLoggedIn = !!req.auth;
     const currentLocale = intlMiddleware(new NextRequest(req)).cookies.get("NEXT_LOCALE")?.value;
 
@@ -29,28 +30,21 @@ const authMiddleware = auth((req) => {
     const isPublicRoute = publicPagesWithLocale.includes(nextUrl.pathname);
     const isPrivateRoute = privatePagesWithLocale.includes(nextUrl.pathname);
 
-    // console.log("pathname", nextUrl.pathname);
-    // console.log("currentLocale", currentLocale);
-    // console.log("privatePagesWithLocale", privatePagesWithLocale);
-    // console.log("isLoggedIn", isLoggedIn);
-    // console.log("isPublicRoute", isPublicRoute);
-    // console.log("isPrivateRoute", isPrivateRoute);
-
     if (isApiAuthRoute) {
         return true;
     }
-
-    if (isPublicRoute) {
-        return intlMiddleware(new NextRequest(req));
-    }
+    //
+    // if (isPublicRoute) {
+    //     return intlMiddleware(new NextRequest(req));
+    // }
 
     if (isPrivateRoute && !isLoggedIn) {
         return Response.redirect(new URL(`/${currentLocale}/?redirect=${nextUrl.pathname}`, req.nextUrl.origin).toString(), 302);
     }
 
-    if (isLoggedIn) {
-        return intlMiddleware(new NextRequest(req));
-    }
+    // if (isLoggedIn) {
+    //     return intlMiddleware(new NextRequest(req));
+    // }
 })
 
 export default function middleware(req: NextRequest) {
@@ -60,8 +54,9 @@ export default function middleware(req: NextRequest) {
       .join("|")})/?$`,
         "i"
     );
+
     const isPublicPage = publicPathnameRegex.test(req.nextUrl.pathname);
-    // return intlMiddleware(req);
+
     // for future use
     if (isPublicPage) {
         return intlMiddleware(req);
@@ -69,6 +64,8 @@ export default function middleware(req: NextRequest) {
         return authMiddleware(req, {});
     }
 }
+
+// export const {auth: middleware} = NextAuth(authConfig)
 
 export const config = {
     matcher: ["/((?!api|_next|.*\\..*).*)"],

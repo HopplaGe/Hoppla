@@ -2,22 +2,17 @@
 import React, {Fragment, useState} from 'react';
 import {MagnifyingGlassIcon} from "@radix-ui/react-icons";
 import {Bars3Icon, ChartPieIcon, DocumentDuplicateIcon, XMarkIcon} from "@heroicons/react/16/solid";
-import {BellIcon, CalendarIcon, ChevronDownIcon, FolderIcon, HomeIcon, UsersIcon} from "lucide-react";
-import {Dialog, Menu, Transition} from "@headlessui/react";
+import {BellIcon, CalendarIcon, FolderIcon, HomeIcon, Car} from "lucide-react";
+import {Dialog, Transition} from "@headlessui/react";
 import {cn} from "@/lib/utils";
 import {useSession} from "next-auth/react";
 import UserDropdownMenu from "@/components/shared/UserDropdownMenu";
 import {useTranslations} from "next-intl";
 import LanguageSwitch from "@/components/partials/LanguageSwitch";
 
-const userNavigation = [
-    {name: 'Your profile', href: '#'},
-    {name: 'Sign out', href: '#'},
-]
-
 const navigation = [
     {name: 'Dashboard', href: '#', icon: HomeIcon, current: true},
-    {name: 'Team', href: '#', icon: UsersIcon, current: false},
+    {name: 'Team', href: '#', icon: Car, current: true},
     {name: 'Projects', href: '#', icon: FolderIcon, current: false},
     {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
     {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},

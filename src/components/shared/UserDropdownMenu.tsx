@@ -4,6 +4,8 @@ import {User} from "@nextui-org/user";
 import {signOut} from "next-auth/react";
 import {useTranslations} from "next-intl";
 import {ShieldCheck, Users} from "lucide-react";
+import {Link} from "@/i18n/navigation";
+import {cn} from "@/lib/utils";
 
 type UserDropdownMenuProps = {
     user: any;
@@ -52,12 +54,21 @@ const UseDropdownMenu = ({user, t}: UserDropdownMenuProps) => {
                     <div className="w-full gap-2 flex flex-row justify-between items-center">
                         <div className="flex flex-col items-start gap-0.5">
                             <p className="font-semibold">{t('UserMenu.SignedInAs')}</p>
-                            <p className="font-semibold">{user?.email}</p>
+                            <p className="font-semibold">{user?.role}</p>
                         </div>
                     </div>
                 </DropdownItem>
-                <DropdownItem key="dashboard" href="/dashboard">
-                    {t(`UserMenu.Profile`)}
+
+                <DropdownItem key="manage" className={cn(user?.role === "ADMIN" ? "flex" : "hidden")}>
+                    <Link href={"/manage"}>
+                        {/*{t(`UserMenu.Profile`)}*/}
+                        ადმინისტრირება
+                    </Link>
+                </DropdownItem>
+                <DropdownItem key="dashboard">
+                    <Link href={"/dashboard"}>
+                        {t(`UserMenu.Profile`)}
+                    </Link>
                 </DropdownItem>
                 <DropdownItem key="my-rides" href="/dashboard/my-rides">
                     {t(`UserMenu.MyRides`)}

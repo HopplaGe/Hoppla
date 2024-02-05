@@ -1,10 +1,8 @@
 "use client"
-import React, {Fragment, useState} from 'react';
-import {Transition} from "@headlessui/react";
-import {CalendarIcon, FolderIcon, HomeIcon, UsersIcon} from "lucide-react";
-import {ChartPieIcon, DocumentDuplicateIcon, XMarkIcon} from "@heroicons/react/16/solid";
+import React from 'react';
+import {CalendarIcon, Car, FolderIcon, HomeIcon} from "lucide-react";
+import {ChartPieIcon, DocumentDuplicateIcon} from "@heroicons/react/16/solid";
 import {cn} from "@/lib/utils";
-import {Dialog} from "@headlessui/react";
 import hopplaMiniLogo from "@/assets/images/mini_logo.png";
 import Image from "next/image";
 import Link from "next/link";
@@ -12,7 +10,7 @@ import Link from "next/link";
 
 const navigation = [
     {name: 'Dashboard', href: '#', icon: HomeIcon, current: true},
-    {name: 'Team', href: '#', icon: UsersIcon, current: false},
+    {name: 'Team', href: '#', icon: Car, current: false},
     {name: 'Projects', href: '#', icon: FolderIcon, current: false},
     {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
     {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},

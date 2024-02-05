@@ -11,6 +11,7 @@ import {RadioGroup} from '@headlessui/react'
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {useTranslations} from "next-intl";
+import {createCar} from "@/lib/actions/cars";
 
 const cars = [
     {
@@ -192,11 +193,11 @@ const AddCarForm = ({...props}: {
             model: "",
             year: "",
             color: "",
-            plateNumber: "",
+            plateNumber: ""
         }
     });
     const handleSubmit = async (values: z.infer<typeof CarSchema>) => {
-        console.log(values);
+        await createCar(values, currentUser);
         props.onClose();
         router.refresh()
     };

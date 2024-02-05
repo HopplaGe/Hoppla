@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: "Hoppla - Ride with us",
     description:
         "გაემგზავრე Hoppla-ით და მიიღე საუკეთესო მანქანა და მარშუტი შენი მიზნისთვის",
+    icons: []
 };
 
 export default async function RootLayout({
@@ -29,15 +30,14 @@ export default async function RootLayout({
         notFound();
     }
 
-    const session = await auth()
+    // const session = await auth()
 
     return (
         <html lang={locale}>
         <body className={inter.className}>
         <Providers locale={locale} messages={messages}>
-            <SessionProvider session={session}>
-                {children}
-            </SessionProvider>
+
+            {children}
         </Providers>
         </body>
         </html>
