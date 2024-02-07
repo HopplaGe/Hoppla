@@ -37,7 +37,7 @@ const PlacesInput = React.forwardRef<HTMLInputElement, InputProps>(
 
             document.addEventListener("mousedown", handleClickOutside);
             return () => document.removeEventListener("mousedown", handleClickOutside);
-        }, []);
+        }, [selectedPlace, props]);
 
         const handleInput = (place: any) => {
             // @ts-ignore
