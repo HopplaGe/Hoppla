@@ -38,7 +38,7 @@ const NavBar = () => {
                 <div className="hidden flex-initial w-full lg:flex gap-4">
                     {navItems.map((item, index) => (
                         <NavbarItem key={index}>
-                            <Link className="text-secondary">
+                            <Link href={item.href} className="text-secondary">
                                 {t(`${item.name}`)}
                             </Link>
                         </NavbarItem>
@@ -50,7 +50,7 @@ const NavBar = () => {
                     <Button
                         as={Link}
                         color="secondary"
-                        href="#"
+                        href="/offer-seats"
                         variant="flat"
                         startContent={<Plus/>}
                     >

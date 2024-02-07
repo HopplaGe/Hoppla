@@ -117,5 +117,127 @@
       "Settings": "Settings",
       "ManageSettings": "Manage Settings"
     }
+  },
+  "Rides": {
+    "Rides": "Rides",
+    "RideResults": "Results",
+    "AddRide": "Add Ride",
+    "RideDetails": "Ride Details",
+    "RideDate": "Date",
+    "RideTime": "Time",
+    "RideFrom": "From",
+    "RideTo": "To",
+    "RidePrice": "Price",
+    "RideSeats": "Seats",
+    "RideDescription": "Description",
+    "RideCar": "Car",
+    "RidePassengers": "Passengers",
+    "RidePassenger": "Passenger",
+    "RidePassengerName": "Name",
+    "RidePassengerPhone": "Phone",
+    "RidePassengerEmail": "Email",
+    "RidePassengerSeats": "Seats",
+    "RidePassengerStatus": "Status",
+    "RidePassengerStatuses": {
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "CANCELED": "Canceled",
+      "COMPLETED": "Completed",
+      "DELETED": "Deleted",
+      "EXPIRED": "Expired",
+      "PAID": "Paid",
+      "UNPAID": "Unpaid",
+      "REFUNDED": "Refunded",
+      "PARTIALLY_REFUNDED": "Partially Refunded",
+      "REFUND_PENDING": "Refund Pending",
+      "REFUND_CANCELED": "Refund Canceled",
+      "REFUND_COMPLETED": "Refund Completed",
+      "REFUND_PROCESSING": "Refund Processing",
+      "REFUND_WAITING": "Refund Waiting",
+      "REFUND_REJECTED": "Refund Rejected",
+      "REFUND_FAILED": "Refund Failed",
+      "REFUND_EXPIRED": "Refund Expired"
+    },
+    "RideStatus": "Status",
+    "RideStatuses": {
+      "PENDING": "Pending",
+      "APPROVED": "Approved",
+      "REJECTED": "Rejected",
+      "CANCELED": "Canceled",
+      "COMPLETED": "Completed",
+      "DELETED": "Deleted",
+      "EXPIRED": "Expired"
+    },
+    "RidePassengerActions": {
+      "Approve": "Approve",
+      "Reject": "Reject",
+      "Cancel": "Cancel",
+      "Complete": "Complete",
+      "Delete": "Delete",
+      "Refund": "Refund"
+    },
+    "NoRides": "You have no rides",
+    "NoPassengers": "No passengers",
+    "NoTickets": "No tickets",
+    "NoPayments": "No payments",
+    "NoRates": "No rates",
+    "NoSettings": "No settings",
+    "NoVehicles": "No vehicles",
+    "NoUsers": "No users",
+    "NoData": "No data",
+    "TransportType": "Transport Type",
+    "TransportTypes": {
+      "ALL": "All",
+      "CAR": "Car",
+      "MINIVAN": "Minivan",
+      "BUS": "Bus"
+    }
+  },
+  "OfferSeats": {
+    "title": "Become a HOPPLA driver and save on travel costs by sharing your ride with passengers.",
+    "OfferSeatsForm": {
+      "title": "Offer Seats",
+      "From": "From",
+      "FromPlaceholder": "Enter the city you are leaving from",
+      "To": "To",
+      "ToPlaceholder": "Enter the city you are going to",
+      "Date": "Date",
+      "Time": "Time",
+      "Price": "Price",
+      "Seats": "Seats",
+      "Description": "Description",
+      "TransportType": "Transport Type",
+      "TransportTypes": {
+        "CAR": "Car",
+        "MINIVAN": "Minivan",
+        "BUS": "Bus"
+      },
+      "Offer": "Offer",
+      "Cancel": "Cancel",
+      "SaveMoney": "Save up to {price}₾ on your first ride.",
+      "PublishARide": "Publish a ride"
+    },
+    "OfferSeatsSuccess": {
+      "title": "Your ride has been successfully published",
+      "message": "Your ride has been successfully published. You can view it in the list of rides."
+    },
+    "OfferSeatsError": {
+      "title": "An error occurred while publishing the ride",
+      "message": "An error occurred while publishing the ride. Please try again later."
+    },
+    "OfferSeatsConfirmation": {
+      "title": "Offer Seats Confirmation",
+      "message": "Are you sure you want to offer seats?"
+    },
+    "OfferSeatsInfoCards": {
+      "title": "Hoopla is the best way to travel comfortably and cheaply.",
+      "SaveOnTravelCosts": "Save on travel costs",
+      "SaveOnTravelCostsDescription": "Share your ride with passengers on your way, and save every time you travel by car. Sign up as a driver to start saving on travel costs.",
+      "JoinATrustworthyCommunity": "Join a trustworthy community",
+      "JoinATrustworthyCommunityDescription": "Join a community of 1.2 million members, and enjoy the benefits of carpooling and sharing rides with others.",
+      "CarpoolingMadeSimple": "Carpooling made simple",
+      "CarpoolingMadeSimpleDescription": "Offer your seats and travel with other members. Carpooling is a simple, fun, and cost-effective way to travel."
+    }
   }
 }

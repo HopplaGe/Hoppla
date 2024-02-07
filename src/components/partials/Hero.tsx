@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 
-import carpoolBg from '@/assets/images/carpoolbg.svg'
+import carpoolBg from '@/assets/images/banners/carpoolbg.svg'
 import {useTranslations} from "next-intl";
 import SearchBox from "@/components/partials/SearchBox";
 

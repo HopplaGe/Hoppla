@@ -10,7 +10,7 @@ const intlMiddleware = createIntlMiddleware({
     defaultLocale,
 });
 
-export const publicRoutes = ["/", "/login", "/carpool", "/minibuses", "/buses"];
+export const publicRoutes = ["/", "/login", "/carpool", "/minibuses", "/buses", "/offer-seats"];
 export const adminRoutes = ["/admin"];
 
 export default function middleware(request: NextRequest) {
