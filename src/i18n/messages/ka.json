@@ -117,5 +117,127 @@
       "Settings": "პარამეტრები",
       "ManageSettings": "პარამეტრების მართვა"
     }
+  },
+  "Rides": {
+    "Rides": "მგზავრობები",
+    "RideResults": "შედეგები",
+    "AddRide": "მგზავრობის დამატება",
+    "RideDetails": "მგზავრობის დეტალები",
+    "RideDate": "თარიღი",
+    "RideTime": "დრო",
+    "RideFrom": "საიდან",
+    "RideTo": "სად",
+    "RidePrice": "ფასი",
+    "RideSeats": "ადგილები",
+    "RideDescription": "აღწერა",
+    "RideCar": "მანქანა",
+    "RidePassengers": "მგზავრები",
+    "RidePassenger": "მგზავრები",
+    "RidePassengerName": "სახელი",
+    "RidePassengerPhone": "ტელეფონი",
+    "RidePassengerEmail": "ელ-ფოსტა",
+    "RidePassengerSeats": "ადგილები",
+    "RidePassengerStatus": "სტატუსი",
+    "RidePassengerStatuses": {
+      "PENDING": "მოლოდინე",
+      "APPROVED": "დადასტურებული",
+      "REJECTED": "უარყოფილი",
+      "CANCELED": "გაუქმებული",
+      "COMPLETED": "დასრულებული",
+      "DELETED": "წაშლილი",
+      "EXPIRED": "ვადაგასული",
+      "PAID": "გადახდილი",
+      "UNPAID": "გადახდას ელოდება",
+      "REFUNDED": "გადახდა გაუქმებული",
+      "PARTIALLY_REFUNDED": "ნაწილობრივად გადახდილი",
+      "REFUND_PENDING": "გადახდის მოლოდინე",
+      "REFUND_CANCELED": "გადახდის გაუქმებული",
+      "REFUND_COMPLETED": "გადახდილი",
+      "REFUND_PROCESSING": "გადახდის დამუშავება",
+      "REFUND_WAITING": "გადახდის ელოდება",
+      "REFUND_REJECTED": "გადახდის უარყოფილი",
+      "REFUND_FAILED": "გადახდის ჩამონათვალი",
+      "REFUND_EXPIRED": "გადახდის ვადაგასული"
+    },
+    "RideStatus": "სტატუსი",
+    "RideStatuses": {
+      "PENDING": "მოლოდინე",
+      "APPROVED": "დადასტურებული",
+      "REJECTED": "უარყოფილი",
+      "CANCELED": "გაუქმებული",
+      "COMPLETED": "დასრულებული",
+      "DELETED": "წაშლილი",
+      "EXPIRED": "ვადაგასული"
+    },
+    "RidePassengerActions": {
+      "Approve": "დადასტურება",
+      "Reject": "უარყოფა",
+      "Cancel": "გაუქმება",
+      "Complete": "დასრულება",
+      "Delete": "წაშლა",
+      "Refund": "გადახდა"
+    },
+    "NoRides": "მგზავრობა არ არის დამატებული",
+    "NoPassengers": "მგზავრები არ არის დამატებული",
+    "NoTickets": "ბილეთები არ არის დამატებული",
+    "NoPayments": "გადახდები არ არის დამატებული",
+    "NoRates": "შეფასებები არ არის დამატებული",
+    "NoSettings": "პარამეტრები არ არის დამატებული",
+    "NoVehicles": "ავტომობილი არ არის დამატებული",
+    "NoUsers": "მომხმარებელი არ არის დამატებული",
+    "NoData": "მონაცემები არ არის",
+    "TransportType": "ტრანსპორტის ტიპი",
+    "TransportTypes": {
+      "ALL": "ყველა",
+      "CAR": "ავტომობილი",
+      "MINIVAN": "მინივენი",
+      "BUS": "ავტობუსი"
+    }
+  },
+  "OfferSeats": {
+    "title": "გახდი HOPPLA-ს მძღოლი და დაზოგე მგზავრობის ხარჯები ტრანსპორტის გაზიარებით.",
+    "OfferSeatsForm": {
+      "title": "ტრანსპორტის გაზიარება",
+      "From": "საიდან",
+      "FromPlaceholder": "თქვენი გამგზავრების ადგილი",
+      "To": "სად",
+      "ToPlaceholder": "თქვენი მიმართულება",
+      "Date": "თარიღი",
+      "Time": "დრო",
+      "Price": "ფასი",
+      "Seats": "ადგილები",
+      "Description": "აღწერა",
+      "TransportType": "ტრანსპორტის ტიპი",
+      "TransportTypes": {
+        "CAR": "ავტომობილი",
+        "MINIVAN": "მინივენი",
+        "BUS": "ავტობუსი"
+      },
+      "Offer": "გაზიარება",
+      "Cancel": "გაუქმება",
+      "SaveMoney": "დაზოგეთ მაქსიმუმ {price}₾ თქვენს პირველ მგზავრობაზე.",
+      "PublishARide": "გამოაქვეყნე მგზავრება"
+    },
+    "OfferSeatsSuccess": {
+      "title": "თქვენი მგზავრობა წარმატებით გამოქვეყნდა",
+      "message": "თქვენი მგზავრობა წარმატებით გამოქვეყნდა. მისი ნახვა შეგიძლიათ მგზავრობის სიაში."
+    },
+    "OfferSeatsError": {
+      "title": "მგზავრობის გამოქვეყნებისას მოხდა შეცდომა",
+      "message": "მგზავრობის გამოქვეყნებისას მოხდა შეცდომა. გთხოვთ, სცადოთ თავიდან."
+    },
+    "OfferSeatsConfirmation": {
+      "title": "მგზავრობის გამოქვეყნების დადასტურება",
+      "message": "დარწმუნებული ხართ, რომ გსურთ მგზავრობის გამოქვეყნება?"
+    },
+    "OfferSeatsInfoCards": {
+      "title": "Hoopla საუკეთესო საშუალება კომფორტული და იაფი მგზავრობისთვის.",
+      "SaveOnTravelCosts": "დაზოგეთ მგზავრობის ხარჯები",
+      "SaveOnTravelCostsDescription": "გაუზიარეთ თქვენი მგზავრობა ადამიანებს და დაზოგეთ მგზავრობის ხარჯები. დარეგისტრირდით მძღოლად, რათა დაიწყოთ მგზავრობის ხარჯების დაზოგვა.",
+      "JoinATrustworthyCommunity": "შეუერთდით სანდო საზოგადოებას",
+      "JoinATrustworthyCommunityDescription": "შეუერთდით 1,2 მილიონი წევრისგან შემდგარ საზოგადოებას და ისიამოვნეთ მანქანით სარგებლობის უპირატესობებით და სხვებთან ერთად მგზავრობის გაზიარებით.",
+      "CarpoolingMadeSimple": "მგზავრობის გაზიარება გამარტივდა",
+      "CarpoolingMadeSimpleDescription": "შესთავაზეთ თქვენი ადგილები და იმოგზაურეთ სხვა წევრებთან ერთად. Carpooling არის მარტივი, სახალისო და ეკონომიური გზა მოგზაურობისთვის."
+    }
   }
 }

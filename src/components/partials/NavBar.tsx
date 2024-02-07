@@ -50,7 +50,7 @@ const NavBar = () => {
                     <Button
                         as={Link}
                         color="secondary"
-                        href="#"
+                        href="/offer-seats"
                         variant="flat"
                         startContent={<Plus/>}
                     >

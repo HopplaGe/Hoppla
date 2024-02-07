@@ -46,6 +46,7 @@ const SearchBox = ({className}: { className?: string }) => {
         query.set("to", values.endLocation);
         query.set("date", moment(values.startDate).format("YYYY-MM-DD"));
         query.set("seats", values.seats.toString());
+        query.set("transport_type", "carpool");
         return query.toString();
     }, [searchParams]);
 
