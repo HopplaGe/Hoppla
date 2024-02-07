@@ -25,7 +25,7 @@ const OfferInfoCards = () => {
 
     return (
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 fira-go">
-            <h2 className="text-2xl font-bold col-span-full">{t("title")}</h2>
+            <h2 className="text-3xl font-bold col-span-full text-center py-4">{t("title")}</h2>
             {/*Service Cards*/}
             {serviceCards.map((card, index) => (
                 <div key={index} className="bg-white p-4 rounded-xl hover:shadow-md">

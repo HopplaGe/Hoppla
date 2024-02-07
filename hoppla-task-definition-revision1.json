@@ -1,13 +1,13 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:us-east-1:851725205667:task-definition/hoppla:1",
+  "taskDefinitionArn": "arn:aws:ecs:us-east-1:851725205667:task-definition/hoppla-task-definition:3",
   "containerDefinitions": [
     {
-      "name": "hoppla-web",
+      "name": "hoppla",
       "image": "851725205667.dkr.ecr.us-east-1.amazonaws.com/hoppla",
       "cpu": 0,
       "portMappings": [
         {
-          "name": "hoppla-web-80-tcp",
+          "name": "hoppla-app-port",
           "containerPort": 80,
           "hostPort": 80,
           "protocol": "tcp",
@@ -16,15 +16,13 @@
       ],
       "essential": true,
       "environment": [],
-      "environmentFiles": [],
       "mountPoints": [],
       "volumesFrom": [],
-      "ulimits": [],
       "logConfiguration": {
         "logDriver": "awslogs",
         "options": {
           "awslogs-create-group": "true",
-          "awslogs-group": "/ecs/hoppla",
+          "awslogs-group": "/ecs/hoppla-task-definition",
           "awslogs-region": "us-east-1",
           "awslogs-stream-prefix": "ecs"
         },
@@ -32,10 +30,11 @@
       }
     }
   ],
-  "family": "hoppla",
+  "family": "hoppla-task-definition",
   "taskRoleArn": "arn:aws:iam::851725205667:role/ecsTaskExecution",
   "executionRoleArn": "arn:aws:iam::851725205667:role/ecsTaskExecution",
-  "revision": 1,
+  "networkMode": "awsvpc",
+  "revision": 3,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -61,23 +60,27 @@
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
     },
     {
+      "name": "ecs.capability.task-eni"
+    },
+    {
       "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
     }
   ],
   "placementConstraints": [],
   "compatibilities": [
-    "EC2"
+    "EC2",
+    "FARGATE"
   ],
   "requiresCompatibilities": [
-    "EC2"
+    "FARGATE"
   ],
-  "cpu": "2048",
-  "memory": "4096",
+  "cpu": "1024",
+  "memory": "3072",
   "runtimePlatform": {
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2024-02-07T11:55:43.671Z",
+  "registeredAt": "2024-02-02T00:54:49.278Z",
   "registeredBy": "arn:aws:iam::851725205667:root",
   "tags": []
 }

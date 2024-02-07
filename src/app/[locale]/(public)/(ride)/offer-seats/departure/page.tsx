@@ -11,6 +11,7 @@ import {
     MarkerF,
     useJsApiLoader,
 } from "@react-google-maps/api";
+import {Button} from "@nextui-org/react";
 
 // "AIzaSyB-4LnrSUqFUTW0fR3w-WjRaDb4ISLIiQM"
 type pageProps = {
@@ -86,7 +87,7 @@ const Departure = ({searchParams}: pageProps) => {
     if (!isLoaded) {
         return null;
     }
-    
+
 
     return (
         <div className="page-wrapper py-12 flex flex-col gap-16">
@@ -125,6 +126,9 @@ const Departure = ({searchParams}: pageProps) => {
                                 </FormItem>
                             )}
                         />
+                        <Button type="submit" color="primary" className="w-full">
+                            Search
+                        </Button>
                         {/*<PlacesInput type="text" placeholder="From" data={data}/>*/}
                     </form>
                 </Form>

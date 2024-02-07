@@ -1,0 +1,1 @@
+export const meterToKm = (meter: number): number => meter ? parseFloat((meter / 1000).toFixed(1)) : 0;
