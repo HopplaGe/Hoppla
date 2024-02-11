@@ -1,60 +1,20 @@
 "use client"
-import React from "react";
+import React, {useCallback, useEffect} from "react";
+import Map from "@/components/shared/maps/Map";
 import {PlacesInput} from "@/components/ui/places-input";
+import {useTranslations} from "next-intl";
 import {Form, FormControl, FormField, FormItem} from "@/components/ui/form";
 import {useForm} from "react-hook-form";
 import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
+import {Libraries, useJsApiLoader} from "@react-google-maps/api";
+import {Button, Input} from "@nextui-org/react";
+import {cn} from "@/lib/utils";
+import {usePathname, useRouter} from "next/navigation";
 
-import {
-    GoogleMap,
-    MarkerF,
-    useJsApiLoader,
-} from "@react-google-maps/api";
-import {Button} from "@nextui-org/react";
-
-// "AIzaSyB-4LnrSUqFUTW0fR3w-WjRaDb4ISLIiQM"
 type pageProps = {
-    searchParams: {
-        from: string;
-        to: string;
-    }
+    searchParams?: { [key: string]: string | string[] | undefined };
 }
-
-const data = [
-    {
-        name: "თბილისი",
-        country: "საქართველო"
-    },
-    {
-        name: "ბათუმი",
-        country: "საქართველო"
-    },
-    {
-        name: "ქუთაისი",
-        country: "საქართველო"
-    },
-    {
-        name: "ზუგდიდი",
-        country: "საქართველო"
-    },
-    {
-        name: "სამცხე-ჯავახეთი",
-        country: "საქართველო"
-    },
-    {
-        name: "რუსთავი",
-        country: "საქართველო"
-    },
-    {
-        name: "მცხეთა",
-        country: "საქართველო"
-    },
-    {
-        name: "სიღნაღი",
-        country: "საქართველო"
-    },
-]
 
 const OfferSeatsScheme = z.object({
     from: z.string(),
@@ -63,75 +23,79 @@ const OfferSeatsScheme = z.object({
 
 const libraries = ["places"];
 
-
 const Departure = ({searchParams}: pageProps) => {
+    const {isLoaded} = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
+        libraries: libraries as Libraries
+    });
+    const t = useTranslations("OfferSeats.OfferSeatsForm");
+
+    const router = useRouter();
+    const pathname = usePathname()
+
+    const [fromAddress, setFromAddress] = React.useState<string>(searchParams?.from as string);
+    const [disabled, setDisabled] = React.useState<boolean>(true);
 
     const form = useForm<z.infer<typeof OfferSeatsScheme>>({
         resolver: zodResolver(OfferSeatsScheme),
         defaultValues: {
-            from: "",
-            to: "",
+            from: fromAddress,
+            to: searchParams?.to as string,
         }
     });
-    const handleSubmit = async (values: z.infer<typeof OfferSeatsScheme>) => {
-        console.log(values);
-    };
 
+    const handleSubmit = () => {
+        const params = new URLSearchParams();
+        params.set("from", fromAddress);
+        params.set("to", form.getValues().to);
 
-    const {isLoaded} = useJsApiLoader({
-        id: 'google-map-script',
-        googleMapsApiKey: "AIzaSyB-4LnrSUqFUTW0fR3w-WjRaDb4ISLIiQM",
-        libraries: libraries as any
-    });
-
-    if (!isLoaded) {
-        return null;
+        router.push("/offer-seats/arrival?" + params.toString());
     }
 
+    if (!isLoaded) return null;
 
     return (
-        <div className="page-wrapper py-12 flex flex-col gap-16">
-            <div className="w-80">
+        <div className="flex flex-col w-full h-screen lg:flex-row gap-4">
+            <div className="w-full lg:w-1/2 h-1/6 lg:h-screen z-20 flex">
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 pt-6">
+                    <form onSubmit={form.handleSubmit(handleSubmit)}
+                          className="w-full h-full flex flex-col gap-6 justify-center items-center">
                         <FormField
                             name="from"
                             render={({field}) => (
-                                <FormItem>
+                                <FormItem className="w-full flex justify-center">
                                     <FormControl>
-                                        {/*<PlacesInput*/}
-                                        {/*    type="text"*/}
-                                        {/*    placeholder="From"*/}
-                                        {/*    label="საიდან"*/}
-                                        {/*    defaultplace="თბილისი"*/}
-                                        {/*    data={data}*/}
-                                        {/*    {...field}/>*/}
+                                        <Input
+                                            {...field}
+                                            placeholder={t('From')}
+                                            className="w-1/2"
+                                            value={fromAddress}
+                                        />
                                     </FormControl>
                                 </FormItem>
                             )}
                         />
-                        <FormField
-                            name="to"
-                            render={({field}) => (
-                                <FormItem>
-                                    <FormControl>
-                                        <PlacesInput
-                                            type="text"
-                                            placeholder="To"
-                                            label="სად"
-                                            defaultplace="ბათუმი"
-                                            data={data}
-                                            {...field}/>
-                                    </FormControl>
-                                </FormItem>
-                            )}
-                        />
-                        <Button type="submit" color="primary" className="w-full">
-                            Search
+
+                        <Button
+                            color="primary"
+                            size="lg"
+                            className={cn("w-1/2 fira-go disabled:opacity-50", disabled ? "invisible" : "visible")}
+                            disabled={disabled}
+                            type="submit"
+                        >
+                            {t('Next')}
                         </Button>
-                        {/*<PlacesInput type="text" placeholder="From" data={data}/>*/}
                     </form>
                 </Form>
+            </div>
+
+            <div className="w-full lg:w-1/2 h-4/5 lg:h-screen">
+                <div
+                    className="w-full h-full">
+                    <Map from={searchParams?.from as string} to={searchParams?.to as string}
+                         setAddress={setFromAddress} setDisabled={setDisabled}/>
+                </div>
             </div>
         </div>
     );

@@ -46,7 +46,7 @@ const NavBar = () => {
                 </div>
             </NavbarContent>
             <NavbarContent justify="end" className="mr-2">
-                <NavbarItem>
+                <NavbarItem className="hidden lg:block">
                     <Button
                         as={Link}
                         color="secondary"

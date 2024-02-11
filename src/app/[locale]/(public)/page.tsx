@@ -3,6 +3,8 @@ import Hero from "@/components/partials/Hero";
 
 export default function Index() {
     const t = useTranslations("Index");
+
+
     return (
         <>
             <Hero/>

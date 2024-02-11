@@ -1,5 +1,5 @@
 "use client"
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import {Button} from "@nextui-org/react";
 import {Form, FormControl, FormField, FormItem} from "@/components/ui/form";
 import {useForm} from "react-hook-form";
@@ -8,29 +8,36 @@ import {z} from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 
 import {PlacesInput} from "@/components/ui/places-input";
-import {meterToKm} from "@/lib/tools/meterToKm";
-import {result} from "lodash";
-import {secondsToHours} from "@/lib/tools/secondsToHours";
-import {calculatePrice} from "@/lib/tools/calculatePrice";
+import useDirections from "@/hooks/maps/useDirections";
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {Libraries, useJsApiLoader} from "@react-google-maps/api";
 
 const OfferSeatsScheme = z.object({
     from: z.string(),
     to: z.string(),
 });
 
-
-const variants = {
-    open: {opacity: 1, x: 0},
-    closed: {opacity: 0, x: "-100%"},
-}
+const libraries = ["places"];
 
 const OfferSeatsForm = () => {
     const t = useTranslations("OfferSeats.OfferSeatsForm");
     const t2 = useTranslations("Cities");
-    const format = useFormatter();
+
+    const {isLoaded} = useJsApiLoader({
+        id: 'google-map-script',
+        googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
+        libraries: libraries as Libraries
+    });
+
+    const searchParams = useSearchParams();
+    const router = useRouter();
+    const pathname = usePathname()
+
     const [fromState, setFromState] = React.useState("");
     const [toState, setToState] = React.useState("");
-    const [price, setPrice] = React.useState(0);
+    const [directionsQuery, setDirectionsQuery] = React.useState({from: "", to: ""});
+
+    const {price} = useDirections(fromState, toState);
 
     const form = useForm<z.infer<typeof OfferSeatsScheme>>({
         resolver: zodResolver(OfferSeatsScheme),
@@ -39,57 +46,29 @@ const OfferSeatsForm = () => {
             to: t2('Batumi'),
         }
     });
-    const handleSubmit = async (values: any) => {
-        // console.log("value", values);
-    };
-
-    const [directionResponse, setDirectionResponse] = useState<google.maps.DirectionsResult>(
-        {
-            geocoded_waypoints: [],
-            routes: [],
-        }
-    )
 
     useEffect(() => {
-        if (fromState && toState) {
-            const directionsService = new google.maps.DirectionsService();
-            directionsService.route(
-                {
-                    origin: fromState,
-                    destination: toState,
-                    travelMode: google.maps.TravelMode.DRIVING,
-                },
-                (result, status) => {
-                    if (status === google.maps.DirectionsStatus.OK) {
-                        setDirectionResponse(result as google.maps.DirectionsResult);
-                    } else {
-                        console.error(`error fetching directions ${result}`);
-                    }
-                }
-            );
-            setPrice(calculatePrice(distance, duration))
+        setDirectionsQuery({from: fromState, to: toState})
+    }, [fromState, toState]);
+
+    const createQueryStrings = useCallback((name: string, value: string) => {
+            const params = new URLSearchParams(searchParams.toString())
+            params.set(name, value)
+
+            return params.toString()
+        },
+        [searchParams]);
+
+    const handleSubmit = async (values: any) => {
+        const querys = {
+            from: createQueryStrings("from", values.from),
+            to: createQueryStrings("to", values.to),
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [fromState, toState])
 
-    // console.log("directionResponse", directionResponse);
+        router.push(pathname + "/departure" + "?" + querys.from + "&" + querys.to);
+    };
 
-    const distance = directionResponse?.routes[0]?.legs[0]?.distance?.value as number
-    const duration = directionResponse?.routes[0]?.legs[0]?.duration?.value as number
-
-    const startLatLng = directionResponse?.routes[0]?.legs[0]?.start_location.lat() + "," + directionResponse?.routes[0]?.legs[0]?.start_location.lng()
-    const endLatLng = directionResponse?.routes[0]?.legs[0]?.end_location.lat() + "," + directionResponse?.routes[0]?.legs[0]?.end_location.lng()
-
-    // console.log("startLatLng", startLatLng);
-    // console.log("endLatLng", endLatLng);
-    // console.log("distance", distance);
-    // console.log("duration", duration);
-
-    const calcPrice = calculatePrice(distance, duration) / 4
-
-    // console.log("price", calcPrice);
-
-    // console.log("pppp", format.);
+    if (!isLoaded) return null;
 
     return (
         <div className="bg-white p-4 rounded-xl fira-go flex flex-col gap-4 justify-center">
@@ -133,14 +112,21 @@ const OfferSeatsForm = () => {
                         />
                         <span className="block text-lg w-full text-center">
                             {t.rich('SaveMoney', {
-                                    price: calcPrice.toFixed(2),
+                                    price: price.toFixed(2),
                                     priceBox: (chunks) => <span
                                         className="text-primary text-xl font-semibold">{chunks}</span>
                                 }
                             )}
                         </span>
-                        <Button type="submit" variant="solid" color="secondary" size="lg"
-                                className="w-full">{t("PublishARide")}</Button>
+                        <Button
+                            type="submit"
+                            variant="solid"
+                            color="secondary"
+                            size="lg"
+                            className="w-full"
+                        >
+                            {t("PublishARide")}
+                        </Button>
                     </form>
                 </Form>
             </div>

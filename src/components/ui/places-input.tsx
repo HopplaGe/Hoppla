@@ -130,103 +130,119 @@ const PlacesInput = React.forwardRef<HTMLInputElement, InputProps>(
     ({className, type, ...props}, ref) => {
 
         const {
-            placesService,
-            placePredictions,
-            getPlacePredictions,
-            isPlacePredictionsLoading,
+          placesService,
+          placePredictions,
+          getPlacePredictions,
+          isPlacePredictionsLoading,
         } = usePlacesService({
-            apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY,
+          apiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
         });
 
-        const [isOpen, setIsOpen] = React.useState(false)
-        const [selectedPlace, setSelectedPlace] = React.useState(props.defaultplace || "");
+        const [isOpen, setIsOpen] = React.useState(false);
+        const [selectedPlace, setSelectedPlace] = React.useState(
+          props.defaultplace || ""
+        );
         const autoCompleteRef = React.useRef(null);
 
         React.useEffect(() => {
-            const handleClickOutside = (event: any) => {
-                if (
-                    autoCompleteRef.current &&
-                    // @ts-ignore
-                    !autoCompleteRef.current.contains(event.target)
-                ) {
-                    setIsOpen(false);
-                }
-            };
-            // @ts-ignore
-            props.onChange(selectedPlace);
+          const handleClickOutside = (event: any) => {
+            if (
+              autoCompleteRef.current &&
+              // @ts-ignore
+              !autoCompleteRef.current.contains(event.target)
+            ) {
+              setIsOpen(false);
+            }
+          };
+          // @ts-ignore
+          props.onChange(selectedPlace);
 
-            document.addEventListener("mousedown", handleClickOutside);
-            return () => document.removeEventListener("mousedown", handleClickOutside);
+          document.addEventListener("mousedown", handleClickOutside);
+          return () =>
+            document.removeEventListener("mousedown", handleClickOutside);
         }, [selectedPlace, props]);
 
         const handleInput = (place: any) => {
-            // @ts-ignore
-            props.onChange(place);
-            setSelectedPlace(place);
-            props.state(place)
-            setIsOpen(false);
-        }
+          // @ts-ignore
+          props.onChange(place);
+          setSelectedPlace(place);
+          props.state(place);
+          setIsOpen(false);
+        };
 
         return (
-            <div className="group flex flex-col w-full fira-go" data-slot="base"
-                 data-filled="true"
-                 data-filled-within="true"
-                 data-has-elements="true" data-has-label="true">
-                <Input
-                    type="text"
-                    placeholder={props.placeholder}
-                    label={props.label}
-                    ref={ref}
-                    {...props}
-                    // defaultValue={props.defaultplace}
-                    onClick={() => setIsOpen(true)}
-                    value={selectedPlace}
-                    onChange={(evt) => {
-                        getPlacePredictions({input: evt.target.value});
-                        setSelectedPlace(evt.target.value);
-                        if (evt.target.value.length >= 0) {
-                            setSelectedPlace(evt.target.value as string || "");
-                            evt.target.value.length > 2 ? setIsOpen(true) : setIsOpen(false);
-                        }
-                    }}
-                    //@ts-ignore
-                    loading={isPlacePredictionsLoading}
-                    endContent={
-                        <X
-                            size={24}
-                            className={cn("cursor-pointer", isOpen ? "block" : "hidden")}
-                            onClick={() => {
-                                setSelectedPlace("");
-                                setIsOpen(false);
-                            }}
-                        />
-                    }
-
+          <div
+            className="group flex flex-col w-full fira-go"
+            data-slot="base"
+            data-filled="true"
+            data-filled-within="true"
+            data-has-elements="true"
+            data-has-label="true"
+          >
+            <Input
+              autoComplete="off"
+              type="text"
+              placeholder={props.placeholder}
+              label={props.label}
+              ref={ref}
+              {...props}
+              // defaultValue={props.defaultplace}
+              onClick={() => setIsOpen(true)}
+              value={selectedPlace}
+              onChange={(evt) => {
+                getPlacePredictions({ input: evt.target.value });
+                setSelectedPlace(evt.target.value);
+                if (evt.target.value.length >= 0) {
+                  setSelectedPlace((evt.target.value as string) || "");
+                  evt.target.value.length > 2
+                    ? setIsOpen(true)
+                    : setIsOpen(false);
+                }
+              }}
+              //@ts-ignore
+              loading={isPlacePredictionsLoading}
+              endContent={
+                <X
+                  size={24}
+                  className={cn("cursor-pointer", isOpen ? "block" : "hidden")}
+                  onClick={() => {
+                    setSelectedPlace("");
+                    setIsOpen(false);
+                  }}
                 />
-                <motion.div
-                    animate={isOpen ? "open" : "closed"}
-                    variants={variants}
-                >
-                    <ul
-                        className={cn("hidden opacity-0 w-72 h-auto shadow-md rounded-xl bg-white absolute -right-80 -top-12 overflow-y-auto scrollbar-hide transition-opacity ease-in-out delay-150 duration-1000 fira-go divide-y-1", isOpen && "flex flex-col justify-between opacity-100")}>
-                        {placePredictions.map((item: any, index: number) => (
-                            <li
-                                key={index}
-                                className={cn("w-full min-h-24 h-auto flex flex-col gap-1 justify-center p-4 hover:bg-gray-100 cursor-pointer")}
-                                onClick={() => handleInput(item.description)}
-                            >
-                                <h4 className="text-sm font-bold">{item.description}</h4>
-                                <p className="text-xs">{item.description.slice(
-                                    item.description.indexOf(",") + 1,
-                                    item.description.length,
-                                )}
-                                </p>
-                            </li>
-                        ))}
-                    </ul>
-                </motion.div>
-            </div>
-        )
+              }
+            />
+            <motion.div
+              animate={isOpen ? "open" : "closed"}
+              variants={variants}
+            >
+              <ul
+                className={cn(
+                  "hidden opacity-0 w-72 h-auto shadow-md rounded-xl bg-white absolute -right-80 -top-12 overflow-y-auto scrollbar-hide transition-opacity ease-in-out delay-150 duration-1000 fira-go divide-y-1",
+                  isOpen && "flex flex-col justify-between opacity-100"
+                )}
+              >
+                {placePredictions.map((item: any, index: number) => (
+                  <li
+                    key={index}
+                    className={cn(
+                      "w-full min-h-24 h-auto flex flex-col gap-1 justify-center p-4 hover:bg-gray-100 cursor-pointer"
+                    )}
+                    onClick={() => handleInput(item.description)}
+                  >
+                    <h4 className="text-sm font-bold">{item.description}</h4>
+                    <p className="text-xs">
+                      {item.description.slice(
+                        item.description.indexOf(",") + 1,
+                        item.description.length
+                      )}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </div>
+        );
     }
 )
 PlacesInput.displayName = "PlacesInput"

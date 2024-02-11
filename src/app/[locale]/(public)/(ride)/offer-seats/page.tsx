@@ -1,3 +1,4 @@
+"use client"
 import {FC} from "react";
 import OfferSeatsForm from "@/components/rides/OfferSeatsForm";
 import OfferSeatsFormTitle from "@/components/rides/OfferSeatsFormTitle";

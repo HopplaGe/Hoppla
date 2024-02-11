@@ -4,7 +4,7 @@
 
 @layer base {
     :root {
-        --background: 210, 20%, 98%;
+        --background: 0, 0%, 98%;
         --foreground: 222.2 84% 4.9%;
 
         --card: 0 0% 100%;
@@ -16,6 +16,7 @@
         --primary: 7, 77%, 57%;
         --primary-foreground: 0, 0%, 100%;
         --primary-hover: 7, 77%, 47%;
+        --primary-dark: 9, 69%, 44%;
 
         --secondary: 234, 26%, 23%;
         --secondary-foreground: 0, 0%, 100%;
