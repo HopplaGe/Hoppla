@@ -1,14 +1,14 @@
-type TravelOptionProps = {
+type OfferingCardProps = {
   title: string;
   description: string;
   icon: React.ElementType;
 };
 
-export default function TravelOption({
+export default function OfferingCard({
   description,
   icon,
   title,
-}: TravelOptionProps) {
+}: OfferingCardProps) {
   const Icon = icon;
   return (
     <li className="flex flex-col gap-1">
