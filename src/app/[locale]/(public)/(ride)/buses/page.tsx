@@ -1,16 +1,16 @@
 import SearchBox from "@/components/partials/SearchBox";
-import { auth } from "@/lib/auth";
-import OfferingsSection from "../_components/OfferingsSection";
 import HeroSection from "./_components/HeroSection";
+import OfferingsSection from "../_components/OfferingsSection";
 import FAQSection from "../_components/FAQSection";
 
-interface pageProps {}
+type BusesPageProps = {
+  params: {};
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
-export default async function CarpoolPage({}: pageProps) {
-  const session = await auth();
-  const user = session?.user;
+export default function BusesPage({ params, searchParams }: BusesPageProps) {
   return (
-    <main className="fira-go py-8">
+    <div className="py-8 fira-go">
       <div className="page-wrapper">
         <SearchBox className="w-full" />
       </div>
@@ -21,6 +21,6 @@ export default async function CarpoolPage({}: pageProps) {
       <div className="mb-12"></div>
       <FAQSection />
       <div className="mb-12"></div>
-    </main>
+    </div>
   );
 }

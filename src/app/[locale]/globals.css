@@ -18,7 +18,7 @@
         --primary-hover: 7, 77%, 47%;
         --primary-dark: 9, 69%, 44%;
 
-        --secondary: 234, 26%, 23%;
+        --secondary: 0, 7%, 14%;
         --secondary-foreground: 0, 0%, 100%;
         --secondary-hover: 234, 26%, 13%;
 
@@ -133,7 +133,7 @@
     }
 
     .page-wrapper {
-        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full;
     }
 
     .pac-container {

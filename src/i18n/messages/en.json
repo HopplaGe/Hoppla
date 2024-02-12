@@ -239,5 +239,49 @@
       "CarpoolingMadeSimple": "Carpooling made simple",
       "CarpoolingMadeSimpleDescription": "Offer your seats and travel with other members. Carpooling is a simple, fun, and cost-effective way to travel."
     }
+  },
+
+  "OfferingsSection": {
+    "AffordableAdventures": {
+      "title": "Affordable Adventures",
+      "description": "Discover great places to visit without spending too much money! Whether you're traveling by bus or sharing a ride with others, we have lots of affordable options for you."
+    },
+    "SafeTravels": {
+      "title": "Safe Travels",
+      "description": "We care about your safety. We check the people who use our service and the companies we work with to make sure they're trustworthy. You can relax knowing who you'll be traveling with and book securely through our app."
+    },
+    "EasyBooking": {
+      "title": "Easy Booking",
+      "description": "Booking your next trip is super easy with our app. Just search for nearby rides, click on the one you like, and you're all set to go!"
+    }
+  },
+  "HeroSection": {
+    "StaySafeFromScams": {
+      "linkText": "Learn More",
+      "title": "Stay Safe from Scams",
+      "description": "We want to keep you safe while using our platform. Even though we try our best, scams still happen. Learn how to spot and report scams to help us protect you."
+    },
+    "PublishARide": {
+      "linkText": "Publish a Ride",
+      "title": "Save Money on Your Trips!",
+      "description": "Start saving money on your travels today with Hoppla! By offering your rides on our platform, you can share the costs with your passengers, making your trips more affordable and enjoyable for everyone involved."
+    },
+    "EarningABonusForCarpooling": {
+      "linkText": "Learn More",
+      "title": "Earning a Bonus for Carpooling!",
+      "description": "Exciting update for drivers: You are now eligible to earn rewards for your carpooling! Qualify for the Carpool Bonus by completing 3 carpool trips within 3 months."
+    }
+  },
+  "FAQSection": {
+    "title": "FAQ Hoppla",
+    "joinFAQ": "Join the FAQ on Discord",
+    "content": {
+      "question1": "How can I book a ride on Hoppla?",
+      "answer1": "Booking your next trip is super easy with our app. Just search for nearby rides, click on the one you like, and you're all set to go!",
+      "question2": "Are the rides on Hoppla affordable?",
+      "answer2": "Absolutely! Hoppla offers affordable options for traveling by car or sharing a ride with others. Discover great places to visit without spending too much money!",
+      "question3": "Is safety a priority on Hoppla?",
+      "answer3": "Yes, safety is our top priority. We thoroughly check the people who use our service and the people we work with to ensure they're trustworthy. You can relax knowing who you'll be traveling with and book securely through our app."
+    }
   }
 }
