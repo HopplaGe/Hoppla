@@ -2,12 +2,12 @@
 import { Calendar } from '@/components/ui/calendar'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Button, Input, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react'
-import moment from 'moment'
+import moment, { duration } from 'moment'
 import 'moment/locale/ka'
 import { useLocale } from 'next-intl'
 import ka from "date-fns/locale/ka";
 import en from "date-fns/locale/en-US";
-import React, { useCallback } from 'react'
+import React, { use, useCallback, useEffect, useState } from 'react'
 import { CalendarDays, Clock2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
@@ -16,36 +16,65 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useSearchParams } from 'next/navigation'
 import Time from '@/components/shared/date-time/TimePicker'
 import { Console } from 'console'
+import CarsInput from '@/components/inputs/CarsInput'
+import { Car, Ride, User } from '@prisma/client'
+import OfferFinishSidebar from './OfferFinishSidebar'
+import prisma from '@/lib/prisma'
+import { createRide } from '@/lib/actions/rides'
+import useDirections from '@/hooks/maps/useDirections'
 
 const OfferFinishFormSchema = z.object({
-  startLocation: z.string(),
-  endLocation: z.string(),
+  from: z.string(),
+  to: z.string(),
   startDate: z.date(),
   startTime: z.string(),
   seats: z.number(),
+  carId: z.string(),
+  driverId: z.string(),
+  duration: z.number(),
+  distance: z.number(),
+  price: z.number(),
 })
 
 
-const OfferFinishForm = () => {
+type OfferFinishFormProps = {
+  user: User | null;
+  cars: any;
+  searchParams: { [key: string]: string | undefined }
+}
+
+const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => {
 
   const locale = useLocale()
 
-  const searchParams = useSearchParams();
+  const {distance, duration, price} = useDirections(searchParams.from!, searchParams.to!)
 
   const form = useForm<z.infer<typeof OfferFinishFormSchema>>({
     resolver: zodResolver(OfferFinishFormSchema),
     defaultValues: {
-      startLocation: searchParams.get("from")!,
-      endLocation: searchParams.get("to")!,
-      startDate: searchParams.get("date") ? new Date(moment(searchParams.get("date")).format("YYYY-MM-DD")) : new Date(),
-      startTime: searchParams.get("time") ? "11:00" : "11:00",
-      seats: searchParams.get("seats") ? parseInt(searchParams.get("seats") as string) : 1,
+      from: searchParams.from,
+      to: searchParams.to,
+      startDate: new Date(),
+      startTime: "11:00",
+      seats: 0,
+      carId: "",
+      driverId: user?.id,
+      duration: duration,
+      distance: distance,
+      // price: price / parseInt(searchParams.seats!),
+      price: price / 4,
     }
   });
 
-  const handleSubmit = useCallback((values: z.infer<typeof OfferFinishFormSchema>) => {
-    console.log(values)
-  }, []);
+  useEffect(() => {
+    form.setValue('distance', distance)
+    form.setValue('duration', duration)
+    form.setValue('price', price / 4)
+  }, [distance, duration, price, form])
+
+  const handleSubmit = async (values: z.infer<typeof OfferFinishFormSchema>) => {
+    await createRide(values as Ride)
+  };
 
 
   return (
@@ -53,13 +82,11 @@ const OfferFinishForm = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-2 fira-go">
-          <div className='flex flex-col gap-4'>
-            <h3>
-              გასვლის დრო
-            </h3>
+          className="grid grid-cols-1 lg:grid-cols-3 gap-8 fira-go">
+          <div className='flex flex-col gap-4 col-span-1 lg:col-span-2'>
+          <h3 className="text-sm text-secondary fira-go">გასვლის დრო</h3>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full mb-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mb-4">
               <FormField
                 control={form.control}
                 name="startDate"
@@ -166,85 +193,26 @@ const OfferFinishForm = () => {
 
 
 
-              {/* <FormField
+              <FormField
                 control={form.control}
-                name="startTime"
+                name="carId"
                 render={({ field }) => (
-                  <FormItem>
-                    <Input type="time" label="საათი" placeholder='საათი' defaultValue='11:00' />
+                  <FormItem className='col-span-full'>
+                    <CarsInput cars={cars.cars} onSelect={field.onChange} />
                   </FormItem>
                 )}
-              /> */}
-            </div>
-
-            <Button
-              type="submit"
-              className="w-full"
-            >
-              შექმნა
-            </Button>
-
-          </div>
-
-          <div className="flex flex-col items-center">
-            <div className="flex flex-col w-full md:w-1/2">
-              <div className="flex flex-col w-full mb-4">
-                <label htmlFor="price" className="text-sm mb-1">Price per seat</label>
-                <input
-                  type="number"
-                  id="price"
-                  name="price"
-                  placeholder="Enter price"
-                  className="input"
-                />
-              </div>
-
-              <div className="flex flex-col w-full mb-4">
-                <label htmlFor="seats" className="text-sm mb-1">Number of seats</label>
-                <input
-                  type="number"
-                  id="seats"
-                  name="seats"
-                  placeholder="Enter number of seats"
-                  className="input"
-                />
-              </div>
-
-              <div className="flex flex-col w-full mb-4">
-                <label htmlFor="message" className="text-sm mb-1">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  placeholder="Enter message"
-                  className="input"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col w-full md:w-1/2">
-              <div className="flex flex-col w-full mb-4">
-                <label htmlFor="date" className="text-sm mb-1">Date</label>
-                <input
-                  type="date"
-                  id="date"
-                  name="date"
-                  placeholder="Enter date"
-                  className="input"
-                />
-              </div>
-
-              <div className="flex flex-col w-full mb-4">
-                <label htmlFor="time" className="text-sm mb-1">Time</label>
-                <input
-                  type="time"
-                  id="time"
-                  name="time"
-                  placeholder="Enter time"
-                  className="input"
-                />
-              </div>
+              />
             </div>
           </div>
+
+          <OfferFinishSidebar
+            from={form.getValues("from")}
+            to={form.getValues("to")}
+            distance={123456}
+            duration={1234156}
+            seats={1}
+            stopPlaceField={[]}
+          />
         </form>
       </Form>
     </>
