@@ -67,6 +67,10 @@ model User {
   Car           Car[]
   createdAt     DateTime  @default(now()) @map("created_at")
   updatedAt     DateTime  @default(now()) @map("updated_at")
+  Ride          Ride[]
+  // Ride          Ride?     @relation(fields: [rideId], references: [id])
+  rideId        String?
+  tripId        String?
 
   @@map("users")
 }
@@ -94,4 +98,36 @@ model Car {
   updatedAt   DateTime @default(now()) @map("updated_at")
 
   @@map("cars")
+}
+
+// Rides Model
+model Ride {
+  id         String     @id @default(cuid())
+  from       String     @map("start_location")
+  to         String     @map("end_location")
+  distance   Float
+  duration   Int
+  seats      Int
+  price      Float
+  startDate  DateTime   @map("start_date")
+  startTime  String     @map("start_time")
+  driverId   String     @map("driver_id")
+  // stops       Stop[]
+  carId      String?    @map("car_id")
+  // rideRules   RideRule[]
+  status     RideStatus @default(PENDING)
+  // Trip        Trip[]
+  passangers User[]
+  companyId  String?    @map("company_id")
+  createdAt  DateTime   @default(now()) @map("created_at")
+
+  @@map("rides")
+}
+
+enum RideStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  CANCELED
+  COMPLETED
 }
