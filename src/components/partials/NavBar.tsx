@@ -31,7 +31,7 @@ const NavBar = () => {
   const t = useTranslations("NavBar");
   return (
     <Navbar maxWidth="xl" className="fira-go bg-white">
-      <div className="w-full flex justify-between items-center border-b py-2">
+      <div className="w-full flex justify-between items-center">
         <NavbarContent
           className="sm:flex gap-4 ml-2 items-center"
           justify="start"
