@@ -255,7 +255,7 @@
       "description": "Booking your next trip is super easy with our app. Just search for nearby rides, click on the one you like, and you're all set to go!"
     }
   },
-  "HeroSection": {
+  "CarpoolHeroSection": {
     "StaySafeFromScams": {
       "linkText": "Learn More",
       "title": "Stay Safe from Scams",
@@ -282,6 +282,48 @@
       "answer2": "Absolutely! Hoppla offers affordable options for traveling by car or sharing a ride with others. Discover great places to visit without spending too much money!",
       "question3": "Is safety a priority on Hoppla?",
       "answer3": "Yes, safety is our top priority. We thoroughly check the people who use our service and the people we work with to ensure they're trustworthy. You can relax knowing who you'll be traveling with and book securely through our app."
+    }
+  },
+  "Hero": {
+    "title": "Use Hoppla to travel where you want",
+    "subtitle": "Hoppla connects you to top transportation options in your area, from buses to carpooling, ensuring a smooth and enjoyable travel experience for you.",
+    "travelBtn": "Travel Now",
+    "loginBtn": "Log In",
+    "aboutTitle": "Travel to your desired destination with the help of Hoppla",
+    "aboutDesc": "Hoppla is a platform that connects you with the best transportation services in your area. We offer a wide range of services, including buses, carpooling, and more. Our goal is to make your travel experience as smooth and enjoyable as possible."
+  },
+  "BusesHeroSection": {
+    "reliableService": {
+      "title": "Reliable Service",
+      "description": "You can trust Hoppla for safe and dependable bus rides. Our drivers are experienced, and our buses are well looked after, so you'll have a smooth journey every time.",
+      "linkText": "Learn More"
+    },
+    "comfortableTravel": {
+      "title": "Enjoy Comfortable Bus Travel",
+      "description": "Hoppla offers comfy and cheap bus rides for all your travel needs. Whether you're going far or just across town, our buses are a great way to get there without spending too much.",
+      "linkText": "Learn More"
+    },
+    "bookRide": {
+      "title": "Book Your Bus Ride Now",
+      "description": "Ready to go on an adventure? Book your bus ride with Hoppla today and enjoy a comfortable and affordable journey!",
+      "linkText": "Learn More"
+    }
+  },
+  "MiniBusesHeroSection": {
+    "findEasyTravel": {
+      "title": "Find Easy Mini Bus Travel",
+      "description": "Discover how simple it is to travel in mini buses with Hoppla! Whether you're going around town or on a short trip, our mini buses give you comfy rides at low prices. Fast Rides",
+      "linkText": "Learn More"
+    },
+    "comfyTravel": {
+      "title": "Comfy Travel",
+      "description": "Relax in our well-kept mini buses. They're cozy and clean, making your journey pleasant and easy.",
+      "linkText": "Learn More"
+    },
+    "bookRide": {
+      "title": "Book Your Ride Today",
+      "description": "Ready to go? Book your mini bus ride with Hoppla now and enjoy an easy journey!",
+      "linkText": "Book Now"
     }
   }
 }

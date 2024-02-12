@@ -1,34 +1,37 @@
 import SplitComponent from "@/components/shared/SplitComponent";
+import { useTranslations } from "next-intl";
 
 type HeroSectionProps = {};
 
 export default function HeroSection({}: HeroSectionProps) {
+  const t = useTranslations("BusesHeroSection");
+
   return (
     <>
       <SplitComponent
-        title="Reliable Service"
-        description="You can trust Hoppla for safe and dependable bus rides. Our drivers are experienced, and our buses are well looked after, so you'll have a smooth journey every time."
+        title={t("reliableService.title")}
+        description={t("reliableService.description")}
         img="/buses/reliable.svg"
         href=""
-        linkText="Learn More"
+        linkText={t("reliableService.linkText")}
         colored
         // turned
       />
       <SplitComponent
-        title="Enjoy Comfortable Bus Travel"
-        description="Hoppla offers comfy and cheap bus rides for all your travel needs. Whether you're going far or just across town, our buses are a great way to get there without spending too much."
+        title={t("comfortableTravel.title")}
+        description={t("comfortableTravel.description")}
         img="/buses/buswaiting.svg"
         href=""
-        linkText="Learn More"
+        linkText={t("comfortableTravel.linkText")}
         // colored
         turned
       />
       <SplitComponent
-        title="Book Your Bus Ride Now"
-        description="Ready to go on an adventure? Book your bus ride with Hoppla today and enjoy a comfortable and affordable journey!"
+        title={t("bookRide.title")}
+        description={t("bookRide.description")}
         img="/buses/booking1.svg"
         href=""
-        linkText="Learn More"
+        linkText={t("bookRide.linkText")}
         colored
         // turned
       />

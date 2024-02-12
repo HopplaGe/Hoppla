@@ -4,31 +4,31 @@ import { useTranslations } from "next-intl";
 type HeroSectionProps = {};
 
 export default function HeroSection({}: HeroSectionProps) {
-  const t = useTranslations("HeroSection");
+  const t = useTranslations("MiniBusesHeroSection");
 
   return (
     <>
       <SplitComponent
-        linkText="Learn More"
+        linkText={t("findEasyTravel.linkText")}
         href="/safety"
-        title="Find Easy Mini Bus Travel"
-        description="Discover how simple it is to travel in mini buses with Hoppla! Whether you're going around town or on a short trip, our mini buses give you comfy rides at low prices. Fast Rides"
+        title={t("findEasyTravel.title")}
+        description={t("findEasyTravel.description")}
         img="/minibuses/together.svg"
         colored
       />
       <SplitComponent
-        linkText="Learn More"
+        linkText={t("comfyTravel.linkText")}
         href="/publish-ride"
-        title="Comfy Travel"
-        description="Relax in our well-kept mini buses. They're cozy and clean, making your journey pleasant and easy."
+        title={t("comfyTravel.title")}
+        description={t("comfyTravel.description")}
         img="/minibuses/minibus.svg"
         turned
       />
       <SplitComponent
-        linkText="Book Now"
+        linkText={t("bookRide.linkText")}
         href="/bonus"
-        title="Book Your Ride Today"
-        description="Ready to go? Book your mini bus ride with Hoppla now and enjoy an easy journey!"
+        title={t("bookRide.title")}
+        description={t("bookRide.description")}
         img="/minibuses/booking.svg"
         colored
       />

@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 type HeroSectionProps = {};
 
 export default function HeroSection({}: HeroSectionProps) {
-  const t = useTranslations("HeroSection");
+  const t = useTranslations("CarpoolHeroSection");
 
   return (
     <>

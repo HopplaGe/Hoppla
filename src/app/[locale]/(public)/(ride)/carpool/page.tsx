@@ -11,6 +11,8 @@ export default async function CarpoolPage({}: pageProps) {
   const user = session?.user;
   return (
     <main className="fira-go py-8">
+      <h2 className="page-wrapper text-xl font-semibold mb-5">Carpool</h2>
+
       <div className="page-wrapper">
         <SearchBox className="w-full" />
       </div>
