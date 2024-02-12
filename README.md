@@ -1,4 +1,4 @@
-## [<img width="200" src="https://hoppla.netlify.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Flogo.24489d28.png&w=256&q=75">](https://hoppla.ge/)
+## [<img width="200" src="https://hopplaassets.s3.amazonaws.com/images/logo.png">](https://hoppla.ge/)
 
 ### Car pooling platform for Georgia
 
