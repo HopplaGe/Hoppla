@@ -17,8 +17,9 @@ export const publicRoutes = [
   "/minibuses",
   "/buses",
   "/offer-seats",
+  "/search"
 ];
-export const adminRoutes = ["/admin"];
+export const adminRoutes = ["/manage"];
 
 export default function middleware(request: NextRequest) {
   if (request.nextUrl.pathname.includes(".")) {

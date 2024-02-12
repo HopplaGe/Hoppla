@@ -4,11 +4,13 @@ import prisma from "@/lib/prisma";
 
 export default {
 
-    // pages: {
-    //     error: "/auth/error",
-    //     verifyRequest: "/auth/verify-request",
-    //     newUser: "/auth/new-user",
-    // },
+    pages: {
+        // error: "/auth/error",
+        // verifyRequest: "/auth/verify-request",
+        // newUser: "/auth/new-user",
+        signIn: "/",
+        signOut: "/",
+    },
     providers: [Google({
         clientId: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
