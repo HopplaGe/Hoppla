@@ -10,7 +10,7 @@ export default function OfferingsSection({}: OfferingsSectionProps) {
   const t = useTranslations("OfferingsSection");
   return (
     <section className="page-wrapper">
-      <ul className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <ul className="grid grid-cols-1 gap-5 lg:grid-cols-3 fira-go">
         <OfferingCard
           icon={PiCoins}
           title={t("AffordableAdventures.title")}
