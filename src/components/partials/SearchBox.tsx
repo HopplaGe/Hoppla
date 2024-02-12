@@ -261,7 +261,7 @@ const SearchBox = ({ className }: { className?: string }) => {
           color="secondary"
           size="lg"
           type="submit"
-          className="col-span-12 lg:col-span-3 rounded-t-none lg:rounded-l-none lg:rounded-r-xl py-5 disabled:cursor-not-allowed disabled:opacity-85"
+          className="col-span-12 lg:col-span-3 rounded-t-none lg:rounded-l-none lg:rounded-r-xl py-5 disabled:cursor-not-allowed disabled:opacity-85 h-full"
           onClick={() => {
             router.push(`/search?${createQueryStr(form.getValues())}`);
           }}
