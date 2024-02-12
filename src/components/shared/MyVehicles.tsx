@@ -24,7 +24,7 @@ const MyVehicles = ({cars}: myVehicles) => {
                                 className={cn(`cursor-pointer bg-white p-4 shadow-lg border-b-2 border-opacity-5`)} style={{
                                 borderColor: `${car.color.toLowerCase()}`,
                             }}>
-                                <Image src={`/cars/${car.brand.toLowerCase()}.svg`} alt={"car"} width={64} height={64}
+                                <Image src={`https://hopplaassets.s3.amazonaws.com/images/cars/${car.brand.toLowerCase()}.svg`} alt={"car"} width={64} height={64}
                                        className="w-20 lg:w-16"/>
                             </PopoverTrigger>
                             <PopoverContent className="p-1 w-64">

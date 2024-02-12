@@ -1,5 +1,5 @@
-import type { Config } from "tailwindcss";
-import { nextui } from "@nextui-org/react";
+import type {Config} from "tailwindcss"
+import {nextui} from "@nextui-org/react";
 
 const config = {
   darkMode: ["class"],
@@ -14,12 +14,9 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: {
-        DEFAULT: "1rem",
-        sm: "2rem",
-        lg: "4rem",
-        xl: "5rem",
-        "2xl": "6rem",
+      padding: "2rem",
+      screens: {
+        "2xl": "1400px",
       },
     },
     extend: {
@@ -32,6 +29,7 @@ const config = {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          dark: "hsl(var(--primary-dark))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -78,11 +76,16 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       fontFamily: {
-        FiraGO: ["FiraGO", "sans-serif"],
+        FiraGO: [
+          '"FiraGO", "sans-serif"',
+          {
+            fontFeatureSettings: '"case", "1"',
+          }
+        ],
       },
     },
   },
   plugins: [require("tailwindcss-animate"), nextui()],
 } satisfies Config;
 
-export default config;
+export default config
