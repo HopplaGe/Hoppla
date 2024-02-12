@@ -11,6 +11,8 @@ type BusesPageProps = {
 export default function BusesPage({ params, searchParams }: BusesPageProps) {
   return (
     <div className="py-8 fira-go">
+      <h2 className="page-wrapper text-xl font-semibold mb-5">Buses</h2>
+
       <div className="page-wrapper">
         <SearchBox className="w-full" />
       </div>
