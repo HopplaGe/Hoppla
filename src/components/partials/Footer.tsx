@@ -106,7 +106,7 @@ const Footer = () => {
                             width={150}
                             height={50}
                         />
-                        <p className="text-sm leading-6 text-gray-600">
+                        <p className="text-sm leading-6 text-gray-600 font-FiraGO">
                             {t("Pronounce")}
                         </p>
                         <div className="flex space-x-6">

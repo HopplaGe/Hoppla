@@ -2,7 +2,9 @@
 import React, {ReactNode} from 'react';
 import {Listbox, ListboxItem, ListboxSection} from "@nextui-org/react";
 import {Cog, CreditCard, Home, SignpostBig, Star, Ticket} from "lucide-react";
-import {useTranslations} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 const userDashboardMenu = [
     {
@@ -58,6 +60,11 @@ export const ListboxWrapper = ({children}: { children: ReactNode }) => (
 );
 const DashSidebar = () => {
     const t = useTranslations("Dashboard.DashSidebar");
+    const locale = useLocale();
+
+    const pathname = usePathname();
+
+    // console.log(locale)
 
     return (
         <ListboxWrapper>
@@ -78,6 +85,7 @@ const DashSidebar = () => {
                                     description={t(item.description)}
                                     startContent={item.icon}
                                     href={item.href}
+                                    className={cn(pathname === '/' + locale + item.href ? "bg-default-200" : "")}
                                 >
                                     {t(item.title)}
                                 </ListboxItem>

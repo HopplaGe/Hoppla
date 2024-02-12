@@ -10,8 +10,9 @@ const PublicLayout = ({children}: LayoutProps) => {
             <NavBar/>
             {children}
             <Footer/>
-            <Script
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-4LnrSUqFUTW0fR3w-WjRaDb4ISLIiQM&libraries=places"/>
+            {/*<Script*/}
+            {/*    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-4LnrSUqFUTW0fR3w-WjRaDb4ISLIiQM&libraries=places"/>*/}
+            {/*<Script src="https://maps.google.com/maps/api/js?sensor=false"/>*/}
         </>
     );
 };

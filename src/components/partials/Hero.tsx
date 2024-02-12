@@ -8,7 +8,6 @@ import SearchBox from "@/components/partials/SearchBox";
 const Hero = () => {
     const t = useTranslations("Index");
 
-
     return (
         <div className="bg-gray-900">
 
