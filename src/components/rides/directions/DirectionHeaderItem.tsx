@@ -15,11 +15,11 @@ const DirectionHeaderItem = ({location, symbol}: DirectionHeaderItemProps) => {
             className="group min-h-10 hover:bg-gray-100 transform transition-all duration-300 ease-in-out">
             <Link href="#" className="flex flex-col px-6">
                 <div className="flex justify-between">
-                    <div className="flex flex-col pt-1">
+                    {/* <div className="flex flex-col pt-1">
                         <time className="fira-go text-primary w-12 font-semibold text-lg">18:00
                         </time>
                         <span className="text-gray-500 text-xs font-semibold">{symbol === "to" ? "" : "2:15"}</span>
-                    </div>
+                    </div> */}
 
                     <div aria-hidden="true"
                          className="relative flex flex-col items-center min-h-10 flex-shrink-0 mx-2 w-2">
@@ -41,7 +41,7 @@ const DirectionHeaderItem = ({location, symbol}: DirectionHeaderItemProps) => {
                         </span>
                         </div>
 
-                        <div className="flex gap-2 justify-start items-center">
+                        {/* <div className="flex gap-2 justify-start items-center">
                             <div className={cn("rounded-full text-white", "bg-success")}>
                                 <PersonStanding size={16}/>
                             </div>
@@ -49,7 +49,7 @@ const DirectionHeaderItem = ({location, symbol}: DirectionHeaderItemProps) => {
                         </div>
                         <div className="absolute top-1/2 right-0 -translate-y-1/2 group-hover:text-red-600">
                             <ChevronRight/>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </Link>
