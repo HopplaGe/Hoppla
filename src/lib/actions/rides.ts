@@ -1,7 +1,9 @@
 "use server"
 
 import prisma from "@/lib/prisma"
-import { Ride, RideStatus } from "@prisma/client"
+import {Ride, RideStatus} from "@prisma/client"
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 export const getRides = async () => {
     try {
@@ -31,7 +33,7 @@ export const getRidesByDriver = async (driverId: string) => {
             where: {
                 driverId: driverId
             },
-            select:{
+            select: {
                 id: true,
                 from: true,
                 to: true,
@@ -201,12 +203,19 @@ export const getRideByFromAndToAndDateAndSeats = async (from: string, to: string
             //     startTime: sort === 'time-asc' ? 'asc' : undefined,
             // },
             where: {
-                from,
-                to,
-                // startDate: date.split('T')[0],
+                from: {
+                    contains: from
+                },
+                to: {
+                    contains: to
+                },
+                // startDate: new Date(date),
                 // seats: {
                 //     gte: seatsNumber
                 // }
+            },
+            include: {
+                passangers: true
             }
         });
     } catch (error) {
@@ -216,7 +225,7 @@ export const getRideByFromAndToAndDateAndSeats = async (from: string, to: string
 
 export const createRide = async (ride: Ride) => {
     try {
-        await prisma.ride.create({
+        return await prisma.ride.create({
             data: ride
         });
     } catch (error) {
