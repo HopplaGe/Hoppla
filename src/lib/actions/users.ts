@@ -1,3 +1,4 @@
+"use server"
 import prisma from "@/lib/prisma";
 
 
@@ -8,6 +9,20 @@ export const getUserByEmail = async (email: string) => {
         return await prisma.user.findUnique({
             where: {
                 email,
+            },
+        });
+    } catch (error) {
+        return null;
+    }
+}
+
+// find user by id
+
+export const getUserById = async (id: string) => {
+    try {
+        return await prisma.user.findUnique({
+            where: {
+                id,
             },
         });
     } catch (error) {
