@@ -38,7 +38,8 @@ const SearchBox = ({ className }: { className?: string }) => {
 
   const [disabled, setDisabled] = React.useState<boolean>(true);
 
-  const [searchResult, setSearchResult] = useState<google.maps.places.Autocomplete | null>(null);
+  const [fromResult, setFromResult] = useState<google.maps.places.Autocomplete | null>(null);
+  const [toResult, setToResult] = useState<google.maps.places.Autocomplete | null>(null);
 
   const searchParams = useSearchParams();
 
@@ -112,8 +113,8 @@ const SearchBox = ({ className }: { className?: string }) => {
               <FormControl>
                 <Autocomplete
                   onPlaceChanged={() => {
-                    if (searchResult != null) {
-                      const place = searchResult.getPlace();
+                    if (fromResult != null) {
+                      const place = fromResult.getPlace();
 
                       const formattedAddress = place.formatted_address;
 
@@ -121,7 +122,7 @@ const SearchBox = ({ className }: { className?: string }) => {
                     }
                   }}
                   onLoad={(autocomplete) => {
-                    setSearchResult(autocomplete)
+                    setFromResult(autocomplete)
                   }}
                 >
                   <Input
@@ -169,8 +170,8 @@ const SearchBox = ({ className }: { className?: string }) => {
               <FormControl>
                 <Autocomplete
                   onPlaceChanged={() => {
-                    if (searchResult != null) {
-                      const place = searchResult.getPlace();
+                    if (toResult != null) {
+                      const place = toResult.getPlace();
 
                       const formattedAddress = place.formatted_address;
 
@@ -178,7 +179,7 @@ const SearchBox = ({ className }: { className?: string }) => {
                     }
                   }}
                   onLoad={(autocomplete) => {
-                    setSearchResult(autocomplete)
+                    setToResult(autocomplete)
                   }}
                 >
                   <Input
