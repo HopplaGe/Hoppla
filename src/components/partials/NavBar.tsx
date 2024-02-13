@@ -56,7 +56,7 @@ const NavBar = () => {
               color="default"
               href="/offer-seats"
               variant="light"
-              className="flex gap-2 items-center font-medium"
+              className="hidden lg:flex gap-2 items-center font-medium"
               startContent={<Plus />}
             >
               {t("PublishToRide")}

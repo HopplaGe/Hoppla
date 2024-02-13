@@ -9,6 +9,7 @@ import Link from "next/link";
 import { LuLogIn } from "react-icons/lu";
 import { Button } from "../ui/button";
 import { MdOutlineTravelExplore } from "react-icons/md";
+import { Suspense } from "react";
 
 const Hero = () => {
   const t = useTranslations("Hero");
@@ -25,7 +26,7 @@ const Hero = () => {
         />
         <div>
           <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold lg:tracking-tight xl:tracking-tighter">
-            {t(`title`, {company: "HOPPLA"})}
+            {t(`title`, { company: "HOPPLA" })}
           </h1>
           <p className="text-lg mt-4 text-gray-800 dark:text-gray-300 max-w-xl">
             {t(`subtitle`)}
@@ -56,16 +57,21 @@ const Hero = () => {
           </div>
         </div>
       </div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <div className="page-wrapper"><SearchBox /></div>
+      </Suspense>
+      <div className="mb-10"></div>
       <div className="page-wrapper py-8 fira-go">
         <div className="mt-16 md:mt-0">
           <h2 className="text-4xl text-secondary lg:text-5xl font-bold lg:tracking-tight">
-            {t(`aboutTitle`, {company: "HOPPLA"})}
+            {t(`aboutTitle`, { company: "HOPPLA" })}
           </h2>
           <p className="text-lg mt-4 text-gray-600 dark:text-gray-300">
             {t(`aboutDesc`)}
           </p>
         </div>
       </div>
+
       <div className="mb-10"></div>
       <OfferingsSection />
       <div className="mb-20"></div>

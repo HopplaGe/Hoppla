@@ -109,11 +109,11 @@ const Footer = () => {
           <div className="space-y-8">
             <Image
               src={hopplaLogo as any}
-              alt="Company name"
+              alt="Hoppla"
               width={150}
               height={50}
             />
-            <p className="text-sm leading-6 text-gray-600">{t("Pronounce")}</p>
+            <p className="text-sm leading-6 text-gray-600 fira-go">{t("Pronounce")}</p>
             <div className="flex space-x-6">
               {navigation.social.map((item) => (
                 <a

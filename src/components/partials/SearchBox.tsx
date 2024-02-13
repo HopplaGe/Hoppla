@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -23,14 +23,22 @@ import moment from "moment";
 import "moment/locale/ka";
 import ka from "date-fns/locale/ka";
 import en from "date-fns/locale/en-US";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
+import { Autocomplete, AutocompleteProps, Libraries, useJsApiLoader } from "@react-google-maps/api";
+import { fi } from "date-fns/locale";
+
+const libraries = ["places"];
 
 const SearchBox = ({ className }: { className?: string }) => {
   const params = useParams();
   const t = useTranslations("SearchForm");
   const t2 = useTranslations("Cities");
 
+  const locale = useLocale();
+
   const [disabled, setDisabled] = React.useState<boolean>(true);
+
+  const [searchResult, setSearchResult] = useState<google.maps.places.Autocomplete | null>(null);
 
   const searchParams = useSearchParams();
 
@@ -79,6 +87,15 @@ const SearchBox = ({ className }: { className?: string }) => {
     }
   }, [form]);
 
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
+    libraries: libraries as Libraries,
+    language: locale
+  });
+
+  if (!isLoaded) return null;
+
   return (
     <Form {...form}>
       <form
@@ -93,26 +110,53 @@ const SearchBox = ({ className }: { className?: string }) => {
           render={({ field }) => (
             <FormItem className="relative w-full col-span-12 lg:col-span-3">
               <FormControl>
-                <Input
-                  radius="none"
-                  size="lg"
-                  startContent={<Locate />}
-                  {...field}
-                  placeholder={t(`From`)}
-                  type="text"
-                  classNames={{
-                    label: "text-black/50 dark:text-white/90",
-                    input: [
-                      "bg-transparent",
-                      "text-black/90 dark:text-white/90",
-                      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                      "ml-2",
-                      "outline-none",
-                    ],
-                    innerWrapper: "bg-transparent",
-                    inputWrapper: ["bg-white text-black"],
+                <Autocomplete
+                  onPlaceChanged={() => {
+                    if (searchResult != null) {
+                      const place = searchResult.getPlace();
+
+                      const formattedAddress = place.formatted_address;
+
+                      field.onChange({ target: { value: formattedAddress } });
+                    }
                   }}
-                />
+                  onLoad={(autocomplete) => {
+                    setSearchResult(autocomplete)
+                  }}
+                >
+                  <Input
+                    isClearable
+                    radius="none"
+                    size="lg"
+                    startContent={<Locate />}
+                    {...field}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      if (!e.target.value) {
+                        setDisabled(true);
+                      } else {
+                        setDisabled(false);
+                      }
+                    }}
+                    placeholder={t(`From`)}
+                    type="text"
+                    classNames={{
+                      label: "text-black/50 dark:text-white/90",
+                      input: [
+                        "bg-transparent",
+                        "text-black/90 dark:text-white/90",
+                        "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                        "ml-2",
+                        "outline-none",
+                      ],
+                      innerWrapper: "bg-transparent",
+                      inputWrapper: ["bg-white text-black"],
+                    }}
+                    onClear={() => {
+                      field.onChange({ target: { value: "" } });
+                    }}
+                  />
+                </Autocomplete>
               </FormControl>
               <FormMessage className="fira-go text-[10px]" />
             </FormItem>
@@ -123,34 +167,53 @@ const SearchBox = ({ className }: { className?: string }) => {
           render={({ field }) => (
             <FormItem className="relative w-full col-span-12 lg:col-span-3">
               <FormControl>
-                <Input
-                  radius="none"
-                  size="lg"
-                  startContent={<Locate />}
-                  {...field}
-                  placeholder={t(`To`)}
-                  onChange={(e) => {
-                    field.onChange(e);
-                    if (!e.target.value) {
-                      setDisabled(true);
-                    } else {
-                      setDisabled(false);
+                <Autocomplete
+                  onPlaceChanged={() => {
+                    if (searchResult != null) {
+                      const place = searchResult.getPlace();
+
+                      const formattedAddress = place.formatted_address;
+
+                      field.onChange({ target: { value: formattedAddress } });
                     }
                   }}
-                  type="text"
-                  classNames={{
-                    label: "text-black",
-                    input: [
-                      "bg-transparent",
-                      "text-black",
-                      "placeholder:text-gray-400",
-                      "ml-2",
-                      "outline-none",
-                    ],
-                    innerWrapper: "bg-transparent text-black",
-                    inputWrapper: ["bg-white text-black"],
+                  onLoad={(autocomplete) => {
+                    setSearchResult(autocomplete)
                   }}
-                />
+                >
+                  <Input
+                    isClearable
+                    radius="none"
+                    size="lg"
+                    startContent={<Locate />}
+                    {...field}
+                    placeholder={t(`To`)}
+                    onChange={(e) => {
+                      field.onChange(e);
+                      if (!e.target.value) {
+                        setDisabled(true);
+                      } else {
+                        setDisabled(false);
+                      }
+                    }}
+                    type="text"
+                    classNames={{
+                      label: "text-black",
+                      input: [
+                        "bg-transparent",
+                        "text-black",
+                        "placeholder:text-gray-400",
+                        "ml-2",
+                        "outline-none",
+                      ],
+                      innerWrapper: "bg-transparent text-black",
+                      inputWrapper: ["bg-white text-black"],
+                    }}
+                    onClear={() => {
+                      field.onChange({ target: { value: "" } });
+                    }}
+                  />
+                </Autocomplete>
               </FormControl>
               <FormMessage className="fira-go text-[10px]" />
             </FormItem>
@@ -182,21 +245,21 @@ const SearchBox = ({ className }: { className?: string }) => {
                             null,
                             params.locale === "ka"
                               ? {
-                                  sameDay: "[დღეს]",
-                                  nextDay: "[ხვალ]",
-                                  nextWeek: "LL",
-                                  lastDay: "[გუშინ]",
-                                  lastWeek: "LL",
-                                  sameElse: "LL",
-                                }
+                                sameDay: "[დღეს]",
+                                nextDay: "[ხვალ]",
+                                nextWeek: "LL",
+                                lastDay: "[გუშინ]",
+                                lastWeek: "LL",
+                                sameElse: "LL",
+                              }
                               : {
-                                  sameDay: "[Today]",
-                                  nextDay: "[Tomorrow]",
-                                  nextWeek: "LL",
-                                  lastDay: "[Yesterday]",
-                                  lastWeek: "LL",
-                                  sameElse: "LL",
-                                }
+                                sameDay: "[Today]",
+                                nextDay: "[Tomorrow]",
+                                nextWeek: "LL",
+                                lastDay: "[Yesterday]",
+                                lastWeek: "LL",
+                                sameElse: "LL",
+                              }
                           )
                       ) : (
                         <span>Pick a date</span>
