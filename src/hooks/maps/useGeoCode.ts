@@ -29,10 +29,16 @@ const useGeoCode = ({ address, lat, lng }: UseGeoCodeType) => {
   
   const [addressName, setAddressName] = useState("");
 
-  geocode(RequestType.LATLNG, lat + "," + lng)
+  const latLng = lat && lng ? lat + "," + lng : "41.709048311523986,44.80436404340821";
+
+  geocode(RequestType.LATLNG, latLng as string)
     .then(({ results }) => {
-      const address = results[0].formatted_address;
+      try{
+        const address = results[0].formatted_address;
       setAddressName(address);
+      } catch (e) {
+        console.error(e);
+      }
     })
     .catch(console.error);
 
