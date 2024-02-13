@@ -192,6 +192,20 @@
       "CAR": "Car",
       "MINIVAN": "Minivan",
       "BUS": "Bus"
+    },
+    "ResultList":{
+      "Results": "Results",
+      "Ride": "Ride",
+      "From": "From",
+      "To": "To",
+      "Date": "Date",
+      "Time": "Time",
+      "Price": "Price",
+      "Seats": "Seats",
+      "Description": "Description",
+      "TransportType": "Transport Type",
+      "Actions": "Actions",
+      "FoundRide": "Found {count} rides"
     }
   },
   "OfferSeats": {

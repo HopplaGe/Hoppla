@@ -192,6 +192,20 @@
       "CAR": "ავტომობილი",
       "MINIVAN": "მინივენი",
       "BUS": "ავტობუსი"
+    },
+    "ResultList":{
+      "Results": "შედეგები",
+      "Ride": "მგზავრობა",
+      "From": "საიდან",
+      "To": "სად",
+      "Date": "თარიღი",
+      "Time": "დრო",
+      "Price": "ფასი",
+      "Seats": "ადგილები",
+      "Description": "აღწერა",
+      "TransportType": "ტრანსპორტის ტიპი",
+      "Actions": "ქმედებები",
+      "FoundRide": "მოიძებნა {count} შედეგი"
     }
   },
   "OfferSeats": {
