@@ -1,23 +1,39 @@
 "use client"
 import {cn} from '@/lib/utils'
-import {Ride} from '@prisma/client';
 import {secondsToHours} from '@/lib/tools/secondsToHours'
-import {ChevronRight, PersonStanding} from 'lucide-react'
+import { PersonStanding} from 'lucide-react'
 import Link from 'next/link'
 import moment from 'moment'
 import {Avatar, AvatarGroup} from '@nextui-org/react';
+import useDirections from '@/hooks/maps/useDirections';
+import { meterToKm } from '@/lib/tools/meterToKm';
+import { useEffect, useState } from 'react'
+import { getUserById } from '@/lib/actions/users'
 
-const RideCard = (ride: any) => {
-
-    const {ride: rideData, driver} = ride;
+const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}) => {
 
     const arrivalTime = moment(rideData.startTime, "HH:mm").add(secondsToHours(rideData.duration!), 'seconds').format("HH:mm");
+
+    const {distance: fromDistance} = useDirections(searchParams.from, rideData.from);
+    const {distance: toDistance} = useDirections(searchParams.to, rideData.to);
+
+    const [driver, setDriver] = useState({} as any)
+
+    const detectDriver = async () => {
+        const driver = await getUserById(rideData.driverId);
+        setDriver(driver);
+    }
+
+    useEffect(() => {
+        detectDriver();
+    }, [detectDriver])
+
 
     return (
         <>
             <div className='relative group'>
                 <div aria-label={"Pick-up location"}
-                     className="group min-h-10 hover:bg-gray-100 transform transition-all duration-300 ease-in-out">
+                     className="group min-h-10 hover:bg-gray-100 transform transition-all duration-300 ease-in-out pt-2">
                     <Link href="#" className="flex flex-col px-6">
                         <div className="flex justify-between">
                             <div className="flex flex-col pt-1">
@@ -49,11 +65,21 @@ const RideCard = (ride: any) => {
                                 </div>
 
                                 <div className="flex gap-2 justify-start items-center">
-                                    <div className={cn("rounded-full text-white", "bg-success")}>
+                                    <div className={cn("rounded-full text-white",
+                                        fromDistance < 1000 && "bg-success",
+                                        fromDistance > 1000 && fromDistance < 5000 && "bg-warning",
+                                        fromDistance > 5000 && "bg-danger"
+                                    )}>
                                         <PersonStanding size={16}/>
                                     </div>
                                     <span
-                                        className="text-[10px] text-success uppercase">743 m from your departure</span>
+                                        className={cn(
+                                            fromDistance < 1000 && "text-success",
+                                            fromDistance > 1000 && fromDistance < 5000 && "text-warning",
+                                            fromDistance > 5000 && "text-danger",
+                                            "text-[10px] uppercase fira-go"
+                                        )} aria-label="Distance from departure location">
+                                       {meterToKm(fromDistance)} კმ თქვენს დანიშნულებამდე</span>
                                 </div>
                                 {/* <div className="absolute top-1/2 right-0 -translate-y-1/2 group-hover:text-red-600">
                                     <ChevronRight />
@@ -94,11 +120,21 @@ const RideCard = (ride: any) => {
                                 </div>
 
                                 <div className="flex gap-2 justify-start items-center">
-                                    <div className={cn("rounded-full text-white", "bg-success")}>
+                                    <div className={cn("rounded-full text-white",
+                                        toDistance < 1000 && "bg-success",
+                                        toDistance > 1000 && toDistance < 5000 && "bg-warning",
+                                        toDistance > 5000 && "bg-danger"
+                                    )}>
                                         <PersonStanding size={16}/>
                                     </div>
                                     <span
-                                        className="text-[10px] text-success uppercase">743 m from your departure</span>
+                                        className={cn(
+                                            toDistance < 1000 && "text-success",
+                                            toDistance > 1000 && toDistance < 5000 && "text-warning",
+                                            toDistance > 5000 && "text-danger",
+                                            "text-[10px] uppercase fira-go"
+                                        )} aria-label="Distance from departure location">
+                                       {meterToKm(toDistance)} კმ თქვენს დანიშნულებამდე</span>
                                 </div>
                                 {/* <div className="absolute top-1/2 right-0 -translate-y-1/2 group-hover:text-red-600">
                                     <ChevronRight />
@@ -109,7 +145,7 @@ const RideCard = (ride: any) => {
                 </div>
                 <div
                     className="absolute top-1/2 right-4 -translate-y-1/2 bg-default-100 fira-go text-xl font-semibold text-default-600 group-hover:bg-primary group-hover:text-white px-4 py-2 rounded-xl">
-                    {rideData.price} ₾
+                    {parseInt(rideData.price).toFixed(2)} ₾
                 </div>
             </div>
             <div className="flex justify-between px-6 py-2 bg-default-100">
