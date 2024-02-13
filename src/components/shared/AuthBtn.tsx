@@ -1,6 +1,6 @@
 import React from "react";
 import { signIn } from "next-auth/react";
-import { Button } from "../ui/button";
+import { Button } from "@nextui-org/react";
 
 type AuthBtnProps = {
   t: any;
@@ -9,8 +9,8 @@ type AuthBtnProps = {
 const AuthBtn = ({ t }: AuthBtnProps) => {
   return (
     <Button
-      // color="default"
-      variant="ghost"
+      color="default"
+      variant="flat"
       // size=""
       onClick={() => signIn("google")}
       className="flex gap-2"

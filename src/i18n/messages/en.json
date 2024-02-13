@@ -285,11 +285,11 @@
     }
   },
   "Hero": {
-    "title": "Use Hoppla to travel where you want",
+    "title": "Use {company} to travel where you want",
     "subtitle": "Hoppla connects you to top transportation options in your area, from buses to carpooling, ensuring a smooth and enjoyable travel experience for you.",
     "travelBtn": "Travel Now",
     "loginBtn": "Log In",
-    "aboutTitle": "Travel to your desired destination with the help of Hoppla",
+    "aboutTitle": "Travel to your desired destination with the help of {company}",
     "aboutDesc": "Hoppla is a platform that connects you with the best transportation services in your area. We offer a wide range of services, including buses, carpooling, and more. Our goal is to make your travel experience as smooth and enjoyable as possible."
   },
   "BusesHeroSection": {

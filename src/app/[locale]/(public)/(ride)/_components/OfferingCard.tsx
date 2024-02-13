@@ -15,7 +15,7 @@ export default function OfferingCard({
       <div className="mb-1">
         <Icon className="text-black text-5xl" />
       </div>
-      <p className="text-lg font-semibold">{title}</p>
+      <h3 className="text-lg font-semibold">{title}</h3>
       <p className="text-gray-600">{description}</p>
     </li>
   );

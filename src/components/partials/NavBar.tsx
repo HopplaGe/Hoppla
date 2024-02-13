@@ -53,10 +53,10 @@ const NavBar = () => {
           <NavbarItem>
             <Button
               as={Link}
-              color="secondary"
+              color="default"
               href="/offer-seats"
-              variant="flat"
-              className="flex gap-2 items-center font-medium "
+              variant="light"
+              className="flex gap-2 items-center font-medium"
               startContent={<Plus />}
             >
               {t("PublishToRide")}

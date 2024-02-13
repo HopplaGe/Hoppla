@@ -25,7 +25,7 @@ const Hero = () => {
         />
         <div>
           <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold lg:tracking-tight xl:tracking-tighter">
-            {t(`title`)}
+            {t(`title`, {company: "HOPPLA"})}
           </h1>
           <p className="text-lg mt-4 text-gray-800 dark:text-gray-300 max-w-xl">
             {t(`subtitle`)}
@@ -59,7 +59,7 @@ const Hero = () => {
       <div className="page-wrapper py-8 fira-go">
         <div className="mt-16 md:mt-0">
           <h2 className="text-4xl text-secondary lg:text-5xl font-bold lg:tracking-tight">
-            {t(`aboutTitle`)}
+            {t(`aboutTitle`, {company: "HOPPLA"})}
           </h2>
           <p className="text-lg mt-4 text-gray-600 dark:text-gray-300">
             {t(`aboutDesc`)}

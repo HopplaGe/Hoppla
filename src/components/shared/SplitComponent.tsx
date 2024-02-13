@@ -23,11 +23,9 @@ export default function SplitComponent({
 }: SplitComponentProps) {
   return (
     <section
-      className={`${colored ? "bg-primary" : ""} ${
-        colored ? "text-white" : "text-black"
-      }`}
+      className={`${colored ? "bg-primary" : ""} ${colored ? "text-white" : "text-black"} lg:py-16`}
     >
-      <div className="page-wrapper py-8 grid grid-cols-1 lg:grid-cols-2 items-center fira-go">
+      <div className="page-wrapper py-8 grid grid-cols-1 lg:grid-cols-2 lg:gap-8 items-center fira-go">
         <div className={`${turned ? "lg:order-last" : ""}`}>
           <Image
             src={img}
