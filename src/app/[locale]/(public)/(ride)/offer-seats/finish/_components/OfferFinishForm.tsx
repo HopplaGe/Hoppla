@@ -13,7 +13,7 @@ import { cn } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Time from '@/components/shared/date-time/TimePicker'
 import { Console } from 'console'
 import CarsInput from '@/components/inputs/CarsInput'
@@ -46,6 +46,7 @@ type OfferFinishFormProps = {
 const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => {
 
   const locale = useLocale()
+  const router = useRouter()
 
   const {distance, duration, price} = useDirections(searchParams.from!, searchParams.to!)
 
@@ -73,7 +74,10 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
   }, [distance, duration, price, form])
 
   const handleSubmit = async (values: z.infer<typeof OfferFinishFormSchema>) => {
-    await createRide(values as Ride)
+    const res = await createRide(values as Ride)
+    if (res) {
+      router.push(`/carpool`)
+    }
   };
 
 
