@@ -17,15 +17,7 @@ const DashRides = async () => {
         <div>
             <ul className={cn("w-full grid grid-cols-1 lg:grid-cols-2 gap-4 h-auto list-none z-10")}>
                 <Suspense fallback={<div>Loading...</div>}>
-                {
-                    myrides?.rides.map((ride: any) => {
-                        return (
-                            <div key={ride.id} className='bg-white shadow-lg border border-gray-200 rounded-xl  overflow-hidden'>
-                                <RideCard ride={ride} driver={myrides?.driver}/>
-                            </div>
-                        )
-                    })
-                }
+                rides
                 </Suspense>
             </ul>
         </div>
