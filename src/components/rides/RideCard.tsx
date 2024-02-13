@@ -127,8 +127,8 @@ const RideCard = (ride: any) => {
                     {/* <span className="text-sm fira-go">{rideData.price} €</span> */}
                     <div className="flex flex-row text-sm fira-go">
                         <AvatarGroup>
-                            {rideData.passangers.map((passanger: any) => (
-                                <Avatar radius="md" size="sm" src={passanger.image} />
+                            {rideData.passangers.map((passanger: any, index: number) => (
+                                <Avatar key={index} radius="md" size="sm" src={passanger.image} />
                             ))}
                         </AvatarGroup>
                     </div>
