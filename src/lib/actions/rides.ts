@@ -190,6 +190,30 @@ export const getRidesByPrice = async (price: number) => {
     }
 }
 
+export const getRideByFromAndToAndDateAndSeats = async (from: string, to: string, date: string, seatsNumber: number, sort?: string,) => {
+
+    console.log(from, to, date, seatsNumber, sort);
+
+    try {
+        return await prisma.ride.findMany({
+            // orderBy: {
+            //     price: sort === 'price-asc' ? 'asc' : undefined,
+            //     startTime: sort === 'time-asc' ? 'asc' : undefined,
+            // },
+            where: {
+                from,
+                to,
+                // startDate: date.split('T')[0],
+                // seats: {
+                //     gte: seatsNumber
+                // }
+            }
+        });
+    } catch (error) {
+        return null;
+    }
+}
+
 export const createRide = async (ride: Ride) => {
     try {
         await prisma.ride.create({

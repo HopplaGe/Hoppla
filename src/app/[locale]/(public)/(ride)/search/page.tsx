@@ -1,6 +1,10 @@
 import React, {Suspense} from 'react';
 import SearchBox from "@/components/partials/SearchBox";
 import RidesResultList from "@/components/rides/RidesResultList";
+import {getRideByFromAndToAndDateAndSeats} from '@/lib/actions/rides';
+import {Tabs, Tab} from "@nextui-org/react";
+import {useTranslations} from 'next-intl';
+import CarTypesTab from "./_components/CarTypesTab";
 
 interface pageProps {
     searchParams: {
@@ -14,7 +18,10 @@ interface pageProps {
     }
 }
 
-const Search = ({searchParams}: pageProps) => {
+const Search = async ({searchParams}: pageProps) => {
+    const rides = await getRideByFromAndToAndDateAndSeats(searchParams.from, searchParams.to, searchParams.date, Number(searchParams.seats), searchParams.sort);
+    //
+    // console.log(rides);
 
     return (
         <>
@@ -47,8 +54,9 @@ const Search = ({searchParams}: pageProps) => {
                         </div>
                     </div>
                     <div className="lg:col-span-3">
+                        <CarTypesTab transport_type={searchParams.transport_type as string}/>
                         <Suspense fallback={<div>Loading...</div>}>
-                            <RidesResultList searchParams={searchParams}/>
+                            <RidesResultList rides={rides}/>
                         </Suspense>
                     </div>
                 </div>

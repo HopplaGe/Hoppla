@@ -24,7 +24,6 @@ export default {
             // console.log("redirect", {url, baseUrl})
             return baseUrl
         },
-
         async jwt({token, user, trigger, session}) {
             if (trigger === "update") {
                 return {...token, ...session.user};
