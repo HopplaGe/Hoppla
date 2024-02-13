@@ -91,7 +91,7 @@ const SearchBox = ({ className }: { className?: string }) => {
     id: 'google-map-script',
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
     libraries: libraries as Libraries,
-    language: locale
+    language: "ka"
   });
 
   if (!isLoaded) return null;
