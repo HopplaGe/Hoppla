@@ -27,7 +27,8 @@ const Map = ({from, to, setAddress, setDisabled}: MapProps) => {
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: mapConfig.googleMapApiKey,
-        libraries: libraries as Libraries
+        libraries: libraries as Libraries,
+        language: "ka"
     });
 
     const {startLatLng} = useDirections(from, to);
@@ -53,8 +54,8 @@ const Map = ({from, to, setAddress, setDisabled}: MapProps) => {
 
     const center = useMemo<LatLngLiteral>(() => (
         {
-            lat: parseFloat(startLatLng.split(",")[0]),
-            lng: parseFloat(startLatLng.split(",")[1])
+            lat: parseFloat(startLatLng.split(",")[0]) || 0,
+            lng: parseFloat(startLatLng.split(",")[1]) || 0
         }
     ), [startLatLng]);
 
@@ -68,8 +69,8 @@ const Map = ({from, to, setAddress, setDisabled}: MapProps) => {
     }
 
     const {addressName} = useGeoCode({
-        lat: markerLocation.lat as number,
-        lng: markerLocation.lng as number,
+        lat: markerLocation.lat ? markerLocation.lat : parseFloat(startLatLng.split(",")[0]),
+        lng: markerLocation.lng ? markerLocation.lng : parseFloat(startLatLng.split(",")[1]),
         locale: "ka"
     });
 

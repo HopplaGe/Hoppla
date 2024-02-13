@@ -27,12 +27,12 @@ const Departure = ({searchParams}: pageProps) => {
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
-        libraries: libraries as Libraries
+        libraries: libraries as Libraries,
+        language: "ka"
     });
     const t = useTranslations("OfferSeats.OfferSeatsForm");
 
     const router = useRouter();
-    const pathname = usePathname()
 
     const [fromAddress, setFromAddress] = React.useState<string>(searchParams?.from as string);
     const [disabled, setDisabled] = React.useState<boolean>(true);
@@ -56,15 +56,15 @@ const Departure = ({searchParams}: pageProps) => {
     if (!isLoaded) return null;
 
     return (
-        <div className="flex flex-col w-full h-screen lg:flex-row gap-4">
-            <div className="w-full lg:w-1/2 h-1/6 lg:h-screen z-20 flex">
+        <div className="pt-8">
+            <div className="px-0 lg:px-8 page-wrapper absolute bottom-0 lg:relative w-full py-8 z-20 bg-white rounded-xl shadow-xl flex justify-center items-center sm:h-96 md:h-auto">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleSubmit)}
                           className="w-full h-full flex flex-col gap-6 justify-center items-center">
                         <FormField
                             name="from"
                             render={({field}) => (
-                                <FormItem className="w-full flex justify-center">
+                                <FormItem className="w-full flex justify-center fira-go">
                                     <FormControl>
                                         <Input
                                             {...field}
@@ -90,7 +90,7 @@ const Departure = ({searchParams}: pageProps) => {
                 </Form>
             </div>
 
-            <div className="w-full lg:w-1/2 h-4/5 lg:h-screen">
+            <div className="absolute h-4/5 lg:h-screen inset-0 w-full object-cover bg-blend-screen">
                 <div
                     className="w-full h-full">
                     <Map from={searchParams?.from as string} to={searchParams?.to as string}

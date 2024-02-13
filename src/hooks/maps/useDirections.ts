@@ -18,7 +18,8 @@ const useDirections = (
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
-        libraries: libraries as Libraries
+        libraries: libraries as Libraries,
+        language: "ka",
     });
 
     const [directionResponse, setDirectionResponse] = useState<google.maps.DirectionsResult>(

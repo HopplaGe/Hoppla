@@ -27,7 +27,8 @@ const MapBg = () => {
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: mapConfig.googleMapApiKey,
-        libraries: libraries as Libraries
+        libraries: libraries as Libraries,
+        language: "ka"
     });
 
     const mapRef: React.MutableRefObject<GoogleMap | undefined> = useRef<GoogleMap>();
