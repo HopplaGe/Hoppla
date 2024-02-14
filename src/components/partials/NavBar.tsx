@@ -9,11 +9,13 @@ import {
   Button,
 } from "@nextui-org/react";
 import { Plus } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
 import AuthBlock from "@/components/shared/AuthBlock";
 import Logo from "@/components/shared/Logo";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 
 const navItems = [
   { name: "Carpool", href: "/carpool" },
@@ -28,21 +30,28 @@ const NavBar = () => {
 
   const isLoggedIn = !!data;
 
+  const pathName = usePathname();
+  const locale = useLocale();
+
   const t = useTranslations("NavBar");
   return (
     <Navbar maxWidth="xl" className="fira-go bg-white">
       <div className="w-full flex justify-between items-center">
         <NavbarContent
-          className="sm:flex gap-4 ml-2 items-center"
-          justify="start"
+          className="sm:flex gap-4 ml-2 items-center !basis-full"
+         
         >
           <NavbarBrand className="flex-none">
             <Logo />
           </NavbarBrand>
-          <div className="hidden flex-initial w-full lg:flex gap-4 ml-2 fira-go">
+          <div className="hidden flex-initial w-full lg:flex ml-2 fira-go">
             {navItems.map((item, index) => (
-              <NavbarItem key={index}>
-                <Link href={item.href} className="text-secondary">
+              <NavbarItem key={index} className="">
+                <Link href={item.href} className={cn(
+                  "text-secondary lg:py-6 px-4 hover:bg-default-50",
+                  pathName === "/" + locale + item.href && "bg-default-50 text-primary",
+                  "hover:text-primary hoppla-animation"
+                  )}>
                   {t(`${item.name}`)}
                 </Link>
               </NavbarItem>
