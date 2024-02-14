@@ -15,6 +15,7 @@ export default function HeroSection({}: HeroSectionProps) {
         description={t("StaySafeFromScams.description")}
         img="/carpool/protection7.svg"
         colored
+        className="bg-default-100 text-default-900"
       />
       <SplitComponent
         linkText={t("PublishARide.linkText")}
