@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Button } from "../ui/button";
 import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { Button } from "@nextui-org/react";
 
 type SplitComponentProps = {
   img: string;
@@ -10,6 +11,7 @@ type SplitComponentProps = {
   colored?: boolean;
   turned?: boolean;
   linkText?: string;
+  className?: string;
 };
 
 export default function SplitComponent({
@@ -20,13 +22,14 @@ export default function SplitComponent({
   title,
   colored,
   turned,
+  className
 }: SplitComponentProps) {
   return (
     <section
-      className={`${colored ? "bg-primary" : ""} ${colored ? "text-white" : "text-black"} lg:py-16`}
+      className={cn(colored ? "bg-primary" : "", colored ? "text-white" : "text-black", "lg:py-16", className)}
     >
       <div className="page-wrapper py-8 grid grid-cols-1 lg:grid-cols-2 lg:gap-8 items-center fira-go">
-        <div className={`${turned ? "lg:order-last" : ""}`}>
+        <div className={cn(turned ? "lg:order-last" : "")}>
           <Image
             src={img}
             alt=""
@@ -35,14 +38,14 @@ export default function SplitComponent({
             className="h-[400px] w-full"
           />
         </div>
-        <div className="flex gap-2 flex-col items-start">
+        <div className="flex gap-6 flex-col items-start">
           <h2 className="text-3xl font-semibold">{title}</h2>
           <p>{description}</p>
           <Button
-            className={`${
-              colored ? "bg-white text-primary" : ""
-            } font-semibold`}
-            asChild
+            size="lg"
+            variant="solid"
+            color={colored ? "secondary" : "primary"}
+            className={cn()}
           >
             <Link href={href}>{linkText}</Link>
           </Button>
