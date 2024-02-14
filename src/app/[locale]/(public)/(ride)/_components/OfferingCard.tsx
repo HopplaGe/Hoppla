@@ -11,7 +11,7 @@ export default function OfferingCard({
 }: OfferingCardProps) {
   const Icon = icon;
   return (
-    <li className="flex flex-col gap-1">
+    <li className="flex flex-col gap-1 hover:bg-default-100 py-16 px-4 hoppla-animation">
       <div className="mb-1">
         <Icon className="text-black text-5xl" />
       </div>
