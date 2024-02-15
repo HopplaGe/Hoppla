@@ -79,7 +79,7 @@ const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}
                                             fromDistance > 5000 && "text-danger",
                                             "text-[10px] uppercase fira-go"
                                         )} aria-label="Distance from departure location">
-                                       {meterToKm(fromDistance)} კმ თქვენს დანიშნულებამდე</span>
+                                       {meterToKm(fromDistance)} კმ გასვლის ადგილამდე</span>
                                 </div>
                                 {/* <div className="absolute top-1/2 right-0 -translate-y-1/2 group-hover:text-red-600">
                                     <ChevronRight />
@@ -144,11 +144,11 @@ const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}
                     </div>
                 </div>
                 <div
-                    className="absolute top-1/2 right-4 -translate-y-1/2 bg-default-100 fira-go text-xl font-semibold text-default-600 group-hover:bg-primary group-hover:text-white px-4 py-2 rounded-xl">
+                    className="absolute top-1/2 right-4 -translate-y-1/2 bg-default-100 fira-go text-xl font-semibold text-default-600 hoppla-animation group-hover:bg-primary group-hover:text-white px-4 py-2 rounded-xl">
                     {parseInt(rideData.price).toFixed(2)} ₾
                 </div>
             </div>
-            <div className="flex justify-between px-6 py-2 bg-default-100">
+            <div className="flex justify-between px-6 py-2 border-t border-default-100">
                 <div className="flex items-center gap-2">
                     <div className="flex items-center gap-2">
                         <div className="rounded-xl text-white p-0.5">
