@@ -42,9 +42,9 @@ const OfferSeatsForm = () => {
 
     const [fromState, setFromState] = React.useState("");
     const [toState, setToState] = React.useState("");
-    const [directionsQuery, setDirectionsQuery] = React.useState({ from: "", to: "", seats: 1 });
+    const [seatState, setSeatState] = React.useState(1);
+    // const [directionsQuery, setDirectionsQuery] = React.useState({ from: "", to: "", seats: 1 });
 
-    const { price } = useDirections(fromState, toState);
 
     const form = useForm<z.infer<typeof OfferSeatsScheme>>({
         resolver: zodResolver(OfferSeatsScheme),
@@ -55,8 +55,16 @@ const OfferSeatsForm = () => {
         }
     });
 
+    const { price } = useDirections(fromState, toState, seatState);
+
     useEffect(() => {
-        setDirectionsQuery({ from: form.getValues("from"), to: form.getValues("to"), seats: form.getValues("seats") })
+        setFromState(form.getValues("from"))
+        setToState(form.getValues("to"))
+        setSeatState(form.getValues("seats"))
+    }, [])
+
+    useEffect(() => {
+        // setDirectionsQuery({ from: form.getValues("from"), to: form.getValues("to"), seats: form.getValues("seats") })
     }, [fromState, toState]);
 
     const createQueryStrings = useCallback((name: string, value: string) => {
@@ -124,7 +132,7 @@ const OfferSeatsForm = () => {
                             name="seats"
                             render={({ field }) => (
                                 <FormItem>
-                                    <Popover placement="bottom-end">
+                                    <Popover placement="right-start">
                                         <PopoverTrigger>
                                             <FormControl>
                                                 <div className="relative w-full h-full border border-gray-100 md:border-l-0 bg-default-100 rounded-xl p-2 flex flex-col ">
@@ -136,14 +144,14 @@ const OfferSeatsForm = () => {
                                                         )}
                                                     >
                                                         <User size={12} />
-                                                        {field.value ? field.value : <span>1</span>}
+                                                        {field.value ? field.value : <span>1</span>} მგზავრი
                                                     </div>
                                                 </div>
                                             </FormControl>
                                         </PopoverTrigger>
                                         <PopoverContent>
                                             <FormControl>
-                                                <NumberSelector type="hidden" {...field} />
+                                                <NumberSelector type="hidden" state={setSeatState} {...field} />
                                             </FormControl>
                                         </PopoverContent>
                                     </Popover>
