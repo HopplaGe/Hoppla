@@ -7,7 +7,7 @@ import 'moment/locale/ka'
 import { useLocale, useTranslations } from 'next-intl'
 import ka from "date-fns/locale/ka";
 import en from "date-fns/locale/en-US";
-import React, { use, useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { CalendarDays, Clock2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
@@ -21,6 +21,7 @@ import OfferFinishSidebar from './OfferFinishSidebar'
 import prisma from '@/lib/prisma'
 import { createRide } from '@/lib/actions/rides'
 import useDirections from '@/hooks/maps/useDirections'
+import { values } from 'lodash'
 
 const OfferFinishFormSchema = z.object({
   from: z.string(),
@@ -49,7 +50,7 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
   const locale = useLocale()
   const router = useRouter()
 
-  const {distance, duration, price} = useDirections(searchParams.from!, searchParams.to!)
+  const { distance, duration, price } = useDirections(searchParams.from!, searchParams.to!, parseInt(searchParams.seats!))
 
   const form = useForm<z.infer<typeof OfferFinishFormSchema>>({
     resolver: zodResolver(OfferFinishFormSchema),
@@ -75,12 +76,14 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
 
   }, [distance, duration, price, form])
 
-  const handleSubmit = async (values: z.infer<typeof OfferFinishFormSchema>) => {
-    const res = await createRide(values as Ride)
-    if (res) {
-      router.push(`/carpool`)
-    }
-  };
+  const handleSubmit = useCallback(
+    async (values: z.infer<typeof OfferFinishFormSchema>) => {
+      const res = await createRide(values as Ride)
+      if (res) {
+        router.push(`/carpool`)
+      }
+    }, [values, router]
+  );
 
 
   return (
@@ -90,7 +93,7 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
           onSubmit={form.handleSubmit(handleSubmit)}
           className="grid grid-cols-1 lg:grid-cols-3 gap-8 fira-go">
           <div className='flex flex-col gap-4 col-span-1 lg:col-span-2'>
-          <h3 className="text-sm text-secondary fira-go">{t("departureTimeTitle")}</h3>
+            <h3 className="text-sm text-secondary fira-go">{t("departureTimeTitle")}</h3>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mb-4">
               <FormField
@@ -204,7 +207,7 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
                 name="carId"
                 render={({ field }) => (
                   <FormItem className='col-span-full'>
-                    <CarsInput cars={cars.cars} onSelect={field.onChange} title={t("chooseCarTitle")}/>
+                    <CarsInput cars={cars.cars} onSelect={field.onChange} title={t("chooseCarTitle")} />
                   </FormItem>
                 )}
               />
