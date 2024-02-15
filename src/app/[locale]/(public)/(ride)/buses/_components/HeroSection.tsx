@@ -15,7 +15,7 @@ export default function HeroSection({}: HeroSectionProps) {
         href=""
         linkText={t("reliableService.linkText")}
         colored
-        // turned
+        className="bg-default-100 text-default-900"
       />
       <SplitComponent
         title={t("comfortableTravel.title")}
