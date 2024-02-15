@@ -1,5 +1,6 @@
 import SplitComponent from "@/components/shared/SplitComponent";
 import { useTranslations } from "next-intl";
+import OfferingsSection from "../../_components/OfferingsSection";
 
 type HeroSectionProps = {};
 
@@ -8,6 +9,16 @@ export default function HeroSection({}: HeroSectionProps) {
 
   return (
     <>
+    <SplitComponent
+        title={t("comfortableTravel.title")}
+        description={t("comfortableTravel.description")}
+        img="/buses/buswaiting.svg"
+        href=""
+        linkText={t("comfortableTravel.linkText")}
+        // colored
+        turned
+      />
+      <OfferingsSection />
       <SplitComponent
         title={t("reliableService.title")}
         description={t("reliableService.description")}
@@ -17,15 +28,7 @@ export default function HeroSection({}: HeroSectionProps) {
         colored
         className="bg-default-100 text-default-900"
       />
-      <SplitComponent
-        title={t("comfortableTravel.title")}
-        description={t("comfortableTravel.description")}
-        img="/buses/buswaiting.svg"
-        href=""
-        linkText={t("comfortableTravel.linkText")}
-        // colored
-        turned
-      />
+      
       <SplitComponent
         title={t("bookRide.title")}
         description={t("bookRide.description")}
@@ -33,7 +36,7 @@ export default function HeroSection({}: HeroSectionProps) {
         href=""
         linkText={t("bookRide.linkText")}
         colored
-        // turned
+        turned
       />
     </>
   );
