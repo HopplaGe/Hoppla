@@ -61,11 +61,11 @@ const OfferSeatsForm = () => {
         setFromState(form.getValues("from"))
         setToState(form.getValues("to"))
         setSeatState(form.getValues("seats"))
-    }, [])
+    }, [form])
 
-    useEffect(() => {
-        // setDirectionsQuery({ from: form.getValues("from"), to: form.getValues("to"), seats: form.getValues("seats") })
-    }, [fromState, toState]);
+    // useEffect(() => {
+    //     // setDirectionsQuery({ from: form.getValues("from"), to: form.getValues("to"), seats: form.getValues("seats") })
+    // }, [fromState, toState]);
 
     const createQueryStrings = useCallback((name: string, value: string) => {
         const params = new URLSearchParams(searchParams.toString())
