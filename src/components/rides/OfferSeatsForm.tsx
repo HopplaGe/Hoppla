@@ -1,20 +1,26 @@
 "use client"
-import React, {useCallback, useEffect, useState} from 'react';
-import {Button} from "@nextui-org/react";
-import {Form, FormControl, FormField, FormItem} from "@/components/ui/form";
-import {useForm} from "react-hook-form";
-import {useFormatter, useTranslations} from "next-intl";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
+import React, { useCallback, useEffect, useState } from 'react';
+import { Button } from "@nextui-org/react";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
+import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
+import { useForm } from "react-hook-form";
+import { useFormatter, useTranslations } from "next-intl";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-import {PlacesInput} from "@/components/ui/places-input";
+import { PlacesInput } from "@/components/ui/places-input";
 import useDirections from "@/hooks/maps/useDirections";
-import {usePathname, useRouter, useSearchParams} from "next/navigation";
-import {Libraries, useJsApiLoader} from "@react-google-maps/api";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { Libraries, useJsApiLoader } from "@react-google-maps/api";
+import { cn } from '@/lib/utils';
+import NumberSelector from '../ui/number-selector';
+import { User } from 'lucide-react';
+import { Label } from '../ui/label';
 
 const OfferSeatsScheme = z.object({
     from: z.string(),
     to: z.string(),
+    seats: z.number().min(1),
 });
 
 const libraries = ["places"];
@@ -23,7 +29,7 @@ const OfferSeatsForm = () => {
     const t = useTranslations("OfferSeats.OfferSeatsForm");
     const t2 = useTranslations("Cities");
 
-    const {isLoaded} = useJsApiLoader({
+    const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
         libraries: libraries as Libraries,
@@ -36,37 +42,39 @@ const OfferSeatsForm = () => {
 
     const [fromState, setFromState] = React.useState("");
     const [toState, setToState] = React.useState("");
-    const [directionsQuery, setDirectionsQuery] = React.useState({from: "", to: ""});
+    const [directionsQuery, setDirectionsQuery] = React.useState({ from: "", to: "", seats: 1 });
 
-    const {price} = useDirections(fromState, toState);
+    const { price } = useDirections(fromState, toState);
 
     const form = useForm<z.infer<typeof OfferSeatsScheme>>({
         resolver: zodResolver(OfferSeatsScheme),
         defaultValues: {
             from: t('Tbilisi'),
             to: t2('Batumi'),
+            seats: 1,
         }
     });
 
     useEffect(() => {
-        setDirectionsQuery({from: fromState, to: toState})
+        setDirectionsQuery({ from: form.getValues("from"), to: form.getValues("to"), seats: form.getValues("seats") })
     }, [fromState, toState]);
 
     const createQueryStrings = useCallback((name: string, value: string) => {
-            const params = new URLSearchParams(searchParams.toString())
-            params.set(name, value)
+        const params = new URLSearchParams(searchParams.toString())
+        params.set(name, value)
 
-            return params.toString()
-        },
+        return params.toString()
+    },
         [searchParams]);
 
     const handleSubmit = async (values: any) => {
         const querys = {
             from: createQueryStrings("from", values.from),
             to: createQueryStrings("to", values.to),
+            seats: createQueryStrings("seats", values.seats),
         }
 
-        router.push(pathname + "/departure" + "?" + querys.from + "&" + querys.to);
+        router.push(pathname + "/departure" + "?" + querys.from + "&" + querys.to + "&" + querys.seats);
     };
 
     if (!isLoaded) return null;
@@ -79,7 +87,7 @@ const OfferSeatsForm = () => {
                     <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 pt-6">
                         <FormField
                             name="from"
-                            render={({field}) => (
+                            render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
                                         <PlacesInput
@@ -96,7 +104,7 @@ const OfferSeatsForm = () => {
                         />
                         <FormField
                             name="to"
-                            render={({field}) => (
+                            render={({ field }) => (
                                 <FormItem>
                                     <FormControl>
                                         <PlacesInput
@@ -111,12 +119,46 @@ const OfferSeatsForm = () => {
                                 </FormItem>
                             )}
                         />
+
+                        <FormField
+                            name="seats"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <Popover placement="bottom-end">
+                                        <PopoverTrigger>
+                                            <FormControl>
+                                                <div className="relative w-full h-full border border-gray-100 md:border-l-0 bg-default-100 rounded-xl p-2 flex flex-col ">
+                                                    <Label className='text-xs'>{t("Seats")}</Label>
+                                                    <div
+                                                        className={cn(
+                                                            " text-black placeholder:text-gray-400 sm:text-sm sm:leading-6 cursor-pointer flex flex-row items-center gap-2",
+                                                            !field.value && "text-muted-foreground"
+                                                        )}
+                                                    >
+                                                        <User size={12} />
+                                                        {field.value ? field.value : <span>1</span>}
+                                                    </div>
+                                                </div>
+                                            </FormControl>
+                                        </PopoverTrigger>
+                                        <PopoverContent>
+                                            <FormControl>
+                                                <NumberSelector type="hidden" {...field} />
+                                            </FormControl>
+                                        </PopoverContent>
+                                    </Popover>
+                                </FormItem>
+                            )}
+                        />
+
+
+
                         <span className="block text-lg w-full text-center">
                             {t.rich('SaveMoney', {
-                                    price: price.toFixed(2),
-                                    priceBox: (chunks) => <span
-                                        className="text-primary text-xl font-semibold">{chunks}</span>
-                                }
+                                price: price.toFixed(2),
+                                priceBox: (chunks) => <span
+                                    className="text-primary text-xl font-semibold">{chunks}</span>
+                            }
                             )}
                         </span>
                         <Button
