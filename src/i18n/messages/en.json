@@ -252,6 +252,16 @@
       "JoinATrustworthyCommunityDescription": "Join a community of 1.2 million members, and enjoy the benefits of carpooling and sharing rides with others.",
       "CarpoolingMadeSimple": "Carpooling made simple",
       "CarpoolingMadeSimpleDescription": "Offer your seats and travel with other members. Carpooling is a simple, fun, and cost-effective way to travel."
+    },
+    "FinishForm": {
+      "distanceTitle": "Distance",
+      "distance": "{distance} km",
+      "durationTitle": "Duration",
+      "duration": "{duration} h",
+      "passengersTitle": "Passengers",
+      "passengers": "{passengers} people",
+      "departureTimeTitle": "Departure Time",
+      "chooseCarTitle": "Choose Car"
     }
   },
 

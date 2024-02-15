@@ -193,7 +193,7 @@
       "MINIVAN": "მინივენი",
       "BUS": "ავტობუსი"
     },
-    "ResultList":{
+    "ResultList": {
       "Results": "შედეგები",
       "Ride": "მგზავრობა",
       "From": "საიდან",
@@ -253,6 +253,16 @@
       "JoinATrustworthyCommunityDescription": "შეუერთდით 1,2 მილიონი წევრისგან შემდგარ საზოგადოებას და ისიამოვნეთ მანქანით სარგებლობის უპირატესობებით და სხვებთან ერთად მგზავრობის გაზიარებით.",
       "CarpoolingMadeSimple": "მგზავრობის გაზიარება გამარტივდა",
       "CarpoolingMadeSimpleDescription": "შესთავაზეთ თქვენი ადგილები და იმოგზაურეთ სხვა წევრებთან ერთად. Carpooling არის მარტივი, სახალისო და ეკონომიური გზა მოგზაურობისთვის."
+    },
+    "FinishForm": {
+      "distanceTitle": "მანძილი",
+      "distance": "{distance} კმ",
+      "durationTitle": "ხანგძლივობა",
+      "duration": "{duration} სთ",
+      "passengersTitle": "მგზავრები",
+      "passengers": "{passengers} მგზავრი",
+      "departureTimeTitle": "გასვლის დრო",
+      "chooseCarTitle": "აირჩიეთ მანქანა"
     }
   },
   "OfferingsSection": {
@@ -340,7 +350,7 @@
       "linkText": "დაჯავშნე ახლავე"
     }
   },
-  "MobileAppBlock":{
+  "MobileAppBlock": {
     "title": "ისიამოვნე მოგზაურობის უკეთესი გამოცდილებით, Hoopla-სთან ერთად.",
     "subtitle": "იმოგზაურეთ საქართველოს ნებისმიერი მიმართულებით, მიიღეთ უახლესი ინფორმაცია და დაჯავშნეთ ბილეთები სმარტფონით."
   }
