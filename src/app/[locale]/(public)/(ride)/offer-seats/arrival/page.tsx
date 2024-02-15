@@ -52,6 +52,7 @@ const Arrival = ({ searchParams }: pageProps) => {
     const params = new URLSearchParams();
     params.set("from", form.getValues().from);
     params.set("to", toAddress);
+    params.set("seats", searchParams?.seats as string);
 
     router.push("/offer-seats/finish?" + params.toString());
   };
