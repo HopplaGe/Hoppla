@@ -28,7 +28,7 @@ export default function FAQSection({}: FAQSectionProps) {
     },
   ];
   return (
-    <section className="page-wrapper flex items-center flex-col gap-5 w-full">
+    <section className="page-wrapper flex items-center flex-col gap-5 w-full py-20">
       <h2 className="text-center text-3xl font-semibold text-secondary">
         {t("title")}
       </h2>
