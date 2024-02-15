@@ -3,11 +3,12 @@ import useDirections from '@/hooks/maps/useDirections'
 import { meterToKm } from '@/lib/tools/meterToKm'
 import { secondsToHours } from '@/lib/tools/secondsToHours'
 import { cn } from '@/lib/utils'
-import { Avatar, AvatarGroup, Button } from '@nextui-org/react'
+import { Avatar, AvatarGroup, Badge, Button, useDisclosure } from '@nextui-org/react'
 import { Ride } from '@prisma/client'
-import { ChevronRight, PersonStanding } from 'lucide-react'
+import { BadgeCheck, Check, CheckIcon, ChevronRight, PersonStanding } from 'lucide-react'
 import moment from 'moment'
 import React from 'react'
+import MapModal from './MapModal'
 
 const RideDetails = ({ ride, searchParams, driver }: any) => {
 
@@ -15,16 +16,24 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
 
     const { distance: fromDistance } = useDirections(searchParams.from, ride.from);
     const { distance: toDistance } = useDirections(searchParams.to, ride.to);
-    const { distance, price } = useDirections(ride.from, ride.to);
+    const { distance, price, directionResponse, startLatLng, endLatLng } = useDirections(ride.from, ride.to);
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [openLatLng, setOpenLatLng] = React.useState("");
+
+    const handleOpen = (latLng: string) => {
+        setOpenLatLng(latLng)
+        onOpen();
+    }
 
     // TODO: გასაკეთებელია მძღოლის ვერიფიკაცია
-    const isVerified = false;
+    const isVerified = true;
 
     return (
         <>
             <div className='relative group mx-auto w-1/2 max-w-7xl'>
-                <div aria-label={"Pick-up location"}
-                    className="group min-h-10 hover:bg-gray-100 hover:rounded-xl transform transition-all duration-300 ease-in-out pt-2">
+                <div aria-label={"Pick-up location"} onClick={() => handleOpen(startLatLng)}
+                    className="group min-h-10 hover:bg-gray-100 hover:rounded-xl transform transition-all duration-300 ease-in-out pt-2 cursor-pointer">
                     <div className="flex flex-col px-6">
                         <div className="flex justify-between">
                             <div className="flex flex-col pt-1">
@@ -79,8 +88,8 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
                         </div>
                     </div>
                 </div>
-                <div aria-label={"Drop-off location"}
-                    className="group min-h-10 hover:bg-gray-100 hover:rounded-xl transform transition-all duration-300 ease-in-out">
+                <div aria-label={"Drop-off location"} onClick={() => handleOpen(endLatLng)}
+                    className="group min-h-10 hover:bg-gray-100 hover:rounded-xl transform transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex flex-col px-6">
                         <div className="flex justify-between">
                             <div className="flex flex-col pt-1">
@@ -144,7 +153,14 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
                 <div className="flex flex-row justify-between items-center p-4 fira-go hover:bg-default-100 rounded-xl hoppla-animation">
                     <div className="flex flex-col gap-2 fira-go text-md font-bold">{driver.name}</div>
                     <div className="flex flex-col gap-2 font-bold text-xl">
-                        <Avatar src={driver.image} alt={driver.name} radius='lg' isBordered={isVerified} color='success'/>
+                        <Badge
+                            isOneChar
+                            content={<BadgeCheck className='text-default-50'/>}
+                            color="success"
+                            placement="bottom-left"
+                        >
+                            <Avatar src={driver.image} alt={driver.name} radius='lg' isBordered={isVerified} color='success' />
+                        </Badge>
                     </div>
                 </div>
                 {ride.passangers.length > 0 && (
@@ -176,6 +192,7 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
                     </Button>
                 </div>
             </section>
+            <MapModal isOpen={isOpen} onClose={onClose} directionResponse={directionResponse} openLatLng={openLatLng} />
         </>
     )
 }
