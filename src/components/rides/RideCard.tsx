@@ -7,7 +7,7 @@ import moment from 'moment'
 import {Avatar, AvatarGroup} from '@nextui-org/react';
 import useDirections from '@/hooks/maps/useDirections';
 import { meterToKm } from '@/lib/tools/meterToKm';
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { getUserById } from '@/lib/actions/users'
 
 const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}) => {
@@ -19,22 +19,24 @@ const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}
 
     const [driver, setDriver] = useState({} as any)
 
-    const detectDriver = async () => {
+    const detectDriver = useCallback(async () => {
         const driver = await getUserById(rideData.driverId);
         setDriver(driver);
-    }
+    }, [rideData.driverId])
 
     useEffect(() => {
         detectDriver();
     }, [detectDriver])
 
+    console.log(rideData)
+
 
     return (
-        <>
+        <Link href={`/ride?id=${rideData.id}&requested_seats=${searchParams.seats}&from=${searchParams.from}&to=${searchParams.to}`}>
             <div className='relative group'>
                 <div aria-label={"Pick-up location"}
                      className="group min-h-10 hover:bg-gray-100 transform transition-all duration-300 ease-in-out pt-2">
-                    <Link href="#" className="flex flex-col px-6">
+                    <div className="flex flex-col px-6">
                         <div className="flex justify-between">
                             <div className="flex flex-col pt-1">
                                 <time className="fira-go text-primary w-12 font-semibold text-lg">
@@ -86,11 +88,11 @@ const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}
                                 </div> */}
                             </div>
                         </div>
-                    </Link>
+                    </div>
                 </div>
                 <div aria-label={"Drop-off location"}
                      className="group min-h-10 hover:bg-gray-100 transform transition-all duration-300 ease-in-out">
-                    <Link href="#" className="flex flex-col px-6">
+                    <div className="flex flex-col px-6">
                         <div className="flex justify-between">
                             <div className="flex flex-col pt-1">
                                 <time className="fira-go text-primary w-12 font-semibold text-lg">
@@ -141,7 +143,7 @@ const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}
                                 </div> */}
                             </div>
                         </div>
-                    </Link>
+                    </div>
                 </div>
                 <div
                     className="absolute top-1/2 right-4 -translate-y-1/2 bg-default-100 fira-go text-xl font-semibold text-default-600 group-hover:bg-primary group-hover:text-white px-4 py-2 rounded-xl">
@@ -175,7 +177,7 @@ const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}
                 </div>
             </div>
 
-        </>
+        </Link>
     )
 }
 
