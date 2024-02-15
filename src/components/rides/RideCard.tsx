@@ -28,8 +28,6 @@ const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}
         detectDriver();
     }, [detectDriver])
 
-    console.log(rideData)
-
 
     return (
         <Link href={`/ride?id=${rideData.id}&requested_seats=${searchParams.seats}&from=${searchParams.from}&to=${searchParams.to}`}>
