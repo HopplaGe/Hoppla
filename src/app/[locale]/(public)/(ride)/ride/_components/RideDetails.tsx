@@ -16,7 +16,7 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
 
     const { distance: fromDistance } = useDirections(searchParams.from, ride.from);
     const { distance: toDistance } = useDirections(searchParams.to, ride.to);
-    const { distance, price, directionResponse, startLatLng, endLatLng } = useDirections(ride.from, ride.to);
+    const { distance, price, directionResponse, startLatLng, endLatLng } = useDirections(ride.from, ride.to, searchParams.requested_seats);
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [openLatLng, setOpenLatLng] = React.useState("");
@@ -28,6 +28,10 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
 
     // TODO: გასაკეთებელია მძღოლის ვერიფიკაცია
     const isVerified = true;
+
+    // console.log('RideDetails', ride.seats)
+    // console.log('requested_seats', searchParams.requested_seats)
+    // console.log('price', price)
 
     return (
         <>
@@ -148,7 +152,7 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
                 <div className="flex flex-row justify-between items-center border-y-4 p-4 fira-go border-default-100">
                     <div className="flex flex-col gap-2">ფასი {searchParams.requested_seats} მგზავრისთვის</div>
                     {/* TODO:  price / >>>> ride.seats <<<<< * searchParams.requested_seats*/}
-                    <div className="flex flex-col gap-2 font-bold text-xl">{(price / 4 * searchParams.requested_seats).toFixed(2)} ₾</div>
+                    <div className="flex flex-col gap-2 font-bold text-xl">{(price / ride.seats * searchParams.requested_seats).toFixed(2)} ₾</div>
                 </div>
                 <div className="flex flex-row justify-between items-center p-4 fira-go hover:bg-default-100 rounded-xl hoppla-animation">
                     <div className="flex flex-col gap-2 fira-go text-md font-bold">{driver.name}</div>
