@@ -12,5 +12,5 @@
     <path d="M26.6 45.64H37m-6.62 3.78l-3.78-3.77 3.83-3.81" stroke="#e44c3d" stroke-width="1.5" stroke-linecap="round"
           stroke-linejoin="round"/>
     <path opacity=".3" d="M129.9 22.81a3.09 3.09 0 100-6.18 3.09 3.09 0 000 6.18z" fill="#1f1f1f"/>
-    <path fill="#E5E5E5" d="M13 57h198v213H13z"/>
+    <path fill="#fff" d="M13 57h198v213H13z"/>
 </svg>
