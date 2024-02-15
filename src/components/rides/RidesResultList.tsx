@@ -38,7 +38,7 @@ const RidesResultList = ({rides, searchParams}: RideListType) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {rides.map((ride: Ride) => (
                     <div key={ride.id}
-                         className='bg-white shadow-md rounded-xl overflow-hidden'>
+                         className='bg-white border border-default-100 rounded-xl overflow-hidden'>
                         <RideCard ride={ride} searchParams={searchParams}/>
                     </div>
                 ))}
