@@ -31,7 +31,7 @@ const UseDropdownMenu = ({user, t}: UserDropdownMenuProps) => {
                     as="button"
                     avatarProps={{
                         radius: "lg",
-                        isBordered: true,
+                        isBordered: false,
                         src: user?.image as string,
                         alt: user?.name as string,
                         name: user?.name as string,
