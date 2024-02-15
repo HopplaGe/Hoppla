@@ -104,7 +104,7 @@ const Footer = () => {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="page-wrapper pt-8">
+      <div className="page-wrapper pt-16">
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           <div className="space-y-8">
             <Image
