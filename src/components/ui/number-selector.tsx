@@ -5,7 +5,11 @@ import {Minus, Plus} from "lucide-react";
 import {InputProps} from "@/components/ui/input";
 import {useTranslations} from "next-intl";
 
-const NumberSelector = React.forwardRef<HTMLInputElement, InputProps>(
+type NumberSelectorProps = {
+    state?: any;
+} & InputProps;
+
+const NumberSelector = React.forwardRef<HTMLInputElement, NumberSelectorProps>(
     ({className, type, ...props}, ref) => {
         const t = useTranslations("SearchForm");
 
@@ -21,6 +25,8 @@ const NumberSelector = React.forwardRef<HTMLInputElement, InputProps>(
 
                 // @ts-ignore
                 props.onChange(event);
+                event.target.value && props.state(event.target.value)
+
             }
         };
 
@@ -36,6 +42,9 @@ const NumberSelector = React.forwardRef<HTMLInputElement, InputProps>(
 
                 // @ts-ignore
                 props.onChange(event);
+
+                // console.log(event)
+                event.target.value && props.state(event.target.value)
             }
         };
 
