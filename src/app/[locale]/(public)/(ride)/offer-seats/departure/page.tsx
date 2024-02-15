@@ -49,6 +49,7 @@ const Departure = ({searchParams}: pageProps) => {
         const params = new URLSearchParams();
         params.set("from", fromAddress);
         params.set("to", form.getValues().to);
+        params.set("seats", searchParams?.seats as string);
 
         router.push("/offer-seats/arrival?" + params.toString());
     }
