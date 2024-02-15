@@ -173,7 +173,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8">
+        <div className="mt-16 border-t border-gray-900/10 py-2">
           <p className="text-xs leading-5 text-gray-500">
             &copy; {new Date().getFullYear()} Hoopla
           </p>
