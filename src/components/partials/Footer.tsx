@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import hopplaLogo from "@/assets/images/logo2.svg";
+import hopplaLogo from "@/assets/images/logo.svg";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import LanguageSwitch from "@/components/partials/LanguageSwitch";
@@ -110,8 +110,7 @@ const Footer = () => {
             <Image
               src={hopplaLogo as any}
               alt="Hoppla"
-              width={150}
-              height={50}
+              height={44}
             />
             <p className="text-sm leading-6 text-gray-600 fira-go">{t("Pronounce")}</p>
             <div className="flex space-x-6">
