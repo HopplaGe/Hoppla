@@ -82,7 +82,7 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
       if (res) {
         router.push(`/carpool`)
       }
-    }, [values, router]
+    }, [router]
   );
 
 
