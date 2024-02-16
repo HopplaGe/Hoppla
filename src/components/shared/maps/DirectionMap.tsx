@@ -5,6 +5,7 @@ import {
     DirectionsRenderer,
 } from '@react-google-maps/api';
 import locationImg from "@/assets/images/location-pin.png";
+import { mapConfig } from '@/config/map.config';
 
 type LatLngLiteral = google.maps.LatLngLiteral;
 // type DirectionsResult = google.maps.DirectionsResult;
@@ -32,6 +33,7 @@ const DirectionMap = ({ directionResponse, latLng }: {
         streetViewControl: false,
         mapTypeControl: false,
         clickableIcons: false,
+        styles: mapConfig.mapOptions.styles
     }), []);
 
     const onMapLoad = useCallback((map: any) => (mapRef.current = map), []);
