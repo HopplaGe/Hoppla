@@ -54,7 +54,7 @@ const userDashboardMenu = [
 
 export const ListboxWrapper = ({children}: { children: ReactNode }) => (
     <div
-        className="w-full h-min bg-white shadow-md px-1 py-2 rounded-small fira-go">
+        className="w-full h-min bg-white  px-1 py-2 rounded-small fira-go">
         {children}
     </div>
 );
