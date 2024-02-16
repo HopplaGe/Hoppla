@@ -121,7 +121,9 @@ export const getRidesByTo = async (to: string) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                to: to
+                to: {
+                    contains: to
+                },
             }
         });
         return rides;
