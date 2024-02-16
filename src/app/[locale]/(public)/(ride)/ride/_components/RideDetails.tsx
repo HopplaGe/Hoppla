@@ -1,4 +1,5 @@
 "use client"
+import html2canvas from 'html2canvas'
 import useDirections from '@/hooks/maps/useDirections'
 import { meterToKm } from '@/lib/tools/meterToKm'
 import { secondsToHours } from '@/lib/tools/secondsToHours'
@@ -7,7 +8,7 @@ import { Avatar, AvatarGroup, Badge, Button, useDisclosure } from '@nextui-org/r
 import { Ride } from '@prisma/client'
 import { BadgeCheck, Check, CheckIcon, ChevronRight, PersonStanding } from 'lucide-react'
 import moment from 'moment'
-import React from 'react'
+import React, { useEffect } from 'react'
 import MapModal from './MapModal'
 
 const RideDetails = ({ ride, searchParams, driver }: any) => {
@@ -17,6 +18,8 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
     const { distance: fromDistance } = useDirections(searchParams.from, ride.from);
     const { distance: toDistance } = useDirections(searchParams.to, ride.to);
     const { distance, price, directionResponse, startLatLng, endLatLng } = useDirections(ride.from, ride.to, searchParams.requested_seats);
+
+    const [imageForShare, setImageForShare] = React.useState("");
 
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [openLatLng, setOpenLatLng] = React.useState("");
@@ -29,13 +32,27 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
     // TODO: გასაკეთებელია მძღოლის ვერიფიკაცია
     const isVerified = true;
 
-    // console.log('RideDetails', ride.seats)
-    // console.log('requested_seats', searchParams.requested_seats)
-    // console.log('price', price)
+    // TODO: გასაკეთებელია სქრინშოტის გამოყენება
+    // function screenshot() {
+    //     html2canvas(global.window.document.getElementById('card') as HTMLElement).then((canvas: any) => {
+    //         const image = canvas.toDataURL("image/png");
+    //         setImageForShare(image);
+    //         // console.log("image => ", image); //image in base64
+    //         // var pHtml = "<img src="+image+" />";
+    //         // var w = window.open('about:blank');
+    //         // // You might want to do something with `w` or `pHtml` here
+    //     });
+    // }
+
+    // useEffect(() => {
+    //     screenshot()
+    // }, [])
+
+
 
     return (
         <>
-            <div className='relative group mx-auto w-1/2 max-w-7xl'>
+            <div id='card' className='relative group mx-auto w-1/2 max-w-7xl'>
                 <div aria-label={"Pick-up location"} onClick={() => handleOpen(startLatLng)}
                     className="group min-h-10 hover:bg-gray-100 hover:rounded-xl transform transition-all duration-300 ease-in-out pt-2 cursor-pointer">
                     <div className="flex flex-col px-6">
@@ -159,7 +176,7 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
                     <div className="flex flex-col gap-2 font-bold text-xl">
                         <Badge
                             isOneChar
-                            content={<BadgeCheck className='text-default-50'/>}
+                            content={<BadgeCheck className='text-default-50' />}
                             color="success"
                             placement="bottom-left"
                         >
