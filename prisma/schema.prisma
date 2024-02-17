@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["fullTextSearch"]
 }
 
@@ -131,4 +131,40 @@ enum RideStatus {
   REJECTED
   CANCELED
   COMPLETED
+}
+
+//Regions and Populated Areas Model
+
+model Region {
+  id             String          @id @default(cuid())
+  name           String
+  country        String          @default("Georgia")
+  populatedAreas PopulatedArea[]
+  createdAt      DateTime        @default(now()) @map("created_at")
+  updatedAt      DateTime        @default(now()) @map("updated_at")
+
+  @@map("regions")
+}
+
+model PopulatedArea {
+  id         String              @id @default(cuid())
+  name       String
+  lat   Float
+  lng  Float
+  symbol     String?
+  status     PopulatedAreaStatus @default(CITY)
+  postalCode String?             @map("postal_code")
+  population Int?
+  regionId   String              @map("region_id")
+  region     Region?             @relation(fields: [regionId], references: [id])
+  createdAt  DateTime            @default(now()) @map("created_at")
+  updatedAt  DateTime            @default(now()) @map("updated_at")
+
+  @@map("populatedareas")
+}
+
+enum PopulatedAreaStatus {
+  CITY
+  TOWNSHIP
+  VILLAGE
 }

@@ -1,16 +1,11 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
-// import { Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers/Providers";
 import { notFound } from "next/navigation";
-import { SessionProvider } from "next-auth/react";
-import { auth } from "@/lib/auth";
-import Script from "next/script";
-import { Toaster } from "@/components/ui/toaster"
-import { cn } from "@/lib/utils";
 
-// const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Hoppla - Ride with us",
@@ -35,12 +30,12 @@ export default async function RootLayout({
 
     return (
         <html lang={locale}>
-            <body className={cn("fira-go")}>
+            <body className={inter.className}>
                 <Providers locale={locale} messages={messages}>
 
                     {children}
                 </Providers>
-                <Toaster />
+
             </body>
         </html>
     );

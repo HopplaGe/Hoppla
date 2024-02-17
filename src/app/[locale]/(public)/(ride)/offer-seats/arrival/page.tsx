@@ -61,7 +61,7 @@ const Arrival = ({ searchParams }: pageProps) => {
 
   return (
     <div className="pt-8">
-      <div className="px-0 lg:px-8 page-wrapper absolute bottom-0 lg:relative w-full py-8 z-20 bg-white rounded-xl shadow-xl flex justify-center items-center sm:h-96 md:h-auto">
+      <div className="px-0 lg:px-8 page-wrapper absolute bottom-0 lg:relative w-full max-w-5xl py-8 z-20 bg-white rounded-xl shadow-xl flex justify-center items-center sm:h-96 md:h-auto">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleSubmit)}
@@ -75,7 +75,7 @@ const Arrival = ({ searchParams }: pageProps) => {
                     <Input
                       {...field}
                       placeholder={t("to")}
-                      className="w-1/2"
+                      className="w-3/4"
                       value={toAddress}
                     />
                   </FormControl>
