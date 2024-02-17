@@ -2,7 +2,7 @@ import { meterToKm } from "@/lib/tools/meterToKm";
 import { secondsToHours } from "@/lib/tools/secondsToHours";
 import { Avatar, AvatarGroup } from "@nextui-org/react";
 
-import { Prisma, Ride } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import moment, { duration } from 'moment'
 import 'moment/locale/ka'
 import { useLocale } from "next-intl";
@@ -51,7 +51,7 @@ export default function Ride({ ride }: RideProps) {
 
         <p>{moment(ride.startDate).locale(locale).format("dddd, MMMM Do YYYY")} - {ride.startTime}</p>
         <div className="mb-10">
-            <AvatarGroup isBordered>
+            {/* <AvatarGroup isBordered>
                 <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026024d" />
                 <Avatar src="https://i.pravatar.cc/150?u=a04258a2462d826712d" />
                 {
@@ -59,7 +59,7 @@ export default function Ride({ ride }: RideProps) {
                         <Avatar src={p.image!} />
                     ))
                 }
-            </AvatarGroup>
+            </AvatarGroup> */}
         </div>
         <div className="grid grid-cols-4">
             <div>
