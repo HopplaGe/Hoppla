@@ -11,7 +11,7 @@ import {
   geocode,
   RequestType,
 } from "react-geocode";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {useLocale} from "next-intl";
 
 type UseGeoCodeType = {
@@ -31,16 +31,18 @@ const useGeoCode = ({ address, lat, lng }: UseGeoCodeType) => {
 
   const latLng = lat && lng ? lat + "," + lng : "41.709048311523986,44.80436404340821";
 
-  geocode(RequestType.LATLNG, latLng as string)
-    .then(({ results }) => {
-      try{
-        const address = results[0].formatted_address;
-      setAddressName(address);
-      } catch (e) {
-        console.error(e);
-      }
-    })
-    .catch(console.error);
+  useMemo(() => {
+    geocode(RequestType.LATLNG, latLng as string)
+      .then(({ results }) => {
+        try {
+          const address = results[0].formatted_address;
+          setAddressName(address);
+        } catch (e) {
+          console.error(e);
+        }
+      })
+      .catch(console.error);
+  }, [latLng]);
 
   return {
     addressName,

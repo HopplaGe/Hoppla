@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import hopplaLogo from "@/assets/images/logo2.svg";
+import hopplaLogo from "@/assets/images/logo.svg";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import LanguageSwitch from "@/components/partials/LanguageSwitch";
@@ -104,14 +104,13 @@ const Footer = () => {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="page-wrapper pt-8">
+      <div className="page-wrapper pt-16">
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           <div className="space-y-8">
             <Image
               src={hopplaLogo as any}
               alt="Hoppla"
-              width={150}
-              height={50}
+              height={44}
             />
             <p className="text-sm leading-6 text-gray-600 fira-go">{t("Pronounce")}</p>
             <div className="flex space-x-6">
@@ -173,7 +172,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-gray-900/10 pt-8">
+        <div className="mt-16 border-t border-gray-900/10 py-2">
           <p className="text-xs leading-5 text-gray-500">
             &copy; {new Date().getFullYear()} Hoopla
           </p>

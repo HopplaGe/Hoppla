@@ -27,6 +27,22 @@ export const getRide = async (id: string) => {
     }
 }
 
+export const getRideById = async (id: string) => {
+    try {
+        const ride = await prisma.ride.findUnique({
+            where: {
+                id: id
+            },
+            include: {
+                passangers: true
+            }
+        });
+        return ride;
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 export const getRidesByDriver = async (driverId: string) => {
     try {
         const rides = await prisma.ride.findMany({
@@ -105,7 +121,9 @@ export const getRidesByTo = async (to: string) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                to: to
+                to: {
+                    contains: to
+                },
             }
         });
         return rides;
@@ -193,9 +211,6 @@ export const getRidesByPrice = async (price: number) => {
 }
 
 export const getRideByFromAndToAndDateAndSeats = async (from: string, to: string, date: string, seatsNumber: number, sort?: string,) => {
-
-    console.log(from, to, date, seatsNumber, sort);
-
     try {
         return await prisma.ride.findMany({
             // orderBy: {

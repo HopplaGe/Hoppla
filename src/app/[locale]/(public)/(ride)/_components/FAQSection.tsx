@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
+import { Button } from "@nextui-org/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 
@@ -28,7 +28,7 @@ export default function FAQSection({}: FAQSectionProps) {
     },
   ];
   return (
-    <section className="page-wrapper flex items-center flex-col gap-5 w-full">
+    <section className="page-wrapper flex items-center flex-col gap-5 w-full py-20">
       <h2 className="text-center text-3xl font-semibold text-secondary">
         {t("title")}
       </h2>
@@ -40,7 +40,7 @@ export default function FAQSection({}: FAQSectionProps) {
           </AccordionItem>
         ))}
       </Accordion>
-      <Button asChild className="flex">
+      <Button className="flex" variant="ghost" color="primary" size="lg">
         <Link href="/discord">{t("joinFAQ")}</Link>
       </Button>
     </section>

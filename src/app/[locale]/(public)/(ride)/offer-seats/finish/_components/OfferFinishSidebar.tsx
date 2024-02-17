@@ -1,7 +1,10 @@
+"use client"
 import { MapPin } from 'lucide-react'
 import React from 'react'
-import secondsToHours from 'date-fns/secondsToHours'
 import { Button } from '@nextui-org/react'
+import { secondsToHours } from '@/lib/tools/secondsToHours'
+import { meterToKm } from '@/lib/tools/meterToKm'
+import { useTranslations } from 'next-intl'
 
 type OfferFinishFormProps = {
     from: string,
@@ -22,6 +25,9 @@ const OfferFinishSidebar = ({ from,
     seats,
     stopPlaceField
 }: OfferFinishFormProps) => {
+
+    const t = useTranslations("OfferSeats.FinishForm");
+
     return (
         <div aria-labelledby="summary-heading" className="col-span-1 w-full lg:max-w-md flex-col lg:flex">
             <ul role="list" className="overflow-y-auto px-6 fira-go text-sm bg-gray-100 rounded-t-xl">
@@ -54,21 +60,18 @@ const OfferFinishSidebar = ({ from,
             <div className="sticky bottom-0 flex-none border-t border-gray-200 bg-gray-200 p-6 rounded-b-xl">
                 <dl className=" space-y-6 text-sm font-medium text-gray-500 fira-go">
                     <div className="flex justify-between items-center">
-                        <dt>მანძილი</dt>
-                        <dd className="text-gray-900">{distance + " კმ"}</dd>
+                        <dt>{t("distanceTitle")}</dt>
+                        <dd className="text-gray-900">{t("distance", {distance: meterToKm(distance)})} </dd>
                     </div>
                     <div className="flex justify-between items-center">
                         <dt className="flex items-center">
-                            დრო
-                            <small
-                                className="hidden lg:block ml-2 rounded-full bg-gray-200 px-2 py-0.5 text-[10px] tracking-wide text-gray-500">დანიშნულების
-                                ადგილამდე</small>
+                            {t("durationTitle")}
                         </dt>
-                        <dd className="text-gray-900">{secondsToHours(duration)}</dd>
+                        <dd className="text-gray-900">{t("duration", {duration: secondsToHours(duration)})}</dd>
                     </div>
                     <div className="flex justify-between items-center">
-                        <dt>მგზავრები</dt>
-                        <dd className="text-gray-900">{seats}</dd>
+                        <dt>{t("passengersTitle")}</dt>
+                        <dd className="text-gray-900">{t("passengers", {passengers: seats})}</dd>
                     </div>
                     <Button
                         variant="solid"

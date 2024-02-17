@@ -6,6 +6,8 @@ import appleLogo from '@/assets/images/icons/apple-logo.svg'
 import androidLogo from '@/assets/images/icons/android-logo.svg'
 import { motion } from "framer-motion";
 import { Button } from '@nextui-org/react';
+import { useTranslations } from 'next-intl';
+import phoneFrame from '@/assets/images/phone-frame.svg'
 
 interface IInfoBlock {
     image: string | StaticImageData;
@@ -13,14 +15,15 @@ interface IInfoBlock {
     subtitle: string;
 }
 
-const MobileAppBlock = ({ image, title, subtitle }: IInfoBlock) => {
+const MobileAppBlock = () => {
+    const t = useTranslations("MobileAppBlock");
     return (
         <motion.div className="relative h-auto bg-secondary px-8 overflow-hidden">
 
             <div className="page-wrapper h-full grid grid-cols-1 lg:grid-cols-4 gap-4 items-center">
                 <div className="col-span-1 lg:col-span-2 flex flex-col py-8 sm:items-center lg:items-start space-y-4">
-                    <h1 className="text-white text-xl lg:text-4xl font-bold fira-go text-left sm:text-center lg:text-left">{title}</h1>
-                    <p className="text-white text-xs md:text-sm lg:text-lg fira-go text-left sm:text-center lg:text-left">{subtitle}</p>
+                    <h1 className="text-white text-xl lg:text-4xl font-bold fira-go text-left sm:text-center lg:text-left">{t(`title`)}</h1>
+                    <p className="text-white text-xs md:text-sm lg:text-lg fira-go text-left sm:text-center lg:text-left">{t(`subtitle`)}</p>
                     <div className="flex flex-row gap-4 fira-go">
                         <Button
                             size="lg"
@@ -47,14 +50,14 @@ const MobileAppBlock = ({ image, title, subtitle }: IInfoBlock) => {
                 >
                     <Image
                         src={qrImage}
-                        alt={title}
+                        alt={t(`title`)}
                         width={200}
                         height={200}
                         className="absolute top-1/2 left-1/2 mt-10 transform -translate-x-1/2 -translate-y-1/2"
                     />
                     <Image
-                        src={image}
-                        alt={title}
+                        src={phoneFrame}
+                        alt={t(`title`)}
                         width={300}
                         height={800}
                     />

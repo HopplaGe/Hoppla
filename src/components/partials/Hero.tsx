@@ -1,14 +1,9 @@
 "use client";
 import Image from "next/image";
-
-import carpoolBg from "@/assets/images/banners/carpoolbg.svg";
 import { useTranslations } from "next-intl";
-import SearchBox from "@/components/partials/SearchBox";
-import OfferingsSection from "@/app/[locale]/(public)/(ride)/_components/OfferingsSection";
 import Link from "next/link";
 import { LuLogIn } from "react-icons/lu";
 import { MdOutlineTravelExplore } from "react-icons/md";
-import { Suspense } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@nextui-org/react";
 
@@ -67,46 +62,9 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <div className="page-wrapper py-12"><SearchBox /></div>
-      </Suspense>
-      <div className="bg-default-100 py-28 fira-go">
-        <div className="page-wrapper mt-16 md:mt-0">
-          <h2 className="text-4xl text-secondary lg:text-5xl font-bold lg:tracking-tight">
-            {t(`aboutTitle`, { company: "HOPPLA" })}
-          </h2>
-          <p className="text-lg mt-4 text-gray-600 dark:text-gray-300">
-            {t(`aboutDesc`)}
-          </p>
-        </div>
-      </div>
-
-      <OfferingsSection />
+    
     </>
   );
-  // return (
-  //     <div className="bg-gray-900">
-
-  //         <div className="relative isolate  z-10">
-  //             <Image
-  //                 src={carpoolBg}
-  //                 alt=""
-  //                 className="absolute inset-0 -z-10 h-full w-full object-cover"
-  //             />
-  //             <div className="page-wrapper pt-8">
-
-  //                 <div className="text-center min-h-12 lg:min-h-80 flex flex-col justify-between ">
-  //                     <h1 className="text-2xl font-bold tracking-tight text-white sm:text-5xl fira-go">
-  //                         {t(`title`)}
-  //                     </h1>
-  //                     <div className="-mt-28 translate-y-32 lg:translate-y-8">
-  //                         <SearchBox/>
-  //                     </div>
-  //                 </div>
-  //             </div>
-  //         </div>
-  //     </div>
-  // )
 };
 
 export default Hero;

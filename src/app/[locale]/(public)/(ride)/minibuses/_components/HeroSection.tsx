@@ -14,6 +14,7 @@ export default function HeroSection({}: HeroSectionProps) {
         title={t("findEasyTravel.title")}
         description={t("findEasyTravel.description")}
         img="/minibuses/together.svg"
+        className="bg-default-100 text-default-900"
         colored
       />
       <SplitComponent

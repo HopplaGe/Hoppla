@@ -12,9 +12,9 @@ type UseDirections = {
 
 const useDirections = (
     from: string,
-    to: string
+    to: string,
+    seats?: number
 ) => {
-
     const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
@@ -68,10 +68,10 @@ const useDirections = (
                 }
             );
             if (distance && duration) {
-                setPrice(calculatePrice(distance, duration))
+                setPrice(calculatePrice(distance, duration) / 4 * seats!)
             }
         }
-    }, [isLoaded, distance, duration, from, to])
+    }, [isLoaded, distance, duration, from, to, seats])
 
     if (!isLoaded) return {directionResponse, price, distance, duration, startLatLng, endLatLng};
 

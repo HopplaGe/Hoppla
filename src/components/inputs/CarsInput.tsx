@@ -4,17 +4,19 @@ import AddCarModel from '@/components/shared/AddCarModel';
 
 const CarsInput = ({
   cars,
-  onSelect
+  onSelect,
+  title
 }: {
   cars: any,
-  onSelect: any
+  onSelect: any,
+  title: string
 }) => {
   
   return (
     <>
       {cars.length > 0 ? (
         <div className="flex flex-col gap-2 mb-6">
-          <label htmlFor="car" className="text-sm text-secondary fira-go">აირჩიეთ მანქანა</label>
+          <h3 className="text-sm text-secondary fira-go">{title}</h3>
           <ul className="grid w-full gap-6 md:grid-cols-4">
             {cars.map((car: any, index: number) => (
               <li key={index} onClick={() => onSelect(car.id)}>

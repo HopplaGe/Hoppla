@@ -144,7 +144,7 @@ const SearchBox = ({ className }: { className?: string }) => {
                     classNames={{
                       label: "text-black/50 dark:text-white/90",
                       input: [
-                        "bg-transparent",
+                        "bg-transparent text-sm",
                         "text-black/90 dark:text-white/90",
                         "placeholder:text-default-700/50 dark:placeholder:text-white/60",
                         "ml-2",
@@ -201,7 +201,7 @@ const SearchBox = ({ className }: { className?: string }) => {
                     classNames={{
                       label: "text-black",
                       input: [
-                        "bg-transparent",
+                        "bg-transparent text-sm",
                         "text-black",
                         "placeholder:text-gray-400",
                         "ml-2",
@@ -325,7 +325,7 @@ const SearchBox = ({ className }: { className?: string }) => {
           color="secondary"
           size="lg"
           type="submit"
-          className="col-span-12 lg:col-span-3 rounded-t-none lg:rounded-l-none lg:rounded-r-xl py-5 disabled:cursor-not-allowed disabled:opacity-85 h-full"
+          className="col-span-12 lg:col-span-3 rounded-t-none lg:rounded-l-none lg:rounded-r-xl py-5 disabled:cursor-not-allowed disabled:opacity-85 h-full text-sm"
           onClick={() => {
             router.push(`/search?${createQueryStr(form.getValues())}`);
           }}

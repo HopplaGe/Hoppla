@@ -33,8 +33,6 @@ export default async function RootLayout({
         notFound();
     }
 
-    // const session = await auth()
-
     return (
         <html lang={locale}>
             <body className={cn("fira-go")}>
@@ -43,9 +41,6 @@ export default async function RootLayout({
                     {children}
                 </Providers>
                 <Toaster />
-
-                <Script
-                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-4LnrSUqFUTW0fR3w-WjRaDb4ISLIiQM&libraries=places&loading=async" />
             </body>
         </html>
     );

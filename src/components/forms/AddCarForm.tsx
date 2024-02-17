@@ -199,7 +199,7 @@ const AddCarForm = ({...props}: {
     const handleSubmit = async (values: z.infer<typeof CarSchema>) => {
         await createCar(values, currentUser);
         props.onClose();
-        router.refresh()
+        router.replace("/dashboard");
     };
 
     return (

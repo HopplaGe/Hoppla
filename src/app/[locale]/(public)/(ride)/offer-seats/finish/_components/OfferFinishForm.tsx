@@ -4,10 +4,10 @@ import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Button, Input, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react'
 import moment, { duration } from 'moment'
 import 'moment/locale/ka'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import ka from "date-fns/locale/ka";
 import en from "date-fns/locale/en-US";
-import React, { use, useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { CalendarDays, Clock2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
@@ -15,13 +15,13 @@ import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Time from '@/components/shared/date-time/TimePicker'
-import { Console } from 'console'
 import CarsInput from '@/components/inputs/CarsInput'
 import { Car, Ride, User } from '@prisma/client'
 import OfferFinishSidebar from './OfferFinishSidebar'
 import prisma from '@/lib/prisma'
 import { createRide } from '@/lib/actions/rides'
 import useDirections from '@/hooks/maps/useDirections'
+import { values } from 'lodash'
 
 const OfferFinishFormSchema = z.object({
   from: z.string(),
@@ -45,10 +45,12 @@ type OfferFinishFormProps = {
 
 const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => {
 
+  const t = useTranslations("OfferSeats.FinishForm");
+
   const locale = useLocale()
   const router = useRouter()
 
-  const {distance, duration, price} = useDirections(searchParams.from!, searchParams.to!)
+  const { distance, duration, price } = useDirections(searchParams.from!, searchParams.to!, parseInt(searchParams.seats!))
 
   const form = useForm<z.infer<typeof OfferFinishFormSchema>>({
     resolver: zodResolver(OfferFinishFormSchema),
@@ -57,7 +59,7 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
       to: searchParams.to,
       startDate: new Date(),
       startTime: "11:00",
-      seats: 0,
+      seats: parseInt(searchParams.seats!),
       carId: "",
       driverId: user?.id,
       duration: duration,
@@ -71,14 +73,17 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
     form.setValue('distance', distance)
     form.setValue('duration', duration)
     form.setValue('price', price / 4)
+
   }, [distance, duration, price, form])
 
-  const handleSubmit = async (values: z.infer<typeof OfferFinishFormSchema>) => {
-    const res = await createRide(values as Ride)
-    if (res) {
-      router.push(`/carpool`)
-    }
-  };
+  const handleSubmit = useCallback(
+    async (values: z.infer<typeof OfferFinishFormSchema>) => {
+      const res = await createRide(values as Ride)
+      if (res) {
+        router.push(`/carpool`)
+      }
+    }, [router]
+  );
 
 
   return (
@@ -88,7 +93,7 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
           onSubmit={form.handleSubmit(handleSubmit)}
           className="grid grid-cols-1 lg:grid-cols-3 gap-8 fira-go">
           <div className='flex flex-col gap-4 col-span-1 lg:col-span-2'>
-          <h3 className="text-sm text-secondary fira-go">გასვლის დრო</h3>
+            <h3 className="text-sm text-secondary fira-go">{t("departureTimeTitle")}</h3>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mb-4">
               <FormField
@@ -202,7 +207,7 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
                 name="carId"
                 render={({ field }) => (
                   <FormItem className='col-span-full'>
-                    <CarsInput cars={cars.cars} onSelect={field.onChange} />
+                    <CarsInput cars={cars.cars} onSelect={field.onChange} title={t("chooseCarTitle")} />
                   </FormItem>
                 )}
               />
@@ -212,9 +217,9 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
           <OfferFinishSidebar
             from={form.getValues("from")}
             to={form.getValues("to")}
-            distance={123456}
-            duration={1234156}
-            seats={1}
+            distance={distance}
+            duration={duration}
+            seats={form.getValues("seats")}
             stopPlaceField={[]}
           />
         </form>

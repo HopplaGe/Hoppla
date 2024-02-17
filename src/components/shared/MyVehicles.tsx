@@ -12,7 +12,7 @@ const MyVehicles = ({cars}: myVehicles) => {
     const t = useTranslations('MyCars');
 
     return (
-        <>
+        <div>
             <h2 className="font-bold text-xl mb-4 fira-go">{t("MyVehicles")}</h2>
             <div role="list"
                  className={cn(`grid grid-cols-10 gap-4 justify-center items-center relative`)}>
@@ -65,7 +65,7 @@ const MyVehicles = ({cars}: myVehicles) => {
                     <div
                         className={cn(`text-center text-gray-500 ${cars && cars.length === 0 && "col-span-3"} text-left fira-go`)}>{t('NoVehicles')}</div>}
             </div>
-        </>
+        </div>
     );
 };
 
