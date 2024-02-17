@@ -1,5 +1,7 @@
 "use server"
+import { userUpdateSchema } from "@/app/[locale]/(private)/dashboard/settings/page";
 import prisma from "@/lib/prisma";
+import { z } from "zod";
 
 
 // find user by email
@@ -29,3 +31,17 @@ export const getUserById = async (id: string) => {
         return null;
     }
 }
+
+export const updateUser = async (id: string, values: z.infer<typeof userUpdateSchema>) => {
+    try {
+        return await prisma.user.update({
+            where: {
+                id,
+            },
+            data: values,
+        });
+    } catch (error) {
+        return null;
+    }
+}
+
