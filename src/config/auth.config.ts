@@ -33,13 +33,15 @@ export default {
         },
         // @ts-ignore
         async session({ session, token }) {
-            session.user.id = token.id;
-            session.user.role = token.role;
-            session.user.phone = token.phone;
-            session.user.address = token.address;
-            session.user.birthdate = token.birthdate;
-            session.user.gender = token.gender
-            session.user.image = token.image
+            if (token) {
+                session.user.id = token.id;
+                session.user.role = token.role;
+                session.user.phone = token.phone;
+                session.user.address = token.address;
+                session.user.birthdate = token.birthdate;
+                session.user.gender = token.gender
+                session.user.image = token.image
+            }
             return session;
         }
     }

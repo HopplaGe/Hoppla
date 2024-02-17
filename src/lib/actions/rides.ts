@@ -1,7 +1,7 @@
 "use server"
 
 import prisma from "@/lib/prisma"
-import {Ride, RideStatus} from "@prisma/client"
+import { Ride, RideStatus } from "@prisma/client"
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 

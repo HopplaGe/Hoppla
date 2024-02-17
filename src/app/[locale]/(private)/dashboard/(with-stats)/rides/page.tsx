@@ -4,8 +4,8 @@ import RideCard from '@/components/rides/RideCard';
 import { getRidesByDriver } from '@/lib/actions/rides';
 import { auth } from '@/lib/auth';
 import { cn } from '@/lib/utils';
-import { Ride, User } from '@prisma/client';
 import React, { Suspense } from 'react';
+import Ride from './_components/Ride';
 
 const DashRides = async () => {
 
@@ -17,10 +17,16 @@ const DashRides = async () => {
 
     return (
         <div>
-            
-            <ul className={cn("w-full grid grid-cols-1 lg:grid-cols-2 gap-4 h-auto list-none z-10")}>
+
+            <ul className={cn("w-full grid grid-cols-1 gap-4 h-auto list-none z-10")}>
                 <Suspense fallback={<div>Loading...</div>}>
-                rides
+                    {
+                        myrides?.rides.map((ride: any) => (
+                            <li key={ride.id} className="w-full">
+                                <Ride ride={ride} />
+                            </li>
+                        ))
+                    }
                 </Suspense>
             </ul>
         </div>
