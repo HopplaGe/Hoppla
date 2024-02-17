@@ -1,5 +1,7 @@
 import "next-auth"
-import {Gender, userRole} from "@prisma/client";
+import { Gender, userRole } from "@prisma/client";
+
+
 
 // Declare your framework library
 declare module "next-auth" {
@@ -26,7 +28,7 @@ declare module "next-auth" {
             address: string,
             phone: string,
             birthdate: string,
-            gender: string,
+            gender: Gender,
         }
     }
 }
