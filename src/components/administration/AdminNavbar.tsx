@@ -42,7 +42,7 @@ const AdminNavbar = () => {
                 <div className="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true"/>
 
                 <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-                    <form className="relative flex flex-1" action="#" method="GET">
+                    <form className="hidden relative lg:flex flex-1" action="#" method="GET">
                         <label htmlFor="search-field" className="sr-only">
                             Search
                         </label>
