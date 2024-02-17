@@ -1,23 +1,28 @@
 "use client"
 import React from 'react';
-import {CalendarIcon, Car, FolderIcon, HomeIcon} from "lucide-react";
+import {Building2, CalendarIcon, Car, HomeIcon} from "lucide-react";
 import {ChartPieIcon, DocumentDuplicateIcon} from "@heroicons/react/16/solid";
 import {cn} from "@/lib/utils";
 import hopplaMiniLogo from "@/assets/images/mini_logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from 'next/navigation';
+import { useLocale } from 'next-intl';
 
 
 const navigation = [
-    {name: 'Dashboard', href: '#', icon: HomeIcon, current: true},
+    {name: 'Dashboard', href: '/manage', icon: HomeIcon, current: true},
+    {name: 'Populated Areas', href: '/manage/populated-areas', icon: Building2, current: false},
     {name: 'Team', href: '#', icon: Car, current: false},
-    {name: 'Projects', href: '#', icon: FolderIcon, current: false},
     {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
     {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},
     {name: 'Reports', href: '#', icon: ChartPieIcon, current: false},
 ]
 
 const AdminSidebar = () => {
+
+    const locale = useLocale();
+    const pathname = usePathname();
 
     return (
         <>
@@ -33,16 +38,16 @@ const AdminSidebar = () => {
                     <ul role="list" className="flex flex-col items-center space-y-1">
                         {navigation.map((item) => (
                             <li key={item.name}>
-                                <a
+                                <Link
                                     href={item.href}
                                     className={cn(
-                                        item.current ? 'bg-primary text-white' : 'text-gray-400 hover:text-white hover:bg-primary',
-                                        'group flex gap-x-3 rounded-md p-3 text-sm leading-6 font-semibold'
+                                        pathname === "/" + locale + item.href ? 'bg-primary text-white' : 'text-gray-400 hover:text-white hover:bg-primary',
+                                        'group flex gap-x-3 rounded-xl p-3 text-sm leading-6 font-semibold hoppla-animation'
                                     )}
                                 >
                                     <item.icon className="h-6 w-6 shrink-0" aria-hidden="true"/>
                                     <span className="sr-only">{item.name}</span>
-                                </a>
+                                </Link>
                             </li>
                         ))}
                     </ul>
