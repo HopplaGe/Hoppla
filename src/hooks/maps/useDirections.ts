@@ -68,7 +68,8 @@ const useDirections = (
                 }
             );
             if (distance && duration) {
-                setPrice(calculatePrice(distance, duration) / 4 * seats!)
+                setPrice(calculatePrice(distance, duration))
+                // console.log("11111",calculatePrice(distance, duration)/4)
             }
         }
     }, [isLoaded, distance, duration, from, to, seats])
