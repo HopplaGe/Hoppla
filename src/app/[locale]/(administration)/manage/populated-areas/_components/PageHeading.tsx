@@ -50,16 +50,16 @@ const PageHeading = ({setCountryId, regions}: PageHeadingProps) => {
     }, [])
 
 
-    const areaCountReducer = (status: string) => {
+    const areaCountReducer = useCallback((status: string) => {
         return regions?.map((region) => region.populatedAreas.filter((area: any) => area.status === status).length).reduce((a, b) => a + b, 0)
-    }
+    }, [regions])
 
-    
+
     useEffect(() => {
         setCities(areaCountReducer(PopulatedAreaStatus.CITY))
         setTownships(areaCountReducer(PopulatedAreaStatus.TOWNSHIP))
         setVillages(areaCountReducer(PopulatedAreaStatus.VILLAGE))
-    }, [regions])
+    }, [areaCountReducer])
 
     useEffect(() => {
         fetchCountries().then(r => r)
