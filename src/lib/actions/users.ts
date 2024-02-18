@@ -1,7 +1,7 @@
 "use server"
-import { userUpdateSchema } from "@/app/[locale]/(private)/dashboard/settings/page";
 import prisma from "@/lib/prisma";
-import { z } from "zod";
+import {z} from "zod";
+import {userUpdateSchema} from "@/lib/validation/UserUpdateScheme";
 
 
 // find user by email
