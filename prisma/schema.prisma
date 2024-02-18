@@ -135,10 +135,27 @@ enum RideStatus {
 
 //Regions and Populated Areas Model
 
+model Country {
+  id        String   @id @default(cuid())
+  name      String
+  code      String
+  phoneCode String   @map("phone_code")
+  currency  String   @map("currency_code")
+  flag      String?
+  regions   Region[]
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("countries")
+}
+
 model Region {
   id             String          @id @default(cuid())
   name           String
-  country        String          @default("Georgia")
+  countryId      String          @map("country_id")
+  country        Country         @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  svgCoords      String          @map("svg_coords")
+  isOccupied     Boolean         @default(false) @map("is_occupied")
   populatedAreas PopulatedArea[]
   createdAt      DateTime        @default(now()) @map("created_at")
   updatedAt      DateTime        @default(now()) @map("updated_at")
@@ -149,14 +166,16 @@ model Region {
 model PopulatedArea {
   id         String              @id @default(cuid())
   name       String
-  lat   Float
-  lng  Float
+  lat        Float
+  lng        Float
   symbol     String?
   status     PopulatedAreaStatus @default(CITY)
+  isCapital  Boolean             @default(false) @map("is_capital")
   postalCode String?             @map("postal_code")
   population Int?
   regionId   String              @map("region_id")
-  region     Region?             @relation(fields: [regionId], references: [id])
+  region     Region?             @relation(fields: [regionId], references: [id], onDelete: Cascade)
+  svgCoords  String?             @default("0") @map("svg_coords")
   createdAt  DateTime            @default(now()) @map("created_at")
   updatedAt  DateTime            @default(now()) @map("updated_at")
 
