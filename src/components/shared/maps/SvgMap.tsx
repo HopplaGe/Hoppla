@@ -2,12 +2,12 @@
 import { allRidesCount, ridesCountByDirection } from '@/lib/actions/stats'
 import { cn } from '@/lib/utils'
 import { Tooltip } from '@nextui-org/react'
-import { Region } from '@prisma/client'
+import { PopulatedAreaStatus, Region } from '@prisma/client'
 import React, { FC, useCallback, useEffect, useState } from 'react'
 
 const occupiedRegionStyle = "fill-primary hover:fill-primary-dark text-white"
 const regionStyle = "fill-default-200 hover:fill-default-300 stroke-white stroke-1 text-gray-800 hover:z-50 hoppla-animation"
-const capitalPinStyle = "stroke-secondary stroke-2 fill-primary hover:scale-105 hover:-translate-x-7 hover:-translate-y-4 hoppla-animation"
+const capitalPinStyle = "stroke-secondary stroke-2 fill-primary hoppla-animation"
 const cityPinStyle = "stroke-secondary stroke-2 fill-white group-hover:fill-primary hoppla-animation svg-map-circle"
 
 type SvgMapProps = {
@@ -69,25 +69,35 @@ const SvgMap: FC<SvgMapProps> = ({ regions }) => {
                                           {
                                                 // @ts-ignore
                                                 region.populatedAreas.map((city, index) =>
-                                                city.svgChoords !== "0" && (
-                                                      <Tooltip
-                                                            content={city.name}
-                                                            key={index}
-                                                            className='fira-go'
-                                                            size='lg'
-                                                            radius='sm'
-                                                            placement='top'
-                                                      >
-                                                            <circle
-                                                                  id={city.name}
-                                                                  cx={city.svgCoords.split(',')[0]}
-                                                                  cy={city.svgCoords.split(',')[1]}
-                                                                  r={city.isCapital ? "10" : "5"}
-                                                                  className={cn(city.isCapital ? capitalPinStyle : cityPinStyle, region.isOccupied && "group-hover:fill-amber-300")}
-                                                                  onMouseMove={() => mouseMove(city.name)}
-                                                                  onMouseLeave={() => mouseLeave()} />
-                                                      </Tooltip>
-                                                )
+                                                      city.svgChoords !== "0" && (
+                                                            <Tooltip
+                                                                  content={city.name}
+                                                                  key={index}
+                                                                  className='fira-go'
+                                                                  size='lg'
+                                                                  radius='sm'
+                                                                  placement='top'
+                                                            >
+                                                                  <circle
+                                                                        id={city.name}
+                                                                        cx={city.svgCoords.split(',')[0]}
+                                                                        cy={city.svgCoords.split(',')[1]}
+                                                                        r={
+                                                                              city.isCapital ? "10" 
+                                                                              : city.status === PopulatedAreaStatus.CITY ? "5"
+                                                                              : city.status === PopulatedAreaStatus.TOWNSHIP ? "3"
+                                                                              : "2"
+                                                                        }
+                                                                        className={cn(
+                                                                              city.isCapital ? capitalPinStyle : cityPinStyle,
+                                                                              city.status === PopulatedAreaStatus.TOWNSHIP && "fill-default-500 stroke-none group-hover:fill-default-600",
+                                                                              city.status === PopulatedAreaStatus.VILLAGE && "fill-default-400 stroke-none group-hover:fill-default-600",
+                                                                              region.isOccupied && "group-hover:fill-amber-300",
+                                                                        )}
+                                                                        onMouseMove={() => mouseMove(city.name)}
+                                                                        onMouseLeave={() => mouseLeave()} />
+                                                            </Tooltip>
+                                                      )
                                                 )}
                                     </g>
                               ))}
