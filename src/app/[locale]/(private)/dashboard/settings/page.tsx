@@ -1,11 +1,11 @@
 "use client"
 
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { Button, Input } from "@nextui-org/react";
-import { Select, SelectItem } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
+import {z} from "zod"
+import {zodResolver} from "@hookform/resolvers/zod"
+import {useForm} from "react-hook-form"
+import {Button, Input} from "@nextui-org/react";
+import {Select, SelectItem} from "@nextui-org/react";
+import {Image} from "@nextui-org/react";
 
 import {
     Form,
@@ -13,21 +13,14 @@ import {
     FormField,
     FormItem,
 } from "@/components/ui/form"
-import { useSession } from "next-auth/react"
+import {useSession} from "next-auth/react"
 import moment from "moment";
-import { useEffect, useState } from "react";
-import { updateUser } from "@/lib/actions/users";
-import { uploadImage } from "@/lib/actions/s3actions";
-import { useToast } from "@/components/ui/use-toast"
+import {useEffect, useState} from "react";
+import {updateUser} from "@/lib/actions/users";
+import {uploadImage} from "@/lib/actions/s3actions";
+import {useToast} from "@/components/ui/use-toast"
+import {userUpdateSchema} from "@/lib/validation/UserUpdateScheme";
 
-export const userUpdateSchema = z.object({
-    name: z.string().min(2).max(50),
-    gender: z.enum(["MALE", "FEMALE", "OTHER"]),
-    image: z.string(),
-    address: z.string().min(2).max(50),
-    phone: z.string().min(2).max(50),
-    birthdate: z.date(),
-})
 
 type DashRidesProps = {
     params: {
@@ -36,11 +29,11 @@ type DashRidesProps = {
 }
 
 const DashRides = ({
-    params
-}: DashRidesProps) => {
-    const { toast } = useToast()
+                       params
+                   }: DashRidesProps) => {
+    const {toast} = useToast()
 
-    const { data: session, update } = useSession()
+    const {data: session, update} = useSession()
     const user = session?.user
     const [imageUploading, setImageUploading] = useState(false)
     const form = useForm<z.infer<typeof userUpdateSchema>>({
@@ -55,6 +48,7 @@ const DashRides = ({
         },
     })
     const [submitting, setSubmitting] = useState(false)
+
     async function onSubmit(values: z.infer<typeof userUpdateSchema>) {
         setSubmitting(true)
         await updateUser(user?.id!, values)
@@ -69,17 +63,18 @@ const DashRides = ({
         })
         setSubmitting(false)
     }
+
     useEffect(() => {
-        if (user) {
-            form.setValue("name", user.name || "")
-            form.setValue("gender", user.gender || "MALE")
-            form.setValue("image", user.image || "")
-            form.setValue("address", user.address || "")
-            form.setValue("phone", user.phone || "")
-            form.setValue("birthdate", new Date(user.birthdate))
+            if (user) {
+                form.setValue("name", user.name || "")
+                form.setValue("gender", user.gender || "MALE")
+                form.setValue("image", user.image || "")
+                form.setValue("address", user.address || "")
+                form.setValue("phone", user.phone || "")
+                form.setValue("birthdate", new Date(user.birthdate))
+            }
         }
-    }
-        , [user])
+        , [form, user])
 
     if (!user) {
         return null
@@ -107,7 +102,7 @@ const DashRides = ({
                 <FormField
                     control={form.control}
                     name="image"
-                    render={({ field }) => (
+                    render={({field}) => (
                         <FormItem>
                             <FormControl>
                                 <div>
@@ -120,8 +115,9 @@ const DashRides = ({
                                             }
                                         />
                                     </label>
-                                    <input disabled={imageUploading} id="image" className="hidden" onChange={handleImageUpload} name="image"
-                                        placeholder="Enter your name..." type="file" />
+                                    <input disabled={imageUploading} id="image" className="hidden"
+                                           onChange={handleImageUpload} name="image"
+                                           placeholder="Enter your name..." type="file"/>
                                 </div>
                             </FormControl>
                         </FormItem>
@@ -130,11 +126,11 @@ const DashRides = ({
                 <FormField
                     control={form.control}
                     name="name"
-                    render={({ field }) => (
+                    render={({field}) => (
                         <FormItem>
                             <FormControl>
                                 <Input isRequired label="Name" {...field}
-                                    placeholder="Enter your name..." />
+                                       placeholder="Enter your name..."/>
                             </FormControl>
                         </FormItem>
                     )}
@@ -142,11 +138,11 @@ const DashRides = ({
                 <FormField
                     control={form.control}
                     name="address"
-                    render={({ field }) => (
+                    render={({field}) => (
                         <FormItem>
                             <FormControl>
                                 <Input isRequired label="Address"
-                                    placeholder="Enter your address..." {...field} />
+                                       placeholder="Enter your address..." {...field} />
                             </FormControl>
                         </FormItem>
                     )}
@@ -154,38 +150,38 @@ const DashRides = ({
                 <FormField
                     control={form.control}
                     name="phone"
-                    render={({ field }) => (
+                    render={({field}) => (
                         <FormItem>
                             <FormControl>
                                 <Input isRequired label="Phone"
-                                    placeholder="Enter your phone..." {...field} />
+                                       placeholder="Enter your phone..." {...field} />
                             </FormControl>
                         </FormItem>
                     )}
                 />
                 <FormField control={form.control}
-                    name="birthdate"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormControl>
-                                <Input type="date" isRequired label="Date of Birth"
-                                    placeholder="Enter your phone..." value={
-                                        moment(field.value).format("YYYY-MM-DD")
-                                    } onChange={(e) => {
-                                        field.onChange({
-                                            target: {
-                                                value: new Date(moment(e.target.value).format("YYYY-MM-DD"))
-                                            }
-                                        })
-                                    }} />
-                            </FormControl>
-                        </FormItem>
-                    )}
+                           name="birthdate"
+                           render={({field}) => (
+                               <FormItem>
+                                   <FormControl>
+                                       <Input type="date" isRequired label="Date of Birth"
+                                              placeholder="Enter your phone..." value={
+                                           moment(field.value).format("YYYY-MM-DD")
+                                       } onChange={(e) => {
+                                           field.onChange({
+                                               target: {
+                                                   value: new Date(moment(e.target.value).format("YYYY-MM-DD"))
+                                               }
+                                           })
+                                       }}/>
+                                   </FormControl>
+                               </FormItem>
+                           )}
                 />
                 <FormField
                     control={form.control}
                     name="gender"
-                    render={({ field }) => (
+                    render={({field}) => (
                         <FormItem>
                             <FormControl>
                                 <Select
