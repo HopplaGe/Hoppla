@@ -149,8 +149,8 @@ model Region {
 model PopulatedArea {
   id         String              @id @default(cuid())
   name       String
-  lat   Float
-  lng  Float
+  lat        Float
+  lng        Float
   symbol     String?
   status     PopulatedAreaStatus @default(CITY)
   postalCode String?             @map("postal_code")
@@ -167,4 +167,38 @@ enum PopulatedAreaStatus {
   CITY
   TOWNSHIP
   VILLAGE
+}
+
+// Articles Model
+enum ArticleLanguage {
+  EN
+  KA
+}
+
+enum ArticleStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model ArticleTag {
+  id        String    @id @default(cuid())
+  name      String    @unique
+  createdAt DateTime? @default(now()) @map("created_at")
+  articles  Article[]
+
+  @@map("articles_tags")
+}
+
+model Article {
+  id        String          @id @default(cuid())
+  title     String
+  content   String
+  heading   String
+  language  ArticleLanguage
+  picture   String?
+  status    ArticleStatus   @default(DRAFT)
+  createdAt DateTime?       @default(now()) @map("created_at")
+  tags      ArticleTag[]
+
+  @@map("articles")
 }
