@@ -2,9 +2,12 @@
 import { Button } from '@/components/ui/button'
 import { ChevronLeft } from 'lucide-react'
 import moment from 'moment'
+import "moment/locale/ka"
+import { useLocale } from 'next-intl'
 import React from 'react'
 
 const RideDetailHead = (startDate: any) => {
+  const locale = useLocale()
   return (
     <div className="flex flex-row mx-auto w-1/2 max-w-7xl relative justify-center items-center">
           <Button
@@ -17,7 +20,7 @@ const RideDetailHead = (startDate: any) => {
             <ChevronLeft size={44}/>
           </Button>
           <h1 className='text-4xl text-center fira-go'>
-            {moment(startDate).locale('ka').format('LL').slice(0, -5)}
+            {moment(startDate).locale(locale).format('LL').slice(0, -5)}
           </h1>
         </div>
   )
