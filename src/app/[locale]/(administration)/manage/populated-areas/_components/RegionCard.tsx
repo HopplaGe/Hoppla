@@ -21,7 +21,7 @@ const RegionCard = ({region}: RegionCardProps) => {
         </div>
         <div className='col-span-1 flex flex-col justify-center items-center text-default-700'>
             <span className='text-xl font-bold'>{region.populatedAreas.length}</span>
-            <span className='text-xs text-center fira-go'>დასახლებული პუნქტი</span>
+              <span className='text-xs text-center fira-go'>პუნქტი</span>
         </div>
     </div>
   )
