@@ -68,7 +68,7 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
 
     return (
         <>
-            <div ref={screenRef} className='w-1/2 max-w-7xl'>
+            <div ref={screenRef} className='w-full lg:w-1/2 max-w-7xl'>
                 <DirectionsDetails
                     ride={ride}
                     fromDistance={fromDistance}
@@ -81,7 +81,7 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
                     price={price}
                 />
             </div>
-            <section className="flex flex-col gap-4 w-1/2">
+            <section className="flex flex-col gap-4 w-full lg:w-1/2">
 
                 <div className="flex flex-row justify-between items-center p-4 fira-go bg-default-100 hover:bg-default-200 rounded-xl hoppla-animation">
                     <div className="flex flex-col gap-2 fira-go text-md font-bold">{driver.name}</div>
@@ -110,7 +110,7 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
                 )}
             </section>
 
-            <section className="flex flex-col gap-4 w-1/2">
+            <section className="flex flex-col gap-4 w-full md:w-1/2">
                 <div className="flex flex-row justify-between items-center border-t-4 p-4 fira-go border-default-100">
                     <Button
                         className="w-full"
