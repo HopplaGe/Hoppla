@@ -103,7 +103,7 @@ const PageHeading = ({setCountryId, regions}: PageHeadingProps) => {
                                     variant="flat"
                                     className="capitalize"
                                 >
-                                    {selectedValue || "აირჩიეთ ქვეყანა"}
+                                    {selectedValue || "საქ"}
                                 </Button>
                             </DropdownTrigger>
                             <DropdownMenu
@@ -148,7 +148,7 @@ const PageHeading = ({setCountryId, regions}: PageHeadingProps) => {
                             size='lg'
                             className='text-xs md:text-sm lg:text-base'
                         >
-                            დასახლებული პუნქტის დამატება
+                            პუნქტის დამატება
                         </Button>
                     </span>
                 </div>
