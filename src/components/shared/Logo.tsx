@@ -7,12 +7,12 @@ import Link from "next/link";
 const Logo = () => {
   return (
     <Link href="/">
-      <div className="hidden lg:block">
-        <Image src={hopplaLogo} alt="Hoppla.ge" height={44} />
+      <div className="block">
+        <Image src={hopplaLogo} alt="Hoppla.ge" height={36} />
       </div>
-      <div className="lg:hidden">
+      {/* <div className="lg:hidden">
         <Image src={hopplaMiniLogo} alt="Hoppla.ge" width={32} />
-      </div>
+      </div> */}
     </Link>
   );
 };
