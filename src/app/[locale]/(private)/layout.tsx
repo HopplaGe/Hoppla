@@ -8,7 +8,7 @@ const PrivateLayout = ({children}: LayoutProps) => {
     return (
         <>
             <NavBar/>
-            <main className="page-wrapper py-6 grid grid-cols-4 gap-6 justify-between items-start">
+            <main className="page-wrapper py-6 grid md:grid-cols-3 lg:grid-cols-4 gap-6 justify-between items-start">
                 <DashSidebar/>
                 <div className="col-span-3">
                     {children}
