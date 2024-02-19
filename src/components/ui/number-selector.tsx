@@ -1,16 +1,16 @@
 "use client"
 import React from 'react';
-import {Button} from "@/components/ui/button";
-import {Minus, Plus} from "lucide-react";
-import {InputProps} from "@/components/ui/input";
-import {useTranslations} from "next-intl";
+import { Minus, Plus } from "lucide-react";
+import { InputProps } from "@/components/ui/input";
+import { useTranslations } from "next-intl";
+import { Button } from '@nextui-org/react';
 
 type NumberSelectorProps = {
     state?: any;
 } & InputProps;
 
 const NumberSelector = React.forwardRef<HTMLInputElement, NumberSelectorProps>(
-    ({className, type, ...props}, ref) => {
+    ({ className, type, ...props }, ref) => {
         const t = useTranslations("SearchForm");
 
         const increment = () => {
@@ -54,12 +54,13 @@ const NumberSelector = React.forwardRef<HTMLInputElement, NumberSelectorProps>(
                     className="hidden lg:relative lg:flex lg:flex-col justify-between items-start gap-2 px-4 py-2 bg-white lg:rounded-md">
                     <div className="flex flex-grow fira-go text-gray-400 text-sm">{t(`Passenger`)}</div>
                     <div className="flex flex-grow-o justify-between items-center">
-                        <Button variant="secondary" size="sm"
-                                onClick={decrement}
-                                disabled={(props.value as number) <= 1}
-                        >
-                            <Minus className="w-3 h-3"/>
-                        </Button>
+                        <Button variant="solid" size="sm" color='secondary'
+                            className='py-2 min-w-unit-0'
+                            onClick={decrement}
+                            isDisabled={(props.value as number) <= 1}
+                            disabled={(props.value as number) <= 1}
+                            startContent={<Minus className="w-3 h-3" />}
+                        />
                         <input
                             type={type}
                             ref={ref}
@@ -68,26 +69,33 @@ const NumberSelector = React.forwardRef<HTMLInputElement, NumberSelectorProps>(
                             max={4}
                         />
                         <div className="text-center text-xl min-w-12">{props.value ? props.value : 1}</div>
-                        <Button variant="secondary" size="sm"
-                                onClick={
-                                    increment
-                                }
-                                disabled={props.value === 4}
-                        >
-                            <Plus className="w-3 h-3"/>
-                        </Button>
+                        <Button variant="solid" size="sm" color='secondary'
+                            className='py-2 min-w-unit-0'
+                            onClick={
+                                increment
+                            }
+                            isDisabled={props.value === 4}
+                            disabled={props.value === 4}
+                            startContent={<Plus className="w-3 h-3" />}
+                        />
                     </div>
                 </div>
 
-                <div className="lg:hidden">
-                    <div className="flex flex-grow fira-go text-gray-400 text-sm">{t(`Passenger`)}</div>
-                    <div className="flex flex-grow-o justify-between items-center">
-                        <Button variant="secondary" size="sm"
-                                onClick={decrement}
-                                disabled={(props.value as number) <= 1}
-                        >
-                            <Minus className="w-3 h-3"/>
-                        </Button>
+                <div className="lg:hidden min-w-52 px-8 py-4 flex flex-col gap-4">
+                    <div className="flex flex-grow fira-go text-secondary text-lg">{t(`Passenger`)}</div>
+                    <div className="flex flex-grow-o justify-between items-center mb-4">
+                        <Button
+                            variant="solid"
+                            color='secondary'
+                            size="md"
+                            className='py-6 min-w-unit-0'
+                            onClick={decrement}
+                            isDisabled={(props.value as number) <= 1}
+                            disabled={(props.value as number) <= 1}
+                            startContent={
+                                <Minus className="w-6 h-6" />
+                            }
+                        />
                         <input
                             type={type}
                             ref={ref}
@@ -95,15 +103,21 @@ const NumberSelector = React.forwardRef<HTMLInputElement, NumberSelectorProps>(
                             min={1}
                             max={4}
                         />
-                        <div className="text-center text-xl min-w-12">{props.value ? props.value : 1}</div>
-                        <Button variant="secondary" size="sm"
-                                onClick={
-                                    increment
-                                }
-                                disabled={props.value === 4}
-                        >
-                            <Plus className="w-3 h-3"/>
-                        </Button>
+                        <div className="text-center font-bold text-6xl w-16">{props.value ? props.value : 1}</div>
+                        <Button
+                            variant="solid"
+                            color='secondary'
+                            isDisabled={props.value === 4}
+                            size="md"
+                            className='py-6 min-w-unit-0'
+                            onClick={
+                                increment
+                            }
+                            disabled={props.value === 4}
+                            startContent={
+                                <Plus className="w-6 h-6" />
+                            }
+                        />
                     </div>
                 </div>
             </>
