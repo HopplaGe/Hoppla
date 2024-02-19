@@ -24,7 +24,7 @@ const FinishPage = async ({ searchParams }: pageProps) => {
                 from={searchParams?.from as string}
                 to={searchParams?.to as string}
             />
-            <div className="page-wrapper py-10 bg-white z-20">
+            <div className="page-wrapper px-0 lg:px-4 py-10 bg-white z-20">
                 <OfferFinishForm user={user} cars={cars} searchParams={searchParams!} />
             </div>
         </div>
