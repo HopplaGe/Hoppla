@@ -27,7 +27,7 @@ const PopulatedAreas = () => {
 
             <div className="flex-1 xl:flex">
 
-                <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6 h-screen flex flex-col gap-8">
+                <div className="w-full px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6 h-screen flex flex-col gap-8">
                     <PageHeading setCountryId={setCountryId} regions={country?.regions as any[]}/>
                     <Suspense fallback={<div>Loading...</div>}>
                         <Regions regions={country?.regions as Region[]}/>
