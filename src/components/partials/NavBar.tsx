@@ -8,7 +8,7 @@ import {
   NavbarItem,
   Button,
 } from "@nextui-org/react";
-import { Plus } from "lucide-react";
+import { Menu, Plus } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useSession } from "next-auth/react";
 import AuthBlock from "@/components/shared/AuthBlock";
@@ -35,14 +35,28 @@ const NavBar = () => {
 
   const t = useTranslations("NavBar");
   return (
-    <Navbar maxWidth="xl" className="fira-go bg-white">
+    <Navbar maxWidth="xl" classNames={{
+      base: "fira-go bg-white",
+      wrapper: "px-0 sm:px-6 lg:px-4 xl:px-6",
+      content: "",
+    }}>
       <div className="w-full flex justify-between items-center">
         <NavbarContent
           className="sm:flex gap-4 ml-2 items-center !basis-full"
-         
+
         >
           <NavbarBrand className="flex-none">
-            <Logo />
+            <div className="flex gap-2 justify-center items-center">
+              <Button
+                size="sm"
+                variant="light"
+                color="default"
+                className="px-0! min-w-0 block lg:hidden"
+                startContent={
+                  <Menu />
+                } />
+              <Logo />
+            </div>
           </NavbarBrand>
           <div className="hidden flex-initial w-full lg:flex ml-2 fira-go">
             {navItems.map((item, index) => (
@@ -51,7 +65,7 @@ const NavBar = () => {
                   "text-secondary lg:py-6 px-4 hover:bg-default-50",
                   pathName === "/" + locale + item.href && "bg-default-50 text-primary",
                   "hover:text-primary hoppla-animation"
-                  )}>
+                )}>
                   {t(`${item.name}`)}
                 </Link>
               </NavbarItem>
