@@ -1,4 +1,4 @@
-import { useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 import Hero from "@/components/partials/Hero";
 import OfferingsSection from "./(ride)/_components/OfferingsSection";
 import MobileAppBlock from "@/components/partials/MobileAppBlock";
@@ -6,9 +6,16 @@ import { Suspense } from "react";
 import SearchBox from "@/components/partials/SearchBox";
 import SvgMap from "@/components/shared/maps/SvgMap";
 import { regions } from "@/lib/data/regions";
+import { getCountry } from "@/lib/actions/countries";
+import About from "@/components/shared/About";
 
-export default function Index() {
-  const t = useTranslations("Hero");
+const Home = async () => {
+  const local = useLocale();
+
+  const countryId = local === "ka" ? "clsrda0sc0000j6z873ebw7wv" : "clsreu24j0001j6z8pv4sb5vd";
+
+  const country = await getCountry(countryId);
+
   return (
     <>
       <Hero />
@@ -17,14 +24,9 @@ export default function Index() {
       </Suspense>
       <div className="bg-default-100 py-28 fira-go">
         <div className="page-wrapper mt-16 md:mt-0">
-          <h2 className="text-4xl text-secondary lg:text-5xl font-bold lg:tracking-tight">
-            {t(`aboutTitle`, { company: "HOPPLA" })}
-          </h2>
-          <p className="text-lg mt-4 text-gray-600 dark:text-gray-300">
-            {t(`aboutDesc`)}
-          </p>
+          <About/>
         </div>
-        <SvgMap regions={regions}/>
+        <SvgMap regions={country.regions}/>
       </div>
 
       <OfferingsSection />
@@ -32,3 +34,5 @@ export default function Index() {
     </>
   );
 }
+
+export default Home;

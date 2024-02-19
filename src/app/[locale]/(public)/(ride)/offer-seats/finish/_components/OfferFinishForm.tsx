@@ -29,11 +29,19 @@ const OfferFinishFormSchema = z.object({
   startDate: z.date(),
   startTime: z.string(),
   seats: z.number(),
-  carId: z.string(),
+  carId: z.string().optional(),
   driverId: z.string(),
   duration: z.number(),
   distance: z.number(),
-  price: z.number(),
+  price: z.preprocess(
+    (value) => {
+      if (typeof value === 'string') {
+        return parseFloat(value);
+      }
+      return value;
+    },
+    z.number()
+  )
 })
 
 
@@ -65,24 +73,24 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
       duration: duration,
       distance: distance,
       // price: price / parseInt(searchParams.seats!),
-      price: price / 4,
+      price: Number(price.toFixed(2))
     }
   });
 
   useEffect(() => {
     form.setValue('distance', distance)
     form.setValue('duration', duration)
-    form.setValue('price', price / 4)
-
+    form.setValue('price', price)
   }, [distance, duration, price, form])
 
   const handleSubmit = useCallback(
     async (values: z.infer<typeof OfferFinishFormSchema>) => {
+
       const res = await createRide(values as Ride)
       if (res) {
         router.push(`/carpool`)
       }
-    }, [router]
+    }, []
   );
 
 
@@ -92,113 +100,137 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
         <form
           onSubmit={form.handleSubmit(handleSubmit)}
           className="grid grid-cols-1 lg:grid-cols-3 gap-8 fira-go">
-          <div className='flex flex-col gap-4 col-span-1 lg:col-span-2'>
-            <h3 className="text-sm text-secondary fira-go">{t("departureTimeTitle")}</h3>
+          <div className='flex flex-col gap-4 col-span-1 lg:col-span-2 px-4 lg:px-0'>
+            <h3 className="text-sm text-secondary fira-go">{t("Price")}</h3>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full mb-4">
+
               <FormField
                 control={form.control}
-                name="startDate"
+                name="price"
                 render={({ field }) => (
-                  <FormItem className="flex flex-col h-14">
-                    <Popover placement="bottom-end">
-                      <PopoverTrigger>
+                  <FormItem
+                    className="col-span-full"
+                  >
+                    <Input
+                      endContent={<span className="text-xl text-gray-400">₾</span>}
+                      {...field}
+                      // {...form.register("price")}
+                      label={t("PriceLabel")}
+                      placeholder={t("PricePlaceholder")}
+                      required
+                      type="number"
+                      value={field.value.toString()} // Convert the value to string
+                    />
+                  </FormItem>
+                )}
+              />
 
-                        <FormControl>
-                          <Button
-                            variant="light"
-                            className={cn(
-                              "relative w-full h-full border border-gray-100 bg-default-100 hover:bg-default-200 rounded-xl py-5 pl-10 text-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6",
-                              !field.value && "text-muted-foreground"
-                            )}
-                          >
-                            <div
-                              className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                              <CalendarDays />
-                            </div>
-                            <span className='text-lg'>
-                              {field.value ? (
-                                moment(field.value).locale(locale).calendar(
-                                  null,
-                                  locale === "ka" ? (
-                                    {
-                                      sameDay: '[დღეს]',
-                                      nextDay: '[ხვალ]',
-                                      nextWeek: 'LL',
-                                      lastDay: '[გუშინ]',
-                                      lastWeek: 'LL',
-                                      sameElse: 'LL'
-                                    }) : (
-                                    {
-                                      sameDay: '[Today]',
-                                      nextDay: '[Tomorrow]',
-                                      nextWeek: 'LL',
-                                      lastDay: '[Yesterday]',
-                                      lastWeek: 'LL',
-                                      sameElse: 'LL'
-                                    }
-                                  )
-                                )
-                              ) : (
-                                <span>Pick a date</span>
+              <div className="col-span-full grid grid-cols-1 md:grid-cols-2 gap-4">
+                <h3 className="text-sm text-secondary fira-go col-span-full">{t("departureTimeTitle")}</h3>
+                <FormField
+                  control={form.control}
+                  name="startDate"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col h-14">
+                      <Popover placement="bottom-end">
+                        <PopoverTrigger>
+
+                          <FormControl>
+                            <Button
+                              variant="light"
+                              className={cn(
+                                "relative w-full h-full border border-gray-100 bg-default-100 hover:bg-default-200 rounded-xl py-5 pl-10 text-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6",
+                                !field.value && "text-muted-foreground"
                               )}
-                            </span>
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-[240px] fira-go p-0">
-                        <Calendar
-                          locale={locale === "ka" ? ka : en}
-                          mode="single"
-                          selected={field.value}
-                          onSelect={field.onChange}
-                          disabled={(date) => {
-                            return moment(date).isBefore(moment().subtract(0, 'day'), 'day')
-                          }}
-                          initialFocus
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </FormItem>
-                )}
-              />
+                            >
+                              <div
+                                className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                                <CalendarDays />
+                              </div>
+                              <span className='text-md'>
+                                {field.value ? (
+                                  moment(field.value).locale(locale).calendar(
+                                    null,
+                                    locale === "ka" ? (
+                                      {
+                                        sameDay: '[დღეს]',
+                                        nextDay: '[ხვალ]',
+                                        nextWeek: 'LL',
+                                        lastDay: '[გუშინ]',
+                                        lastWeek: 'LL',
+                                        sameElse: 'LL'
+                                      }) : (
+                                      {
+                                        sameDay: '[Today]',
+                                        nextDay: '[Tomorrow]',
+                                        nextWeek: 'LL',
+                                        lastDay: '[Yesterday]',
+                                        lastWeek: 'LL',
+                                        sameElse: 'LL'
+                                      }
+                                    )
+                                  )
+                                ) : (
+                                  <span>Pick a date</span>
+                                )}
+                              </span>
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[240px] fira-go p-0">
+                          <Calendar
+                            locale={locale === "ka" ? ka : en}
+                            mode="single"
+                            selected={field.value}
+                            onSelect={field.onChange}
+                            disabled={(date) => {
+                              return moment(date).isBefore(moment().subtract(0, 'day'), 'day')
+                            }}
+                            initialFocus
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </FormItem>
+                  )}
+                />
 
-              <FormField
-                control={form.control}
-                name="startTime"
-                render={({ field }) => (
-                  <FormItem className="flex flex-col h-14">
-                    <Popover placement="bottom-end">
-                      <PopoverTrigger>
+                <FormField
+                  control={form.control}
+                  name="startTime"
+                  render={({ field }) => (
+                    <FormItem className="flex flex-col h-14">
+                      <Popover placement="bottom-end">
+                        <PopoverTrigger>
 
-                        <FormControl>
-                          <Button
-                            variant="light"
-                            className={cn(
-                              "relative w-full h-full border border-gray-100 bg-default-100 hover:bg-default-200 rounded-xl py-5 pl-10 text-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6 text-xl",
-                              !field.value && "text-muted-foreground"
-                            )}
-                          >
-                            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
-                              <Clock2 />
-                            </div>
-                            <span className='text-lg'>{String(field.value)}</span>
-                            {/* {moment(field.value).format("HH:mm") || "Pick a time"} */}
-                          </Button>
-                        </FormControl>
-                      </PopoverTrigger>
-                      <PopoverContent className="w-[240px] fira-go p-0">
-                        <Time
-                          locale={locale === "ka" ? ka : en}
-                          mode="12h"
-                          selectedTime={field.value}
-                          onSelect={field.onChange}
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </FormItem>
-                )}
-              />
+                          <FormControl>
+                            <Button
+                              variant="light"
+                              className={cn(
+                                "relative w-full h-full border border-gray-100 bg-default-100 hover:bg-default-200 rounded-xl py-5 pl-10 text-gray-400 placeholder:text-gray-400 sm:text-sm sm:leading-6 text-xl",
+                                !field.value && "text-muted-foreground"
+                              )}
+                            >
+                              <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                                <Clock2 />
+                              </div>
+                              <span className='text-md'>{String(field.value)}</span>
+                            </Button>
+                          </FormControl>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[240px] fira-go p-0">
+                          <Time
+                            locale={locale === "ka" ? ka : en}
+                            mode="12h"
+                            selectedTime={field.value}
+                            onSelect={field.onChange}
+                          />
+                        </PopoverContent>
+                      </Popover>
+                    </FormItem>
+                  )}
+                />
+              </div>
 
 
 

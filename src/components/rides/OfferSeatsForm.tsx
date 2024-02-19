@@ -42,7 +42,7 @@ const OfferSeatsForm = () => {
 
     const [fromState, setFromState] = React.useState("");
     const [toState, setToState] = React.useState("");
-    const [seatState, setSeatState] = React.useState(1);
+    const [seatState, setSeatState] = React.useState<number>(1);
     // const [directionsQuery, setDirectionsQuery] = React.useState({ from: "", to: "", seats: 1 });
 
 
@@ -84,6 +84,19 @@ const OfferSeatsForm = () => {
 
         router.push(pathname + "/departure" + "?" + querys.from + "&" + querys.to + "&" + querys.seats);
     };
+
+    const [device, setDevice] = useState<"mobile" | "desktop" | "tablet">("desktop");
+
+    const isMobile = useCallback(() => {
+        if (typeof window === "undefined") return false;
+        setDevice(window.innerWidth < 1023 ? "mobile" : "desktop");
+    }, []);
+
+    useEffect(() => {
+        isMobile();
+        window.addEventListener("resize", isMobile);
+        return () => window.removeEventListener("resize", isMobile);
+    }, []);
 
     if (!isLoaded) return null;
 
@@ -132,7 +145,7 @@ const OfferSeatsForm = () => {
                             name="seats"
                             render={({ field }) => (
                                 <FormItem>
-                                    <Popover placement="right-start">
+                                    <Popover placement={device === "desktop" ? "right-start" : "bottom-start"}>
                                         <PopoverTrigger>
                                             <FormControl>
                                                 <div className="relative w-full h-full border border-gray-100 md:border-l-0 bg-default-100 rounded-xl p-2 flex flex-col ">

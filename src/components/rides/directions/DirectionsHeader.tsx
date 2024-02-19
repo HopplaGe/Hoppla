@@ -14,11 +14,11 @@ const DirectionsHeader = ({ from, to }: DirectionsHeaderProps) => {
     const { duration } = useDirections(from, to);
 
     return (
-        <div className="relative">
+        <div className="relative h-44">
             <div
                 className="py-10 page-wrapper absolute bottom-0 lg:relative w-full z-10">
                 <div className="page-wrapper">
-                    <ul className={cn("flex flex-col w-2/4 h-auto rounded-xl list-none overflow-hidden bg-white shadow-lg border border-gray-200 z-10")}>
+                    <ul className={cn("flex flex-col md:w-full lg:w-2/4 h-auto rounded-xl list-none overflow-hidden bg-white shadow-lg border border-gray-200 z-10")}>
 
                         <DirectionHeaderItem location={from} symbol={"from"} />
                         <DirectionHeaderItem location={to} symbol={"to"} />

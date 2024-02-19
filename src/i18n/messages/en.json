@@ -122,7 +122,6 @@
     "Rides": "Rides",
     "RideResults": "Results",
     "AddRide": "Add Ride",
-    "RideDetails": "Ride Details",
     "RideDate": "Date",
     "RideTime": "Time",
     "RideFrom": "From",
@@ -206,6 +205,14 @@
       "TransportType": "Transport Type",
       "Actions": "Actions",
       "FoundRide": "Found {count} rides"
+    },
+    "RideDetails": {
+      "title": "Ride Details",
+      "passengers": "Passengers",
+      "priceForOnePerson": "Price for {count, plural, =1 {1 person} other {# persons}}",
+      "distanceFromDeparture": "{distance} km from your departure",
+      "distanceToArrival": "{distance} km from your arrival",
+      "departureTime": "Departure Time"
     }
   },
   "OfferSeats": {
@@ -261,7 +268,10 @@
       "passengersTitle": "Passengers",
       "passengers": "{passengers} people",
       "departureTimeTitle": "Departure Time",
-      "chooseCarTitle": "Choose Car"
+      "chooseCarTitle": "Choose Car",
+      "Price": "Price",
+      "PriceLabel": "Price per person",
+      "PricePlaceholder": "Example: 10"
     }
   },
 

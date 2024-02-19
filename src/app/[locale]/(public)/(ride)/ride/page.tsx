@@ -22,10 +22,10 @@ const page: FC<pageProps> = async ({ searchParams }) => {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className='page-wrapper py-10 text-default-700 flex flex-col gap-8'>
+      <div className='page-wrapper py-6 md:py-10 text-default-700 flex flex-col gap-4 md:gap-8'>
         <RideDetailHead startDate={ride.startDate} />
 
-        <div className='flex flex-col justify-center items-center w-full gap-8'>
+        <div className='flex flex-col justify-center items-center w-full gap-4'>
           <RideDetails ride={ride} searchParams={searchParams} driver={driver} />
 
         </div>

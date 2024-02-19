@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import {Building2, CalendarIcon, Car, HomeIcon} from "lucide-react";
+import { Building2, CalendarIcon, Car, CarTaxiFront, HomeIcon } from "lucide-react";
 import {ChartPieIcon, DocumentDuplicateIcon} from "@heroicons/react/16/solid";
 import {cn} from "@/lib/utils";
 import hopplaMiniLogo from "@/assets/images/mini_logo.png";
@@ -13,7 +13,7 @@ import { useLocale } from 'next-intl';
 const navigation = [
     {name: 'Dashboard', href: '/manage', icon: HomeIcon, current: true},
     {name: 'Populated Areas', href: '/manage/populated-areas', icon: Building2, current: false},
-    {name: 'Team', href: '#', icon: Car, current: false},
+    { name: 'Companies', href: '/manage/companies', icon: CarTaxiFront, current: false },
     {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
     {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},
     {name: 'Reports', href: '#', icon: ChartPieIcon, current: false},

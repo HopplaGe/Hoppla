@@ -122,7 +122,6 @@
     "Rides": "მგზავრობები",
     "RideResults": "შედეგები",
     "AddRide": "მგზავრობის დამატება",
-    "RideDetails": "მგზავრობის დეტალები",
     "RideDate": "თარიღი",
     "RideTime": "დრო",
     "RideFrom": "საიდან",
@@ -206,6 +205,14 @@
       "TransportType": "ტრანსპორტის ტიპი",
       "Actions": "ქმედებები",
       "FoundRide": "მოიძებნა {count} შედეგი"
+    },
+    "RideDetails": {
+      "title": "მგზავრობის დეტალები",
+      "passengers": "მგზავრები",
+      "priceForOnePerson": "ფასი {count} მგზავრისთვის",
+      "distanceFromDeparture": "{distance}კმ გამგზავრების ადგილამდე",
+      "distanceToArrival": "{distance}კმ დანიშნულებამდე",
+      "departureTime": "გასვლის დრო"
     }
   },
   "OfferSeats": {
@@ -262,7 +269,10 @@
       "passengersTitle": "მგზავრები",
       "passengers": "{passengers} მგზავრი",
       "departureTimeTitle": "გასვლის დრო",
-      "chooseCarTitle": "აირჩიეთ მანქანა"
+      "chooseCarTitle": "აირჩიეთ მანქანა",
+      "Price": "ფასი",
+      "PriceLabel": "ფასი ერთი მგზავრისთვის",
+      "PricePlaceholder": "მაგ: 10"
     }
   },
   "OfferingsSection": {
