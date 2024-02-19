@@ -25,14 +25,14 @@ const OfferInfoCards = () => {
 
     return (
         <section className="grid grid-cols-1 lg:grid-cols-3 gap-6 fira-go">
-            <h2 className="text-3xl font-bold col-span-full text-center py-4">{t("title")}</h2>
+            <h2 className="text-xl md:text-3xl font-bold col-span-full text-center py-4">{t("title")}</h2>
             {/*Service Cards*/}
             {serviceCards.map((card, index) => (
                 <div key={index} className="bg-white p-4 rounded-xl hover:shadow-md">
                     <div className="grid grid-cols-4 items-center justify-between">
                         <div className="col-span-3 flex flex-col gap-4">
-                            <h3 className="text-xl font-bold">{t(card.title)}</h3>
-                            <p className="text-sm">{t(card.description)}</p>
+                            <h3 className="text-lg md:text-xl font-bold">{t(card.title)}</h3>
+                            <p className="text-xs md:text-sm">{t(card.description)}</p>
                         </div>
                         <div className="col-span-1 flex justify-center items-center">
                             {card.icon}
