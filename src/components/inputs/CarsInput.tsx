@@ -22,7 +22,7 @@ const CarsInput = ({
               <li key={index} onClick={() => onSelect(car.id)}>
                 <input type="radio" id={`car-${car.id}`} value="" name="ride-car"
                   className="hidden peer"
-                  required />
+                />
                 <label htmlFor={`car-${car.id}`}
                   className="inline-flex items-start justify-between w-full min-h-28 p-3 text-default-400 bg-default-50 rounded-xl cursor-pointer peer-checked:bg-default-100 peer-checked:hover:bg-default-200 peer-checked:text-default-700 peer-checked:border-2 peer-checked:border-default hover:text-gray-600 hover:bg-default-100 transform transition-all duration-300 ease-in-out">
                   <div className="w-full flex flex-col justify-center items-center">
