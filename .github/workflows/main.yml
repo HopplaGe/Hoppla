@@ -47,7 +47,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Login to GCR
-        uses: google-github-actions/setup-gcloud@v0
+        uses: google-github-actions/setup-gcloud@v2
         with:
           service_account_key: ${{ secrets.CLOUD_SERVICE_ACCOUNT_KEY }}
           project_id: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
@@ -91,4 +91,3 @@ jobs:
           --image gcr.io/$PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
           --platform "managed" \
           --quiet
-          
