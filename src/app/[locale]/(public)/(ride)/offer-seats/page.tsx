@@ -9,7 +9,7 @@ import MobileAppBlock from "@/components/partials/MobileAppBlock";
 const page: FC = () => {
     return (
         <>
-            <div className="page-wrapper py-12 flex flex-col gap-16">
+            <div className="page-wrapper py-12 flex flex-col gap-8 lg:gap-16">
                 {/*<OfferSeatsFormTitle/>*/}
                 <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                     <OfferSeatsForm />
