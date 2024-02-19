@@ -26,7 +26,7 @@ const Search = async ({ searchParams }: pageProps) => {
             <div className="page-wrapper">
                 <SearchBox className="my-8" />
                 <div className="pb-8 grid grid-cols-1 lg:grid-cols-4 gap-6">
-                    <div className="">
+                    <div className="hidden lg:block">
                         <div className="bg-transparent rounded-xl fira-go">
 
                             <RadioGroup label="ფილტრაცია">
@@ -65,7 +65,7 @@ const Search = async ({ searchParams }: pageProps) => {
                             </div>
                         </div>
                     </div>
-                    <div className="lg:col-span-3">
+                    <div className="lg:col-span-3 flex flex-col gap-4">
                         <CarTypesTab transport_type={searchParams.transport_type as string} />
                         <Suspense fallback={<div>Loading...</div>}>
                             <RidesResultList rides={rides} searchParams={searchParams} />
