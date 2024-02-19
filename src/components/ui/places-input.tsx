@@ -218,8 +218,8 @@ const PlacesInput = React.forwardRef<HTMLInputElement, InputProps>(
             >
               <ul
                 className={cn(
-                  "hidden opacity-0 w-72 h-auto shadow-md rounded-xl bg-white absolute -right-80 -top-12 overflow-y-auto scrollbar-hide transition-opacity ease-in-out delay-150 duration-1000 fira-go divide-y-1",
-                  isOpen && "flex flex-col justify-between opacity-100"
+                  "hidden opacity-0 w-full lg:w-72 h-auto shadow-md rounded-xl bg-white relative lg:absolute left-0 top-4 lg:left-auto lg:-right-80 lg:-top-12 overflow-y-auto scrollbar-hide transition-opacity ease-in-out delay-150 duration-1000 fira-go divide-y-1",
+                  isOpen && "flex flex-col justify-between opacity-100 z-50"
                 )}
               >
                 {placePredictions.map((item: any, index: number) => (
