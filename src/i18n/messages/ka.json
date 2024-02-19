@@ -269,7 +269,10 @@
       "passengersTitle": "მგზავრები",
       "passengers": "{passengers} მგზავრი",
       "departureTimeTitle": "გასვლის დრო",
-      "chooseCarTitle": "აირჩიეთ მანქანა"
+      "chooseCarTitle": "აირჩიეთ მანქანა",
+      "Price": "ფასი",
+      "PriceLabel": "ფასი ერთი მგზავრისთვის",
+      "PricePlaceholder": "მაგ: 10"
     }
   },
   "OfferingsSection": {

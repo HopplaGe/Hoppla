@@ -268,7 +268,10 @@
       "passengersTitle": "Passengers",
       "passengers": "{passengers} people",
       "departureTimeTitle": "Departure Time",
-      "chooseCarTitle": "Choose Car"
+      "chooseCarTitle": "Choose Car",
+      "Price": "Price",
+      "PriceLabel": "Price per person",
+      "PricePlaceholder": "Example: 10"
     }
   },
 
