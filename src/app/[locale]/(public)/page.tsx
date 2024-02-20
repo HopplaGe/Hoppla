@@ -11,7 +11,7 @@ import About from "@/components/shared/About";
 const Home = async () => {
     const local = useLocale();
 
-    const countryId = local === "ka" ? "clsrda0sc0000j6z873ebw7wv" : "clsreu24j0001j6z8pv4sb5vd";
+    const countryId = local === "ka" ? "clsum148l0000m3n7kz6e4auk" : "clsreu24j0001j6z8pv4sb5vd";
 
     const country = await getCountry(countryId);
 
