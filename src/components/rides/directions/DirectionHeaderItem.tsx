@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {cn} from "@/lib/utils";
-import {ChevronRight, PersonStanding} from "lucide-react";
 import React from "react";
 
 

@@ -1,8 +1,6 @@
 import {auth} from "@/lib/auth";
 import MyVehicles from "@/components/shared/MyVehicles";
 import {getCarByOwnerId} from "@/lib/actions/cars";
-import StatBlock from "@/components/dashboard/stats/StatBlock";
-import { User } from "@prisma/client";
 
 const Dashboard = async () => {
     const session = await auth();

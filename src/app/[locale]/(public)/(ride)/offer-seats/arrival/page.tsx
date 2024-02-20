@@ -1,7 +1,6 @@
 "use client";
-import React, { useCallback, useEffect } from "react";
+import React from "react";
 import Map from "@/components/shared/maps/Map";
-import { PlacesInput } from "@/components/ui/places-input";
 import { useTranslations } from "next-intl";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useForm } from "react-hook-form";
@@ -10,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Libraries, useJsApiLoader } from "@react-google-maps/api";
 import { Button, Input } from "@nextui-org/react";
 import { cn } from "@/lib/utils";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 type pageProps = {
   searchParams?: { [key: string]: string | string[] | undefined };
@@ -33,7 +32,6 @@ const Arrival = ({ searchParams }: pageProps) => {
   const t = useTranslations("OfferSeats.OfferSeatsForm");
 
   const router = useRouter();
-  const pathname = usePathname();
 
   const [toAddress, setToAddress] = React.useState<string>(
     searchParams?.to as string

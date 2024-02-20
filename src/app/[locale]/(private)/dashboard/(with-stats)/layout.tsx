@@ -1,8 +1,5 @@
 import React from "react";
 import { LayoutProps } from "@/types/layoutProps";
-import NavBar from "@/components/partials/NavBar";
-import Footer from "@/components/partials/Footer";
-import DashSidebar from "@/components/dashboard/DashSidebar";
 import StatBlock from "@/components/dashboard/stats/StatBlock";
 import { auth } from "@/lib/auth";
 import { User } from "@prisma/client";

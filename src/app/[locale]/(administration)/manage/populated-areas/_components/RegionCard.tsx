@@ -1,5 +1,4 @@
 "use client"
-import { getAreasCountByRegionId } from '@/lib/actions/regions'
 import { cn } from '@/lib/utils'
 import React from 'react'
 

@@ -1,6 +1,3 @@
-import StatBlock from '@/components/dashboard/stats/StatBlock';
-import StatCard from '@/components/dashboard/stats/StatCard';
-import RideCard from '@/components/rides/RideCard';
 import { getRidesByDriver } from '@/lib/actions/rides';
 import { auth } from '@/lib/auth';
 import { cn } from '@/lib/utils';

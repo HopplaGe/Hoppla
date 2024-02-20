@@ -1,6 +1,5 @@
 import Google from "next-auth/providers/google"
 import type { NextAuthConfig } from "next-auth"
-import prisma from "@/lib/prisma";
 
 export default {
 
@@ -17,11 +16,15 @@ export default {
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     })],
     callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
+        async signIn({
+                         // user, account, profile, email, credentials
+        }) {
             // console.log("signIn", {user, account, profile, email, credentials})
             return true
         },
-        async redirect({ url, baseUrl }) {
+        async redirect({
+                           // url,
+                           baseUrl }) {
             // console.log("redirect", {url, baseUrl})
             return baseUrl
         },

@@ -1,7 +1,9 @@
+import {ElementType} from "react";
+
 type OfferingCardProps = {
   title: string;
   description: string;
-  icon: React.ElementType;
+  icon: ElementType;
 };
 
 export default function OfferingCard({

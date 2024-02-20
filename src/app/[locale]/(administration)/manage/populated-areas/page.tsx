@@ -1,12 +1,9 @@
 "use client"
-import React, {FC, Suspense, useCallback, useEffect, useState} from 'react'
+import React, {Suspense, useCallback, useEffect, useState} from 'react'
 import PageHeading from './_components/PageHeading'
-import * as region from '@/lib/actions/regions';
 import Regions from './_components/Regions';
 import {Region} from '@prisma/client';
 import {getCountry} from '@/lib/actions/countries';
-
-type pageProps = {}
 
 const PopulatedAreas = () => {
 

@@ -2,7 +2,7 @@
 import { allRidesCount, ridesCountByDirection } from '@/lib/actions/stats'
 import { cn } from '@/lib/utils'
 import { Tooltip } from '@nextui-org/react'
-import { PopulatedAreaStatus, Region } from '@prisma/client'
+import { PopulatedAreaStatus } from '@prisma/client'
 import React, { FC, useCallback, useEffect, useState } from 'react'
 
 const occupiedRegionStyle = "fill-primary hover:fill-primary-dark text-white"

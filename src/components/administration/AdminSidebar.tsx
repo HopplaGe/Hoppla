@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { Building2, CalendarIcon, Car, CarTaxiFront, HomeIcon } from "lucide-react";
+import { Building2, CalendarIcon, CarTaxiFront, HomeIcon } from "lucide-react";
 import {ChartPieIcon, DocumentDuplicateIcon} from "@heroicons/react/16/solid";
 import {cn} from "@/lib/utils";
 import hopplaMiniLogo from "@/assets/images/mini_logo.png";

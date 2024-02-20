@@ -1,6 +1,5 @@
 "use server";
 import prisma from "@/lib/prisma";
-import moment from "moment";
 import "moment/locale/ka";
 
 import { getRides, getRidesByTo } from "./rides"
@@ -19,11 +18,11 @@ export const ridesCountByDirection = async (to: string) => {
 
 export async function getStats(userId: string) {
 
-    const cars = await prisma.car.count({
-        where: {
-            ownerId: userId
-        }
-    });
+    // const cars = await prisma.car.count({
+    //     where: {
+    //         ownerId: userId
+    //     }
+    // });
 
     const rides = await prisma.ride.findMany({
         where: {

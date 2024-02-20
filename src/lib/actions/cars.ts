@@ -1,7 +1,6 @@
 "use server"
 import prisma from "@/lib/prisma";
 import {getUserByEmail} from "@/lib/actions/users";
-import {revalidatePath} from "next/cache";
 
 export async function getCars() {
     try {
