@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, {useCallback} from 'react';
 import {useForm} from "react-hook-form";
 import * as z from "zod";
 import {CarSchema} from "@/lib/validation";
@@ -196,11 +196,11 @@ const AddCarForm = ({...props}: {
             plateNumber: ""
         }
     });
-    const handleSubmit = async (values: z.infer<typeof CarSchema>) => {
+    const handleSubmit = useCallback(async (values: z.infer<typeof CarSchema>) => {
         await createCar(values, currentUser);
         props.onClose();
         router.replace("/dashboard");
-    };
+    }, [currentUser, router, props])
 
     return (
         <>
