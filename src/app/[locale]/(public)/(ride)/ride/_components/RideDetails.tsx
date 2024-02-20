@@ -10,6 +10,7 @@ import DirectionsDetails from './DirectionsDetails'
 import {toPng} from 'html-to-image';
 import {useInterval} from 'usehooks-ts'
 import {useTranslations} from 'next-intl'
+import Link from "next/link";
 
 const RideDetails = ({ride, searchParams, driver}: any) => {
 
@@ -89,8 +90,9 @@ const RideDetails = ({ride, searchParams, driver}: any) => {
             </div>
             <section className="flex flex-col gap-4 w-full lg:w-1/2">
 
-                <div
-                    className="flex flex-row justify-between items-center p-4 fira-go bg-default-100 hover:bg-default-200 rounded-xl hoppla-animation">
+                <Link href={`/user/${driver.id}`}
+                      className="flex flex-row justify-between items-center p-4 fira-go bg-default-100
+                    hover:bg-default-200 rounded-xl hoppla-animation">
                     <div className="flex flex-col gap-2 fira-go text-md font-bold">{driver.name}</div>
                     <div className="flex flex-col gap-2 font-bold text-xl">
                         <Badge
@@ -103,7 +105,7 @@ const RideDetails = ({ride, searchParams, driver}: any) => {
                                     color='success'/>
                         </Badge>
                     </div>
-                </div>
+                </Link>
                 {ride.passangers.length > 0 && (
                     <div
                         className="flex flex-row justify-between items-center p-4 fira-go hover:bg-default-100 rounded-xl hoppla-animation">
