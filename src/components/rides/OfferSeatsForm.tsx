@@ -4,7 +4,7 @@ import { Button } from "@nextui-org/react";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
 import { useForm } from "react-hook-form";
-import { useFormatter, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
@@ -96,7 +96,7 @@ const OfferSeatsForm = () => {
         isMobile();
         window.addEventListener("resize", isMobile);
         return () => window.removeEventListener("resize", isMobile);
-    }, []);
+    }, [isMobile]);
 
     if (!isLoaded) return null;
 

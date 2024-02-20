@@ -25,7 +25,7 @@ const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}
     }, [rideData.driverId])
 
     useEffect(() => {
-        detectDriver();
+        detectDriver().then(r => r);
     }, [detectDriver])
 
 

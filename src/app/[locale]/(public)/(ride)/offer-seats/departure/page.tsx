@@ -1,7 +1,6 @@
 "use client"
-import React, {useCallback, useEffect} from "react";
+import React, {useCallback} from "react";
 import Map from "@/components/shared/maps/Map";
-import {PlacesInput} from "@/components/ui/places-input";
 import {useTranslations} from "next-intl";
 import {Form, FormControl, FormField, FormItem} from "@/components/ui/form";
 import {useForm} from "react-hook-form";
@@ -10,18 +9,17 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Libraries, useJsApiLoader} from "@react-google-maps/api";
 import {Button, Input} from "@nextui-org/react";
 import {cn} from "@/lib/utils";
-import {usePathname, useRouter} from "next/navigation";
+import { useRouter} from "next/navigation";
 
 type pageProps = {
     searchParams?: { [key: string]: string | string[] | undefined };
 }
 
+const libraries = ["places"];
 const OfferSeatsScheme = z.object({
     from: z.string(),
     to: z.string(),
 });
-
-const libraries = ["places"];
 
 const Departure = ({searchParams}: pageProps) => {
     const {isLoaded} = useJsApiLoader({
@@ -45,14 +43,14 @@ const Departure = ({searchParams}: pageProps) => {
         }
     });
 
-    const handleSubmit = () => {
+    const handleSubmit = useCallback(() => {
         const params = new URLSearchParams();
         params.set("from", fromAddress);
         params.set("to", form.getValues().to);
         params.set("seats", searchParams?.seats as string);
 
         router.push("/offer-seats/arrival?" + params.toString());
-    }
+    }, [form, fromAddress, router, searchParams?.seats]);
 
     if (!isLoaded) return null;
 

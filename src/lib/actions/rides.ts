@@ -1,14 +1,11 @@
 "use server"
 
 import prisma from "@/lib/prisma"
-import { Ride, RideStatus } from "@prisma/client"
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
+import {Ride, RideStatus} from "@prisma/client"
 
 export const getRides = async () => {
     try {
-        const rides = await prisma.ride.findMany();
-        return rides;
+        return await prisma.ride.findMany();
     } catch (error) {
         console.error(error)
     }
@@ -16,12 +13,11 @@ export const getRides = async () => {
 
 export const getRide = async (id: string) => {
     try {
-        const ride = await prisma.ride.findUnique({
+        return await prisma.ride.findUnique({
             where: {
                 id: id
             }
         });
-        return ride;
     } catch (error) {
         console.error(error)
     }
@@ -29,7 +25,7 @@ export const getRide = async (id: string) => {
 
 export const getRideById = async (id: string) => {
     try {
-        const ride = await prisma.ride.findUnique({
+        return await prisma.ride.findUnique({
             where: {
                 id: id
             },
@@ -37,7 +33,6 @@ export const getRideById = async (id: string) => {
                 passangers: true
             }
         });
-        return ride;
     } catch (error) {
         console.error(error)
     }
@@ -89,7 +84,7 @@ export const getRidesByDriver = async (driverId: string) => {
 
 export const getRidesByPassenger = async (passengerId: string) => {
     try {
-        const rides = await prisma.ride.findMany({
+        return await prisma.ride.findMany({
             where: {
                 passangers: {
                     some: {
@@ -98,7 +93,6 @@ export const getRidesByPassenger = async (passengerId: string) => {
                 }
             }
         });
-        return rides;
     } catch (error) {
         console.error(error)
     }
@@ -106,12 +100,11 @@ export const getRidesByPassenger = async (passengerId: string) => {
 
 export const getRidesByFrom = async (from: string) => {
     try {
-        const rides = await prisma.ride.findMany({
+        return await prisma.ride.findMany({
             where: {
                 from: from
             }
         });
-        return rides;
     } catch (error) {
         console.error(error)
     }
@@ -119,14 +112,13 @@ export const getRidesByFrom = async (from: string) => {
 
 export const getRidesByTo = async (to: string) => {
     try {
-        const rides = await prisma.ride.findMany({
+        return await prisma.ride.findMany({
             where: {
                 to: {
                     contains: to
                 },
             }
         });
-        return rides;
     } catch (error) {
         console.error(error)
     }
@@ -134,12 +126,11 @@ export const getRidesByTo = async (to: string) => {
 
 export const getRidesByDate = async (date: Date) => {
     try {
-        const rides = await prisma.ride.findMany({
+        return await prisma.ride.findMany({
             where: {
                 startDate: date
             }
         });
-        return rides;
     } catch (error) {
         console.error(error)
     }
@@ -147,12 +138,11 @@ export const getRidesByDate = async (date: Date) => {
 
 export const getRidesBySeats = async (seats: number) => {
     try {
-        const rides = await prisma.ride.findMany({
+        return await prisma.ride.findMany({
             where: {
                 seats: seats
             }
         });
-        return rides;
     } catch (error) {
         console.error(error)
     }
@@ -160,12 +150,11 @@ export const getRidesBySeats = async (seats: number) => {
 
 export const getRidesByCar = async (carId: string) => {
     try {
-        const rides = await prisma.ride.findMany({
+        return await prisma.ride.findMany({
             where: {
                 carId: carId
             }
         });
-        return rides;
     } catch (error) {
         console.error(error)
     }
@@ -173,12 +162,11 @@ export const getRidesByCar = async (carId: string) => {
 
 export const getRidesByDistance = async (distance: number) => {
     try {
-        const rides = await prisma.ride.findMany({
+        return await prisma.ride.findMany({
             where: {
                 distance: distance
             }
         });
-        return rides;
     } catch (error) {
         console.error(error)
     }
@@ -186,12 +174,11 @@ export const getRidesByDistance = async (distance: number) => {
 
 export const getRidesByDuration = async (duration: number) => {
     try {
-        const rides = await prisma.ride.findMany({
+        return await prisma.ride.findMany({
             where: {
                 duration: duration
             }
         });
-        return rides;
     } catch (error) {
         console.error(error)
     }
@@ -199,12 +186,11 @@ export const getRidesByDuration = async (duration: number) => {
 
 export const getRidesByPrice = async (price: number) => {
     try {
-        const rides = await prisma.ride.findMany({
+        return await prisma.ride.findMany({
             where: {
                 price: price
             }
         });
-        return rides;
     } catch (error) {
         console.error(error)
     }

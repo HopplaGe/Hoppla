@@ -2,26 +2,24 @@
 import { Calendar } from '@/components/ui/calendar'
 import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Button, Input, Popover, PopoverContent, PopoverTrigger } from '@nextui-org/react'
-import moment, { duration } from 'moment'
+import moment from 'moment'
 import 'moment/locale/ka'
 import { useLocale, useTranslations } from 'next-intl'
 import ka from "date-fns/locale/ka";
 import en from "date-fns/locale/en-US";
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import { CalendarDays, Clock2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import Time from '@/components/shared/date-time/TimePicker'
 import CarsInput from '@/components/inputs/CarsInput'
-import { Car, Ride, User } from '@prisma/client'
+import { Ride, User } from '@prisma/client'
 import OfferFinishSidebar from './OfferFinishSidebar'
-import prisma from '@/lib/prisma'
 import { createRide } from '@/lib/actions/rides'
 import useDirections from '@/hooks/maps/useDirections'
-import { values } from 'lodash'
 
 const OfferFinishFormSchema = z.object({
   from: z.string(),
@@ -90,7 +88,7 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
       if (res) {
         router.push(`/carpool`)
       }
-    }, []
+    }, [router]
   );
 
 
@@ -120,7 +118,7 @@ const OfferFinishForm = ({ user, cars, searchParams }: OfferFinishFormProps) => 
                       placeholder={t("PricePlaceholder")}
                       required
                       type="number"
-                      value={field.value.toString()} // Convert the value to string
+                      value={field.value.toFixed(2)} // Convert the value to string
                     />
                   </FormItem>
                 )}
