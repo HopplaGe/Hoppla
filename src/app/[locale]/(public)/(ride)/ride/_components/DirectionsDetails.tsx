@@ -1,9 +1,9 @@
 "use client"
-import { meterToKm } from '@/lib/tools/meterToKm'
-import { secondsToHours } from '@/lib/tools/secondsToHours'
-import { cn } from '@/lib/utils'
-import { ChevronRight, PersonStanding } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+import {meterToKm} from '@/lib/tools/meterToKm'
+import {secondsToHours} from '@/lib/tools/secondsToHours'
+import {cn} from '@/lib/utils'
+import {ChevronRight, PersonStanding} from 'lucide-react'
+import {useTranslations} from 'next-intl'
 import React from 'react'
 
 type DirectionsDetailsProps = {
@@ -14,11 +14,23 @@ type DirectionsDetailsProps = {
     endLatLng: string
     arrivalTime: string
     handleOpen: (latLng: string) => void
-    searchParams: any
+    searchParams: {
+        requested_seats: number
+    }
     price: number
 }
 
-const DirectionsDetails = ({ ride, fromDistance, toDistance, startLatLng, endLatLng, arrivalTime, handleOpen, searchParams, price }: DirectionsDetailsProps) => {
+const DirectionsDetails = ({
+                               ride,
+                               fromDistance,
+                               toDistance,
+                               startLatLng,
+                               endLatLng,
+                               arrivalTime,
+                               handleOpen,
+                               searchParams,
+                               price
+                           }: DirectionsDetailsProps) => {
 
     const t = useTranslations("Rides.RideDetails")
 
@@ -26,7 +38,7 @@ const DirectionsDetails = ({ ride, fromDistance, toDistance, startLatLng, endLat
         <>
             <div id='card' className='relative group  bg-white rounded-xl overflow-hidden'>
                 <div aria-label={"Pick-up location"} onClick={() => handleOpen(startLatLng)}
-                    className="group min-h-10 hover:bg-gray-100 hover:rounded-xl transform transition-all duration-300 ease-in-out pt-2 cursor-pointer">
+                     className="group min-h-10 hover:bg-gray-100 hover:rounded-xl transform transition-all duration-300 ease-in-out pt-2 cursor-pointer">
                     <div className="flex flex-col px-6">
                         <div className="flex justify-between">
                             <div className="flex flex-col pt-1">
@@ -38,7 +50,7 @@ const DirectionsDetails = ({ ride, fromDistance, toDistance, startLatLng, endLat
                             </div>
 
                             <div aria-hidden="true"
-                                className="relative flex flex-col items-center min-h-10 flex-shrink-0 mx-2 w-2">
+                                 className="relative flex flex-col items-center min-h-10 flex-shrink-0 mx-2 w-2">
                                 <div className={cn("w-1 h-3", "bg-transparent")}></div>
                                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2">
                                     <div
@@ -63,7 +75,7 @@ const DirectionsDetails = ({ ride, fromDistance, toDistance, startLatLng, endLat
                                         fromDistance > 1000 && fromDistance < 5000 && "bg-warning",
                                         fromDistance > 5000 && "bg-danger"
                                     )}>
-                                        <PersonStanding size={16} />
+                                        <PersonStanding size={16}/>
                                     </div>
                                     <span
                                         className={cn(
@@ -71,19 +83,19 @@ const DirectionsDetails = ({ ride, fromDistance, toDistance, startLatLng, endLat
                                             fromDistance > 1000 && fromDistance < 5000 && "text-warning",
                                             fromDistance > 5000 && "text-danger",
                                             "text-[10px] uppercase fira-go"
-                                        )} >
-                                        {t('distanceFromDeparture', { distance: meterToKm(fromDistance) })}
+                                        )}>
+                                        {t('distanceFromDeparture', {distance: meterToKm(fromDistance)})}
                                     </span>
                                 </div>
                                 <div className="absolute top-1/2 right-0 -translate-y-1/2 group-hover:text-red-600">
-                                    <ChevronRight />
+                                    <ChevronRight/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div aria-label={"Drop-off location"} onClick={() => handleOpen(endLatLng)}
-                    className="group min-h-10 hover:bg-gray-100 hover:rounded-xl transform transition-all duration-300 ease-in-out cursor-pointer">
+                     className="group min-h-10 hover:bg-gray-100 hover:rounded-xl transform transition-all duration-300 ease-in-out cursor-pointer">
                     <div className="flex flex-col px-6">
                         <div className="flex justify-between">
                             <div className="flex flex-col pt-1">
@@ -94,7 +106,7 @@ const DirectionsDetails = ({ ride, fromDistance, toDistance, startLatLng, endLat
                             </div>
 
                             <div aria-hidden="true"
-                                className="relative flex flex-col items-center min-h-10 flex-shrink-0 mx-2 w-2">
+                                 className="relative flex flex-col items-center min-h-10 flex-shrink-0 mx-2 w-2">
                                 <div className={cn("w-1 h-3", "bg-primary")}></div>
                                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2">
                                     <div
@@ -119,7 +131,7 @@ const DirectionsDetails = ({ ride, fromDistance, toDistance, startLatLng, endLat
                                         toDistance > 1000 && toDistance < 5000 && "bg-warning",
                                         toDistance > 5000 && "bg-danger"
                                     )}>
-                                        <PersonStanding size={16} />
+                                        <PersonStanding size={16}/>
                                     </div>
                                     <span
                                         className={cn(
@@ -128,20 +140,24 @@ const DirectionsDetails = ({ ride, fromDistance, toDistance, startLatLng, endLat
                                             toDistance > 5000 && "text-danger",
                                             "text-[10px] uppercase fira-go"
                                         )}>
-                                        {t('distanceToArrival', { distance: meterToKm(toDistance) })}
+                                        {t('distanceToArrival', {distance: meterToKm(toDistance)})}
                                     </span>
                                 </div>
                                 <div className="absolute top-1/2 right-0 -translate-y-1/2 group-hover:text-red-600">
-                                    <ChevronRight />
+                                    <ChevronRight/>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-row justify-between items-center border-t-4 p-4 fira-go border-default-50 w-full mt-4">
-                    <div className="flex flex-col gap-2">{t('priceForOnePerson', { count: searchParams.requested_seats })}</div>
+                <div
+                    className="flex flex-row justify-between items-center border-t-4 p-4 fira-go border-default-50 w-full mt-4">
+                    <div
+                        className="flex flex-col gap-2">{t('priceForOnePerson', {count: searchParams.requested_seats})}</div>
                     {/* TODO:  price / >>>> ride.seats <<<<< * searchParams.requested_seats*/}
-                    <div className="flex flex-col gap-2 font-bold text-xl">{(price / ride.seats * searchParams.requested_seats).toFixed(2)} ₾</div>
+                    <div
+                        className="flex flex-col gap-2 font-bold text-xl">{(price / ride.seats * searchParams.requested_seats).toFixed(2)} ₾
+                    </div>
                 </div>
             </div>
         </>
