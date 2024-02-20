@@ -192,7 +192,7 @@
       "MINIVAN": "Minivan",
       "BUS": "Bus"
     },
-    "ResultList":{
+    "ResultList": {
       "Results": "Results",
       "Ride": "Ride",
       "From": "From",
@@ -274,7 +274,6 @@
       "PricePlaceholder": "Example: 10"
     }
   },
-
   "OfferingsSection": {
     "AffordableAdventures": {
       "title": "Affordable Adventures",
@@ -358,6 +357,21 @@
       "title": "Book Your Ride Today",
       "description": "Ready to go? Book your mini bus ride with Hoppla now and enjoy an easy journey!",
       "linkText": "Book Now"
+    }
+  },
+  "Errors": {
+    "404": {
+      "title": "This page could not be found",
+      "description": "The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.",
+      "linkText": "Go to the home page"
+    },
+    "HelpLinks": {
+      "Documentation": "Documentation",
+      "DocumentationDescription": "Learn how to use the site properly.",
+      "Directions": "Directions",
+      "DirectionsDescription": "Find the desired direction.",
+      "Blog": "Blog",
+      "BlogDescription": "Read news about us."
     }
   }
 }
