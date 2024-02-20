@@ -1,30 +1,36 @@
 "use client"
 import useDirections from '@/hooks/maps/useDirections'
-import { secondsToHours } from '@/lib/tools/secondsToHours'
-import { Avatar, AvatarGroup, Badge, Button, useDisclosure } from '@nextui-org/react'
-import { BadgeCheck } from 'lucide-react'
+import {secondsToHours} from '@/lib/tools/secondsToHours'
+import {Avatar, AvatarGroup, Badge, Button, useDisclosure} from '@nextui-org/react'
+import {BadgeCheck} from 'lucide-react'
 import moment from 'moment'
-import React, { use, useCallback, useEffect, useRef } from 'react'
+import React, {use, useCallback, useEffect, useRef} from 'react'
 import MapModal from './MapModal'
 import DirectionsDetails from './DirectionsDetails'
-import { toPng } from 'html-to-image';
-import { useInterval } from 'usehooks-ts'
-import { useTranslations } from 'next-intl'
+import {toPng} from 'html-to-image';
+import {useInterval} from 'usehooks-ts'
+import {useTranslations} from 'next-intl'
 
-const RideDetails = ({ ride, searchParams, driver }: any) => {
+const RideDetails = ({ride, searchParams, driver}: any) => {
 
     const t = useTranslations("Rides.RideDetails")
 
     const arrivalTime = moment(ride.startTime, "HH:mm").add(secondsToHours(ride.duration!), 'seconds').format("HH:mm");
 
-    const { distance: fromDistance } = useDirections(searchParams.from, ride.from);
-    const { distance: toDistance } = useDirections(searchParams.to, ride.to);
-    const { distance, price, directionResponse, startLatLng, endLatLng } = useDirections(ride.from, ride.to, searchParams.requested_seats);
+    const {distance: fromDistance} = useDirections(searchParams.from, ride.from);
+    const {distance: toDistance} = useDirections(searchParams.to, ride.to);
+    const {
+        distance,
+        price,
+        directionResponse,
+        startLatLng,
+        endLatLng
+    } = useDirections(ride.from, ride.to, searchParams.requested_seats);
 
     const screenRef = useRef<HTMLDivElement>(null)
     const [sharedImage, setSharedImage] = React.useState("")
 
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    const {isOpen, onOpen, onClose} = useDisclosure();
     const [openLatLng, setOpenLatLng] = React.useState("");
 
     const handleOpen = (latLng: string) => {
@@ -41,7 +47,7 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
             return
         }
 
-        toPng(screenRef.current, { cacheBust: true, })
+        toPng(screenRef.current, {cacheBust: true,})
             .then((dataUrl) => {
                 setSharedImage(dataUrl)
                 // const image = document.createElement('img')
@@ -57,12 +63,12 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
             })
     }, [screenRef])
 
-    useInterval(
-        () => {
-            onScreenShot()
-        },
-        1000
-    )
+    // useInterval(
+    //     () => {
+    //         onScreenShot()
+    //     },
+    //     1000
+    // )
 
     // console.log("image", sharedImage)
 
@@ -83,26 +89,29 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
             </div>
             <section className="flex flex-col gap-4 w-full lg:w-1/2">
 
-                <div className="flex flex-row justify-between items-center p-4 fira-go bg-default-100 hover:bg-default-200 rounded-xl hoppla-animation">
+                <div
+                    className="flex flex-row justify-between items-center p-4 fira-go bg-default-100 hover:bg-default-200 rounded-xl hoppla-animation">
                     <div className="flex flex-col gap-2 fira-go text-md font-bold">{driver.name}</div>
                     <div className="flex flex-col gap-2 font-bold text-xl">
                         <Badge
                             isOneChar
-                            content={<BadgeCheck className='text-default-50' />}
+                            content={<BadgeCheck className='text-default-50'/>}
                             color="success"
                             placement="bottom-left"
                         >
-                            <Avatar src={driver.image} alt={driver.name} radius='lg' isBordered={isVerified} color='success' />
+                            <Avatar src={driver.image} alt={driver.name} radius='lg' isBordered={isVerified}
+                                    color='success'/>
                         </Badge>
                     </div>
                 </div>
                 {ride.passangers.length > 0 && (
-                    <div className="flex flex-row justify-between items-center p-4 fira-go hover:bg-default-100 rounded-xl hoppla-animation">
+                    <div
+                        className="flex flex-row justify-between items-center p-4 fira-go hover:bg-default-100 rounded-xl hoppla-animation">
                         <div className="flex flex-col gap-2 fira-go text-md font-bold">{t("passengers")}</div>
                         <div className="flex flex-col gap-2 font-bold text-xl">
                             <AvatarGroup>
                                 {ride.passangers && ride?.passangers?.map((passanger: any, index: number) => (
-                                    <Avatar key={index} radius="md" size="sm" src={passanger.image} />
+                                    <Avatar key={index} radius="md" size="sm" src={passanger.image}/>
                                 ))}
                             </AvatarGroup>
                         </div>
@@ -125,7 +134,7 @@ const RideDetails = ({ ride, searchParams, driver }: any) => {
                     </Button>
                 </div>
             </section>
-            <MapModal isOpen={isOpen} onClose={onClose} directionResponse={directionResponse} openLatLng={openLatLng} />
+            <MapModal isOpen={isOpen} onClose={onClose} directionResponse={directionResponse} openLatLng={openLatLng}/>
         </>
     )
 }
