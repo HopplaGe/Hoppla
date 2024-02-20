@@ -41,36 +41,36 @@ const RideDetails = ({ride, searchParams, driver}: any) => {
     // TODO: გასაკეთებელია მძღოლის ვერიფიკაცია
     const isVerified = true;
 
-    const onScreenShot = useCallback(() => {
-        console.log('click')
-        if (screenRef.current === null) {
-            return
-        }
-
-        toPng(screenRef.current, {cacheBust: true,})
-            .then((dataUrl) => {
-                setSharedImage(dataUrl)
-                // const image = document.createElement('img')
-                // image.src = dataUrl
-                // console.log(dataUrl)
-                // const link = document.createElement('a')
-                // link.download = 'my-image-name.png'
-                // link.href = dataUrl
-                // link.click()
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-    }, [screenRef])
-
-    // useInterval(
-    //     () => {
-    //         onScreenShot()
-    //     },
-    //     1000
-    // )
-
-    // console.log("image", sharedImage)
+    // const onScreenShot = useCallback(() => {
+    //     console.log('click')
+    //     if (screenRef.current === null) {
+    //         return
+    //     }
+    //
+    //     toPng(screenRef.current, {cacheBust: true,})
+    //         .then((dataUrl) => {
+    //             setSharedImage(dataUrl)
+    //             // const image = document.createElement('img')
+    //             // image.src = dataUrl
+    //             // console.log(dataUrl)
+    //             // const link = document.createElement('a')
+    //             // link.download = 'my-image-name.png'
+    //             // link.href = dataUrl
+    //             // link.click()
+    //         })
+    //         .catch((err) => {
+    //             console.log(err)
+    //         })
+    // }, [screenRef])
+    //
+    // // useInterval(
+    // //     () => {
+    // //         onScreenShot()
+    // //     },
+    // //     1000
+    // // )
+    //
+    // // console.log("image", sharedImage)
 
     return (
         <>
