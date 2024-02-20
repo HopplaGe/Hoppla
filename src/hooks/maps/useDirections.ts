@@ -61,9 +61,7 @@ const useDirections = (
                         console.error(`error fetching directions ${result}`);
                     }
                 }
-            ).then(r => {
-                console.log("directionsService", r)
-            });
+            ).then(r => r);
             if (distance && duration) {
                 setPrice(calculatePrice(distance, duration))
                 // console.log("11111",calculatePrice(distance, duration)/4)
