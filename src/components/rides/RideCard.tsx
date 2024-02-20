@@ -1,16 +1,16 @@
 "use client"
 import {cn} from '@/lib/utils'
 import {secondsToHours} from '@/lib/tools/secondsToHours'
-import { PersonStanding} from 'lucide-react'
+import {PersonStanding} from 'lucide-react'
 import Link from 'next/link'
 import moment from 'moment'
 import {Avatar, AvatarGroup} from '@nextui-org/react';
 import useDirections from '@/hooks/maps/useDirections';
-import { meterToKm } from '@/lib/tools/meterToKm';
-import { useCallback, useEffect, useState } from 'react'
-import { getUserById } from '@/lib/actions/users'
+import {meterToKm} from '@/lib/tools/meterToKm';
+import {useCallback, useEffect, useState} from 'react'
+import {getUserById} from '@/lib/actions/users'
 
-const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}) => {
+const RideCard = ({ride: rideData, searchParams}: { ride: any, searchParams: any }) => {
 
     const arrivalTime = moment(rideData.startTime, "HH:mm").add(secondsToHours(rideData.duration!), 'seconds').format("HH:mm");
 
@@ -30,7 +30,8 @@ const RideCard = ({ride: rideData, searchParams}: {ride: any, searchParams: any}
 
 
     return (
-        <Link href={`/ride?id=${rideData.id}&requested_seats=${searchParams.seats}&from=${searchParams.from}&to=${searchParams.to}`}>
+        <Link
+            href={`/ride?id=${rideData.id}&requested_seats=${searchParams.seats}&from=${searchParams.from}&to=${searchParams.to}`}>
             <div className='relative group'>
                 <div aria-label={"Pick-up location"}
                      className="group min-h-10 hover:bg-gray-100 transform transition-all duration-300 ease-in-out pt-2">
