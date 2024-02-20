@@ -29,7 +29,7 @@ type DashRidesProps = {
 }
 
 const DashRides = ({
-                       params
+
                    }: DashRidesProps) => {
     const {toast} = useToast()
 
@@ -52,7 +52,7 @@ const DashRides = ({
     async function onSubmit(values: z.infer<typeof userUpdateSchema>) {
         setSubmitting(true)
         await updateUser(user?.id!, values)
-        update({
+        await update({
             user: {
                 ...values
             }

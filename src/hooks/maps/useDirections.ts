@@ -1,14 +1,9 @@
 "use client";
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import {calculatePrice} from "@/lib/tools/calculatePrice";
 import {Libraries, useJsApiLoader} from "@react-google-maps/api";
 
 const libraries = ["places"];
-
-type UseDirections = {
-    from?: string;
-    to?: string;
-};
 
 const useDirections = (
     from: string,
@@ -66,7 +61,9 @@ const useDirections = (
                         console.error(`error fetching directions ${result}`);
                     }
                 }
-            );
+            ).then(r => {
+                console.log("directionsService", r)
+            });
             if (distance && duration) {
                 setPrice(calculatePrice(distance, duration))
                 // console.log("11111",calculatePrice(distance, duration)/4)

@@ -3,16 +3,16 @@ import prisma from "@/lib/prisma";
 import { Region } from "@prisma/client";
 
 export const getRegions = async () => {
-   return await prisma.region.findMany({
+   return prisma.region.findMany({
        include: {
-          populatedAreas: true,
-          country: true
+           populatedAreas: true,
+           country: true
        }
    });
 }
 
 export const getRegionById = async (id: string) => {
-    return await prisma.region.findUnique({
+    return prisma.region.findUnique({
         where: {
             id
         }
@@ -20,7 +20,7 @@ export const getRegionById = async (id: string) => {
 }
 
 export const getRegionsByStatus = async (status: boolean) => {
-    return await prisma.region.findMany({
+    return prisma.region.findMany({
         where: {
             isOccupied: status
         }
@@ -28,7 +28,7 @@ export const getRegionsByStatus = async (status: boolean) => {
 }
 
 export const getRegionsByStatusCount = async (status: boolean) => {
-    return await prisma.region.count({
+    return prisma.region.count({
         where: {
             isOccupied: status
         }
@@ -36,13 +36,13 @@ export const getRegionsByStatusCount = async (status: boolean) => {
 }
 
 export const createRegion = async (data: Region) => {
-    return await prisma.region.create({
+    return prisma.region.create({
         data
     });
 }
 
 export const updateRegion = async (id: string, data: Region) => {
-    return await prisma.region.update({
+    return prisma.region.update({
         where: {
             id
         },
@@ -51,7 +51,7 @@ export const updateRegion = async (id: string, data: Region) => {
 }
 
 export const deleteRegion = async (id: string) => {
-    return await prisma.region.delete({
+    return prisma.region.delete({
         where: {
             id
         }
@@ -61,15 +61,15 @@ export const deleteRegion = async (id: string) => {
 // Statestics
 
 export const getRegionsCount = async () => {
-    return await prisma.region.count();
+    return prisma.region.count();
 }
 
 export const getAreasCount = async () => {
-    return await prisma.populatedArea.count();
+    return prisma.populatedArea.count();
 }
 
 export const getAreasCountByRegionId = async (regionId: string) => {
-    return await prisma.populatedArea.count({
+    return prisma.populatedArea.count({
         where: {
             regionId: regionId
         }
@@ -77,7 +77,7 @@ export const getAreasCountByRegionId = async (regionId: string) => {
 }
 
 export const getUnoccupiedRegionsCount = async () => {
-    return await prisma.region.count({
+    return prisma.region.count({
         where: {
             isOccupied: false
         }
@@ -85,7 +85,7 @@ export const getUnoccupiedRegionsCount = async () => {
 }
 
 export const getOccupiedRegionsCount = async () => {
-    return await prisma.region.count({
+    return prisma.region.count({
         where: {
             isOccupied: true
         }

@@ -41,7 +41,7 @@ export default function FAQSection({}: FAQSectionProps) {
         ))}
       </Accordion>
       <Button className="flex" variant="ghost" color="primary" size="lg">
-        <Link href="/discord">{t("joinFAQ")}</Link>
+        <Link href={"/discord"}>{t("joinFAQ")}</Link>
       </Button>
     </section>
   );

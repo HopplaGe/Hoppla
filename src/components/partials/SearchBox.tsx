@@ -23,9 +23,8 @@ import moment from "moment";
 import "moment/locale/ka";
 import ka from "date-fns/locale/ka";
 import en from "date-fns/locale/en-US";
-import { useLocale, useTranslations } from "next-intl";
-import { Autocomplete, AutocompleteProps, Libraries, useJsApiLoader } from "@react-google-maps/api";
-import { fi } from "date-fns/locale";
+import { useTranslations } from "next-intl";
+import { Autocomplete, Libraries, useJsApiLoader } from "@react-google-maps/api";
 
 const libraries = ["places"];
 
@@ -34,12 +33,12 @@ const SearchBox = ({ className }: { className?: string }) => {
   const t = useTranslations("SearchForm");
   const t2 = useTranslations("Cities");
 
-  const locale = useLocale();
-
   const [disabled, setDisabled] = React.useState<boolean>(true);
 
   const [fromResult, setFromResult] = useState<google.maps.places.Autocomplete | null>(null);
   const [toResult, setToResult] = useState<google.maps.places.Autocomplete | null>(null);
+    const [seatState, setSeatState] = React.useState<number>(1);
+
 
   const searchParams = useSearchParams();
 
@@ -312,7 +311,7 @@ const SearchBox = ({ className }: { className?: string }) => {
                 </PopoverTrigger>
                 <PopoverContent>
                   <FormControl>
-                    <NumberSelector type="hidden" {...field} />
+                    <NumberSelector type="hidden" state={setSeatState} {...field} />
                   </FormControl>
                 </PopoverContent>
               </Popover>

@@ -5,12 +5,12 @@ import { PopulatedAreaStatus } from "@prisma/client";
 
 // Populated Areas
 export const getAreas = async () => {
-    return await prisma.populatedArea.findMany();
+    return prisma.populatedArea.findMany();
 }
 
 // Populated Area by ID
 export const getAreaById = async (id: string) => {
-    return await prisma.populatedArea.findUnique({
+    return prisma.populatedArea.findUnique({
         where: {
             id
         }
@@ -19,7 +19,7 @@ export const getAreaById = async (id: string) => {
 
 // Populated Area by Region ID
 export const getAreasByRegionId = async (regionId: string) => {
-    return await prisma.populatedArea.findMany({
+    return prisma.populatedArea.findMany({
         where: {
             regionId
         }
@@ -28,7 +28,7 @@ export const getAreasByRegionId = async (regionId: string) => {
 
 // Populated Area by Status
 export const getAreasByStatus = async (status: PopulatedAreaStatus) => {
-    return await prisma.populatedArea.findMany({
+    return prisma.populatedArea.findMany({
         where: {
             status
         }
@@ -37,13 +37,13 @@ export const getAreasByStatus = async (status: PopulatedAreaStatus) => {
 
 // Create, Update, Delete
 export const createArea = async (data: PopulatedArea) => {
-    return await prisma.populatedArea.create({
+    return prisma.populatedArea.create({
         data
     });
 }
 
 export const updateArea = async (id: string, data: PopulatedArea) => {
-    return await prisma.populatedArea.update({
+    return prisma.populatedArea.update({
         where: {
             id
         },
@@ -52,7 +52,7 @@ export const updateArea = async (id: string, data: PopulatedArea) => {
 }
 
 export const deleteArea = async (id: string) => {
-    return await prisma.populatedArea.delete({
+    return prisma.populatedArea.delete({
         where: {
             id
         }
@@ -64,7 +64,7 @@ export const deleteArea = async (id: string) => {
 
 // Population
 export const getPopulation = async () => {
-    return await prisma.populatedArea.aggregate({
+    return prisma.populatedArea.aggregate({
         _sum: {
             population: true
         }
@@ -73,12 +73,12 @@ export const getPopulation = async () => {
 
 // Area Count
 export const getAreasCount = async () => {
-    return await prisma.populatedArea.count();
+    return prisma.populatedArea.count();
 }
 
 // Area Count by Region ID
 export const getAreasCountByRegionId = async (regionId: string) => {
-    return await prisma.populatedArea.count({
+    return prisma.populatedArea.count({
         where: {
             regionId: regionId
         }
@@ -87,7 +87,7 @@ export const getAreasCountByRegionId = async (regionId: string) => {
 
 // Area Count by Status
 export const getAreasCountByStatus = async (status: PopulatedAreaStatus) => {
-    return await prisma.populatedArea.count({
+    return prisma.populatedArea.count({
         where: {
             status
         }

@@ -55,7 +55,7 @@ const Hero = () => {
               className="flex items-center gap-2"
               startContent={<LuLogIn />}
             >
-              <Link href="/signin">
+              <Link href={"/signin"}>
                 <span>{t(`loginBtn`)}</span>
               </Link>
             </Button>

@@ -149,13 +149,13 @@
 .pac-container {
     
     position: absolute!important;
-    left: 10!important;
+    left: 0 !important;
     width: auto !important;
     max-width: 300px !important;
     z-index: 1000;
     border-radius: 0.75rem;
-    border-top: 0px solid #d9d9d9;
-    font-family: "FiraGO";
+    border-top: 0 solid #d9d9d9;
+    font-family: "FiraGO", serif;
     font-feature-settings: "case" 1;
     -webkit-box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
     box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1) !important;
@@ -183,10 +183,10 @@
     white-space: normal;
     font-size: 15px;
     color: #4d5156;
-    font-family: "FiraGO";
+    font-family: "FiraGO", serif;
     line-height: 30px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    /*padding-top: 6px;*/
+    /*padding-bottom: 6px;*/
     display: flex;
     flex-direction: column;
     overflow-wrap: break-word !important;
