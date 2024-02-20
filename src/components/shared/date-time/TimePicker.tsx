@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Locale } from 'date-fns';
 import moment from 'moment';
 import { Listbox, ListboxItem } from '@nextui-org/react';
@@ -20,26 +20,14 @@ type TimeProps = {
 }
 
 const Time = ({
-  locale,
-  mode,
-  selectedTime,
   onSelect,
-  disabled,
-  placeholder,
-  className,
-  style,
-  inputProps,
-  clearIcon,
-  clockIcon,
-  clearAriaLabel
 }: TimeProps) => {
-  const [value, onChange] = useState<string>('');
   const [times, setTimes] = useState<Array<any>>([]);
 
   useEffect(() => {
     const formatTime = () => {
       const items: string[] = [];
-      new Array(24).fill(Time).forEach((acc, index) => {
+      new Array(24).fill(Time).forEach((index) => {
         items.push(moment({ hour: index }).format('H:mm'));
         items.push(moment({ hour: index, minute: 10 }).format('H:mm'));
         items.push(moment({ hour: index, minute: 20 }).format('H:mm'));

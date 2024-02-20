@@ -1,9 +1,8 @@
 import { meterToKm } from "@/lib/tools/meterToKm";
 import { secondsToHours } from "@/lib/tools/secondsToHours";
-import { Avatar, AvatarGroup } from "@nextui-org/react";
 
 import { Prisma } from "@prisma/client";
-import moment, { duration } from 'moment'
+import moment from 'moment'
 import 'moment/locale/ka'
 import { useLocale } from "next-intl";
 

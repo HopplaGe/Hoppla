@@ -1,8 +1,6 @@
 "use client";
-import { cn } from '@/lib/utils';
 import { Region } from '@prisma/client';
 import React from 'react'
-import Image from 'next/image'
 import RegionCard from './RegionCard';
 
 

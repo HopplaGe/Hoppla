@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import hopplaLogo from "@/assets/images/logo.svg";
-import hopplaMiniLogo from "@/assets/images/mini_logo.png";
 import Link from "next/link";
 
 const Logo = () => {

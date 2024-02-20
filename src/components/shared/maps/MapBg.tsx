@@ -1,25 +1,21 @@
 "use client"
-import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
+import React, {useCallback, useMemo, useRef} from 'react';
 import {
     GoogleMap,
-    Marker,
     useJsApiLoader,
     Libraries,
 } from '@react-google-maps/api';
 import LatLngLiteral = google.maps.LatLngLiteral;
 import MapOptions = google.maps.MapOptions;
 
-import locationImg from "@/assets/images/location-pin.png";
-import useDirections from "@/hooks/maps/useDirections";
 import {mapConfig} from "@/config/map.config";
-import useGeoCode from "@/hooks/maps/useGeoCode";
 
-type MapProps = {
-    from: string;
-    to: string;
-    setAddress?: (address: string) => void;
-    setDisabled?: (disabled: boolean) => void;
-}
+// type MapProps = {
+//     from: string;
+//     to: string;
+//     setAddress?: (address: string) => void;
+//     setDisabled?: (disabled: boolean) => void;
+// }
 
 const libraries = ["places"];
 

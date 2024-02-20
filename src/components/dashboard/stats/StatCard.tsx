@@ -1,7 +1,7 @@
 "use client"
 import { cn } from '@/lib/utils';
 import { cva, type VariantProps } from "class-variance-authority";
-import { Car, TrendingDown, TrendingUp } from 'lucide-react';
+import { TrendingDown, TrendingUp } from 'lucide-react';
 import React, { FC } from 'react'
 
 const statCardStyle = cva(
@@ -36,7 +36,7 @@ type StatCardProps = {
     status?: string;
 } & VariantProps<typeof statCardStyle>
 
-const StatCard: FC<StatCardProps> = ({ title, value, data, color, icon, percent, status }) => {
+const StatCard: FC<StatCardProps> = ({ title, value, color, icon, percent, status }) => {
     return (
         <div className={cn('grid grid-cols-3 px-4 py-4 bg-white rounded-xl')}>
             <div className='col-span-2 text-3xl font-bold'>{value}</div>

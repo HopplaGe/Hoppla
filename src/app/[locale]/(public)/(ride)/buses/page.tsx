@@ -1,6 +1,5 @@
 import SearchBox from "@/components/partials/SearchBox";
 import HeroSection from "./_components/HeroSection";
-import OfferingsSection from "../_components/OfferingsSection";
 import FAQSection from "../_components/FAQSection";
 import MobileAppBlock from "@/components/partials/MobileAppBlock";
 
@@ -9,7 +8,7 @@ type BusesPageProps = {
   searchParams: { [key: string]: string | string[] | undefined };
 };
 
-export default function BusesPage({ params, searchParams }: BusesPageProps) {
+export default function BusesPage({  }: BusesPageProps) {
   return (
     <div className="pt-14 fira-go">
 

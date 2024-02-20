@@ -6,7 +6,7 @@ import {useForm} from 'react-hook-form'
 import * as z from "zod";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Autocomplete, AutocompleteItem, Button, Input, Switch} from '@nextui-org/react';
-import {PopulatedArea, PopulatedAreaStatus, Region} from '@prisma/client';
+import {PopulatedAreaStatus, Region} from '@prisma/client';
 import {getRegions} from '@/lib/actions/regions'
 import {useRouter} from 'next/navigation'
 import {createArea} from '@/lib/actions/populated-areas'
@@ -102,7 +102,6 @@ const AddAreaForm = ({setOpen}: AddAreaFormProps) => {
                         render={({
                                      field: {
                                          onChange,
-                                         onBlur,
                                      }
                                  }) => (
                             <FormItem>
@@ -130,7 +129,6 @@ const AddAreaForm = ({setOpen}: AddAreaFormProps) => {
                         render={({
                                      field: {
                                          onChange,
-                                         onBlur,
                                      }
                                  }) => (
                             <FormItem>

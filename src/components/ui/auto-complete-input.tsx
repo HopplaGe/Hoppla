@@ -1,11 +1,9 @@
 "use client";
 import {
     Autocomplete,
-    AutocompleteSection,
     AutocompleteItem,
 } from "@nextui-org/react";
-import { PenToolIcon } from "lucide-react";
-import React, { useState } from "react";
+import React from "react";
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 
 
@@ -77,7 +75,6 @@ type AutoCompleteInputProps = {
 export default function AutoCompleteInput({ icon }: AutoCompleteInputProps) {
 
     const {
-        placesService,
         placePredictions,
         getPlacePredictions,
         isPlacePredictionsLoading,

@@ -3,7 +3,6 @@ import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@
 import { User } from "@nextui-org/user";
 import { signOut } from "next-auth/react";
 import { ShieldCheck, Users } from "lucide-react";
-import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 type UserDropdownMenuProps = {

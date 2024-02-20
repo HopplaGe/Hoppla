@@ -1,13 +1,13 @@
 "use client";
 import {
   setKey,
-  setDefaults,
+  // setDefaults,
   setLanguage,
-  setRegion,
-  fromAddress,
-  fromLatLng,
-  fromPlaceId,
-  setLocationType,
+  // setRegion,
+  // fromAddress,
+  // fromLatLng,
+  // fromPlaceId,
+  // setLocationType,
   geocode,
   RequestType,
 } from "react-geocode";
@@ -20,7 +20,7 @@ type UseGeoCodeType = {
   lng?: number;
   locale: string;
 };
-const useGeoCode = ({ address, lat, lng }: UseGeoCodeType) => {
+const useGeoCode = ({ lat, lng }: UseGeoCodeType) => {
 
   const locale = useLocale();
 
