@@ -378,5 +378,23 @@
       "Blog": "ბლოგი",
       "BlogDescription": "წაიკითხეთ სიახლეები ჩვენ შესახებ."
     }
+  },
+  "UserInformation": {
+    "Age": "{age} წლის",
+    "NotBirthDay": "დაბადების თარიღი არ არის მითითებული",
+    "ReportThisUser": "შეატყობინე ამ მომხმარებელზე",
+    "ReportUser": {
+      "title": "შეატყობინე ამ მომხმარებელზე",
+      "reason": "მიზეზი",
+      "reasonPlaceholder": "შეიყვანეთ მომხმარებლის მოხსენების მიზეზი",
+      "submit": "გაგზავნა",
+      "cancel": "გაუქმება"
+    },
+    "Ratings": "{rating, plural, =0 {შეფასების გარეშე} other {<ratingCount>{rating}</ratingCount> შეფასება}}",
+    "VerifieID": "დამოწმებული ID",
+    "VerifiedEmail": "დამოწმებული ელ. ფოსტა",
+    "VerifiedPhone": "დამოწმებული ტელეფონი",
+    "PostedRides": "{count, plural, =0 {მგზავრობა ჯერ არ არის გამოქვეყნებული} other {<countText>{count}</countText> გამოქვეყნებული მგზავრობა}}",
+    "Joined": "გაწევრიანდა"
   }
 }

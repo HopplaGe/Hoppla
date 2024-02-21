@@ -373,5 +373,23 @@
       "Blog": "Blog",
       "BlogDescription": "Read news about us."
     }
+  },
+  "UserInformation": {
+    "Age": "{age} years old",
+    "NotBirthDay": "Date of birth not specified",
+    "ReportThisUser": "Report this user",
+    "ReportUser": {
+      "title": "Report User",
+      "reason": "Reason",
+      "reasonPlaceholder": "Enter the reason for reporting the user",
+      "submit": "Submit",
+      "cancel": "Cancel"
+    },
+    "Ratings": "{rating, plural, =0 {No ratings yet} =1 {<ratingCount>{rating}</ratingCount> rating} other {<ratingCount>{rating}</ratingCount> ratings}}",
+    "VerifieID": "Verified ID",
+    "VerifiedEmail": "Verified Email",
+    "VerifiedPhone": "Verified Phone",
+    "PostedRides": "{count, plural, =0 {No rides} other {<countText>{count}</countText> posted rides}}",
+    "Joined": "Joined"
   }
 }
