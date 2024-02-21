@@ -12,6 +12,8 @@ import {useRouter} from 'next/navigation'
 import {createArea} from '@/lib/actions/populated-areas'
 import {cn} from '@/lib/utils'
 
+import {useAction} from 'next-safe-action/hooks'
+
 type AddAreaFormProps = {
     setOpen: (open: boolean) => void
 }
@@ -48,11 +50,18 @@ const AddAreaForm = ({setOpen}: AddAreaFormProps) => {
             regionId: ''
         }
     });
+
+    const {execute, status} = useAction(createArea, {
+        onSuccess: (data) => {
+            setOpen(false);
+            router.refresh();
+        },
+
+    })
+
     const handleSubmit = useCallback(async (values: z.infer<typeof AreaSchema>) => {
-        await createArea(values as any);
-        setOpen(false);
-        router.refresh();
-    }, [router, setOpen])
+        execute(values as any);
+    }, [execute])
 
 
     return (
@@ -223,6 +232,7 @@ const AddAreaForm = ({setOpen}: AddAreaFormProps) => {
                         color='secondary'
                         // onClick={() => setOpen(false)}
                         className='w-full'
+                        disabled={status === 'executing'}
                     >
                         დამატება
                     </Button>
