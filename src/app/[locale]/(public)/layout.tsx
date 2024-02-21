@@ -9,10 +9,12 @@ const PublicLayout = async ({children}: LayoutProps) => {
 
     const info = await getUrgentInfo();
 
+    console.log(info);
+
     return (
         <>
             <NavBar/>
-            {info && <TopInfoBanner info={info[0]} />}
+            {/* {info && <TopInfoBanner info={info[0]} />} */}
             {children}
             <Footer/>
         </>
