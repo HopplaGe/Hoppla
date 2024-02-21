@@ -8,7 +8,7 @@ const AdminLayout = ({children}: LayoutProps) => {
     return (
         <>
             <AdminSidebar/>
-            <div className="lg:pl-20">
+            <div className="lg:pl-20 h-screen">
                 <AdminNavbar/>
                 <main className="xl:pl-64 2xl:pl-96">
                     {children}

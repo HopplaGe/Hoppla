@@ -24,7 +24,7 @@ const page: FC<pageProps> = async () => {
     // const canManage = parsedPermissions.includes('create:invoice')
     // //|| parsedPermissions.includes('read') || parsedPermissions.includes('update') || parsedPermissions.includes('delete')
 
-    console.log(permissions)
+    // console.log(permissions)
 
     return (
         <div className="relative isolate overflow-hidden ">
