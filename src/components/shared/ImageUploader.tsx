@@ -23,7 +23,6 @@ export default function ImageUploader({
     const file = e.target.files[0] as File;
     const buffer = Buffer.from(await file.arrayBuffer());
     const fileUrl = await uploadImage(buffer.toJSON(), file.name);
-    console.log(imageRef.current);
     if (imageRef.current) {
       imageRef.current.src = fileUrl;
     }
