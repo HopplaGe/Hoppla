@@ -133,7 +133,7 @@ enum RideStatus {
   COMPLETED
 }
 
-//Regions and Populated Areas Model
+// Regions and Populated Areas Model
 
 model Country {
   id        String   @id @default(cuid())
@@ -186,4 +186,16 @@ enum PopulatedAreaStatus {
   CITY
   TOWNSHIP
   VILLAGE
+}
+
+// Urgent information model
+model UrgentInfo {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  color     String?  @default("red")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("urgentinfo")
 }
