@@ -7,9 +7,9 @@ import { getUrgentInfo } from "@/lib/actions/infos";
 
 const PublicLayout = async ({children}: LayoutProps) => {
 
-    const info = await getUrgentInfo();
+    // const info = await getUrgentInfo();
 
-    console.log(info);
+    // console.log(info);
 
     return (
         <>
