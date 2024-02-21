@@ -7,6 +7,7 @@ import { getUrgentInfo } from "@/lib/actions/infos";
 
 const PublicLayout = async ({children}: LayoutProps) => {
 
+    // TODO: Fix this "წარმოებაში გამოაქვს შეცდომა"
     // const info = await getUrgentInfo();
 
     // console.log(info);
