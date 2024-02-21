@@ -236,7 +236,7 @@
       },
       "Offer": "გაზიარება",
       "Cancel": "გაუქმება",
-      "SaveMoney": "დაზოგეთ მაქსიმუმ <priceBox>{price}₾</priceBox> თქვენს პირველ მგზავრობაზე.",
+      "SaveMoney": "დაზოგეთ მინიმუმ <priceBox>{price}₾</priceBox> თქვენს პირველ მგზავრობაზე.",
       "PublishARide": "გამოაქვეყნე მგზავრობა",
       "Next": "შემდეგი"
     },

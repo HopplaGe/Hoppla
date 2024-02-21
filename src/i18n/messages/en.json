@@ -236,7 +236,7 @@
       },
       "Offer": "Offer",
       "Cancel": "Cancel",
-      "SaveMoney": "Save up to {price}₾ on your first ride.",
+      "SaveMoney": "Save up to minimum <priceBox>{price}₾</priceBox> on your first ride.",
       "PublishARide": "Publish a ride"
     },
     "OfferSeatsSuccess": {
