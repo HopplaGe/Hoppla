@@ -1,11 +1,10 @@
 "use server"
 import prisma from "@/lib/prisma";
-import {UrgentInfo} from "@prisma/client";
-import {revalidatePath} from "next/cache";
+import { UrgentInfo } from "@prisma/client";
 
 // Get Urgent Info
 export const getUrgentInfo = async () => {
-    return prisma.urgentInfo.findFirst();
+    return prisma.urgentInfo.findMany();
 };
 
 export const createUrgentInfo = async (data: UrgentInfo) => {

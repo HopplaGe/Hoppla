@@ -7,6 +7,7 @@ type TopInfoBannerProps = {
 }
 
 const TopInfoBanner = ({info}: TopInfoBannerProps) => {
+
     return (
         <div
             className="max-w-6xl text-white fira-go page-wrapper py-2 text-center rounded-b-2xl"

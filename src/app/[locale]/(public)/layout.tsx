@@ -3,8 +3,7 @@ import {LayoutProps} from "@/types/layoutProps";
 import NavBar from "@/components/partials/NavBar";
 import Footer from "@/components/partials/Footer";
 import TopInfoBanner from "@/components/shared/TopInfoBanner";
-import {getUrgentInfo} from "@/lib/actions/infos";
-import {UrgentInfo} from "@prisma/client";
+import { getUrgentInfo } from "@/lib/actions/infos";
 
 const PublicLayout = async ({children}: LayoutProps) => {
 
@@ -13,7 +12,7 @@ const PublicLayout = async ({children}: LayoutProps) => {
     return (
         <>
             <NavBar/>
-            {info && <TopInfoBanner info={info as UrgentInfo}/>}
+            {info && <TopInfoBanner info={info[0]} />}
             {children}
             <Footer/>
         </>
