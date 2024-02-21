@@ -41,6 +41,3 @@ const HeadingBlock = ({ user }: HeadingBlockProps) => {
 };
 
 export default HeadingBlock;
-
-
-// ${moment().diff(user.birthdate, 'years', true).toFixed(0)} წლის
