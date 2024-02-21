@@ -40,7 +40,7 @@ const UrgentInfoForm = () => {
         const infoData = await getUrgentInfo()
 
         if (infoData) {
-            setInfo(infoData)
+            setInfo(infoData[0])
         }
 
     }, [])
