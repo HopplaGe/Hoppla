@@ -20,7 +20,11 @@ const useSort = () => {
     )
 
     const onChangeHandler = async (name: string, value: any) => {
-        router.push(`/search?${createQueryString(name, value)}`)
+        if (name === "sort") {
+            router.push(`/search?${createQueryString(name, value)}`)
+        } else if (name === "filter" || name === "rules") {
+            router.push(`/search?${createQueryString(name, value.slice(1))}`)
+        }
     }
 
     const [sort, setSort] = useQueryState("sort", {
@@ -45,7 +49,18 @@ const useSort = () => {
         },
     });
 
-    return {sort, setSort, filter, setFilter};
+    const [rules, setRules] = useQueryState("rules", {
+
+        parse: (value) => {
+            return value;
+        },
+        serialize: (value) => {
+            onChangeHandler("rules", value).then((res) => res);
+            return value;
+        },
+    });
+
+    return {sort, setSort, filter, setFilter, rules, setRules};
 };
 
 export default useSort;
