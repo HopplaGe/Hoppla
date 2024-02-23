@@ -53,24 +53,24 @@ enum Gender {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
+  email         String?      @unique
+  emailVerified DateTime?    @map("email_verified")
   image         String?
-  role          userRole  @default(USER)
+  role          userRole     @default(USER)
   address       String?
   phone         String?
   birthdate     DateTime?
-  gender        Gender    @default(OTHER)
+  gender        Gender       @default(OTHER)
   accounts      Account[]
   sessions      Session[]
   Car           Car[]
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @default(now()) @map("updated_at")
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @default(now()) @map("updated_at")
   Ride          Ride[]
-  // Ride          Ride?     @relation(fields: [rideId], references: [id])
-  rideId        String?
+  ratings       UserRating[]
+  Trip          Trip?        @relation(fields: [tripId], references: [id])
   tripId        String?
 
   @@map("users")
@@ -83,6 +83,18 @@ model VerificationToken {
 
   @@unique([identifier, token])
   @@map("verificationtokens")
+}
+
+model UserRating {
+  id        String   @id @default(cuid())
+  rating    Float    @default(0)
+  comment   String?
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("userratings")
 }
 
 // Cars model
@@ -103,24 +115,25 @@ model Car {
 
 // Rides Model
 model Ride {
-  id         String     @id @default(cuid())
-  from       String     @map("start_location")
-  to         String     @map("end_location")
-  distance   Float
-  duration   Int
-  seats      Int
-  price      Float
-  startDate  DateTime   @map("start_date")
-  startTime  String     @map("start_time")
-  driverId   String     @map("driver_id")
+  id        String     @id @default(cuid())
+  from      String     @map("start_location")
+  to        String     @map("end_location")
+  distance  Float
+  duration  Int
+  seats     Int
+  price     Float
+  startDate DateTime   @map("start_date")
+  startTime String     @map("start_time")
+  driverId  String     @map("driver_id")
+  driver    User       @relation(fields: [driverId], references: [id], onDelete: Cascade)
   // stops       Stop[]
-  carId      String?    @map("car_id")
-  // rideRules   RideRule[]
-  status     RideStatus @default(PENDING)
-  // Trip        Trip[]
-  passangers User[]
-  companyId  String?    @map("company_id")
-  createdAt  DateTime   @default(now()) @map("created_at")
+  carId     String?    @map("car_id")
+  rideRules RideRule[]
+  status    RideStatus @default(PENDING)
+  tripId    String?    @unique
+  trip      Trip?
+  companyId String?    @map("company_id")
+  createdAt DateTime   @default(now()) @map("created_at")
 
   @@map("rides")
 }
@@ -131,6 +144,17 @@ enum RideStatus {
   REJECTED
   CANCELED
   COMPLETED
+}
+
+model Trip {
+  id         String   @id @default(cuid())
+  rideId     String   @unique @map("ride_id")
+  ride       Ride     @relation(fields: [rideId], references: [id], onDelete: Cascade)
+  passangers User[]
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @default(now()) @map("updated_at")
+
+  @@map("trips")
 }
 
 // Regions and Populated Areas Model
@@ -198,4 +222,28 @@ model UrgentInfo {
   updatedAt DateTime @default(now()) @map("updated_at")
 
   @@map("urgentinfo")
+}
+
+// Ride Rules Model
+model Rule {
+  id          String     @id @default(cuid())
+  name        String
+  description String?
+  rides       RideRule[]
+  createdAt   DateTime   @default(now()) @map("created_at")
+  updatedAt   DateTime   @default(now()) @map("updated_at")
+
+  @@map("rules")
+}
+
+model RideRule {
+  id        String   @id @default(cuid())
+  rideId    String   @map("ride_id")
+  ride      Ride     @relation(fields: [rideId], references: [id], onDelete: Cascade)
+  ruleId    String   @map("rule_id")
+  rule      Rule     @relation(fields: [ruleId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @default(now()) @map("updated_at")
+
+  @@map("riderules")
 }
