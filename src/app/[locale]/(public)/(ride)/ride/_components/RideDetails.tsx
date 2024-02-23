@@ -2,7 +2,7 @@
 import useDirections from '@/hooks/maps/useDirections'
 import {secondsToHours} from '@/lib/tools/secondsToHours'
 import {Avatar, AvatarGroup, Badge, Button, useDisclosure} from '@nextui-org/react'
-import {BadgeCheck} from 'lucide-react'
+import {BadgeCheck, Check} from 'lucide-react'
 import moment from 'moment'
 import React, {use, useCallback, useEffect, useRef} from 'react'
 import MapModal from './MapModal'
@@ -12,7 +12,7 @@ import {useInterval} from 'usehooks-ts'
 import {useTranslations} from 'next-intl'
 import Link from "next/link";
 
-const RideDetails = ({ride, searchParams, driver}: any) => {
+const RideDetails = ({ride, searchParams}: any) => {
 
     const t = useTranslations("Rides.RideDetails")
 
@@ -73,6 +73,7 @@ const RideDetails = ({ride, searchParams, driver}: any) => {
     //
     // // console.log("image", sharedImage)
 
+    console.log("ride", ride)
     return (
         <>
             <div ref={screenRef} className='w-full lg:w-1/2 max-w-7xl'>
@@ -90,10 +91,10 @@ const RideDetails = ({ride, searchParams, driver}: any) => {
             </div>
             <section className="flex flex-col gap-4 w-full lg:w-1/2">
 
-                <Link href={`/user/${driver.id}`}
+                <Link href={`/user/${ride?.driver.id}`}
                       className="flex flex-row justify-between items-center p-4 fira-go bg-default-100
                     hover:bg-default-200 rounded-xl hoppla-animation">
-                    <div className="flex flex-col gap-2 fira-go text-md font-bold">{driver.name}</div>
+                    <div className="flex flex-col gap-2 fira-go text-md font-bold">{ride?.driver.name}</div>
                     <div className="flex flex-col gap-2 font-bold text-xl">
                         <Badge
                             isOneChar
@@ -101,24 +102,40 @@ const RideDetails = ({ride, searchParams, driver}: any) => {
                             color="success"
                             placement="bottom-left"
                         >
-                            <Avatar src={driver.image} alt={driver.name} radius='lg' isBordered={isVerified}
+                            <Avatar src={ride?.driver.image} alt={ride?.driver.name} radius='lg' isBordered={isVerified}
                                     color='success'/>
                         </Badge>
                     </div>
                 </Link>
-                {ride.passangers.length > 0 && (
+                {ride?.trip?.passangers.length > 0 && (
                     <div
                         className="flex flex-row justify-between items-center p-4 fira-go hover:bg-default-100 rounded-xl hoppla-animation">
-                        <div className="flex flex-col gap-2 fira-go text-md font-bold">{t("passengers")}</div>
+                        <div className="flex flex-col gap-2 fira-go text-sm font-bold">{t("passengers")}</div>
                         <div className="flex flex-col gap-2 font-bold text-xl">
                             <AvatarGroup>
-                                {ride.passangers && ride?.passangers?.map((passanger: any, index: number) => (
+                                {ride?.trip?.passangers && ride?.trip?.passangers?.map((passanger: any, index: number) => (
                                     <Avatar key={index} radius="md" size="sm" src={passanger.image}/>
                                 ))}
                             </AvatarGroup>
                         </div>
                     </div>
                 )}
+            </section>
+
+            <section className="flex flex-col gap-4 w-full md:w-1/2 px-4">
+                {ride?.rideRules && ride.rideRules.map((rule: any, index: number) => (
+                    <div
+                        key={index}
+                        className="flex flex-row justify-between items-center fira-go ">
+                        <div className="flex flex-row gap-2 items-center fira-go text-xs font-bold">
+                            <i className="bg-default-200 p-1 rounded-md">
+                                <Check size={14}/>
+                            </i>
+                            {rule.rule.name}
+                        </div>
+
+                    </div>
+                ))}
             </section>
 
             <section className="flex flex-col gap-4 w-full md:w-1/2">
