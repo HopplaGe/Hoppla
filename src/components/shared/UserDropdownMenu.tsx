@@ -1,9 +1,9 @@
 import React from 'react';
-import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@nextui-org/react";
-import { User } from "@nextui-org/user";
-import { signOut } from "next-auth/react";
-import { ShieldCheck, Users } from "lucide-react";
-import { cn } from "@/lib/utils";
+import {Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/react";
+import {User} from "@nextui-org/user";
+import {signOut} from "next-auth/react";
+import {ShieldCheck, Users} from "lucide-react";
+import {cn} from "@/lib/utils";
 
 type UserDropdownMenuProps = {
     user: any;
@@ -11,18 +11,19 @@ type UserDropdownMenuProps = {
 }
 
 const userMenuItems = [
-    { name: "Profile", href: "/profile" },
-    { name: "MyRides", href: "/my-rides" },
-    { name: "MyVehicles", href: "/my-vehicles" },
-    { name: "MyTickets", href: "/my-tickets" },
-    { name: "MyPayments", href: "/my-payments" },
-    { name: "Analytics", href: "/analytics" },
-    { name: "Settings", href: "/settings" },
-    { name: "LogOut", onClick: () => console.log("logout") },
+    {name: "Profile", href: "/profile"},
+    {name: "MyRides", href: "/my-rides"},
+    {name: "MyVehicles", href: "/my-vehicles"},
+    {name: "MyTickets", href: "/my-tickets"},
+    {name: "MyPayments", href: "/my-payments"},
+    {name: "Analytics", href: "/analytics"},
+    {name: "Settings", href: "/settings"},
+    {name: "LogOut", onClick: () => console.log("logout")},
 ];
 
 
-const UseDropdownMenu = ({ user, t }: UserDropdownMenuProps) => {
+const UseDropdownMenu = ({user, t}: UserDropdownMenuProps) => {
+
     return (
         <Dropdown placement="bottom-start">
             <DropdownTrigger>
@@ -55,10 +56,10 @@ const UseDropdownMenu = ({ user, t }: UserDropdownMenuProps) => {
             <DropdownMenu aria-label={t('NavBar.UserActions')} variant="flat" className="fira-go" items={userMenuItems}>
 
                 <DropdownItem key="profile"
-                    className="h-14"
-                    color={user?.role === "ADMIN" ? "success" : "default"}
-                    variant="flat"
-                    endContent={user?.role === "ADMIN" ? <ShieldCheck size={18} /> : <Users size={18} />}
+                              className="h-14"
+                              color={user?.role === "ADMIN" ? "success" : "default"}
+                              variant="flat"
+                              endContent={user?.role === "ADMIN" ? <ShieldCheck size={18}/> : <Users size={18}/>}
                 >
                     <div className="w-full gap-2 flex flex-row justify-between items-center">
                         <div className="flex flex-col items-start gap-0.5">
@@ -103,7 +104,7 @@ const UseDropdownMenu = ({ user, t }: UserDropdownMenuProps) => {
 export default UseDropdownMenu;
 
 
-export const Item = ({ item, t }: any) => {
+export const Item = ({item, t}: any) => {
     return (
         <DropdownItem key={item.name} onClick={item.onClick}>
             {t(`${item.name}`)}
