@@ -1,20 +1,12 @@
 "use client";
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuLabel,
-    DropdownMenuRadioGroup,
-    DropdownMenuRadioItem,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {Button} from "@/components/ui/button";
 import {localeLabels, locales} from "@/i18n/locales";
 import {useLocale, useTranslations} from "next-intl";
 import {useRouter, usePathname} from "@/i18n/navigation";
 import {useSearchParams} from "next/navigation";
 
 import {useMounted} from "@/hooks/useMounted";
+import {Select, SelectItem} from "@nextui-org/react";
+import React from "react";
 
 type Locale = keyof typeof localeLabels;
 
@@ -28,40 +20,28 @@ export default function LanguageSwitch() {
 
     if (!mounted) return null;
 
-    const handleClick = (locale: string) => {
+    const handleClick = (e: any) => {
         router.replace(`${pathname}?${searchParams.toString()}`, {
-            locale,
+            locale: e.target.value,
         });
     };
 
     return (
         <div>
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild className="outline-none">
-                    <Button variant="outline">
-                        <span className="hidden sm:block">
-                          {localeLabels[locale as Locale]}
-                        </span>
-                        <span className="block sm:hidden">
-                          {localeLabels[locale as Locale].slice(0, 2)}
-                        </span>
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent className="fira-go">
-                    <DropdownMenuLabel>{t("choose-language")}</DropdownMenuLabel>
-                    <DropdownMenuSeparator/>
-                    <DropdownMenuRadioGroup
-                        value={locale}
-                        onValueChange={(val: string) => handleClick(val)}
-                    >
-                        {locales.map((locale: string) => (
-                            <DropdownMenuRadioItem key={locale} value={locale} className="cursor-pointer">
-                                {localeLabels[locale as Locale]}
-                            </DropdownMenuRadioItem>
-                        ))}
-                    </DropdownMenuRadioGroup>
-                </DropdownMenuContent>
-            </DropdownMenu>
+            <Select
+                size="sm"
+                className="w-44 fira-go -z-0"
+                variant="flat"
+                defaultSelectedKeys={[locale]}
+                onChange={handleClick}
+                label={t("choose-language")}
+            >
+                {(locales ?? []).map((locale) => (
+                    <SelectItem key={locale} value={locale}>
+                        {localeLabels[locale as Locale]}
+                    </SelectItem>
+                ))}
+            </Select>
         </div>
     );
 }
