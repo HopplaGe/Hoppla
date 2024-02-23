@@ -15,7 +15,7 @@ const UserView = async ({params}: UserViewProps) => {
 
     const user = await getUserById(params.userId);
 
-    const rides = await ridesCountByDriver(params.userId);
+    const rides: number = await ridesCountByDriver(params.userId) as number;
 
     const verifiedId = false
 
@@ -24,7 +24,7 @@ const UserView = async ({params}: UserViewProps) => {
             <div className="page-wrapper w-full lg:w-1/2 max-w-7xl py-4 lg:py-8 flex flex-col fira-go divide-y-4">
                 <HeadingBlock user={user}/>
 
-                <RatingsBlock/>
+                <RatingsBlock ratings={user?.ratings}/>
 
                 <VerifyBlock user={user} verifiedId={verifiedId}/>
 
