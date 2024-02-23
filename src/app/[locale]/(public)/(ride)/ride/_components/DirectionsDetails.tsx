@@ -153,12 +153,11 @@ const DirectionsDetails = ({
                 <div
                     className="flex flex-row justify-between items-center border-t-4 p-4 fira-go border-default-50 w-full mt-4">
                     <div
-                        className="flex flex-col gap-2">{t('priceForOnePerson', {count: searchParams.requested_seats})}</div>
-                    {/* TODO:  price / >>>> ride.seats <<<<< * searchParams.requested_seats*/}
+                        className="flex flex-col gap-2">{t('priceForOnePerson', {count: searchParams.requested_seats ? searchParams.requested_seats : price})}</div>
                     <div
                         className="flex flex-col gap-2 font-bold text-xl">
                         {/*{(ride.price / ride.seats * searchParams.requested_seats).toFixed(2)} ₾*/}
-                        {(ride.price * searchParams.requested_seats).toFixed(2)} ₾
+                        {searchParams.requested_seats ? (ride.price * searchParams.requested_seats).toFixed(2) : price.toFixed(2)} ₾
                     </div>
                 </div>
             </div>
