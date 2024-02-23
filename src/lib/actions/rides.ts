@@ -236,13 +236,13 @@ export const getRideByFromAndToAndDateAndSeats = async (data: any) => {
                     },
                     {
                         driver: {
-                            ratings: {
-                                some: {
-                                    rating: {
-                                        gte: 4,
-                                    },
-                                },
-                            },
+                            // ratings: {
+                            //     some: {
+                            //         rating: {
+                            //             gte: 0,
+                            //         },
+                            //     },
+                            // },
                             phone:
                                 data.filter === "verified"
                                     ? {
@@ -251,17 +251,17 @@ export const getRideByFromAndToAndDateAndSeats = async (data: any) => {
                                     : undefined,
                         },
                     },
-                    {
-                        rideRules: {
-                            some: {
-                                ruleId: {
-                                    in: data.rules
-                                        ? data.rules.split(",")
-                                        : undefined,
-                                },
-                            },
-                        },
-                    },
+                    // {
+                    //     rideRules: {
+                    //         some: {
+                    //             ruleId: {
+                    //                 in: data.rules
+                    //                     ? data.rules.split(",")
+                    //                     : undefined,
+                    //             },
+                    //         },
+                    //     },
+                    // },
                 ],
             },
             include: {

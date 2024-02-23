@@ -47,10 +47,10 @@ const INITIAL_VISIBLE_COLUMNS = [
     "to",
     "startDate",
     "startTime",
-    "duration",
-    "distance",
+    // "duration",
+    // "distance",
     "price",
-    "seats",
+    // "seats",
     "status",
     "passangers",
 ];
@@ -82,7 +82,7 @@ export default function RidesTable({ rides }: { rides: Ride[] }) {
         { name: t("from"), uid: "from", sortable: true },
         { name: t("to"), uid: "to", sortable: true },
         { name: t("startDate"), uid: "startDate", sortable: true },
-        { name: t("startTime"), uid: "startTime", sortable: true },
+        // { name: t("startTime"), uid: "startTime", sortable: true },
         { name: t("duration"), uid: "duration", sortable: true },
         { name: t("distance"), uid: "distance", sortable: true },
         { name: t("price"), uid: "price", sortable: true },
@@ -194,9 +194,21 @@ export default function RidesTable({ rides }: { rides: Ride[] }) {
                     price: ride.price.toFixed(2),
                 });
             case "startDate":
-                return moment(ride.startDate)
-                    .locale(locale)
-                    .format("dddd, MMMM Do YYYY");
+                return (
+                    <div>
+                        <p>
+                            {moment(ride.startDate)
+                                .locale(locale)
+                                // d/m/y
+                                .format("LL")}
+                        </p>
+                        <p>
+                            {t("durationInHours", {
+                                hours: ride.startTime,
+                            })}
+                        </p>
+                    </div>
+                );
             case "status":
                 return (
                     <Chip
