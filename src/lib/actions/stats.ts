@@ -17,12 +17,16 @@ export const ridesCountByDirection = async (to: string) => {
 }
 
 export const ridesCountByDriver = async (driverId: string) => {
-    const rides = await prisma.ride.findMany({
-        where: {
-            driverId: driverId
-        }
-    });
-    return rides?.length;
+    try {
+        const res = await prisma.ride.findMany({
+            where: {
+                driverId: driverId
+            }
+        });
+        return res.length;
+    } catch (error) {
+        return error;
+    }
 }
 
 export async function getStats(userId: string) {
