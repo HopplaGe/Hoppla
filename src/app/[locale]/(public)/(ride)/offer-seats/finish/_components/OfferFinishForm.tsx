@@ -20,6 +20,7 @@ import {createRide} from '@/lib/actions/rides'
 import useDirections from '@/hooks/maps/useDirections'
 import TimePicker from "@/components/shared/date-time/TimePicker";
 import {RadioGroup} from "@headlessui/react";
+import {useRideMutation} from "@/hooks/rides/useRideMutation";
 
 
 const OfferFinishFormSchema = z.object({
@@ -56,6 +57,8 @@ const OfferFinishForm = ({user, cars, searchParams, rules}: OfferFinishFormProps
 
     const t = useTranslations("OfferSeats.FinishForm");
 
+    const mutation = useRideMutation()
+
     const locale = useLocale()
     const router = useRouter()
 
@@ -90,17 +93,16 @@ const OfferFinishForm = ({user, cars, searchParams, rules}: OfferFinishFormProps
 
     }, [distance, duration, price, form])
 
-    const handleSubmit = useCallback(
-        async (values: z.infer<typeof OfferFinishFormSchema>) => {
-
-            const res = await createRide(values as any)
-            if (res) {
-                router.push(`/carpool`)
+    const handleSubmit = (data: z.infer<typeof OfferFinishFormSchema>) => {
+        mutation.mutate(data, {
+            onSuccess: (ride) => {
+                router.push(`/ride?id=${ride?.id}`)
+            },
+            onError: (error) => {
+                console.error(error)
             }
-        }, [router]
-    );
-
-    console.log(new Date(moment().utc().startOf('day').format('YYYY-MM-DDTHH:mm:ss')))
+        })
+    };
 
     return (
         <>
