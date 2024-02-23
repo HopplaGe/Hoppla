@@ -40,3 +40,5 @@ next-env.d.ts
 
 aws.yml
 .vercel
+
+.vscode

@@ -1,24 +1,25 @@
-import {ReactNode} from "react";
-import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import { ReactNode } from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers/Providers";
-import {notFound} from "next/navigation";
-import {Toaster} from "@/components/ui/toaster"
+import { notFound } from "next/navigation";
+import { Toaster } from "@/components/ui/toaster";
+import "@blocknote/react/style.css";
 
-const inter = Inter({subsets: ["latin"]});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
     title: "Hoppla - Ride with us",
     description:
         "გაემგზავრე Hoppla-ით და მიიღე საუკეთესო მანქანა და მარშუტი შენი მიზნისთვის",
-    icons: []
+    icons: [],
 };
 
 export default async function RootLayout({
-                                             children,
-                                             params: {locale},
-                                         }: {
+    children,
+    params: { locale },
+}: {
     children: ReactNode;
     params: { locale: string };
 }) {
@@ -31,14 +32,12 @@ export default async function RootLayout({
 
     return (
         <html lang={locale}>
-        <body className={inter.className}>
-        <Providers locale={locale} messages={messages}>
-
-            {children}
-            <Toaster/>
-        </Providers>
-
-        </body>
+            <body className={inter.className}>
+                <Providers locale={locale} messages={messages}>
+                    {children}
+                    <Toaster />
+                </Providers>
+            </body>
         </html>
     );
 }
