@@ -15,15 +15,7 @@ import { updateUser } from "@/lib/actions/users";
 import { uploadImage } from "@/lib/actions/s3actions";
 import { useToast } from "@/components/ui/use-toast";
 import ImageUploader from "@/components/shared/ImageUploader";
-
-export const userUpdateSchema = z.object({
-    name: z.string().min(2).max(50),
-    gender: z.enum(["MALE", "FEMALE", "OTHER"]),
-    image: z.string(),
-    address: z.string().min(2).max(50),
-    phone: z.string().min(2).max(50),
-    birthdate: z.date(),
-});
+import { userUpdateSchema } from "@/lib/validation/UserUpdateSchema";
 
 type DashRidesProps = {
     params: {
@@ -73,7 +65,7 @@ const DashRides = ({ params }: DashRidesProps) => {
             form.setValue("phone", user.phone || "");
             form.setValue("birthdate", new Date(user.birthdate));
         }
-    }, [user]);
+    }, [user, form]);
 
     if (!user) {
         return null;
