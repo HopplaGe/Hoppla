@@ -97,7 +97,6 @@
         @apply font-FiraGO;
         font-feature-settings: "case" 1;
     }
-
     .car-plate-ui {
         background: #fff;
         padding: .25em 0.8em .25em 2em;
