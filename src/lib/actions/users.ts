@@ -26,6 +26,12 @@ export const getUserById = async (id: string) => {
             where: {
                 id,
             },
+            include: {
+                ratings: true,
+                Car: true,
+                Ride: true,
+                Trip: true,
+            }
         });
     } catch (error) {
         return null;
