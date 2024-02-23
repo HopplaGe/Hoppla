@@ -4,6 +4,6 @@ import {getAllRules} from "@/lib/actions/rules";
 export const useRules = () => {
     return useQuery({
         queryKey: ['rules'],
-        queryFn: async () => getAllRules()
+        queryFn: async () => await getAllRules()
     })
 }
