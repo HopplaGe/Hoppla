@@ -3,11 +3,16 @@ import React from 'react';
 import {Checkbox, CheckboxGroup, RadioGroup} from "@nextui-org/react";
 import {CustomRadio} from "./CustomRadio";
 import useSort from "@/hooks/rides/useSort";
-import {useSearchParams} from "next/navigation";
+import {useRules} from "@/hooks/rides/useRideRules";
 
 const Filter = () => {
 
-    const {sort, setSort, filter, setFilter} = useSort();
+    const {sort, setSort, filter, setFilter, rules, setRules} = useSort();
+
+    const {data, isLoading, error} = useRules();
+
+    if (isLoading) return <div>Loading...</div>
+    if (error) return <div>{error.message}</div>
 
     return (
         <div className="hidden lg:block">
@@ -39,13 +44,14 @@ const Filter = () => {
                 <div className="mt-4">
                     <CheckboxGroup
                         label="წესები"
-                        defaultValue={["buenos-aires"]}
+                        defaultValue={[rules as string]}
+                        onValueChange={setRules as any}
                     >
-                        <Checkbox value="buenos-aires">სიგარეტის მოწევა</Checkbox>
-                        <Checkbox value="london">ცხოველების ტრანსპორტირება</Checkbox>
-                        <Checkbox value="london">კონდიციონერი</Checkbox>
-                        <Checkbox value="london">ბარგი</Checkbox>
-
+                        {Array.isArray(data) && data.map((rule: any) => (
+                            <Checkbox key={rule.id} value={rule.id}>
+                                {rule.name}
+                            </Checkbox>
+                        ))}
                     </CheckboxGroup>
                 </div>
             </div>
