@@ -94,14 +94,15 @@ const OfferFinishForm = ({user, cars, searchParams, rules}: OfferFinishFormProps
     }, [distance, duration, price, form])
 
     const handleSubmit = (data: z.infer<typeof OfferFinishFormSchema>) => {
-        mutation.mutate(data, {
-            onSuccess: (ride) => {
-                router.push(`/ride?id=${ride?.id}`)
-            },
-            onError: (error) => {
-                console.error(error)
-            }
-        })
+        console.log(data)
+        // mutation.mutate(data, {
+        //     onSuccess: (ride) => {
+        //         router.push(`/ride?id=${ride?.id}`)
+        //     },
+        //     onError: (error) => {
+        //         console.error(error)
+        //     }
+        // })
     };
 
     return (
