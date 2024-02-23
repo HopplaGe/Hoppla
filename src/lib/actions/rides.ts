@@ -2,6 +2,8 @@
 
 import prisma from "@/lib/prisma"
 import {Ride, RideStatus} from "@prisma/client"
+import {revalidatePath} from "next/cache";
+import {rule} from "postcss";
 
 export const getRides = async () => {
     try {
@@ -30,7 +32,18 @@ export const getRideById = async (id: string) => {
                 id: id
             },
             include: {
-                passangers: true
+                trip: {
+                    include: {
+                        passangers: true
+                    }
+                },
+                driver: true,
+                rideRules: {
+                    select: {
+                        id: true,
+                        rule: true
+                    }
+                }
             }
         });
     } catch (error) {
@@ -55,15 +68,7 @@ export const getRidesByDriver = async (driverId: string) => {
                 price: true,
                 seats: true,
                 status: true,
-                passangers: {
-                    select: {
-                        id: true,
-                        name: true,
-                        email: true,
-                        phone: true,
-                        image: true
-                    }
-                }
+                trip: true
             }
         });
 
@@ -82,21 +87,23 @@ export const getRidesByDriver = async (driverId: string) => {
     }
 }
 
-export const getRidesByPassenger = async (passengerId: string) => {
-    try {
-        return await prisma.ride.findMany({
-            where: {
-                passangers: {
-                    some: {
-                        id: passengerId
-                    }
-                }
-            }
-        });
-    } catch (error) {
-        console.error(error)
-    }
-}
+// export const getRidesByPassenger = async (passengerId: string) => {
+//     try {
+//         return await prisma.ride.findMany({
+//             where: {
+//                 trip: {
+//                     passengers: {
+//                         some: {
+//                             id: passengerId
+//                         }
+//                     }
+//                 }
+//             }
+//         });
+//     } catch (error) {
+//         console.error(error)
+//     }
+// }
 
 export const getRidesByFrom = async (from: string) => {
     try {
@@ -196,38 +203,108 @@ export const getRidesByPrice = async (price: number) => {
     }
 }
 
-export const getRideByFromAndToAndDateAndSeats = async (from: string, to: string, date: string, seatsNumber: number, sort?: string,) => {
+export const getRideByFromAndToAndDateAndSeats = async (data: any) => {
+    // console.log(data.date)
     try {
-        return await prisma.ride.findMany({
-            // orderBy: {
-            //     price: sort === 'price-asc' ? 'asc' : undefined,
-            //     startTime: sort === 'time-asc' ? 'asc' : undefined,
-            // },
+        const res = await prisma.ride.findMany({
+            orderBy: {
+                price: data.sort === 'price-asc' ? 'asc' : undefined,
+                startTime: data.sort === 'time-asc' ? 'asc' : undefined,
+            },
             where: {
-                from: {
-                    contains: from
-                },
-                to: {
-                    contains: to
-                },
-                // startDate: new Date(date),
-                // seats: {
-                //     gte: seatsNumber
-                // }
+                AND: [
+                    {
+                        from: {
+                            contains: data.from
+                        }
+                    },
+                    {
+                        to: {
+                            contains: data.to
+                        }
+                    },
+                    {
+                        startDate: new Date(data.date)
+                    },
+                    {
+                        seats: {
+                            gte: parseInt(data.seats)
+                        }
+                    },
+                    {
+                        driver: {
+                            ratings: {
+                                some: {
+                                    rating: {
+                                        gte: 4
+                                    }
+                                },
+                            },
+                            phone: data.filter === ',verified' ? {
+                                not: null
+                            } : undefined,
+                        }
+                    },
+                ],
             },
             include: {
-                passangers: true
+                trip: {
+                    include: {
+                        passangers: true
+                    }
+                },
+                driver: {
+                    include: {
+                        _count: {
+                            select: {
+                                ratings: true
+                            }
+                        },
+                        Car: true,
+                        ratings: {
+                            select: {
+                                rating: true,
+                            }
+                        },
+                    }
+                },
             }
         });
+        revalidatePath('/')
+        return res;
+
     } catch (error) {
         return null;
     }
 }
 
-export const createRide = async (ride: Ride) => {
+export const createRide = async (ride: any) => {
+    // console.log(ride.rideRules.map(
+    //     (rule: any) => rule
+    // ))
     try {
         return await prisma.ride.create({
-            data: ride
+            data: {
+                ...ride,
+                rideRules: {
+                    create: ride.rideRules.map(
+                        (rule: any) => {
+                            return {
+                                rule: {
+                                    connect: {
+                                        id: rule
+                                    }
+                                }
+                            }
+                        }
+                    )
+                }
+            },
+            include: {
+                trip: true,
+                driver: true,
+                rideRules: true
+            }
         });
     } catch (error) {
         console.error(error)
