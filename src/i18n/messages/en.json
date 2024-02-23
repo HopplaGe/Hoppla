@@ -1,353 +1,388 @@
 {
-  "Index": {
-    "title": "Travel to your desired destination with the help of HOPPLA"
-  },
-  "LanguageSwitch": {
-    "choose-language": "Choose language"
-  },
-  "CarpoolPage": {
-    "title": "Carpool"
-  },
-  "NavBar": {
-    "Home": "Home",
-    "Carpool": "Carpool",
-    "MiniBuses": "Mini Buses",
-    "Buses": "Buses",
-    "PublishToRide": "Publish to ride",
-    "Authorization": "Authorization",
-    "UserActions": "User actions",
-    "UserMenu": {
-      "SignedInAs": "Signed in as",
-      "Profile": "Profile",
-      "MyRides": "My Rides",
-      "MyVehicles": "My Vehicles",
-      "MyTickets": "My Tickets",
-      "MyPayments": "My Payments",
-      "Analytics": "Analytics",
-      "Settings": "Settings",
-      "LogOut": "Log out"
-    }
-  },
-  "Footer": {
-    "Pronounce": "Travel to your desired destination with the help of HOPPLA. Get the latest information and book a ticket with your smartphone.",
-    "RidesOfTheDay": "Rides of the day",
-    "Blog": "Blog",
-    "LearnMore": "Learn more",
-    "PopularPlaces": "Popular places",
-    "PopularRoutes": "Popular routes",
-    "HowItWorks": "How it works",
-    "AboutUs": "About us",
-    "Support": "Support",
-    "Careers": "Careers"
-  },
-  "SearchForm": {
-    "From": "From",
-    "To": "To",
-    "Date": "Date",
-    "Passenger": "Passenger",
-    "Search": "Search"
-  },
-  "Cities": {
-    "Tbilisi": "Tbilisi",
-    "Batumi": "Batumi",
-    "Kutaisi": "Kutaisi",
-    "Rustavi": "Rustavi",
-    "Gori": "Gori",
-    "Poti": "Poti",
-    "Zugdidi": "Zugdidi",
-    "Telavi": "Telavi",
-    "Mtskheta": "Mtskheta",
-    "Akhaltsikhe": "Akhaltsikhe",
-    "Kobuleti": "Kobuleti",
-    "Ureki": "Ureki",
-    "Sighnaghi": "Sighnaghi",
-    "Bakuriani": "Bakuriani",
-    "Gudauri": "Gudauri",
-    "Borjomi": "Borjomi",
-    "Kazbegi": "Kazbegi",
-    "Anaklia": "Anaklia",
-    "Mestia": "Mestia",
-    "Stepantsminda": "Stepantsminda",
-    "Kvareli": "Kvareli"
-  },
-  "UserRoles": {
-    "ADMIN": "Administrator",
-    "USER": "User"
-  },
-  "Admin": {
-    "MainStats": {
-      "TotalUsers": "Total Users",
-      "TotalRides": "Total Rides",
-      "TotalRevenue": "Total Revenue",
-      "TotalCashOuts": "Total Cash Outs"
-    }
-  },
-  "MyCars": {
-    "MyVehicles": "My Vehicles",
-    "AddVehicle": "Add Vehicle",
-    "VehicleBrand": "Brand",
-    "VehicleModel": "Model",
-    "VehicleYear": "Year",
-    "VehicleColor": "Color",
-    "VehiclePlateNumber": "Plate Number",
-    "NoVehicles": "You have no vehicles"
-  },
-  "Actions": {
-    "Edit": "Edit",
-    "Delete": "Delete",
-    "Save": "Save",
-    "Cancel": "Cancel",
-    "Add": "Add",
-    "Close": "Close",
-    "Back": "Back"
-  },
-  "Dashboard": {
-    "DashSidebar": {
-      "Navigation": "Navigation",
-      "Manage": "Manage",
-      "Home": "Home",
-      "Rides": "Rides",
-      "ManageRides": "Manage Rides",
-      "Tickets": "Tickets",
-      "ManageTickets": "Manage Tickets",
-      "Rates": "Rates",
-      "ManageRates": "Manage Rates",
-      "Payments": "Payments",
-      "ManagePayments": "Manage Payments",
-      "Settings": "Settings",
-      "ManageSettings": "Manage Settings"
-    }
-  },
-  "Rides": {
-    "Rides": "Rides",
-    "RideResults": "Results",
-    "AddRide": "Add Ride",
-    "RideDetails": "Ride Details",
-    "RideDate": "Date",
-    "RideTime": "Time",
-    "RideFrom": "From",
-    "RideTo": "To",
-    "RidePrice": "Price",
-    "RideSeats": "Seats",
-    "RideDescription": "Description",
-    "RideCar": "Car",
-    "RidePassengers": "Passengers",
-    "RidePassenger": "Passenger",
-    "RidePassengerName": "Name",
-    "RidePassengerPhone": "Phone",
-    "RidePassengerEmail": "Email",
-    "RidePassengerSeats": "Seats",
-    "RidePassengerStatus": "Status",
-    "RidePassengerStatuses": {
-      "PENDING": "Pending",
-      "APPROVED": "Approved",
-      "REJECTED": "Rejected",
-      "CANCELED": "Canceled",
-      "COMPLETED": "Completed",
-      "DELETED": "Deleted",
-      "EXPIRED": "Expired",
-      "PAID": "Paid",
-      "UNPAID": "Unpaid",
-      "REFUNDED": "Refunded",
-      "PARTIALLY_REFUNDED": "Partially Refunded",
-      "REFUND_PENDING": "Refund Pending",
-      "REFUND_CANCELED": "Refund Canceled",
-      "REFUND_COMPLETED": "Refund Completed",
-      "REFUND_PROCESSING": "Refund Processing",
-      "REFUND_WAITING": "Refund Waiting",
-      "REFUND_REJECTED": "Refund Rejected",
-      "REFUND_FAILED": "Refund Failed",
-      "REFUND_EXPIRED": "Refund Expired"
+    "Index": {
+        "title": "Travel to your desired destination with the help of HOPPLA"
     },
-    "RideStatus": "Status",
-    "RideStatuses": {
-      "PENDING": "Pending",
-      "APPROVED": "Approved",
-      "REJECTED": "Rejected",
-      "CANCELED": "Canceled",
-      "COMPLETED": "Completed",
-      "DELETED": "Deleted",
-      "EXPIRED": "Expired"
+    "LanguageSwitch": {
+        "choose-language": "Choose language"
     },
-    "RidePassengerActions": {
-      "Approve": "Approve",
-      "Reject": "Reject",
-      "Cancel": "Cancel",
-      "Complete": "Complete",
-      "Delete": "Delete",
-      "Refund": "Refund"
+    "CarpoolPage": {
+        "title": "Carpool"
     },
-    "NoRides": "You have no rides",
-    "NoPassengers": "No passengers",
-    "NoTickets": "No tickets",
-    "NoPayments": "No payments",
-    "NoRates": "No rates",
-    "NoSettings": "No settings",
-    "NoVehicles": "No vehicles",
-    "NoUsers": "No users",
-    "NoData": "No data",
-    "TransportType": "Transport Type",
-    "TransportTypes": {
-      "ALL": "All",
-      "CAR": "Car",
-      "MINIVAN": "Minivan",
-      "BUS": "Bus"
+    "NavBar": {
+        "Home": "Home",
+        "Carpool": "Carpool",
+        "MiniBuses": "Mini Buses",
+        "Buses": "Buses",
+        "PublishToRide": "Publish to ride",
+        "Authorization": "Authorization",
+        "UserActions": "User actions",
+        "UserMenu": {
+            "SignedInAs": "Signed in as",
+            "Profile": "Profile",
+            "MyRides": "My Rides",
+            "MyVehicles": "My Vehicles",
+            "MyTickets": "My Tickets",
+            "MyPayments": "My Payments",
+            "Analytics": "Analytics",
+            "Settings": "Settings",
+            "LogOut": "Log out"
+        }
     },
-    "ResultList":{
-      "Results": "Results",
-      "Ride": "Ride",
-      "From": "From",
-      "To": "To",
-      "Date": "Date",
-      "Time": "Time",
-      "Price": "Price",
-      "Seats": "Seats",
-      "Description": "Description",
-      "TransportType": "Transport Type",
-      "Actions": "Actions",
-      "FoundRide": "Found {count} rides"
-    }
-  },
-  "OfferSeats": {
-    "title": "Become a HOPPLA driver and save on travel costs by sharing your ride with passengers.",
-    "OfferSeatsForm": {
-      "title": "Offer Seats",
-      "From": "From",
-      "FromPlaceholder": "Enter the city you are leaving from",
-      "To": "To",
-      "ToPlaceholder": "Enter the city you are going to",
-      "Date": "Date",
-      "Time": "Time",
-      "Price": "Price",
-      "Seats": "Seats",
-      "Description": "Description",
-      "TransportType": "Transport Type",
-      "TransportTypes": {
-        "CAR": "Car",
-        "MINIVAN": "Minivan",
-        "BUS": "Bus"
-      },
-      "Offer": "Offer",
-      "Cancel": "Cancel",
-      "SaveMoney": "Save up to {price}₾ on your first ride.",
-      "PublishARide": "Publish a ride"
+    "Footer": {
+        "Pronounce": "Travel to your desired destination with the help of HOPPLA. Get the latest information and book a ticket with your smartphone.",
+        "RidesOfTheDay": "Rides of the day",
+        "Blog": "Blog",
+        "LearnMore": "Learn more",
+        "PopularPlaces": "Popular places",
+        "PopularRoutes": "Popular routes",
+        "HowItWorks": "How it works",
+        "AboutUs": "About us",
+        "Support": "Support",
+        "Careers": "Careers"
     },
-    "OfferSeatsSuccess": {
-      "title": "Your ride has been successfully published",
-      "message": "Your ride has been successfully published. You can view it in the list of rides."
+    "SearchForm": {
+        "From": "From",
+        "To": "To",
+        "Date": "Date",
+        "Passenger": "Passenger",
+        "Search": "Search"
     },
-    "OfferSeatsError": {
-      "title": "An error occurred while publishing the ride",
-      "message": "An error occurred while publishing the ride. Please try again later."
+    "Cities": {
+        "Tbilisi": "Tbilisi",
+        "Batumi": "Batumi",
+        "Kutaisi": "Kutaisi",
+        "Rustavi": "Rustavi",
+        "Gori": "Gori",
+        "Poti": "Poti",
+        "Zugdidi": "Zugdidi",
+        "Telavi": "Telavi",
+        "Mtskheta": "Mtskheta",
+        "Akhaltsikhe": "Akhaltsikhe",
+        "Kobuleti": "Kobuleti",
+        "Ureki": "Ureki",
+        "Sighnaghi": "Sighnaghi",
+        "Bakuriani": "Bakuriani",
+        "Gudauri": "Gudauri",
+        "Borjomi": "Borjomi",
+        "Kazbegi": "Kazbegi",
+        "Anaklia": "Anaklia",
+        "Mestia": "Mestia",
+        "Stepantsminda": "Stepantsminda",
+        "Kvareli": "Kvareli"
     },
-    "OfferSeatsConfirmation": {
-      "title": "Offer Seats Confirmation",
-      "message": "Are you sure you want to offer seats?"
+    "UserRoles": {
+        "ADMIN": "Administrator",
+        "USER": "User"
     },
-    "OfferSeatsInfoCards": {
-      "title": "Hoopla is the best way to travel comfortably and cheaply.",
-      "SaveOnTravelCosts": "Save on travel costs",
-      "SaveOnTravelCostsDescription": "Share your ride with passengers on your way, and save every time you travel by car. Sign up as a driver to start saving on travel costs.",
-      "JoinATrustworthyCommunity": "Join a trustworthy community",
-      "JoinATrustworthyCommunityDescription": "Join a community of 1.2 million members, and enjoy the benefits of carpooling and sharing rides with others.",
-      "CarpoolingMadeSimple": "Carpooling made simple",
-      "CarpoolingMadeSimpleDescription": "Offer your seats and travel with other members. Carpooling is a simple, fun, and cost-effective way to travel."
+    "Admin": {
+        "MainStats": {
+            "TotalUsers": "Total Users",
+            "TotalRides": "Total Rides",
+            "TotalRevenue": "Total Revenue",
+            "TotalCashOuts": "Total Cash Outs"
+        }
     },
-    "FinishForm": {
-      "distanceTitle": "Distance",
-      "distance": "{distance} km",
-      "durationTitle": "Duration",
-      "duration": "{duration} h",
-      "passengersTitle": "Passengers",
-      "passengers": "{passengers} people",
-      "departureTimeTitle": "Departure Time",
-      "chooseCarTitle": "Choose Car"
-    }
-  },
+    "MyCars": {
+        "MyVehicles": "My Vehicles",
+        "AddVehicle": "Add Vehicle",
+        "VehicleBrand": "Brand",
+        "VehicleModel": "Model",
+        "VehicleYear": "Year",
+        "VehicleColor": "Color",
+        "VehiclePlateNumber": "Plate Number",
+        "NoVehicles": "You have no vehicles"
+    },
+    "Actions": {
+        "Edit": "Edit",
+        "Delete": "Delete",
+        "Save": "Save",
+        "Cancel": "Cancel",
+        "Add": "Add",
+        "Close": "Close",
+        "Back": "Back"
+    },
+    "Dashboard": {
+        "DashSidebar": {
+            "Navigation": "Navigation",
+            "Manage": "Manage",
+            "Home": "Home",
+            "Rides": "Rides",
+            "ManageRides": "Manage Rides",
+            "Tickets": "Tickets",
+            "ManageTickets": "Manage Tickets",
+            "Rates": "Rates",
+            "ManageRates": "Manage Rates",
+            "Payments": "Payments",
+            "ManagePayments": "Manage Payments",
+            "Settings": "Settings",
+            "ManageSettings": "Manage Settings"
+        }
+    },
+    "Rides": {
+        "Rides": "Rides",
+        "RideResults": "Results",
+        "AddRide": "Add Ride",
+        "RideDetails": "Ride Details",
+        "RideDate": "Date",
+        "RideTime": "Time",
+        "RideFrom": "From",
+        "RideTo": "To",
+        "RidePrice": "Price",
+        "RideSeats": "Seats",
+        "RideDescription": "Description",
+        "RideCar": "Car",
+        "RidePassengers": "Passengers",
+        "RidePassenger": "Passenger",
+        "RidePassengerName": "Name",
+        "RidePassengerPhone": "Phone",
+        "RidePassengerEmail": "Email",
+        "RidePassengerSeats": "Seats",
+        "RidePassengerStatus": "Status",
+        "RidePassengerStatuses": {
+            "PENDING": "Pending",
+            "APPROVED": "Approved",
+            "REJECTED": "Rejected",
+            "CANCELED": "Canceled",
+            "COMPLETED": "Completed",
+            "DELETED": "Deleted",
+            "EXPIRED": "Expired",
+            "PAID": "Paid",
+            "UNPAID": "Unpaid",
+            "REFUNDED": "Refunded",
+            "PARTIALLY_REFUNDED": "Partially Refunded",
+            "REFUND_PENDING": "Refund Pending",
+            "REFUND_CANCELED": "Refund Canceled",
+            "REFUND_COMPLETED": "Refund Completed",
+            "REFUND_PROCESSING": "Refund Processing",
+            "REFUND_WAITING": "Refund Waiting",
+            "REFUND_REJECTED": "Refund Rejected",
+            "REFUND_FAILED": "Refund Failed",
+            "REFUND_EXPIRED": "Refund Expired"
+        },
+        "RideStatus": "Status",
+        "RideStatuses": {
+            "PENDING": "Pending",
+            "APPROVED": "Approved",
+            "REJECTED": "Rejected",
+            "CANCELED": "Canceled",
+            "COMPLETED": "Completed",
+            "DELETED": "Deleted",
+            "EXPIRED": "Expired"
+        },
+        "RidePassengerActions": {
+            "Approve": "Approve",
+            "Reject": "Reject",
+            "Cancel": "Cancel",
+            "Complete": "Complete",
+            "Delete": "Delete",
+            "Refund": "Refund"
+        },
+        "NoRides": "You have no rides",
+        "NoPassengers": "No passengers",
+        "NoTickets": "No tickets",
+        "NoPayments": "No payments",
+        "NoRates": "No rates",
+        "NoSettings": "No settings",
+        "NoVehicles": "No vehicles",
+        "NoUsers": "No users",
+        "NoData": "No data",
+        "TransportType": "Transport Type",
+        "TransportTypes": {
+            "ALL": "All",
+            "CAR": "Car",
+            "MINIVAN": "Minivan",
+            "BUS": "Bus"
+        },
+        "ResultList": {
+            "Results": "Results",
+            "Ride": "Ride",
+            "From": "From",
+            "To": "To",
+            "Date": "Date",
+            "Time": "Time",
+            "Price": "Price",
+            "Seats": "Seats",
+            "Description": "Description",
+            "TransportType": "Transport Type",
+            "Actions": "Actions",
+            "FoundRide": "Found {count} rides"
+        }
+    },
+    "OfferSeats": {
+        "title": "Become a HOPPLA driver and save on travel costs by sharing your ride with passengers.",
+        "OfferSeatsForm": {
+            "title": "Offer Seats",
+            "From": "From",
+            "FromPlaceholder": "Enter the city you are leaving from",
+            "To": "To",
+            "ToPlaceholder": "Enter the city you are going to",
+            "Date": "Date",
+            "Time": "Time",
+            "Price": "Price",
+            "Seats": "Seats",
+            "Description": "Description",
+            "TransportType": "Transport Type",
+            "TransportTypes": {
+                "CAR": "Car",
+                "MINIVAN": "Minivan",
+                "BUS": "Bus"
+            },
+            "Offer": "Offer",
+            "Cancel": "Cancel",
+            "SaveMoney": "Save up to {price}₾ on your first ride.",
+            "PublishARide": "Publish a ride"
+        },
+        "OfferSeatsSuccess": {
+            "title": "Your ride has been successfully published",
+            "message": "Your ride has been successfully published. You can view it in the list of rides."
+        },
+        "OfferSeatsError": {
+            "title": "An error occurred while publishing the ride",
+            "message": "An error occurred while publishing the ride. Please try again later."
+        },
+        "OfferSeatsConfirmation": {
+            "title": "Offer Seats Confirmation",
+            "message": "Are you sure you want to offer seats?"
+        },
+        "OfferSeatsInfoCards": {
+            "title": "Hoopla is the best way to travel comfortably and cheaply.",
+            "SaveOnTravelCosts": "Save on travel costs",
+            "SaveOnTravelCostsDescription": "Share your ride with passengers on your way, and save every time you travel by car. Sign up as a driver to start saving on travel costs.",
+            "JoinATrustworthyCommunity": "Join a trustworthy community",
+            "JoinATrustworthyCommunityDescription": "Join a community of 1.2 million members, and enjoy the benefits of carpooling and sharing rides with others.",
+            "CarpoolingMadeSimple": "Carpooling made simple",
+            "CarpoolingMadeSimpleDescription": "Offer your seats and travel with other members. Carpooling is a simple, fun, and cost-effective way to travel."
+        },
+        "FinishForm": {
+            "distanceTitle": "Distance",
+            "distance": "{distance} km",
+            "durationTitle": "Duration",
+            "duration": "{duration} h",
+            "passengersTitle": "Passengers",
+            "passengers": "{passengers} people",
+            "departureTimeTitle": "Departure Time",
+            "chooseCarTitle": "Choose Car"
+        }
+    },
 
-  "OfferingsSection": {
-    "AffordableAdventures": {
-      "title": "Affordable Adventures",
-      "description": "Discover great places to visit without spending too much money! Whether you're traveling by bus or sharing a ride with others, we have lots of affordable options for you."
+    "OfferingsSection": {
+        "AffordableAdventures": {
+            "title": "Affordable Adventures",
+            "description": "Discover great places to visit without spending too much money! Whether you're traveling by bus or sharing a ride with others, we have lots of affordable options for you."
+        },
+        "SafeTravels": {
+            "title": "Safe Travels",
+            "description": "We care about your safety. We check the people who use our service and the companies we work with to make sure they're trustworthy. You can relax knowing who you'll be traveling with and book securely through our app."
+        },
+        "EasyBooking": {
+            "title": "Easy Booking",
+            "description": "Booking your next trip is super easy with our app. Just search for nearby rides, click on the one you like, and you're all set to go!"
+        }
     },
-    "SafeTravels": {
-      "title": "Safe Travels",
-      "description": "We care about your safety. We check the people who use our service and the companies we work with to make sure they're trustworthy. You can relax knowing who you'll be traveling with and book securely through our app."
+    "CarpoolHeroSection": {
+        "StaySafeFromScams": {
+            "linkText": "Learn More",
+            "title": "Stay Safe from Scams",
+            "description": "We want to keep you safe while using our platform. Even though we try our best, scams still happen. Learn how to spot and report scams to help us protect you."
+        },
+        "PublishARide": {
+            "linkText": "Publish a Ride",
+            "title": "Save Money on Your Trips!",
+            "description": "Start saving money on your travels today with Hoppla! By offering your rides on our platform, you can share the costs with your passengers, making your trips more affordable and enjoyable for everyone involved."
+        },
+        "EarningABonusForCarpooling": {
+            "linkText": "Learn More",
+            "title": "Earning a Bonus for Carpooling!",
+            "description": "Exciting update for drivers: You are now eligible to earn rewards for your carpooling! Qualify for the Carpool Bonus by completing 3 carpool trips within 3 months."
+        }
     },
-    "EasyBooking": {
-      "title": "Easy Booking",
-      "description": "Booking your next trip is super easy with our app. Just search for nearby rides, click on the one you like, and you're all set to go!"
+    "FAQSection": {
+        "title": "FAQ Hoppla",
+        "joinFAQ": "Join the FAQ on Discord",
+        "content": {
+            "question1": "How can I book a ride on Hoppla?",
+            "answer1": "Booking your next trip is super easy with our app. Just search for nearby rides, click on the one you like, and you're all set to go!",
+            "question2": "Are the rides on Hoppla affordable?",
+            "answer2": "Absolutely! Hoppla offers affordable options for traveling by car or sharing a ride with others. Discover great places to visit without spending too much money!",
+            "question3": "Is safety a priority on Hoppla?",
+            "answer3": "Yes, safety is our top priority. We thoroughly check the people who use our service and the people we work with to ensure they're trustworthy. You can relax knowing who you'll be traveling with and book securely through our app."
+        }
+    },
+    "Hero": {
+        "title": "Use {company} to travel where you want",
+        "subtitle": "Hoppla connects you to top transportation options in your area, from buses to carpooling, ensuring a smooth and enjoyable travel experience for you.",
+        "travelBtn": "Travel Now",
+        "loginBtn": "Log In",
+        "aboutTitle": "Travel to your desired destination with the help of {company}",
+        "aboutDesc": "Hoppla is a platform that connects you with the best transportation services in your area. We offer a wide range of services, including buses, carpooling, and more. Our goal is to make your travel experience as smooth and enjoyable as possible."
+    },
+    "BusesHeroSection": {
+        "reliableService": {
+            "title": "Reliable Service",
+            "description": "You can trust Hoppla for safe and dependable bus rides. Our drivers are experienced, and our buses are well looked after, so you'll have a smooth journey every time.",
+            "linkText": "Learn More"
+        },
+        "comfortableTravel": {
+            "title": "Enjoy Comfortable Bus Travel",
+            "description": "Hoppla offers comfy and cheap bus rides for all your travel needs. Whether you're going far or just across town, our buses are a great way to get there without spending too much.",
+            "linkText": "Learn More"
+        },
+        "bookRide": {
+            "title": "Book Your Bus Ride Now",
+            "description": "Ready to go on an adventure? Book your bus ride with Hoppla today and enjoy a comfortable and affordable journey!",
+            "linkText": "Learn More"
+        }
+    },
+    "MiniBusesHeroSection": {
+        "findEasyTravel": {
+            "title": "Find Easy Mini Bus Travel",
+            "description": "Discover how simple it is to travel in mini buses with Hoppla! Whether you're going around town or on a short trip, our mini buses give you comfy rides at low prices. Fast Rides",
+            "linkText": "Learn More"
+        },
+        "comfyTravel": {
+            "title": "Comfy Travel",
+            "description": "Relax in our well-kept mini buses. They're cozy and clean, making your journey pleasant and easy.",
+            "linkText": "Learn More"
+        },
+        "bookRide": {
+            "title": "Book Your Ride Today",
+            "description": "Ready to go? Book your mini bus ride with Hoppla now and enjoy an easy journey!",
+            "linkText": "Book Now"
+        }
+    },
+    "RidesTable": {
+        "id": "ID",
+        "from": "FROM",
+        "to": "TO",
+        "startDate": "START DATE",
+        "startTime": "START TIME",
+        "duration": "DURATION",
+        "distance": "DISTANCE",
+        "price": "PRICE",
+        "seats": "SEATS",
+        "status": "STATUS",
+        "passangers": "PASSANGERS",
+        "actions": "ACTIONS",
+        "pending": "PENDING",
+        "accepted": "ACCEPTED",
+        "rejected": "REJECTED",
+        "canceled": "CANCELED",
+        "completed": "COMPLETED",
+        "totalRides": " Total {length} rides",
+        "rowsPerPage": "Rows per page",
+        "allItemsSelected": "All items selected",
+        "sizeOfSizeSelected": "{size1} of {size2} selected",
+        "previous": "Previous",
+        "next": "Next",
+        "columns": "Columns",
+        "statusButton": "Status",
+        "view": "View",
+        "edit": "Edit",
+        "delete": "Delete",
+        "noFound": "No rides found",
+        "durationInHours": "{hours} h",
+        "distanceInKm": "{distance} km",
+        "priceIn": "{price} ₾",
+        "searchByFromOrTo": "Search by from or to"
     }
-  },
-  "CarpoolHeroSection": {
-    "StaySafeFromScams": {
-      "linkText": "Learn More",
-      "title": "Stay Safe from Scams",
-      "description": "We want to keep you safe while using our platform. Even though we try our best, scams still happen. Learn how to spot and report scams to help us protect you."
-    },
-    "PublishARide": {
-      "linkText": "Publish a Ride",
-      "title": "Save Money on Your Trips!",
-      "description": "Start saving money on your travels today with Hoppla! By offering your rides on our platform, you can share the costs with your passengers, making your trips more affordable and enjoyable for everyone involved."
-    },
-    "EarningABonusForCarpooling": {
-      "linkText": "Learn More",
-      "title": "Earning a Bonus for Carpooling!",
-      "description": "Exciting update for drivers: You are now eligible to earn rewards for your carpooling! Qualify for the Carpool Bonus by completing 3 carpool trips within 3 months."
-    }
-  },
-  "FAQSection": {
-    "title": "FAQ Hoppla",
-    "joinFAQ": "Join the FAQ on Discord",
-    "content": {
-      "question1": "How can I book a ride on Hoppla?",
-      "answer1": "Booking your next trip is super easy with our app. Just search for nearby rides, click on the one you like, and you're all set to go!",
-      "question2": "Are the rides on Hoppla affordable?",
-      "answer2": "Absolutely! Hoppla offers affordable options for traveling by car or sharing a ride with others. Discover great places to visit without spending too much money!",
-      "question3": "Is safety a priority on Hoppla?",
-      "answer3": "Yes, safety is our top priority. We thoroughly check the people who use our service and the people we work with to ensure they're trustworthy. You can relax knowing who you'll be traveling with and book securely through our app."
-    }
-  },
-  "Hero": {
-    "title": "Use {company} to travel where you want",
-    "subtitle": "Hoppla connects you to top transportation options in your area, from buses to carpooling, ensuring a smooth and enjoyable travel experience for you.",
-    "travelBtn": "Travel Now",
-    "loginBtn": "Log In",
-    "aboutTitle": "Travel to your desired destination with the help of {company}",
-    "aboutDesc": "Hoppla is a platform that connects you with the best transportation services in your area. We offer a wide range of services, including buses, carpooling, and more. Our goal is to make your travel experience as smooth and enjoyable as possible."
-  },
-  "BusesHeroSection": {
-    "reliableService": {
-      "title": "Reliable Service",
-      "description": "You can trust Hoppla for safe and dependable bus rides. Our drivers are experienced, and our buses are well looked after, so you'll have a smooth journey every time.",
-      "linkText": "Learn More"
-    },
-    "comfortableTravel": {
-      "title": "Enjoy Comfortable Bus Travel",
-      "description": "Hoppla offers comfy and cheap bus rides for all your travel needs. Whether you're going far or just across town, our buses are a great way to get there without spending too much.",
-      "linkText": "Learn More"
-    },
-    "bookRide": {
-      "title": "Book Your Bus Ride Now",
-      "description": "Ready to go on an adventure? Book your bus ride with Hoppla today and enjoy a comfortable and affordable journey!",
-      "linkText": "Learn More"
-    }
-  },
-  "MiniBusesHeroSection": {
-    "findEasyTravel": {
-      "title": "Find Easy Mini Bus Travel",
-      "description": "Discover how simple it is to travel in mini buses with Hoppla! Whether you're going around town or on a short trip, our mini buses give you comfy rides at low prices. Fast Rides",
-      "linkText": "Learn More"
-    },
-    "comfyTravel": {
-      "title": "Comfy Travel",
-      "description": "Relax in our well-kept mini buses. They're cozy and clean, making your journey pleasant and easy.",
-      "linkText": "Learn More"
-    },
-    "bookRide": {
-      "title": "Book Your Ride Today",
-      "description": "Ready to go? Book your mini bus ride with Hoppla now and enjoy an easy journey!",
-      "linkText": "Book Now"
-    }
-  }
 }

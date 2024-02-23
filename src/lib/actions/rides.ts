@@ -1,7 +1,7 @@
-"use server"
+"use server";
 
-import prisma from "@/lib/prisma"
-import { Ride, RideStatus } from "@prisma/client"
+import prisma from "@/lib/prisma";
+import { Ride, RideStatus } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -10,44 +10,44 @@ export const getRides = async () => {
         const rides = await prisma.ride.findMany();
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRide = async (id: string) => {
     try {
         const ride = await prisma.ride.findUnique({
             where: {
-                id: id
-            }
+                id: id,
+            },
         });
         return ride;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRideById = async (id: string) => {
     try {
         const ride = await prisma.ride.findUnique({
             where: {
-                id: id
+                id: id,
             },
             include: {
-                passangers: true
-            }
+                passangers: true,
+            },
         });
         return ride;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesByDriver = async (driverId: string) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                driverId: driverId
+                driverId: driverId,
             },
             select: {
                 id: true,
@@ -66,26 +66,26 @@ export const getRidesByDriver = async (driverId: string) => {
                         name: true,
                         email: true,
                         phone: true,
-                        image: true
-                    }
-                }
-            }
+                        image: true,
+                    },
+                },
+            },
         });
 
         const driver = await prisma.user.findUnique({
             where: {
-                id: driverId
-            }
+                id: driverId,
+            },
         });
 
         return {
             rides: rides,
-            driver: driver
+            driver: driver,
         };
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesByPassenger = async (passengerId: string) => {
     try {
@@ -93,124 +93,130 @@ export const getRidesByPassenger = async (passengerId: string) => {
             where: {
                 passangers: {
                     some: {
-                        id: passengerId
-                    }
-                }
-            }
+                        id: passengerId,
+                    },
+                },
+            },
         });
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesByFrom = async (from: string) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                from: from
-            }
+                from: from,
+            },
         });
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesByTo = async (to: string) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
                 to: {
-                    contains: to
+                    contains: to,
                 },
-            }
+            },
         });
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesByDate = async (date: Date) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                startDate: date
-            }
+                startDate: date,
+            },
         });
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesBySeats = async (seats: number) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                seats: seats
-            }
+                seats: seats,
+            },
         });
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesByCar = async (carId: string) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                carId: carId
-            }
+                carId: carId,
+            },
         });
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesByDistance = async (distance: number) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                distance: distance
-            }
+                distance: distance,
+            },
         });
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesByDuration = async (duration: number) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                duration: duration
-            }
+                duration: duration,
+            },
         });
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const getRidesByPrice = async (price: number) => {
     try {
         const rides = await prisma.ride.findMany({
             where: {
-                price: price
-            }
+                price: price,
+            },
         });
         return rides;
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
-export const getRideByFromAndToAndDateAndSeats = async (from: string, to: string, date: string, seatsNumber: number, sort?: string,) => {
+export const getRideByFromAndToAndDateAndSeats = async (
+    from: string,
+    to: string,
+    date: string,
+    seatsNumber: number,
+    sort?: string
+) => {
     try {
         return await prisma.ride.findMany({
             // orderBy: {
@@ -219,10 +225,10 @@ export const getRideByFromAndToAndDateAndSeats = async (from: string, to: string
             // },
             where: {
                 from: {
-                    contains: from
+                    contains: from,
                 },
                 to: {
-                    contains: to
+                    contains: to,
                 },
                 // startDate: new Date(date),
                 // seats: {
@@ -230,60 +236,60 @@ export const getRideByFromAndToAndDateAndSeats = async (from: string, to: string
                 // }
             },
             include: {
-                passangers: true
-            }
+                passangers: true,
+            },
         });
     } catch (error) {
         return null;
     }
-}
+};
 
 export const createRide = async (ride: Ride) => {
     try {
         return await prisma.ride.create({
-            data: ride
+            data: ride,
         });
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const updateRide = async (ride: Ride) => {
     try {
         await prisma.ride.update({
             where: {
-                id: ride.id
+                id: ride.id,
             },
-            data: ride
+            data: ride,
         });
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const updateRideStatus = async (id: string, status: string) => {
     try {
         await prisma.ride.update({
             where: {
-                id: id
+                id: id,
             },
             data: {
-                status: status as RideStatus
-            }
+                status: status as RideStatus,
+            },
         });
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
 export const deleteRide = async (id: string) => {
     try {
         await prisma.ride.delete({
             where: {
-                id: id
-            }
+                id: id,
+            },
         });
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
