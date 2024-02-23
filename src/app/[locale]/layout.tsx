@@ -1,11 +1,12 @@
-import { ReactNode } from "react";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import {ReactNode} from "react";
+import type {Metadata} from "next";
+import {Inter} from "next/font/google";
 import "./globals.css";
 import Providers from "@/providers/Providers";
-import { notFound } from "next/navigation";
+import {notFound} from "next/navigation";
+import {Toaster} from "@/components/ui/toaster"
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({subsets: ["latin"]});
 
 export const metadata: Metadata = {
     title: "Hoppla - Ride with us",
@@ -15,9 +16,9 @@ export const metadata: Metadata = {
 };
 
 export default async function RootLayout({
-    children,
-    params: { locale },
-}: {
+                                             children,
+                                             params: {locale},
+                                         }: {
     children: ReactNode;
     params: { locale: string };
 }) {
@@ -30,13 +31,14 @@ export default async function RootLayout({
 
     return (
         <html lang={locale}>
-            <body className={inter.className}>
-                <Providers locale={locale} messages={messages}>
+        <body className={inter.className}>
+        <Providers locale={locale} messages={messages}>
 
-                    {children}
-                </Providers>
+            {children}
+            <Toaster/>
+        </Providers>
 
-            </body>
+        </body>
         </html>
     );
 }
