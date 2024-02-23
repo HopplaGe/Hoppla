@@ -246,8 +246,8 @@ export const getRideByFromAndToAndDateAndSeats = async (data: any) => {
                             phone:
                                 data.filter === "verified"
                                     ? {
-                                          not: null,
-                                      }
+                                        not: null,
+                                    }
                                     : undefined,
                         },
                     },

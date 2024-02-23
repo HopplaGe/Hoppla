@@ -39,6 +39,5 @@ next-env.d.ts
 /pgdata
 
 aws.yml
-.vercel
 
 .vscode
