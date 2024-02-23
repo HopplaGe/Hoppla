@@ -25,6 +25,8 @@ declare module "next-auth" {
             phone: string;
             birthdate: string;
             gender: Gender;
+            createdAt: string;
+            updatedAt: string;
         };
     }
 }

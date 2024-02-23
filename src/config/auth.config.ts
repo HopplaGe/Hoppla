@@ -1,5 +1,5 @@
-import Google from "next-auth/providers/google"
-import type { NextAuthConfig } from "next-auth"
+import Google from "next-auth/providers/google";
+import type { NextAuthConfig } from "next-auth";
 
 export default {
     pages: {
@@ -17,15 +17,18 @@ export default {
         }),
     ],
     callbacks: {
-        async signIn({
-                         // user, account, profile, email, credentials
-        }) {
+        async signIn(
+            {
+                // user, account, profile, email, credentials
+            }
+        ) {
             // console.log("signIn", {user, account, profile, email, credentials})
             return true;
         },
         async redirect({
-                           // url,
-                           baseUrl }) {
+            // url,
+            baseUrl,
+        }) {
             // console.log("redirect", {url, baseUrl})
             return baseUrl;
         },
