@@ -5,14 +5,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button, Input } from "@nextui-org/react";
 import { Select, SelectItem } from "@nextui-org/react";
-import { Image } from "@nextui-org/react";
 
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { useSession } from "next-auth/react";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { updateUser } from "@/lib/actions/users";
-import { uploadImage } from "@/lib/actions/s3actions";
 import { useToast } from "@/components/ui/use-toast";
 import ImageUploader from "@/components/shared/ImageUploader";
 import { userUpdateSchema } from "@/lib/validation/UserUpdateSchema";
