@@ -23,7 +23,7 @@ export default async function BlogPage({
     const blogs = await getArticles([], locale);
     const latestBlog = blogs[0];
 
-    if (blogs.length === 0) {
+    if (!blogs || blogs.length === 0) {
         return (
             <div className="page-wrapper fira-go my-10 text-3xl text-center font-bold">
                 No blogs found
