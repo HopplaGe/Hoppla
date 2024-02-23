@@ -204,7 +204,7 @@ export const getRidesByPrice = async (price: number) => {
 }
 
 export const getRideByFromAndToAndDateAndSeats = async (data: any) => {
-    // console.log(data.date)
+    console.log(data)
     try {
         const res = await prisma.ride.findMany({
             orderBy: {
@@ -240,11 +240,20 @@ export const getRideByFromAndToAndDateAndSeats = async (data: any) => {
                                     }
                                 },
                             },
-                            phone: data.filter === ',verified' ? {
+                            phone: data.filter === 'verified' ? {
                                 not: null
                             } : undefined,
                         }
                     },
+                    {
+                        rideRules: {
+                            some: {
+                                ruleId: {
+                                    in: data.rules ? data.rules.split(",") : undefined
+                                }
+                            }
+                        }
+                    }
                 ],
             },
             include: {
