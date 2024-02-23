@@ -17,18 +17,6 @@ const RideCard = ({ride: rideData, searchParams}: { ride: any, searchParams: any
     const {distance: fromDistance} = useDirections(searchParams.from, rideData.from);
     const {distance: toDistance} = useDirections(searchParams.to, rideData.to);
 
-    const [driver, setDriver] = useState({} as any)
-
-    const detectDriver = useCallback(async () => {
-        const driver = await getUserById(rideData.driverId);
-        setDriver(driver);
-    }, [rideData.driverId])
-
-    useEffect(() => {
-        detectDriver().then(r => r);
-    }, [detectDriver])
-
-
     return (
         <Link
             href={`/ride?id=${rideData.id}&requested_seats=${searchParams.seats}&from=${searchParams.from}&to=${searchParams.to}`}>
@@ -153,12 +141,14 @@ const RideCard = ({ride: rideData, searchParams}: { ride: any, searchParams: any
                 <div className="flex items-center gap-2">
                     <div className="flex items-center gap-2">
                         <div className="rounded-xl text-white p-0.5">
-                            <Avatar radius="md" size="sm" src={driver?.image}/>
+                            <Avatar radius="md" size="sm" src={rideData?.driver?.image}/>
                         </div>
                         <div className="flex flex-col">
-                            <span className="text-sm fira-go">{driver?.name}</span>
+                            <span className="text-sm fira-go">{rideData?.driver?.name}</span>
                             <span className="text-xs fira-go">
-                                <span className="text-gray-500">4.3</span>
+                                <span className="text-gray-500">
+                                    {rideData?.driver?.ratings?.length > 0 ? rideData?.driver?.ratings?.reduce((acc: number, rating: any) => acc + rating.rating, 0) / rideData?.driver?.ratings?.length : 0}
+                                </span>
                                 <span className="text-yellow-400">★</span>
                             </span>
                         </div>
@@ -168,7 +158,7 @@ const RideCard = ({ride: rideData, searchParams}: { ride: any, searchParams: any
                     {/* <span className="text-sm fira-go">{rideData.price} €</span> */}
                     <div className="flex flex-row text-sm fira-go">
                         <AvatarGroup>
-                            {rideData.passangers && rideData?.passangers?.map((passanger: any, index: number) => (
+                            {rideData.trip?.passangers && rideData?.trip?.passangers?.map((passanger: any, index: number) => (
                                 <Avatar key={index} radius="md" size="sm" src={passanger.image}/>
                             ))}
                         </AvatarGroup>
