@@ -3,6 +3,7 @@ import {Locale} from 'date-fns';
 import moment from 'moment';
 import {Listbox, ListboxItem} from '@nextui-org/react';
 import {cn} from '@/lib/utils';
+import {Time} from "@internationalized/date";
 
 type TimeProps = {
     locale?: Locale
@@ -19,24 +20,22 @@ type TimeProps = {
     clearAriaLabel?: string
 }
 
-const Time = ({
-                  onSelect,
-              }: TimeProps) => {
+const TimePicker = ({
+                        onSelect,
+                    }: TimeProps) => {
     const [times, setTimes] = useState<Array<any>>([]);
 
     useEffect(() => {
         const formatTime = () => {
             const items: string[] = [];
-            new Array(24).fill(
-                0
-            ).forEach((index) => {
+            new Array(24).fill(0).forEach((_, index) => { // Use `index` instead of `Time`
                 items.push(moment({hour: index}).format('H:mm'));
                 items.push(moment({hour: index, minute: 10}).format('H:mm'));
                 items.push(moment({hour: index, minute: 20}).format('H:mm'));
                 items.push(moment({hour: index, minute: 30}).format('H:mm'));
                 items.push(moment({hour: index, minute: 40}).format('H:mm'));
                 items.push(moment({hour: index, minute: 50}).format('H:mm'));
-            })
+            });
             // console.log('items', items);
             setTimes(items);
         }
@@ -66,4 +65,4 @@ const Time = ({
     )
 }
 
-export default Time
+export default TimePicker
