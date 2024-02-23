@@ -9,7 +9,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Libraries, useJsApiLoader} from "@react-google-maps/api";
 import {Button, Input} from "@nextui-org/react";
 import {cn} from "@/lib/utils";
-import { useRouter} from "next/navigation";
+import {useRouter} from "next/navigation";
 
 type pageProps = {
     searchParams?: { [key: string]: string | string[] | undefined };
@@ -56,7 +56,8 @@ const Departure = ({searchParams}: pageProps) => {
 
     return (
         <div className="pt-8">
-            <div className="px-0 lg:px-8 page-wrapper absolute bottom-0 lg:relative w-full max-w-5xl py-8 z-20 bg-white rounded-xl shadow-xl flex justify-center items-center sm:h-96 md:h-auto">
+            <div
+                className="px-0 lg:px-8 page-wrapper absolute bottom-0 lg:relative w-full max-w-5xl py-8 z-20 bg-white rounded-xl shadow-xl flex justify-center items-center sm:h-96 md:h-auto">
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleSubmit)}
                           className="w-full h-full flex flex-col gap-6 justify-center items-center">
@@ -89,7 +90,7 @@ const Departure = ({searchParams}: pageProps) => {
                 </Form>
             </div>
 
-            <div className="absolute h-4/5 lg:h-screen inset-0 w-full object-cover bg-blend-screen">
+            <div className="absolute h-4/5 lg:h-screen inset-0 w-full object-cover bg-blend-screen z-10">
                 <div
                     className="w-full h-full">
                     <Map from={searchParams?.from as string} to={searchParams?.to as string}
