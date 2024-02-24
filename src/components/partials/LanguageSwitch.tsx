@@ -37,7 +37,7 @@ export default function LanguageSwitch() {
                 label={t("choose-language")}
             >
                 {(locales ?? []).map((locale) => (
-                    <SelectItem key={locale} value={locale}>
+                    <SelectItem key={locale} value={locale} className="fira-go">
                         {localeLabels[locale as Locale]}
                     </SelectItem>
                 ))}

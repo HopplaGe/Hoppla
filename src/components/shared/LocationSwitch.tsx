@@ -33,7 +33,7 @@ const LocationSwitch = () => {
             >
                 {(countries ?? []).map((country) => (
 
-                    <SelectItem key={country.id} value={country.id}>
+                    <SelectItem key={country.id} value={country.id} className="fira-go">
                         {country.name}
                     </SelectItem>
                 ))}
