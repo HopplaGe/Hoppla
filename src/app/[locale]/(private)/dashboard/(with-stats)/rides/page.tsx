@@ -1,12 +1,7 @@
-// import { getRidesByDriver } from '@/lib/actions/rides';
-// import { auth } from '@/lib/auth';
-// import { cn } from '@/lib/utils';
-// import React, { Suspense } from 'react';
-// import Ride from './_components/Ride';
-import { getRidesByDriver } from "@/lib/actions/rides";
-import { auth } from "@/lib/auth";
-import { cn } from "@/lib/utils";
-import React, { Suspense } from "react";
+import {getRidesByDriver} from "@/lib/actions/rides/get";
+import {auth} from "@/lib/auth";
+import {cn} from "@/lib/utils";
+import React, {Suspense} from "react";
 import RidesTable from "./_components/RidesTable";
 
 const DashRides = async () => {
@@ -14,7 +9,7 @@ const DashRides = async () => {
 
     const user = session?.user;
 
-    const myrides = await getRidesByDriver(user?.id!);
+    const myRides = await getRidesByDriver(user?.id!);
 
     return (
         <div>
@@ -24,12 +19,7 @@ const DashRides = async () => {
                 )}
             >
                 <Suspense fallback={<div>Loading...</div>}>
-                    {/* {myrides?.rides.map((ride: any) => (
-                        <li key={ride.id} className="w-full">
-                            <Ride ride={ride} />
-                        </li>
-                    ))} */}
-                    {myrides && <RidesTable rides={myrides.rides} />}
+                    {myRides && <RidesTable rides={myRides}/>}
                 </Suspense>
             </ul>
         </div>
