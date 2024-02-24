@@ -1,11 +1,9 @@
-import {useLocale} from "next-intl";
 import Hero from "@/components/partials/Hero";
 import OfferingsSection from "./(ride)/_components/OfferingsSection";
 import MobileAppBlock from "@/components/partials/MobileAppBlock";
 import {Suspense} from "react";
 import SearchBox from "@/components/partials/SearchBox";
 import SvgMap from "@/components/shared/maps/SvgMap";
-import {getCountry} from "@/lib/actions/countries";
 import About from "@/components/shared/About";
 
 const Home = async () => {
