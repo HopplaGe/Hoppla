@@ -1,4 +1,4 @@
-import {getRideById} from '@/lib/actions/rides'
+import {getRideById} from '@/lib/actions/rides/get'
 import "moment/locale/ka"
 import React, {FC, Suspense} from 'react'
 import RideDetails from './_components/RideDetails'
