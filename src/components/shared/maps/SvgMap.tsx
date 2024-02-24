@@ -41,7 +41,10 @@ const SvgMap = () => {
     const {data: regions, isLoading, error} = useGetRegionByCountryId(country as string)
 
 
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) {
+        return <div
+            className='page-wrapper relative mx-auto  flex flex-col justify-center gap-4 lg:mt-14'>Loading...</div>
+    }
     if (error) return <p>{error.message}</p>
 
     return (
