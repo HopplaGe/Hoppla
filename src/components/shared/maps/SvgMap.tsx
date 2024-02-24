@@ -20,7 +20,7 @@ const SvgMap = () => {
     const [selectedCity, setSelectedCity] = useState('')
 
     const [value] = useLocalStorage('country', "");
-    const {data: regions, isLoading, error} = useGetRegionByCountryId(value)
+
 
     useEffect(() => {
         ridesCountByDirection(selectedCity as string).then(data => setRideStat(data as number))
@@ -37,6 +37,12 @@ const SvgMap = () => {
     const mouseLeave = useCallback(() => {
         setSelectedCity("")
     }, [])
+
+    const {data: regions, isLoading, error} = useGetRegionByCountryId(value ? value : "GEO")
+
+
+    if (isLoading) return <p>Loading...</p>
+    if (error) return <p>{error.message}</p>
 
     return (
         <div className='page-wrapper relative mx-auto  flex flex-col justify-center gap-4 lg:mt-14'>
