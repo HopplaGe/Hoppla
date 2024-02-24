@@ -18,8 +18,7 @@ export const publicRoutes = [
     "/buses",
     "/offer-seats",
     "/search",
-    "/blog",
-    "/blog/[id]",
+    "/blog"
 ];
 export const adminRoutes = ["/manage"];
 
@@ -35,7 +34,7 @@ export default function middleware(request: NextRequest) {
         const isLoggedIn = !!req.auth;
         const userRole = req.auth?.user.role;
         if (!isLoggedIn) {
-            return redirect(request, "/login");
+            return redirect(request, "/");
         }
         if (routeType === "admin" && userRole !== "ADMIN") {
             return redirect(request, "/");

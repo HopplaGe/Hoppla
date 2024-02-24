@@ -35,7 +35,7 @@ export default async function page({params}: pageProps) {
                 <Button variant="light" color="default" className="p-2 min-w-unit-0" as={Link} href={"/blog"}
                         startContent={<ChevronLeft size={44}/>}/>
                 <h1
-                    className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900 leading-10"
+                    className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-900"
                     data-astro-transition-scope="astro-X4J6SPKD-2"
                 >
                     {blog.title}
