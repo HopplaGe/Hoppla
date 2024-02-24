@@ -20,7 +20,7 @@ const BlogLinks = () => {
                 {articles?.map((article, index) => (
                     <li key={index}>
                         <Link
-                            href={article.id}
+                            href={`blog/${article.id}`}
                             className="text-sm leading-6 text-gray-600 hover:text-gray-900 fira-go"
                         >
                             {String(article.title).substring(0, 40) + '...'}

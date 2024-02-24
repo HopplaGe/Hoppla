@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
-import { auth } from "./lib/auth";
+import {NextRequest, NextResponse} from "next/server";
+import {auth} from "./lib/auth";
 import createIntlMiddleware from "next-intl/middleware";
-import { locales, defaultLocale, localePrefix } from "./i18n/locales";
-import { getRouteType, redirect } from "./lib/middlewareFunctions";
+import {locales, defaultLocale, localePrefix} from "./i18n/locales";
+import {getRouteType, redirect} from "./lib/middlewareFunctions";
 
 const intlMiddleware = createIntlMiddleware({
     locales,
@@ -19,6 +19,7 @@ export const publicRoutes = [
     "/offer-seats",
     "/search",
     "/blog",
+    "/blog/[id]",
 ];
 export const adminRoutes = ["/manage"];
 
