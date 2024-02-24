@@ -1,21 +1,21 @@
 "use client"
-import React, { useCallback, useEffect, useState } from 'react';
-import { Button } from "@nextui-org/react";
-import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
-import { Popover, PopoverContent, PopoverTrigger } from "@nextui-org/react";
-import { useForm } from "react-hook-form";
-import { useTranslations } from "next-intl";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import React, {useCallback, useEffect, useState} from 'react';
+import {Button} from "@nextui-org/react";
+import {Form, FormControl, FormField, FormItem} from "@/components/ui/form";
+import {Popover, PopoverContent, PopoverTrigger} from "@nextui-org/react";
+import {useForm} from "react-hook-form";
+import {useTranslations} from "next-intl";
+import {z} from "zod";
+import {zodResolver} from "@hookform/resolvers/zod";
 
-import { PlacesInput } from "@/components/ui/places-input";
+import {PlacesInput} from "@/components/ui/places-input";
 import useDirections from "@/hooks/maps/useDirections";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Libraries, useJsApiLoader } from "@react-google-maps/api";
-import { cn } from '@/lib/utils';
+import {usePathname, useRouter, useSearchParams} from "next/navigation";
+import {Libraries, useJsApiLoader} from "@react-google-maps/api";
+import {cn} from '@/lib/utils';
 import NumberSelector from '../ui/number-selector';
-import { User } from 'lucide-react';
-import { Label } from '../ui/label';
+import {User} from 'lucide-react';
+import {Label} from '../ui/label';
 
 const OfferSeatsScheme = z.object({
     from: z.string(),
@@ -29,7 +29,7 @@ const OfferSeatsForm = () => {
     const t = useTranslations("OfferSeats.OfferSeatsForm");
     const t2 = useTranslations("Cities");
 
-    const { isLoaded } = useJsApiLoader({
+    const {isLoaded} = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string,
         libraries: libraries as Libraries,
@@ -55,7 +55,7 @@ const OfferSeatsForm = () => {
         }
     });
 
-    const { price } = useDirections(fromState, toState, seatState);
+    const {price} = useDirections(fromState, toState, seatState);
 
     useEffect(() => {
         setFromState(form.getValues("from"))
@@ -68,11 +68,11 @@ const OfferSeatsForm = () => {
     // }, [fromState, toState]);
 
     const createQueryStrings = useCallback((name: string, value: string) => {
-        const params = new URLSearchParams(searchParams.toString())
-        params.set(name, value)
+            const params = new URLSearchParams(searchParams.toString())
+            params.set(name, value)
 
-        return params.toString()
-    },
+            return params.toString()
+        },
         [searchParams]);
 
     const handleSubmit = async (values: any) => {
@@ -108,7 +108,7 @@ const OfferSeatsForm = () => {
                     <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-6 pt-6">
                         <FormField
                             name="from"
-                            render={({ field }) => (
+                            render={({field}) => (
                                 <FormItem>
                                     <FormControl>
                                         <PlacesInput
@@ -125,7 +125,7 @@ const OfferSeatsForm = () => {
                         />
                         <FormField
                             name="to"
-                            render={({ field }) => (
+                            render={({field}) => (
                                 <FormItem>
                                     <FormControl>
                                         <PlacesInput
@@ -143,12 +143,13 @@ const OfferSeatsForm = () => {
 
                         <FormField
                             name="seats"
-                            render={({ field }) => (
+                            render={({field}) => (
                                 <FormItem>
                                     <Popover placement={device === "desktop" ? "right-start" : "bottom-start"}>
                                         <PopoverTrigger>
                                             <FormControl>
-                                                <div className="relative w-full h-full border border-gray-100 md:border-l-0 bg-default-100 rounded-xl p-2 flex flex-col ">
+                                                <div
+                                                    className="relative w-full h-full border border-gray-100 md:border-l-0 bg-default-100 rounded-xl p-2 flex flex-col ">
                                                     <Label className='text-xs'>{t("Seats")}</Label>
                                                     <div
                                                         className={cn(
@@ -156,7 +157,7 @@ const OfferSeatsForm = () => {
                                                             !field.value && "text-muted-foreground"
                                                         )}
                                                     >
-                                                        <User size={12} />
+                                                        <User size={12}/>
                                                         {field.value ? field.value : <span>1</span>} მგზავრი
                                                     </div>
                                                 </div>
@@ -173,13 +174,12 @@ const OfferSeatsForm = () => {
                         />
 
 
-
                         <span className="block text-lg w-full text-center">
                             {t.rich('SaveMoney', {
-                                price: price.toFixed(2),
-                                priceBox: (chunks) => <span
-                                    className="text-primary text-xl font-semibold">{chunks}</span>
-                            }
+                                    price: (price * seatState).toFixed(2),
+                                    priceBox: (chunks) => <span
+                                        className="text-primary text-xl font-semibold">{chunks}</span>
+                                }
                             )}
                         </span>
                         <Button
