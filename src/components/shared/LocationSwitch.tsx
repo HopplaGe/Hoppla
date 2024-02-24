@@ -18,7 +18,7 @@ const LocationSwitch = () => {
     if (isLoading) return <p>Loading...</p>
 
     const handleCountryChange = (e: any) => {
-        console.log(e.target.value);
+        setValue(e.target.value);
     }
 
     return (
