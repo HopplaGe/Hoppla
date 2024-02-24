@@ -2,8 +2,8 @@ import DirectionsHeader from "@/components/rides/directions/DirectionsHeader";
 import OfferFinishForm from "./_components/OfferFinishForm";
 import {auth} from "@/lib/auth";
 import {getUserByEmail} from "@/lib/actions/users";
-import {getCarByOwnerId} from "@/lib/actions/cars";
 import {getAllRules} from "@/lib/actions/rules";
+import {getCarByOwnerId} from "@/lib/actions/cars/get";
 
 type pageProps = {
     searchParams?: { [key: string]: string | undefined };

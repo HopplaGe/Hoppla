@@ -1,6 +1,6 @@
 import {auth} from "@/lib/auth";
 import MyVehicles from "@/components/shared/MyVehicles";
-import {getCarByOwnerId} from "@/lib/actions/cars";
+import {getCarByOwnerId} from "@/lib/actions/cars/get";
 
 const Dashboard = async () => {
     const session = await auth();

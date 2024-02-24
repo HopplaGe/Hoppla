@@ -4,31 +4,25 @@ import {cn} from '@/lib/utils'
 import {Tooltip} from '@nextui-org/react'
 import {PopulatedAreaStatus} from '@prisma/client'
 import React, {FC, useCallback, useEffect, useState} from 'react'
+import {useGetRegionByCountryId, useGetRegions} from "@/hooks/maps/useGetRegions";
+import {useLocalStorage} from "usehooks-ts";
 
 const occupiedRegionStyle = "fill-primary hover:fill-primary-dark text-white"
 const regionStyle = "fill-default-200 hover:fill-default-300 stroke-white stroke-1 text-gray-800 hover:z-50 hoppla-animation"
 const capitalPinStyle = "stroke-secondary stroke-2 fill-primary hoppla-animation"
 const cityPinStyle = "stroke-secondary stroke-2 fill-white group-hover:fill-primary hoppla-animation svg-map-circle"
 
-type SvgMapProps = {
-    regions: {
-        id: string
-        isOccupied: boolean
-        svgCoords: string
-        populatedAreas: {
-            name: string
-            svgCoords: string
-            status: PopulatedAreaStatus
-            isCapital: boolean
-        }[]
-    }[]
-}
 
-const SvgMap: FC<SvgMapProps> = ({regions}) => {
+const SvgMap = () => {
 
     const [allRidesStat, setAllRidesStat] = useState(0)
     const [rideStat, setRideStat] = useState(allRidesStat)
     const [selectedCity, setSelectedCity] = useState('')
+
+    const [value] = useLocalStorage('country', "");
+    const {data: regions, isLoading, error} = useGetRegionByCountryId(value)
+
+    console.log("SvgMap.tsx: SvgMap: value: ", value)
 
     useEffect(() => {
         ridesCountByDirection(selectedCity as string).then(data => setRideStat(data as number))

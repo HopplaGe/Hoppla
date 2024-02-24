@@ -1,11 +1,18 @@
 "use client";
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useGetCountries} from "@/hooks/maps/useGetCountries";
 import {Select, SelectItem} from "@nextui-org/react";
+import {useLocalStorage} from 'usehooks-ts'
 
 const LocationSwitch = () => {
 
     const {data: countries, isLoading, error} = useGetCountries();
+
+    const [value, setValue] = useLocalStorage('country', !isLoading ? countries?.find((country) => country.code === 'GE')?.id : null);
+
+    useEffect(() => {
+        setValue(!isLoading ? countries?.find((country) => country.code === 'GE')?.id : null);
+    }, [countries, isLoading, setValue]);
 
     if (error) return <p>Error...</p>
     if (isLoading) return <p>Loading...</p>

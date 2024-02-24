@@ -11,9 +11,6 @@ const AdminAside = async () => {
     return (
         <aside
             className="fixed bottom-0 left-20 top-16 hidden xl:w-64 2xl:w-96 overflow-y-auto border-r border-gray-200 px-4 py-6 sm:px-6 lg:px-4 xl:block">
-
-            <UrgentInfoForm/>
-
             <AdminAsideComponents props={""}/>
 
         </aside>

@@ -66,14 +66,14 @@ const UrgentInfoForm = () => {
     // console.log(info)
 
     return (
-        <div className="w-full flex flex-col gap-2 items-start pb-4">
+        <div className="w-full flex flex-col gap-2 items-start bg-white p-4 rounded-xl">
             <h2>
                 სასწრაფო ინფორმაცია
             </h2>
             {!info ? (
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(handleSubmit)}
-                          className="w-full space-y-6 fira-go mb-6 border-b-2 border-default-100 py-4">
+                          className="w-full space-y-6 fira-go">
                         <FormField
                             name="title"
                             render={({field}) => (

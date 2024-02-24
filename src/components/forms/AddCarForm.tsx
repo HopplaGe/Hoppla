@@ -11,7 +11,7 @@ import {RadioGroup} from '@headlessui/react'
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
 import {useTranslations} from "next-intl";
-import {createCar} from "@/lib/actions/cars";
+import {createCar} from "@/lib/actions/cars/create";
 
 const cars = [
     {

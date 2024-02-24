@@ -1,14 +1,14 @@
 "use server"
 import prisma from "@/lib/prisma";
-import { Region } from "@prisma/client";
+import {Region} from "@prisma/client";
 
 export const getRegions = async () => {
-   return prisma.region.findMany({
-       include: {
-           populatedAreas: true,
-           country: true
-       }
-   });
+    return prisma.region.findMany({
+        include: {
+            populatedAreas: true,
+            country: true
+        }
+    });
 }
 
 export const getRegionById = async (id: string) => {
@@ -31,6 +31,17 @@ export const getRegionsByStatusCount = async (status: boolean) => {
     return prisma.region.count({
         where: {
             isOccupied: status
+        }
+    });
+}
+
+export const getRegionsByCountryId = async (countryId: string) => {
+    return prisma.region.findMany({
+        where: {
+            countryId
+        },
+        include: {
+            populatedAreas: true
         }
     });
 }

@@ -9,11 +9,6 @@ import {getCountry} from "@/lib/actions/countries";
 import About from "@/components/shared/About";
 
 const Home = async () => {
-    const local = useLocale();
-
-    const countryId = local === "ka" ? "clsum148l0000m3n7kz6e4auk" : "clsreu24j0001j6z8pv4sb5vd";
-
-    const country = await getCountry(countryId);
 
     return (
         <>
@@ -25,7 +20,7 @@ const Home = async () => {
                 <div className="page-wrapper mt-6 md:mt-0 mb-8 lg:mb-0">
                     <About/>
                 </div>
-                <SvgMap regions={country?.regions}/>
+                <SvgMap/>
             </div>
 
             <OfferingsSection/>
