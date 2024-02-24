@@ -24,7 +24,7 @@ const UserView = async ({params}: UserViewProps) => {
             <div className="page-wrapper w-full lg:w-1/2 max-w-7xl py-4 lg:py-8 flex flex-col fira-go divide-y-4">
                 <HeadingBlock user={user}/>
 
-                <RatingsBlock ratings={user?.ratings}/>
+                <RatingsBlock ratings={user?.Rated}/>
 
                 <VerifyBlock user={user} verifiedId={verifiedId}/>
 
