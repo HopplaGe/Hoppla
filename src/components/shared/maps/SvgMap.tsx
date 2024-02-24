@@ -5,7 +5,7 @@ import {Tooltip} from '@nextui-org/react'
 import {PopulatedAreaStatus} from '@prisma/client'
 import React, {FC, useCallback, useEffect, useState} from 'react'
 import {useGetRegionByCountryId, useGetRegions} from "@/hooks/maps/useGetRegions";
-import {useLocalStorage} from "usehooks-ts";
+import {useReadLocalStorage} from "usehooks-ts";
 
 const occupiedRegionStyle = "fill-primary hover:fill-primary-dark text-white"
 const regionStyle = "fill-default-200 hover:fill-default-300 stroke-white stroke-1 text-gray-800 hover:z-50 hoppla-animation"
@@ -19,7 +19,7 @@ const SvgMap = () => {
     const [rideStat, setRideStat] = useState(allRidesStat)
     const [selectedCity, setSelectedCity] = useState('')
 
-    const [value] = useLocalStorage('country', "");
+    const country = useReadLocalStorage('country')
 
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const SvgMap = () => {
         setSelectedCity("")
     }, [])
 
-    const {data: regions, isLoading, error} = useGetRegionByCountryId(value ? value : "GEO")
+    const {data: regions, isLoading, error} = useGetRegionByCountryId(country as string)
 
 
     if (isLoading) return <p>Loading...</p>
