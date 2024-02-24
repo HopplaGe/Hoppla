@@ -262,11 +262,11 @@ export const getRideByFromAndToAndDateAndSeats = async (data: any) => {
                     include: {
                         _count: {
                             select: {
-                                ratings: true,
+                                Rated: true,
                             },
                         },
                         Car: true,
-                        ratings: {
+                        Rated: {
                             select: {
                                 rating: true,
                             },
