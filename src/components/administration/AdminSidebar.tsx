@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import {Building2, CalendarIcon, CarTaxiFront, HomeIcon, Rss} from "lucide-react";
+import {Building2, CalendarIcon, CarTaxiFront, HomeIcon, Rss, SignpostBig, UsersRound} from "lucide-react";
 import {ChartPieIcon, DocumentDuplicateIcon} from "@heroicons/react/16/solid";
 import {cn} from "@/lib/utils";
 import hopplaMiniLogo from "@/assets/images/mini_logo.png";
@@ -11,12 +11,13 @@ import {useLocale} from 'next-intl';
 
 
 const navigation = [
-    {name: 'Dashboard', href: '/manage', icon: HomeIcon, current: true},
-    {name: 'Populated Areas', href: '/manage/populated-areas', icon: Building2, current: false},
-    {name: 'Companies', href: '/manage/companies', icon: CarTaxiFront, current: false},
-    {name: 'Blog', href: '/manage/articles', icon: Rss, current: false},
-    {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},
-    {name: 'Reports', href: '#', icon: ChartPieIcon, current: false},
+    {name: 'მთავარი', href: '/manage', icon: HomeIcon, current: true},
+    {name: 'მგზავრობები', href: '#', icon: SignpostBig, current: false},
+    {name: 'დასახლებული პუნქტები', href: '/manage/populated-areas', icon: Building2, current: false},
+    {name: 'კომპანიები', href: '/manage/companies', icon: CarTaxiFront, current: false},
+    {name: 'მომხმარებლები', href: '#', icon: UsersRound, current: false},
+    {name: 'ბლოგი', href: '/manage/articles', icon: Rss, current: false},
+    {name: 'რაპორტები', href: '#', icon: ChartPieIcon, current: false},
 ]
 
 const AdminSidebar = () => {
