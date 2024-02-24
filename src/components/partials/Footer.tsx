@@ -6,6 +6,8 @@ import Link from "next/link";
 import {useTranslations} from "next-intl";
 import LanguageSwitch from "@/components/partials/LanguageSwitch";
 import LocationSwitch from "@/components/shared/LocationSwitch";
+import BlogLinks from "@/components/shared/BlogLinks";
+import DailyRideLinks from "@/components/shared/DailyRideLinks";
 
 const navigation = {
     blog: [
@@ -134,31 +136,8 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="mt-16 grid md:grid-cols-3 col-span-2 gap-8 lg:mt-0">
-                        <div>
-                            <h3 className="text-lg font-semibold leading-6 text-gray-900 fira-go">
-                                {t("RidesOfTheDay")}
-                            </h3>
-                            <ul role="list" className="mt-6 space-y-4">
-                                <li>...</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h3 className="text-lg font-semibold leading-6 text-gray-900 fira-go">
-                                {t("Blog")}
-                            </h3>
-                            <ul role="list" className="mt-6 space-y-4">
-                                {navigation.blog.map((item) => (
-                                    <li key={item.name}>
-                                        <Link
-                                            href={item.href}
-                                            className="text-sm leading-6 text-gray-600 hover:text-gray-900"
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+                        <DailyRideLinks/>
+                        <BlogLinks/>
                         <div className="mt-10 md:mt-0">
                             <h3 className="text-lg font-semibold leading-6 text-gray-900 fira-go">
                                 {t("LearnMore")}
