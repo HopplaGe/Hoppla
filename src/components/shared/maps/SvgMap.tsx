@@ -22,8 +22,6 @@ const SvgMap = () => {
     const [value] = useLocalStorage('country', "");
     const {data: regions, isLoading, error} = useGetRegionByCountryId(value)
 
-    console.log("SvgMap.tsx: SvgMap: value: ", value)
-
     useEffect(() => {
         ridesCountByDirection(selectedCity as string).then(data => setRideStat(data as number))
     }, [selectedCity, setRideStat])
