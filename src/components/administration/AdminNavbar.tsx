@@ -2,25 +2,41 @@
 import React, {Fragment, useState} from 'react';
 import {MagnifyingGlassIcon} from "@radix-ui/react-icons";
 import {Bars3Icon, ChartPieIcon, DocumentDuplicateIcon, XMarkIcon} from "@heroicons/react/16/solid";
-import {BellIcon, CalendarIcon, FolderIcon, HomeIcon, Car} from "lucide-react";
+import {
+    BellIcon,
+    CalendarIcon,
+    FolderIcon,
+    HomeIcon,
+    Car,
+    SignpostBig,
+    Building2,
+    CarTaxiFront,
+    UsersRound, Rss
+} from "lucide-react";
 import {Dialog, Transition} from "@headlessui/react";
 import {cn} from "@/lib/utils";
 import {useSession} from "next-auth/react";
 import UserDropdownMenu from "@/components/shared/UserDropdownMenu";
-import {useTranslations} from "next-intl";
+import {useLocale, useTranslations} from "next-intl";
 import LanguageSwitch from "@/components/partials/LanguageSwitch";
 import Logo from "@/components/shared/Logo";
+import {usePathname} from "next/navigation";
+import Link from "next/link";
+import {Button} from "@nextui-org/react";
 
 const navigation = [
-    {name: 'Dashboard', href: '#', icon: HomeIcon, current: true},
-    {name: 'Team', href: '#', icon: Car, current: true},
-    {name: 'Projects', href: '#', icon: FolderIcon, current: false},
-    {name: 'Calendar', href: '#', icon: CalendarIcon, current: false},
-    {name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false},
-    {name: 'Reports', href: '#', icon: ChartPieIcon, current: false},
+    {name: 'მთავარი', href: '/manage', icon: HomeIcon, current: true},
+    {name: 'მგზავრობები', href: '#', icon: SignpostBig, current: false},
+    {name: 'დასახლებული პუნქტები', href: '/manage/populated-areas', icon: Building2, current: false},
+    {name: 'კომპანიები', href: '/manage/companies', icon: CarTaxiFront, current: false},
+    {name: 'მომხმარებლები', href: '#', icon: UsersRound, current: false},
+    {name: 'ბლოგი', href: '/manage/articles', icon: Rss, current: false},
+    {name: 'რაპორტები', href: '#', icon: ChartPieIcon, current: false},
 ]
 
 const AdminNavbar = () => {
+    const locale = useLocale();
+    const pathname = usePathname();
     const [sidebarOpen, setSidebarOpen] = useState(false)
     const session = useSession()
     const {data} = session;
@@ -86,7 +102,7 @@ const AdminNavbar = () => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <div className="fixed inset-0 bg-gray-900/80"/>
+                        <div className="fixed inset-0 bg-default-900/20"/>
                     </Transition.Child>
 
                     <div className="fixed inset-0 flex">
@@ -110,16 +126,23 @@ const AdminNavbar = () => {
                                     leaveTo="opacity-0"
                                 >
                                     <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
-                                        <button type="button" className="-m-2.5 p-2.5"
-                                                onClick={() => setSidebarOpen(false)}>
-                                            <span className="sr-only">Close sidebar</span>
-                                            <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true"/>
-                                        </button>
+                                        <Button
+                                            variant="solid"
+                                            color="primary"
+                                            className="py-3 min-w-unit-0"
+                                            onClick={() => setSidebarOpen(false)}
+                                            startContent={<XMarkIcon className="h-6 w-6" aria-hidden="true"/>}
+                                        />
+                                        {/*<button type="button" className="-m-2.5 p-2.5"*/}
+                                        {/*        onClick={() => setSidebarOpen(false)}>*/}
+                                        {/*    <span className="sr-only">Close sidebar</span>*/}
+                                        {/*    <XMarkIcon className="h-6 w-6 text-primary" aria-hidden="true"/>*/}
+                                        {/*</button>*/}
                                     </div>
                                 </Transition.Child>
 
                                 <div
-                                    className="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-2 ring-1 ring-white/10">
+                                    className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 ring-1 ring-white/10">
                                     <div className="flex h-16 shrink-0 items-center">
                                         <Logo/>
                                     </div>
@@ -127,18 +150,19 @@ const AdminNavbar = () => {
                                         <ul role="list" className="-mx-2 flex-1 space-y-1">
                                             {navigation.map((item) => (
                                                 <li key={item.name}>
-                                                    <a
+                                                    <Link
                                                         href={item.href}
+                                                        onClick={() => setSidebarOpen(false)}
                                                         className={cn(
-                                                            item.current
-                                                                ? 'bg-gray-800 text-white'
-                                                                : 'text-gray-400 hover:text-white hover:bg-gray-800',
-                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
+                                                            pathname === "/" + locale + item.href
+                                                                ? 'bg-secondary text-white'
+                                                                : 'text-default-800 hover:text-white hover:bg-secondary',
+                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold fira-go hoppla-animation'
                                                         )}
                                                     >
                                                         <item.icon className="h-6 w-6 shrink-0" aria-hidden="true"/>
                                                         {item.name}
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             ))}
                                         </ul>
