@@ -1,7 +1,7 @@
 import React, {Suspense} from 'react';
 import SearchBox from "@/components/partials/SearchBox";
 import RidesResultList from "@/components/rides/RidesResultList";
-import {getRideByFromAndToAndDateAndSeats} from '@/lib/actions/rides';
+import {getRideByFromAndToAndDateAndSeats} from '@/lib/actions/rides/get';
 import CarTypesTab from "./_components/CarTypesTab";
 import Filter from "./_components/Filter";
 import {
