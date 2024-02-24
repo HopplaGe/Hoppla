@@ -1,7 +1,7 @@
 "use server";
 import prisma from "@/lib/prisma";
-import { z } from "zod";
-import { userUpdateSchema } from "../validation/UserUpdateSchema";
+import {z} from "zod";
+import {userUpdateSchema} from "../validation/UserUpdateSchema";
 
 // find user by email
 
@@ -26,10 +26,11 @@ export const getUserById = async (id: string) => {
                 id,
             },
             include: {
-                ratings: true,
                 Car: true,
                 Ride: true,
                 Trip: true,
+                Rating: true,
+                Rated: true,
             }
         });
     } catch (error) {
