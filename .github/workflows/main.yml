@@ -4,11 +4,6 @@ on:
   push:
     branches: [ main ]
 
-env:
-  PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
-  REPO_NAME: ${{ secrets.CONTAINER_NAME }}
-  REGION: ${{ secrets.REGION }}
-
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -33,26 +28,6 @@ jobs:
 
       - name: Test
         run: npm test
-
-  auth:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Login to GCR
-        uses: google-github-actions/setup-gcloud@v2
-        with:
-          service_account_key: ${{ secrets.CLOUD_SERVICE_ACCOUNT_KEY }}
-          project_id: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
-          export_default_credentials: true
-
 
   docker-build-deploy:
     runs-on: ubuntu-latest
