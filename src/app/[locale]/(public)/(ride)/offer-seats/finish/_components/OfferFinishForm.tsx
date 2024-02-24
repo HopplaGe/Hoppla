@@ -7,7 +7,7 @@ import 'moment/locale/ka'
 import {useLocale, useTranslations} from 'next-intl'
 import ka from "date-fns/locale/ka";
 import en from "date-fns/locale/en-US";
-import React, {useCallback, useEffect} from 'react'
+import React, {useEffect} from 'react'
 import {CalendarDays, Clock2} from 'lucide-react'
 import {cn} from '@/lib/utils'
 import {useForm} from 'react-hook-form'
@@ -16,7 +16,6 @@ import {zodResolver} from '@hookform/resolvers/zod'
 import {useRouter} from 'next/navigation'
 import {User} from '@prisma/client'
 import OfferFinishSidebar from './OfferFinishSidebar'
-import {createRide} from '@/lib/actions/rides'
 import useDirections from '@/hooks/maps/useDirections'
 import TimePicker from "@/components/shared/date-time/TimePicker";
 import {RadioGroup} from "@headlessui/react";
