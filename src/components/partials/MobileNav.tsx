@@ -39,7 +39,7 @@ const MobileNav = ({
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
                 >
-                    <div className="fixed inset-0 bg-primary"/>
+                    <div className="fixed inset-0 bg-secondary"/>
                 </Transition.Child>
 
                 <div className="fixed inset-0 flex">
@@ -83,10 +83,10 @@ const MobileNav = ({
                                             key={index}
                                             href={item.href}
                                             className={cn(pathName === ("/" + locale + item.href) ?
-                                                    "bg-primary text-white rounded-l-xl px-6" :
+                                                    "bg-secondary text-white rounded-l-xl px-6" :
                                                     "bg-transparent",
-                                                "py-4 hover:bg-primary hover:text-white",
-                                                "focus:bg-primary focus:text-white rounded-l-xl px-6",
+                                                "py-4 hover:bg-secondary hover:text-white text-sm",
+                                                "focus:bg-secondary focus:text-white rounded-l-xl px-6",
                                             )}
                                             onClick={() => setOpen(false)}
                                         >

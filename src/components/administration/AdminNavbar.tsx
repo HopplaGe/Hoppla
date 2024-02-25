@@ -23,16 +23,7 @@ import Logo from "@/components/shared/Logo";
 import {usePathname} from "next/navigation";
 import Link from "next/link";
 import {Button} from "@nextui-org/react";
-
-const navigation = [
-    {name: 'მთავარი', href: '/manage', icon: HomeIcon, current: true},
-    {name: 'მგზავრობები', href: '#', icon: SignpostBig, current: false},
-    {name: 'დასახლებული პუნქტები', href: '/manage/populated-areas', icon: Building2, current: false},
-    {name: 'კომპანიები', href: '/manage/companies', icon: CarTaxiFront, current: false},
-    {name: 'მომხმარებლები', href: '#', icon: UsersRound, current: false},
-    {name: 'ბლოგი', href: '/manage/articles', icon: Rss, current: false},
-    {name: 'რაპორტები', href: '#', icon: ChartPieIcon, current: false},
-]
+import {adminNavItems} from "@/config/nav.config";
 
 const AdminNavbar = () => {
     const locale = useLocale();
@@ -102,7 +93,7 @@ const AdminNavbar = () => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                     >
-                        <div className="fixed inset-0 bg-default-900/20"/>
+                        <div className="fixed inset-0 bg-secondary"/>
                     </Transition.Child>
 
                     <div className="fixed inset-0 flex">
@@ -115,7 +106,7 @@ const AdminNavbar = () => {
                             leaveFrom="translate-x-0"
                             leaveTo="-translate-x-full"
                         >
-                            <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1">
+                            <Dialog.Panel className="relative mr-16 flex w-full max-w-xs flex-1 scrollbar-hide">
                                 <Transition.Child
                                     as={Fragment}
                                     enter="ease-in-out duration-300"
@@ -128,7 +119,7 @@ const AdminNavbar = () => {
                                     <div className="absolute left-full top-0 flex w-16 justify-center pt-5">
                                         <Button
                                             variant="solid"
-                                            color="primary"
+                                            color="secondary"
                                             className="py-3 min-w-unit-0"
                                             onClick={() => setSidebarOpen(false)}
                                             startContent={<XMarkIcon className="h-6 w-6" aria-hidden="true"/>}
@@ -142,30 +133,29 @@ const AdminNavbar = () => {
                                 </Transition.Child>
 
                                 <div
-                                    className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2 ring-1 ring-white/10">
-                                    <div className="flex h-16 shrink-0 items-center">
+                                    className="flex grow flex-col gap-y-5 overflow-y-auto bg-white pb-4 rounded-r-xl scrollbar-hide">
+                                    <div className="flex h-16 px-6 shrink-0 items-center">
                                         <Logo/>
                                     </div>
-                                    <nav className="flex flex-1 flex-col">
-                                        <ul role="list" className="-mx-2 flex-1 space-y-1">
-                                            {navigation.map((item) => (
-                                                <li key={item.name}>
-                                                    <Link
-                                                        href={item.href}
-                                                        onClick={() => setSidebarOpen(false)}
-                                                        className={cn(
-                                                            pathname === "/" + locale + item.href
-                                                                ? 'bg-secondary text-white'
-                                                                : 'text-default-800 hover:text-white hover:bg-secondary',
-                                                            'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold fira-go hoppla-animation'
-                                                        )}
-                                                    >
-                                                        <item.icon className="h-6 w-6 shrink-0" aria-hidden="true"/>
-                                                        {item.name}
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
+                                    <nav className="flex flex-1 flex-col ml-4 gap-1">
+                                        {adminNavItems.map((item, index) => (
+                                            <Link
+                                                key={index}
+                                                href={item.href}
+                                                onClick={() => setSidebarOpen(false)}
+                                                className={cn(
+                                                    pathname === "/" + locale + item.href
+                                                        ? "bg-secondary text-white rounded-l-xl px-6" :
+                                                        "bg-transparent",
+                                                    "py-4 hover:bg-secondary hover:text-white",
+                                                    "focus:bg-secondary focus:text-white rounded-l-xl px-6",
+                                                    'group flex gap-x-3 items-center fira-go hoppla-animation text-sm'
+                                                )}
+                                            >
+                                                <item.icon className="h-6 w-6 shrink-0" aria-hidden="true"/>
+                                                {item.name}
+                                            </Link>
+                                        ))}
                                     </nav>
                                 </div>
                             </Dialog.Panel>

@@ -1,24 +1,13 @@
 "use client"
 import React from 'react';
-import {Building2, CalendarIcon, CarTaxiFront, HomeIcon, Rss, SignpostBig, UsersRound} from "lucide-react";
-import {ChartPieIcon, DocumentDuplicateIcon} from "@heroicons/react/16/solid";
 import {cn} from "@/lib/utils";
 import hopplaMiniLogo from "@/assets/images/mini_logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from 'next/navigation';
 import {useLocale} from 'next-intl';
+import {adminNavItems} from "@/config/nav.config";
 
-
-const navigation = [
-    {name: 'მთავარი', href: '/manage', icon: HomeIcon, current: true},
-    {name: 'მგზავრობები', href: '#', icon: SignpostBig, current: false},
-    {name: 'დასახლებული პუნქტები', href: '/manage/populated-areas', icon: Building2, current: false},
-    {name: 'კომპანიები', href: '/manage/companies', icon: CarTaxiFront, current: false},
-    {name: 'მომხმარებლები', href: '#', icon: UsersRound, current: false},
-    {name: 'ბლოგი', href: '/manage/articles', icon: Rss, current: false},
-    {name: 'რაპორტები', href: '#', icon: ChartPieIcon, current: false},
-]
 
 const AdminSidebar = () => {
 
@@ -37,7 +26,7 @@ const AdminSidebar = () => {
                 </div>
                 <nav className="mt-8">
                     <ul role="list" className="flex flex-col items-center space-y-1">
-                        {navigation.map((item) => (
+                        {adminNavItems.map((item) => (
                             <li key={item.name}>
                                 <Link
                                     href={item.href}

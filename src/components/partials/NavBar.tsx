@@ -17,12 +17,8 @@ import Link from "next/link";
 import {cn} from "@/lib/utils";
 import {usePathname} from "next/navigation";
 import MobileNav from "@/components/partials/MobileNav";
+import {navItems} from "@/config/nav.config";
 
-const navItems = [
-    {name: "Carpool", href: "/carpool"},
-    {name: "MiniBuses", href: "/minibuses"},
-    {name: "Buses", href: "/buses"},
-];
 
 const NavBar = () => {
     const session = useSession();
