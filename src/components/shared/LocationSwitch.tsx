@@ -25,7 +25,7 @@ const LocationSwitch = () => {
         <div>
             <Select
                 size="sm"
-                className="w-44 fira-go -z-0"
+                className="w-36 md:w-44 fira-go -z-0"
                 variant="flat"
                 defaultSelectedKeys={[countries?.find((country) => country.code === 'GE')?.id]}
                 onChange={handleCountryChange}
