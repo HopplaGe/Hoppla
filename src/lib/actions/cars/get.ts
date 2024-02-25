@@ -5,13 +5,8 @@ export async function getCars() {
     try {
         const cars = await prisma.car.findMany(
             {
-                select: {
-                    ownerId: true,
-                    brand: true,
-                    model: true,
-                    year: true,
-                    color: true,
-                    plateNumber: true,
+                include: {
+                    owner: true
                 }
             }
         );

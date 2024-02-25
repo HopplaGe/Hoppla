@@ -1,6 +1,8 @@
+"use server"
 import prisma from "@/lib/prisma";
 
 export const createRide = async (ride: any) => {
+    ride.startDate.setUTCHours(0, 0, 0, 0)
     try {
         return await prisma.ride.create({
             data: {
