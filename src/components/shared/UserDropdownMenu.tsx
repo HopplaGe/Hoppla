@@ -4,23 +4,12 @@ import {User} from "@nextui-org/user";
 import {signOut} from "next-auth/react";
 import {ShieldCheck, Users} from "lucide-react";
 import {cn} from "@/lib/utils";
+import {userMenuItems} from "@/config/nav.config";
 
 type UserDropdownMenuProps = {
     user: any;
     t: any;
 }
-
-const userMenuItems = [
-    {name: "Profile", href: "/profile"},
-    {name: "MyRides", href: "/my-rides"},
-    {name: "MyVehicles", href: "/my-vehicles"},
-    {name: "MyTickets", href: "/my-tickets"},
-    {name: "MyPayments", href: "/my-payments"},
-    {name: "Analytics", href: "/analytics"},
-    {name: "Settings", href: "/settings"},
-    {name: "LogOut", onClick: () => console.log("logout")},
-];
-
 
 const UseDropdownMenu = ({user, t}: UserDropdownMenuProps) => {
 
