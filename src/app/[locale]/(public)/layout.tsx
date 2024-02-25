@@ -5,17 +5,11 @@ import Footer from "@/components/partials/Footer";
 import TopInfoBanner from "@/components/shared/TopInfoBanner";
 import {getUrgentInfo} from "@/lib/actions/infos";
 
-const PublicLayout = async ({children}: LayoutProps) => {
-
-    // TODO: Fix this "წარმოებაში გამოაქვს შეცდომა"
-    // const info = await getUrgentInfo();
-    //
-    // console.log(info);
-
+const PublicLayout = ({children}: LayoutProps) => {
     return (
         <>
             <NavBar/>
-            {/*{info && <TopInfoBanner info={info[0]}/>}*/}
+            <TopInfoBanner/>
             {children}
             <Footer/>
         </>
