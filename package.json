@@ -2,6 +2,10 @@
   "name": "hoppla",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Hoppla",
+    "url": "https://hoppla.ge"
+  },
   "scripts": {
     "postinstall": "npx prisma generate",
     "dev": "next dev -p 80",
