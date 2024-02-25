@@ -30,7 +30,7 @@ const Providers = ({children, locale, messages}: ProvidersProps) => {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <ReactQueryDevtools/>
+            {/*<ReactQueryDevtools/>*/}
             <NextIntlClientProvider
                 onError={() => {
                 }}
