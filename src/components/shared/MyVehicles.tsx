@@ -15,7 +15,7 @@ const MyVehicles = ({cars}: myVehicles) => {
         <div>
             <h2 className="font-bold text-xl mb-4 fira-go">{t("MyVehicles")}</h2>
             <div role="list"
-                 className={cn(`grid grid-cols-10 gap-4 justify-center items-center relative`)}>
+                 className={cn(`grid grid-cols-4 sm:grid-cols-8 lg:grid-cols-10 gap-4 justify-center items-center relative`)}>
                 <AddCarModel/>
                 {cars && cars.length > 0 ? cars.map((car, index) => (
                         <Popover key={index} showArrow placement="bottom">
@@ -24,8 +24,10 @@ const MyVehicles = ({cars}: myVehicles) => {
                                 className={cn(`cursor-pointer bg-white p-4 shadow-lg border-b-2 border-opacity-5`)} style={{
                                 borderColor: `${car.color.toLowerCase()}`,
                             }}>
-                                <Image src={`https://hopplaassets.s3.amazonaws.com/images/cars/${car.brand.toLowerCase()}.svg`} alt={"car"} width={64} height={64}
-                                       className="w-20 lg:w-16"/>
+                                <Image
+                                    src={`https://hopplaassets.s3.amazonaws.com/images/cars/${car.brand.toLowerCase()}.svg`}
+                                    alt={"car"} width={64} height={64}
+                                    className="w-20 lg:w-16"/>
                             </PopoverTrigger>
                             <PopoverContent className="p-1 w-64">
                                 <li
