@@ -23,12 +23,12 @@ const SvgMap = () => {
 
 
     useEffect(() => {
-        ridesCountByDirection(selectedCity as string).then(data => setRideStat(data as number))
+        selectedCity && ridesCountByDirection(selectedCity as string).then(data => setRideStat(data as number))
     }, [selectedCity, setRideStat])
 
     useEffect(() => {
         allRidesCount().then(data => setAllRidesStat(data as number))
-    }, [setAllRidesStat])
+    }, [])
 
     const mouseMove = useCallback((city: string) => {
         setSelectedCity(city)
@@ -38,7 +38,7 @@ const SvgMap = () => {
         setSelectedCity("")
     }, [])
 
-    const {data: regions, isLoading, error} = useGetRegionByCountryId(country as string)
+    const {data: regions, isLoading, error} = useGetRegionByCountryId(country as string || '')
 
 
     if (isLoading) {
@@ -73,7 +73,7 @@ const SvgMap = () => {
                     </style>
                 </defs>
                 <g>
-                    {regions?.map((region, index) => (
+                    {regions && regions?.map((region, index) => (
                         <g className='group' key={index}>
                             <path id={region.id}
                                   className={cn(regionStyle, region.isOccupied ? occupiedRegionStyle : '')}
