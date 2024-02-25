@@ -30,7 +30,7 @@ const UserView = async ({params}: UserViewProps) => {
 
                 <InfoBlock rides={rides} user={user}/>
 
-                <ReportBlock/>
+                <ReportBlock user={user}/>
 
             </div>
         </div>
