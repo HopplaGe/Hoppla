@@ -1,8 +1,9 @@
 "use client"
-import { cn } from '@/lib/utils';
-import { cva, type VariantProps } from "class-variance-authority";
-import { TrendingDown, TrendingUp } from 'lucide-react';
-import React, { FC } from 'react'
+import {cn} from '@/lib/utils';
+import {cva, type VariantProps} from "class-variance-authority";
+import {TrendingDown, TrendingUp} from 'lucide-react';
+import React, {FC} from 'react'
+import {useTranslations} from "next-intl";
 
 const statCardStyle = cva(
     "p-2",
@@ -23,7 +24,6 @@ const statCardStyle = cva(
             color: "green"
         }
     }
-
 )
 
 type StatCardProps = {
@@ -36,22 +36,25 @@ type StatCardProps = {
     status?: string;
 } & VariantProps<typeof statCardStyle>
 
-const StatCard: FC<StatCardProps> = ({ title, value, color, icon, percent, status }) => {
+const StatCard: FC<StatCardProps> = ({title, value, color, icon, percent, status}) => {
+    const t = useTranslations('Statistics.DashboardStats')
     return (
         <div className={cn('grid grid-cols-3 px-4 py-4 bg-white rounded-xl')}>
             <div className='col-span-2 text-3xl font-bold'>{value}</div>
-            <div className='col-span-2 fira-go text-sm'>{title}</div>
+            <div className='col-span-2 fira-go text-sm'>{t(title)}</div>
             {
-                percent && <div className='col-span-2 fira-go flex flex-row gap-1 justify-start items-center text-[0.6rem]'>
-                    <span className={cn('flex flex-row gap-1 justify-start items-center', status === "increase" ? "text-emerald-500" : "text-red-500")}>
-                        {status === "increase" ? <TrendingUp size={10} /> : <TrendingDown size={10} />}
+                percent &&
+                <div className='col-span-2 fira-go flex flex-row gap-1 justify-start items-center text-[0.6rem]'>
+                    <span
+                        className={cn('flex flex-row gap-1 justify-start items-center', status === "increase" ? "text-emerald-500" : "text-red-500")}>
+                        {status === "increase" ? <TrendingUp size={10}/> : <TrendingDown size={10}/>}
                         {percent}
                     </span>
                     <span className=''>გასული თვიდან</span>
                 </div>
             }
             <div className='col-start-3 row-start-1 row-end-4 grid place-items-center'>
-                <div className={cn('rounded-xl ', statCardStyle({ color }))}>
+                <div className={cn('rounded-xl ', statCardStyle({color}))}>
                     {icon}
                 </div>
             </div>

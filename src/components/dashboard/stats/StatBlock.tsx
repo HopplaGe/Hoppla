@@ -10,7 +10,6 @@ type StatBlockProps = {
 }
 
 const StatBlock: FC<StatBlockProps> = ({user}) => {
-
     const {data: stats, isLoading, error} = useUserStats(user)
 
     if (isLoading) return <div>Loading...</div>

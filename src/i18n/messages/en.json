@@ -427,5 +427,12 @@
     "distanceInKm": "{distance} km",
     "priceIn": "{price} ₾",
     "searchByFromOrTo": "Search by from or to"
+  },
+  "Statistics": {
+    "DashboardStats": {
+      "totalRides": "Rides",
+      "totalEarnings": "Earnings",
+      "totalRatings": "Ratings"
+    }
   }
 }

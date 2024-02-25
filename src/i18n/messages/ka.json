@@ -432,5 +432,12 @@
     "distanceInKm": "{distance} კმ",
     "priceIn": "{price} ₾",
     "searchByFromOrTo": "ძებნა..."
+  },
+  "Statistics": {
+    "DashboardStats": {
+      "totalRides": "მგზავრობა",
+      "totalEarnings": "შემოსავალი",
+      "totalRatings": "რეიტინგი"
+    }
   }
 }
