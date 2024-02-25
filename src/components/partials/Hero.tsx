@@ -12,7 +12,7 @@ const Hero = () => {
 
     return (
         <>
-            <div className="page-wrapper grid lg:grid-cols-2 items-center lg:py-16 pb-8 md:pt-12 fira-go">
+            <div className="page-wrapper grid lg:grid-cols-2 items-center lg:pt-16 lg:pb-4 pb-8 md:pt-12 fira-go">
                 <Image
                     src="/buses/booking.svg"
                     alt="Main Image"
@@ -35,7 +35,7 @@ const Hero = () => {
                     >
                         {t(`subtitle`)}
                     </motion.p>
-                    <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                    <div className="hidden mt-6 flex-col sm:flex-row gap-3">
                         <Button
                             size="lg"
                             variant="solid"
