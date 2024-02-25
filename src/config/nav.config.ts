@@ -40,7 +40,7 @@ export const footerNavItems = {
     social: [
         {
             name: "Facebook",
-            href: "facebook.com/hoppla.ge",
+            href: "https://facebook.com/hoppla.ge",
             icon: Facebook,
         },
         {
@@ -80,10 +80,5 @@ export const adminNavItems = [
     {name: 'მომხმარებლები', href: '#', icon: UsersRound, current: false},
     {name: 'ბლოგი', href: '/manage/articles', icon: Rss, current: false},
     {name: 'რაპორტები', href: '#', icon: ChartPieIcon, current: false},
-    {name: 'პარამეტრები', href: '#', icon: Settings2, current: false},
-    {name: 'პარამეტრები', href: '#', icon: Settings2, current: false},
-    {name: 'პარამეტრები', href: '#', icon: Settings2, current: false},
-    {name: 'პარამეტრები', href: '#', icon: Settings2, current: false},
-    {name: 'პარამეტრები', href: '#', icon: Settings2, current: false},
     {name: 'პარამეტრები', href: '#', icon: Settings2, current: false},
 ]
