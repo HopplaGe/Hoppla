@@ -30,6 +30,7 @@ const useDirections = (
             setDuration(directionResponse?.routes[0]?.legs[0]?.duration?.value as number)
             setStartLatLng(directionResponse?.routes[0]?.legs[0]?.start_location.lat() + "," + directionResponse?.routes[0]?.legs[0]?.start_location.lng())
             setEndLatLng(directionResponse?.routes[0]?.legs[0]?.end_location.lat() + "," + directionResponse?.routes[0]?.legs[0]?.end_location.lng())
+            console.log("directionResponse")
         }
     }, [directionResponse?.routes]);
 
@@ -62,12 +63,15 @@ const useDirections = (
                     }
                 }
             ).then(r => r);
-            if (distance && duration) {
-                setPrice(calculatePrice(distance, duration))
-                // console.log("11111",calculatePrice(distance, duration)/4)
-            }
+            console.log("useDirections 2")
         }
-    }, [isLoaded, distance, duration, from, to, seats])
+    }, [isLoaded, from, to])
+
+    useEffect(() => {
+        if (distance && duration) {
+            setPrice(calculatePrice(distance, duration))
+        }
+    }, [distance, duration]);
 
     if (!isLoaded) return {directionResponse, price, distance, duration, startLatLng, endLatLng};
 

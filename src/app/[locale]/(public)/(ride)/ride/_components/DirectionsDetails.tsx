@@ -153,7 +153,7 @@ const DirectionsDetails = ({
                 <div
                     className="flex flex-row justify-between items-center border-t-4 p-4 fira-go border-default-50 w-full mt-4">
                     <div
-                        className="flex flex-col gap-2">{t('priceForOnePerson', {count: searchParams.requested_seats ? searchParams.requested_seats : price})}</div>
+                        className="flex flex-col gap-2">{t('priceForOnePerson', {count: searchParams.requested_seats ? searchParams.requested_seats : 1})}</div>
                     <div
                         className="flex flex-col gap-2 font-bold text-xl">
                         {/*{(ride.price / ride.seats * searchParams.requested_seats).toFixed(2)} ₾*/}

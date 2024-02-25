@@ -2,7 +2,7 @@
 import useDirections from '@/hooks/maps/useDirections'
 import {secondsToHours} from '@/lib/tools/secondsToHours'
 import {Avatar, AvatarGroup, Badge, Button, useDisclosure} from '@nextui-org/react'
-import {BadgeCheck, Check} from 'lucide-react'
+import {BadgeCheck, Check, Facebook} from 'lucide-react'
 import moment from 'moment'
 import React, {use, useCallback, useEffect, useRef} from 'react'
 import MapModal from './MapModal'
@@ -11,8 +11,12 @@ import {toPng} from 'html-to-image';
 import {useInterval} from 'usehooks-ts'
 import {useTranslations} from 'next-intl'
 import Link from "next/link";
+import {useSession} from "next-auth/react";
 
 const RideDetails = ({ride, searchParams}: any) => {
+
+    const session = useSession()
+    const user = session.data?.user
 
     const t = useTranslations("Rides.RideDetails")
 
@@ -21,8 +25,6 @@ const RideDetails = ({ride, searchParams}: any) => {
     const {distance: fromDistance} = useDirections(searchParams.from, ride.from);
     const {distance: toDistance} = useDirections(searchParams.to, ride.to);
     const {
-        distance,
-        price,
         directionResponse,
         startLatLng,
         endLatLng
@@ -86,7 +88,7 @@ const RideDetails = ({ride, searchParams}: any) => {
                     arrivalTime={arrivalTime}
                     handleOpen={handleOpen}
                     searchParams={searchParams}
-                    price={price}
+                    price={ride.price}
                 />
             </div>
             <section className="flex flex-col gap-4 w-full lg:w-1/2">
@@ -140,17 +142,46 @@ const RideDetails = ({ride, searchParams}: any) => {
 
             <section className="flex flex-col gap-4 w-full md:w-1/2">
                 <div className="flex flex-row justify-between items-center border-t-4 p-4 fira-go border-default-100">
-                    <Button
-                        className="w-full"
-                        color="secondary"
-                        variant='solid'
-                        size="lg"
-                        onClick={() => {
-                            console.log("დაჯავშნა")
-                        }}
-                    >
-                        დაჯავშნა
-                    </Button>
+                    {user?.id !== ride?.driver.id ? (
+                            <Button
+                                className="w-full"
+                                color="secondary"
+                                variant='solid'
+                                size="lg"
+                                onClick={() => {
+                                    console.log("დაჯავშნა")
+                                }}
+                            >
+                                დაჯავშნა
+                            </Button>
+                        )
+                        : (
+                            <div className="w-full flex flex-row gap-2 justify-center">
+                                <Button
+                                    className="bg-[#1877F2] text-white"
+                                    variant='solid'
+                                    size="sm"
+                                    onClick={() => {
+                                        console.log("გაზიარება")
+                                    }}
+                                    startContent={<Facebook/>}
+                                >
+                                    გაზიარება
+                                </Button>
+                                <Button
+                                    color="default"
+                                    variant='solid'
+                                    size="sm"
+                                    onClick={() => {
+                                        console.log("გაზიარება")
+                                    }}
+                                    startContent={<Facebook/>}
+                                >
+                                    გაზიარება
+                                </Button>
+                            </div>
+                        )
+                    }
                 </div>
             </section>
             <MapModal isOpen={isOpen} onClose={onClose} directionResponse={directionResponse} openLatLng={openLatLng}/>

@@ -1,52 +1,55 @@
 "use client";
 import {
-  setKey,
-  // setDefaults,
-  setLanguage,
-  // setRegion,
-  // fromAddress,
-  // fromLatLng,
-  // fromPlaceId,
-  // setLocationType,
-  geocode,
-  RequestType,
+    setKey,
+    // setDefaults,
+    setLanguage,
+    // setRegion,
+    // fromAddress,
+    // fromLatLng,
+    // fromPlaceId,
+    // setLocationType,
+    geocode,
+    RequestType,
 } from "react-geocode";
-import { useMemo, useState } from "react";
+import {useMemo, useState} from "react";
 import {useLocale} from "next-intl";
 
 type UseGeoCodeType = {
-  address?: string;
-  lat?: number;
-  lng?: number;
-  locale: string;
+    address?: string;
+    lat?: number;
+    lng?: number;
+    locale: string;
 };
-const useGeoCode = ({ lat, lng }: UseGeoCodeType) => {
+const useGeoCode = ({lat, lng}: UseGeoCodeType) => {
 
-  const locale = useLocale();
+    const locale = useLocale();
 
-  setKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string);
-  setLanguage(locale);
-  
-  const [addressName, setAddressName] = useState("");
+    setKey(process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY as string);
+    setLanguage(locale);
 
-  const latLng = lat && lng ? lat + "," + lng : "41.709048311523986,44.80436404340821";
+    const [addressName, setAddressName] = useState("");
 
-  useMemo(() => {
-    geocode(RequestType.LATLNG, latLng as string)
-      .then(({ results }) => {
-        try {
-          const address = results[0].formatted_address;
-          setAddressName(address);
-        } catch (e) {
-          console.error(e);
+    const latLng = lat && lng ? lat + "," + lng : undefined;
+
+    useMemo(() => {
+        if (latLng) {
+            geocode(RequestType.LATLNG, latLng as string)
+                .then(({results}) => {
+                    try {
+                        const address = results[0].formatted_address;
+                        setAddressName(address);
+                    } catch (e) {
+                        console.error(e);
+                    }
+                })
+                .catch(console.error);
+            console.log("geocode");
         }
-      })
-      .catch(console.error);
-  }, [latLng]);
+    }, [latLng]);
 
-  return {
-    addressName,
-  };
+    return {
+        addressName,
+    };
 };
 
 export default useGeoCode;
