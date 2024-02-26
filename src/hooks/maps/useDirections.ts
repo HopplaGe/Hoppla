@@ -30,7 +30,6 @@ const useDirections = (
             setDuration(directionResponse?.routes[0]?.legs[0]?.duration?.value as number)
             setStartLatLng(directionResponse?.routes[0]?.legs[0]?.start_location.lat() + "," + directionResponse?.routes[0]?.legs[0]?.start_location.lng())
             setEndLatLng(directionResponse?.routes[0]?.legs[0]?.end_location.lat() + "," + directionResponse?.routes[0]?.legs[0]?.end_location.lng())
-            console.log("directionResponse")
         }
     }, [directionResponse?.routes]);
 
@@ -63,7 +62,6 @@ const useDirections = (
                     }
                 }
             ).then(r => r);
-            console.log("useDirections 2")
         }
     }, [isLoaded, from, to])
 
