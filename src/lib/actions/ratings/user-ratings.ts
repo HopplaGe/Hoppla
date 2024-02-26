@@ -17,7 +17,7 @@ export const getUserRatings = async (userId: string) => {
     const ratingAvg = ratings.reduce((a, b) => a + b.rating, 0) / ratings.length;
 
     return {
-        ratingAvg: ratingAvg.toFixed(1),
+        ratingAvg: ratingAvg ? ratingAvg.toFixed(1) : 0,
         ratingCount: ratings.length,
         ratings: ratings
     };
