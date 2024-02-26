@@ -1,5 +1,5 @@
 import Google from "next-auth/providers/google";
-import type { NextAuthConfig } from "next-auth";
+import type {NextAuthConfig} from "next-auth";
 
 export default {
     pages: {
@@ -8,6 +8,9 @@ export default {
         // newUser: "/auth/new-user",
         signIn: "/",
         signOut: "/",
+        verifyRequest: "/auth/verify-request",
+        error: "/auth/error",
+        // newUser: "/auth/new-user",
     },
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
@@ -26,20 +29,20 @@ export default {
             return true;
         },
         async redirect({
-            // url,
-            baseUrl,
-        }) {
+                           // url,
+                           baseUrl,
+                       }) {
             // console.log("redirect", {url, baseUrl})
             return baseUrl;
         },
-        async jwt({ token, user, trigger, session }) {
+        async jwt({token, user, trigger, session}) {
             if (trigger === "update") {
-                return { ...token, ...session.user };
+                return {...token, ...session.user};
             }
-            return { ...token, ...user };
+            return {...token, ...user};
         },
         // @ts-ignore
-        async session({ session, token }) {
+        async session({session, token}) {
             if (token) {
                 session.user.id = token.id;
                 session.user.role = token.role;
