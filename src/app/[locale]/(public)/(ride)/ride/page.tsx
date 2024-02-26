@@ -4,16 +4,29 @@ import React, {FC, Suspense} from 'react'
 import RideDetails from './_components/RideDetails'
 import {Ride} from '@prisma/client'
 import RideDetailHead from './_components/RideDetailHead'
+import {Metadata, ResolvingMetadata} from "next";
 
 type pageProps = {
-    searchParams: any
+    params: { id: string }
+    searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata(
+    {params, searchParams}: pageProps,
+    parent: ResolvingMetadata
+): Promise<Metadata> {
+    const ride = await getRideById(searchParams.id as string) as Ride
+
+    return {
+        title: ride.from + " - " + ride.to + " | Hoppla.ge - Ride with us",
+        description: "Hoppla არის საუკეთესო საშუალება მგზავრობისთვის. გამოიყენე ჩვენი სერვისი და გაემგზავრე იმ ადგილებში, სადაც გსურთ. ჩვენ გთავაზობთ სასიამოვნო და ბიუჯეტურ მგზავრობას.",
+    }
 }
 
 const page: FC<pageProps> = async ({searchParams}) => {
 
     const {id} = searchParams
-
-    const ride = await getRideById(id) as Ride
+    const ride = await getRideById(id as string) as Ride
 
     return (
         <Suspense fallback={<div>Loading...</div>}>
