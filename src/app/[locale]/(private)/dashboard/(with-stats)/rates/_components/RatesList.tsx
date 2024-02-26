@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import {useUserRatings} from "@/hooks/useRatings";
+import RatesListItem from "@/app/[locale]/(private)/dashboard/(with-stats)/rates/_components/RatesListItem";
 
 type RatesListProps = {
     userId: string
@@ -16,11 +17,7 @@ const RatesList = ({userId}: RatesListProps) => {
         <div className="w-full">
             {
                 data?.ratings.map((rating, index) => (
-                    <div key={index} className="flex justify-between">
-                        <p>{rating.comment}</p>
-                        <p>{rating.rating}</p>
-                        <p>{rating.author.name}</p>
-                    </div>
+                    <RatesListItem rating={rating} key={index}/>
                 ))
             }
         </div>
