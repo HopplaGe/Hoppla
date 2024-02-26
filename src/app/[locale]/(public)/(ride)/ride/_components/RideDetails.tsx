@@ -4,14 +4,14 @@ import {secondsToHours} from '@/lib/tools/secondsToHours'
 import {Avatar, AvatarGroup, Badge, Button, useDisclosure} from '@nextui-org/react'
 import {BadgeCheck, Check, Facebook} from 'lucide-react'
 import moment from 'moment'
-import React, {use, useCallback, useEffect, useRef} from 'react'
 import MapModal from './MapModal'
 import DirectionsDetails from './DirectionsDetails'
-import {toPng} from 'html-to-image';
-import {useInterval} from 'usehooks-ts'
+
 import {useTranslations} from 'next-intl'
 import Link from "next/link";
 import {useSession} from "next-auth/react";
+import {useState} from "react";
+import useCaptureImage from "@/hooks/useCaptureImage";
 
 const RideDetails = ({ride, searchParams}: any) => {
 
@@ -30,11 +30,11 @@ const RideDetails = ({ride, searchParams}: any) => {
         endLatLng
     } = useDirections(ride.from, ride.to, searchParams.requested_seats);
 
-    const screenRef = useRef<HTMLDivElement>(null)
-    const [sharedImage, setSharedImage] = React.useState("")
+    const {screenRef, handleShare, sharedImage} = useCaptureImage();
+
 
     const {isOpen, onOpen, onClose} = useDisclosure();
-    const [openLatLng, setOpenLatLng] = React.useState("");
+    const [openLatLng, setOpenLatLng] = useState("");
 
     const handleOpen = (latLng: string) => {
         setOpenLatLng(latLng)
@@ -44,38 +44,6 @@ const RideDetails = ({ride, searchParams}: any) => {
     // TODO: გასაკეთებელია მძღოლის ვერიფიკაცია
     const isVerified = true;
 
-    // const onScreenShot = useCallback(() => {
-    //     console.log('click')
-    //     if (screenRef.current === null) {
-    //         return
-    //     }
-    //
-    //     toPng(screenRef.current, {cacheBust: true,})
-    //         .then((dataUrl) => {
-    //             setSharedImage(dataUrl)
-    //             // const image = document.createElement('img')
-    //             // image.src = dataUrl
-    //             // console.log(dataUrl)
-    //             // const link = document.createElement('a')
-    //             // link.download = 'my-image-name.png'
-    //             // link.href = dataUrl
-    //             // link.click()
-    //         })
-    //         .catch((err) => {
-    //             console.log(err)
-    //         })
-    // }, [screenRef])
-    //
-    // // useInterval(
-    // //     () => {
-    // //         onScreenShot()
-    // //     },
-    // //     1000
-    // // )
-    //
-    // // console.log("image", sharedImage)
-
-    console.log("ride", ride)
     return (
         <>
             <div ref={screenRef} className='w-full lg:w-1/2 max-w-7xl'>
@@ -98,15 +66,21 @@ const RideDetails = ({ride, searchParams}: any) => {
                     hover:bg-default-200 rounded-xl hoppla-animation">
                     <div className="flex flex-col gap-2 fira-go text-md font-bold">{ride?.driver.name}</div>
                     <div className="flex flex-col gap-2 font-bold text-xl">
-                        <Badge
-                            isOneChar
-                            content={<BadgeCheck className='text-default-50'/>}
-                            color="success"
-                            placement="bottom-left"
-                        >
-                            <Avatar src={ride?.driver.image} alt={ride?.driver.name} radius='lg' isBordered={isVerified}
-                                    color='success'/>
-                        </Badge>
+                        {
+                            ride?.driver?.phone ? (
+                                <Badge
+                                    isOneChar
+                                    content={<BadgeCheck className='text-default-50'/>}
+                                    color="success"
+                                    placement="bottom-left"
+                                >
+                                    <Avatar src={ride?.driver.image} alt={ride?.driver.name} radius='lg' isBordered
+                                            color='success'/>
+                                </Badge>
+                            ) : (
+                                <Avatar src={ride?.driver.image} alt={ride?.driver.name} radius='lg'/>
+                            )
+                        }
                     </div>
                 </Link>
                 {ride?.trip?.passangers.length > 0 && (
@@ -161,9 +135,7 @@ const RideDetails = ({ride, searchParams}: any) => {
                                     className="bg-[#1877F2] text-white"
                                     variant='solid'
                                     size="sm"
-                                    onClick={() => {
-                                        console.log("გაზიარება")
-                                    }}
+                                    onClick={() => handleShare()}
                                     startContent={<Facebook/>}
                                 >
                                     გაზიარება
