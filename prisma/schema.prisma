@@ -66,13 +66,15 @@ model User {
   accounts      Account[]
   sessions      Session[]
   Car           Car[]
-  createdAt     DateTime     @default(now()) @map("created_at")
-  updatedAt     DateTime     @default(now()) @map("updated_at")
   Ride          Ride[]
   Trip          Trip?        @relation(fields: [tripId], references: [id])
   tripId        String?
   Rating        UserRating[] @relation("rating")
   Rated         UserRating[] @relation("rated")
+  ownedCompany  Company[]    @relation("owner")
+  workCompany   Company[]    @relation("driver")
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @default(now()) @map("updated_at")
 
   @@map("users")
 }
@@ -108,8 +110,10 @@ model Car {
   year        Int
   color       String
   plateNumber String   @map("plate_number")
-  owner       User     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-  ownerId     String   @map("owner_id")
+  ownerId     String?  @map("owner_id")
+  owner       User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  companyId   String?  @map("company_id")
+  Company     Company? @relation(fields: [companyId], references: [id])
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @default(now()) @map("updated_at")
 
@@ -283,4 +287,44 @@ model Article {
   tags      ArticleTag[]
 
   @@map("articles")
+}
+
+// // Notifications Model
+// model Notification {
+//   id        String   @id @default(cuid())
+//   title     String
+//   content   String
+//   type      String
+//   read      Boolean  @default(false)
+//   userId    String   @map("user_id")
+//   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+//   createdAt DateTime @default(now()) @map("created_at")
+//   updatedAt DateTime @default(now()) @map("updated_at")
+//
+//   @@map("notifications")
+// }
+
+// Companies Model
+model Company {
+  id        String        @id @default(cuid())
+  name      String
+  logo      String?
+  address   String?
+  phone     String?
+  email     String?
+  website   String?
+  ownerId   String        @map("owner_id")
+  owner     User          @relation(fields: [ownerId], references: [id], onDelete: Cascade, name: "owner")
+  drivers   User[]        @relation("driver")
+  cars      Car[]
+  status    CompanyStatus @default(INACTIVE)
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @default(now()) @map("updated_at")
+
+  @@map("companies")
+}
+
+enum CompanyStatus {
+  ACTIVE
+  INACTIVE
 }
