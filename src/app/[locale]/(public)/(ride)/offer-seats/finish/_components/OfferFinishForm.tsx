@@ -72,7 +72,7 @@ const OfferFinishForm = ({user, cars, searchParams, rules}: OfferFinishFormProps
         defaultValues: {
             from: searchParams.from,
             to: searchParams.to,
-            startDate: new Date(moment().utc().startOf('day').format('YYYY-MM-DDTHH:mm:ss')),
+            startDate: new Date(),
             startTime: "11:00",
             seats: parseInt(searchParams.seats!),
             carId: "",
