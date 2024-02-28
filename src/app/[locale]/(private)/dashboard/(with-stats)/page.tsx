@@ -8,7 +8,7 @@ const Dashboard = async () => {
     const {cars} = await getCarByOwnerId(user?.id as string)
     return (
         <div className="relative isolate overflow-hidden flex flex-col gap-6">
-            <MyVehicles cars={cars}/>
+            <MyVehicles cars={cars as { ownerId: string; brand: string; model: string; year: number; color: string; plateNumber: string; }[]} />
         </div>
     );
 };
