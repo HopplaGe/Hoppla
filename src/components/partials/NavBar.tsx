@@ -18,6 +18,7 @@ import {cn} from "@/lib/utils";
 import {usePathname} from "next/navigation";
 import MobileNav from "@/components/partials/MobileNav";
 import {navItems} from "@/config/nav.config";
+import {track} from "@vercel/analytics";
 
 
 const NavBar = () => {
@@ -84,6 +85,13 @@ const NavBar = () => {
                                 variant="light"
                                 className="hidden lg:flex gap-2 items-center font-medium"
                                 startContent={<Plus/>}
+                                onClick={() => {
+                                    track('offer_seats_button_click', {
+                                        locale: locale,
+                                        location: pathName,
+                                        query: isLoggedIn ? `User ${data?.user?.email}` : "logged_out",
+                                    });
+                                }}
                             >
                                 {t("PublishToRide")}
                             </Button>
