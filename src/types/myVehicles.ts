@@ -6,5 +6,6 @@ export type myVehicles = {
         year: number;
         color: string;
         plateNumber: string;
+        companyId: string | null;
     }[] | undefined;
 }
