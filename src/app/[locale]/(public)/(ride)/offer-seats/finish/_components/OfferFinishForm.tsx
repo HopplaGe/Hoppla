@@ -20,6 +20,7 @@ import useDirections from '@/hooks/maps/useDirections'
 import TimePicker from "@/components/shared/date-time/TimePicker";
 import {RadioGroup} from "@headlessui/react";
 import {useRideMutation} from "@/hooks/rides/useRideMutation";
+import {track} from "@vercel/analytics";
 
 
 const OfferFinishFormSchema = z.object({
@@ -93,6 +94,11 @@ const OfferFinishForm = ({user, cars, searchParams, rules}: OfferFinishFormProps
     }, [distance, duration, price, form])
 
     const handleSubmit = (data: z.infer<typeof OfferFinishFormSchema>) => {
+        track('offer_seats_button_click', {
+            locale: locale,
+            location: "Add Ride",
+            query: user ? `User ${user.email} added a ride` : "logged_out",
+        });
         mutation.mutate(data, {
             onSuccess: (ride) => {
                 router.push(`/ride?id=${ride?.id}`)

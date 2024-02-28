@@ -2,6 +2,7 @@
 import React from "react";
 import {NextUIProvider} from "@nextui-org/react";
 import {Analytics} from '@vercel/analytics/react';
+import {SpeedInsights} from "@vercel/speed-insights/next"
 import {NextIntlClientProvider} from "next-intl";
 import {SessionProvider} from "next-auth/react";
 import {
@@ -42,6 +43,7 @@ const Providers = ({children, locale, messages}: ProvidersProps) => {
                     <SessionProvider>
                         {children}
                         <Analytics mode={'production'}/>
+                        <SpeedInsights/>
                     </SessionProvider>
                 </NextUIProvider>
             </NextIntlClientProvider>
