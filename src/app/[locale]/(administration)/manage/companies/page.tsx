@@ -1,14 +1,23 @@
 import React, {FC} from 'react'
-import CreateCompanyForm from "@/app/[locale]/(administration)/manage/companies/_components/CreateCompanyForm";
+import CreateCompanyForm from "./_components/CreateCompanyForm";
+import CompanyStatsBlock from "./_components/CompanyStatsBlock";
+import MainArea from "./_components/MainArea";
+import Sidebar from "./_components/Sidebar";
 
-type pageProps = {}
+type PageProps = {}
 
-const page: FC<pageProps> = () => {
+
+const Page: FC<PageProps> = () => {
     return (
-        <div>
-            <CreateCompanyForm/>
+        <div className="mx-auto w-full h-full grow lg:flex">
+            {/* Left sidebar & main wrapper */}
+            <div className="flex-1 xl:flex">
+                <Sidebar/>
+                <MainArea/>
+            </div>
+            <CompanyStatsBlock/>
         </div>
     )
 }
 
-export default page
+export default Page

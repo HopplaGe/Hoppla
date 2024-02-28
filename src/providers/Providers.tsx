@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import {NextUIProvider} from "@nextui-org/react";
+import {Analytics} from '@vercel/analytics/react';
 import {NextIntlClientProvider} from "next-intl";
 import {SessionProvider} from "next-auth/react";
 import {
@@ -40,6 +41,7 @@ const Providers = ({children, locale, messages}: ProvidersProps) => {
                 <NextUIProvider>
                     <SessionProvider>
                         {children}
+                        <Analytics mode={'production'}/>
                     </SessionProvider>
                 </NextUIProvider>
             </NextIntlClientProvider>

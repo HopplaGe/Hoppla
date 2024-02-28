@@ -18,7 +18,7 @@ const AdminSidebar = () => {
         <>
 
             <div
-                className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:w-20 lg:overflow-y-auto lg:bg-secondary lg:pb-4">
+                className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:w-20 lg:overflow-y-auto lg:bg-white border-r border-gray-200 lg:pb-4">
                 <div className="flex h-16 shrink-0 items-center justify-center">
                     <Link href="/">
                         <Image src={hopplaMiniLogo} alt="Hoppla.ge" width={32}/>
