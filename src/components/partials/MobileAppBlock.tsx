@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
-import Image, {StaticImageData} from "next/image";
-import qrImage from '@/assets/images/banners/hoppla-qr.png'
+import Image, { StaticImageData } from "next/image";
+import qrImage from "@/assets/images/banners/hoppla-qr1.png";
 import appleLogo from '@/assets/images/icons/apple-logo.svg'
 import androidLogo from '@/assets/images/icons/android-logo.svg'
 import {motion} from "framer-motion";

@@ -55,6 +55,19 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "dodger-blue": {
+          "50": "#eff7ff",
+          "100": "#dcecfd",
+          "200": "#c1dffc",
+          "300": "#96ccfa",
+          "400": "#64aff6",
+          "500": "#388af0",
+          "600": "#2b71e5",
+          "700": "#225dd3",
+          "800": "#224bab",
+          "900": "#214287",
+          "950": "#192a52",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,7 +93,7 @@ const config = {
           '"FiraGO", "sans-serif"',
           {
             fontFeatureSettings: '"case", "1"',
-          }
+          },
         ],
       },
     },
