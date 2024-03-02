@@ -2,12 +2,12 @@
 import React from 'react';
 import {Checkbox, CheckboxGroup, RadioGroup} from "@nextui-org/react";
 import {CustomRadio} from "./CustomRadio";
-import useSort from "@/hooks/rides/useSort";
+import useRideSort from "@/hooks/rides/useRideSort";
 import {useRules} from "@/hooks/rides/useRideRules";
 
 const Filter = () => {
 
-    const {sort, setSort, filter, setFilter, rules, setRules} = useSort();
+    const {sort, setSort, filter, setFilter, rules, setRules} = useRideSort();
 
     const {data, isLoading, error} = useRules();
 
