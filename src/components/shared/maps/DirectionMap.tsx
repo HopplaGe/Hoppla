@@ -39,49 +39,52 @@ const DirectionMap = ({ directionResponse, latLng }: {
     const onMapLoad = useCallback((map: any) => (mapRef.current = map), []);
 
     return (
-        <>
-            <GoogleMap
-                center={center}
-                zoom={18}
-                mapContainerStyle={{
-                    width: '100%',
-                    height: '100%'
-                }}
-                options={options}
-                onLoad={onMapLoad}
-            >
-                <Marker
-                    animation={google.maps.Animation.DROP}
-                    position={center}
-                    icon={
-                        {
-                            url: locationImg.src,
-                            scaledSize: new google.maps.Size(50, 50),
-                        }
-                    } visible={!directionResponse} />
-                {directionResponse && <DirectionsRenderer directions={directionResponse} options={
-                    {
-                        suppressMarkers: false,
-                        directions: directionResponse,
-                        preserveViewport: true,
-                        markerOptions: {
-                            position: center,
-                            animation: google.maps.Animation.BOUNCE,
-                            clickable: true,
-                            icon: {
-                                url: locationImg.src,
-                                scaledSize: new google.maps.Size(50, 50)
-                            }
-                        },
-                        polylineOptions: {
-                            strokeColor: "#e84e3e",
-                            strokeOpacity: 0.8,
-                            strokeWeight: 10,
-                        }
-                    }
-                } />}
-            </GoogleMap>
-        </>
+      <>
+        <GoogleMap
+          center={center}
+          zoom={18}
+          mapContainerStyle={{
+            width: "100%",
+            height: "100%",
+          }}
+          options={options}
+          onLoad={onMapLoad}
+        >
+          <Marker
+            animation={google.maps.Animation.DROP}
+            position={center}
+            icon={{
+              url: locationImg.src,
+              scaledSize: new google.maps.Size(50, 50),
+            }}
+            visible={!directionResponse}
+          />
+          {directionResponse && (
+            <DirectionsRenderer
+              directions={directionResponse}
+              options={{
+                suppressMarkers: false,
+                directions: directionResponse,
+                preserveViewport: true,
+                markerOptions: {
+                  position: center,
+                  animation: google.maps.Animation.BOUNCE,
+                  clickable: true,
+                  icon: {
+                    url: locationImg.src,
+                    scaledSize: new google.maps.Size(50, 50),
+                  },
+                },
+                polylineOptions: {
+                  strokeColor: "#388af0",
+                  strokeOpacity: 0.8,
+                  strokeWeight: 10,
+                },
+              }}
+            />
+          )}
+        </GoogleMap>
+      </>
     );
 };
 

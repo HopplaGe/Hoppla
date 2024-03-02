@@ -54,7 +54,7 @@ const RideCard = ({
                 <div className={cn("w-1 h-3", "bg-transparent")}></div>
                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2">
                   <div
-                    className="bg-white box-border w-3 h-3 rounded-full border-2 border-primary"
+                    className="bg-white box-border w-3 h-3 rounded-sm border-2 border-primary"
                     aria-hidden="true"
                   ></div>
                 </div>
@@ -125,7 +125,7 @@ const RideCard = ({
                 <div className={cn("w-1 h-3", "bg-primary")}></div>
                 <div className="absolute top-2.5 left-1/2 -translate-x-1/2">
                   <div
-                    className="bg-white box-border w-3 h-3 rounded-full border-2 border-primary"
+                    className="bg-white box-border w-3 h-3 rounded-sm border-2 border-primary"
                     aria-hidden="true"
                   ></div>
                 </div>
