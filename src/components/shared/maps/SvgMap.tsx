@@ -5,9 +5,9 @@ import {Tooltip} from '@nextui-org/react'
 import {PopulatedAreaStatus} from '@prisma/client'
 import React, {FC, useCallback, useEffect, useState} from 'react'
 import {useGetRegionByCountryId, useGetRegions} from "@/hooks/maps/useGetRegions";
-import {useReadLocalStorage} from "usehooks-ts";
+import { useReadLocalStorage } from "usehooks-ts";
 
-const occupiedRegionStyle = "fill-primary hover:fill-primary-dark text-white"
+const occupiedRegionStyle = "fill-red-500 hover:fill-red-600 text-white";
 const regionStyle = "fill-default-200 hover:fill-default-300 stroke-white stroke-1 text-gray-800 hover:z-50 hoppla-animation"
 const capitalPinStyle = "stroke-secondary stroke-2 fill-primary hoppla-animation"
 const cityPinStyle = "stroke-secondary stroke-2 fill-white group-hover:fill-primary hoppla-animation svg-map-circle"
