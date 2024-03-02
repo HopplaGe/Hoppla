@@ -15,26 +15,25 @@ const secondaryNavigation = [
 ]
 
 const page: FC<pageProps> = async () => {
-    const session = await auth()
+  const session = await auth();
 
-    const user = session?.user
+  const user = session?.user;
 
-    const permissions = rolePermissions(user?.role as string)
-    // const parsedPermissions = permissions.can.map((item) => item)
-    //
-    // const canManage = parsedPermissions.includes('create:invoice')
-    // //|| parsedPermissions.includes('read') || parsedPermissions.includes('update') || parsedPermissions.includes('delete')
+  const permissions = rolePermissions(user?.role as string);
+  // const parsedPermissions = permissions.can.map((item) => item)
+  //
+  // const canManage = parsedPermissions.includes('create:invoice')
+  // //|| parsedPermissions.includes('read') || parsedPermissions.includes('update') || parsedPermissions.includes('delete')
 
-    // console.log(permissions)
+  // console.log(permissions)
 
-    return (
-        <div className="relative isolate overflow-hidden ">
+  return (
+    <div className="relative">
+      <MainStats />
 
-            <MainStats/>
-
-            <AdminWidgets/>
-        </div>
-    )
+      <AdminWidgets />
+    </div>
+  );
 }
 
 export default page;
