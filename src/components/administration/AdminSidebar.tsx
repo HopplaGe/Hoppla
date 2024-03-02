@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
-import {cn} from "@/lib/utils";
-import hopplaMiniLogo from "@/assets/images/mini_logo.png";
+import { cn } from "@/lib/utils";
+import hopplaMiniLogo from "@/assets/images/miniLogo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from 'next/navigation';
@@ -19,7 +19,7 @@ const AdminSidebar = () => {
         <div className="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-50 lg:block lg:w-20 lg:overflow-y-auto lg:bg-white border-r border-gray-200 lg:pb-4">
           <div className="flex h-16 shrink-0 items-center justify-center">
             <Link href="/">
-              <Image src={hopplaMiniLogo} alt="Hoppla.ge" width={32} />
+              <Image src={hopplaMiniLogo} alt="Hoppla.ge" width={44} />
             </Link>
           </div>
           <nav className="mt-8">
