@@ -2,25 +2,24 @@
 
 import prisma from "@/lib/prisma";
 import {Ride, RideStatus} from "@prisma/client";
-import {revalidatePath} from "next/cache";
+import { revalidatePath } from "next/cache";
 
-export const getRides = async () => {
-    try {
-        return await prisma.ride.findMany(
-            {
-                include: {
-                    driver: true,
-                    trip: {
-                        include: {
-                            passangers: true
-                        }
-                    }
-                }
-            }
-        );
-    } catch (error) {
-        console.error(error);
-    }
+export const getRides = async (take?: number) => {
+  try {
+    return await prisma.ride.findMany({
+      take: take || 10,
+      include: {
+        driver: true,
+        trip: {
+          include: {
+            passangers: true,
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 export const getRideById = async (id: string) => {
