@@ -22,23 +22,25 @@ const LocationSwitch = () => {
     }
 
     return (
-        <div>
-            <Select
-                size="sm"
-                className="w-36 md:w-44 fira-go -z-0"
-                variant="flat"
-                defaultSelectedKeys={[countries?.find((country) => country.code === 'GE')?.id]}
-                onChange={handleCountryChange}
-                label="აირჩიე ქვეყანა"
-            >
-                {(countries ?? []).map((country) => (
-
-                    <SelectItem key={country.id} value={country.id} className="fira-go">
-                        {country.name}
-                    </SelectItem>
-                ))}
-            </Select>
-        </div>
+      <div>
+        <Select
+          size="sm"
+          className="w-36 md:w-44 fira-go -z-0"
+          variant="flat"
+          defaultSelectedKeys={[
+            countries?.find((country) => country.code === "GE")?.id,
+          ]}
+          onChange={handleCountryChange}
+          label="აირჩიე ქვეყანა"
+          selectionMode="single"
+        >
+          {(countries ?? []).map((country) => (
+            <SelectItem key={country.id} value={country.id} className="fira-go">
+              {country.name}
+            </SelectItem>
+          ))}
+        </Select>
+      </div>
     );
 };
 
