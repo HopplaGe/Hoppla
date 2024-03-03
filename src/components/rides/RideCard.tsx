@@ -9,6 +9,7 @@ import useDirections from "@/hooks/maps/useDirections";
 import { meterToKm } from "@/lib/tools/meterToKm";
 import { useCallback, useEffect, useState } from "react";
 import { getUserById } from "@/lib/actions/users";
+import { formatCurrency } from "@/lib/tools/currencyFormatter";
 
 const RideCard = ({
   ride: rideData,

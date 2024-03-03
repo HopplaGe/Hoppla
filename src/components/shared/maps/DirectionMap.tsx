@@ -76,7 +76,7 @@ const DirectionMap = ({ directionResponse, latLng }: {
                   },
                 },
                 polylineOptions: {
-                  strokeColor: "#388af0",
+                  strokeColor: "#e64d3d",
                   strokeOpacity: 0.8,
                   strokeWeight: 10,
                 },
