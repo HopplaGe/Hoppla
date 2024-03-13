@@ -1,5 +1,6 @@
 import {useQuery} from "@tanstack/react-query";
 import {
+  getAllRides,
   getRideByFromAndToAndDateAndSeats,
   getRides,
   getRidesByDate,
@@ -7,12 +8,20 @@ import {
 import {getDistanceToPlace} from "@/lib/actions/rides/distance-to-place";
 import moment from "moment/moment";
 
+
+export const useAllRides = () => {
+  return useQuery({
+    queryKey: ["rides"],
+    queryFn: async () => getAllRides(),
+  });
+};
+
 export const useRides = (searchParams: any) => {
-    return useQuery({
-        queryKey: ['rides', searchParams],
-        queryFn: async () => getRideByFromAndToAndDateAndSeats(searchParams)
-    })
-}
+  return useQuery({
+    queryKey: ["rides", searchParams],
+    queryFn: async () => getRideByFromAndToAndDateAndSeats(searchParams),
+  });
+};
 
 export const useDailyRides = () => {
     return useQuery({

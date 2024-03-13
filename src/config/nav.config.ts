@@ -73,12 +73,27 @@ export const footerNavItems = {
 
 
 export const adminNavItems = [
-    {name: 'მთავარი', href: '/manage', icon: HomeIcon, current: true},
-    {name: 'მგზავრობები', href: '#', icon: SignpostBig, current: false},
-    {name: 'დასახლებული პუნქტები', href: '/manage/populated-areas', icon: Building2, current: false},
-    {name: 'კომპანიები', href: '/manage/companies', icon: CarTaxiFront, current: false},
-    {name: 'მომხმარებლები', href: '#', icon: UsersRound, current: false},
-    {name: 'ბლოგი', href: '/manage/articles', icon: Rss, current: false},
-    {name: 'რაპორტები', href: '#', icon: ChartPieIcon, current: false},
-    {name: 'პარამეტრები', href: '#', icon: Settings2, current: false},
-]
+  { name: "მთავარი", href: "/manage", icon: HomeIcon, current: true },
+  {
+    name: "მგზავრობები",
+    href: "/manage/rides",
+    icon: SignpostBig,
+    current: false,
+  },
+  {
+    name: "დასახლებული პუნქტები",
+    href: "/manage/populated-areas",
+    icon: Building2,
+    current: false,
+  },
+  {
+    name: "კომპანიები",
+    href: "/manage/companies",
+    icon: CarTaxiFront,
+    current: false,
+  },
+  { name: "მომხმარებლები", href: "#", icon: UsersRound, current: false },
+  { name: "ბლოგი", href: "/manage/articles", icon: Rss, current: false },
+  { name: "რაპორტები", href: "#", icon: ChartPieIcon, current: false },
+  { name: "პარამეტრები", href: "#", icon: Settings2, current: false },
+];
