@@ -1,24 +1,15 @@
 "use client";
 import React from "react";
-
-import { useCompanies } from "@/hooks/companies/useCompanies";
-import { Company } from "@prisma/client";
-import { companyColumns } from "@/app/[locale]/(administration)/manage/companies/_components/CompanyColumns";
+import { companyColumns } from "./CompanyColumns";
 import { SimpleChevronsBreadCrumbs } from "@/components/shared/breadcrumb/simple-chevrons-breadcrumbs";
 import { useTranslations } from "next-intl";
 import { BasicTable } from "@/components/shared/table/basic-table";
+import { useCompanies } from "@/hooks/companies/useCompanies";
 
 const MainArea = () => {
   const t = useTranslations("Companies");
-  const [companySearchQuery, setCompanySearchQuery] = React.useState("");
 
   const { data: companies, isLoading, isError } = useCompanies();
-
-  const filteredCompanies = companies?.filter((company) => {
-    return company.name
-      .toLowerCase()
-      .includes(companySearchQuery.toLowerCase());
-  }) as Company[];
 
   if (isLoading) {
     return <div>Loading...</div>;

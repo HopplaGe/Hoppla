@@ -30,7 +30,7 @@ export type BasicTableProps = {
   options?: boolean;
 };
 
-export const BasicTable = ({ data, columns, options }: BasicTableProps) => {
+const BasicTable = ({ data, columns, options }: BasicTableProps) => {
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
 
@@ -236,3 +236,5 @@ export const BasicTable = ({ data, columns, options }: BasicTableProps) => {
   );
 };
 BasicTable.displayName = "BasicTable";
+
+export { BasicTable };
