@@ -15,7 +15,6 @@ const Page: FC<PageProps> = () => {
                 <Sidebar/>
                 <MainArea/>
             </div>
-            <CompanyStatsBlock/>
         </div>
     )
 }
