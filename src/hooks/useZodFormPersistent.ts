@@ -34,7 +34,7 @@ export default function useZodFormPersistent<T extends FieldValues>(
       form.watch((v) => {
         setValues(v);
       });
-    }, []);
+    }, [defaultValues, form, setValues, values]);
 
   return { form, values};
 }

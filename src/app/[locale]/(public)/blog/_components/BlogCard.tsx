@@ -1,8 +1,9 @@
-import { Card, CardHeader, CardBody, Image } from "@nextui-org/react";
+import { Card, CardHeader, CardBody } from "@nextui-org/react";
 import { Prisma } from "@prisma/client";
 import moment from "moment";
 import "moment/locale/ka";
 import Link from "next/link";
+import Image from "next/image";
 
 type BlogCardProps = {
   blog: Prisma.ArticleGetPayload<{
@@ -14,9 +15,12 @@ export default function BlogCard({ blog }: BlogCardProps) {
   return (
     <Link href={`/blog/${blog.id}`}>
       <div className="bg-transparent rounded-xl">
-        <img
+        <Image
           className="w-full max-w-full object-cover rounded-xl h-[300px] hover:scale-105 transition-transform duration-300"
           src={blog.picture!}
+          alt={blog.title}
+          width={300}
+          height={300}
         />
         <div className="p-5">
           <div className="flex flex-wrap gap-2">

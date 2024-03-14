@@ -27,9 +27,10 @@ import {
 export type BasicTableProps = {
   data: any;
   columns: any;
+  options?: boolean;
 };
 
-export const BasicTable = ({ data, columns }: BasicTableProps) => {
+export const BasicTable = ({ data, columns, options }: BasicTableProps) => {
   const [sorting, setSorting] = useState([]);
   const [filtering, setFiltering] = useState("");
 
@@ -97,7 +98,7 @@ export const BasicTable = ({ data, columns }: BasicTableProps) => {
                   <tr key={headerGroup.id}>
                     {headerGroup.headers.map((header) => (
                       <th
-                        className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-3 cursor-pointer select-none"
+                        className="py-3.5 pl-4 pr-3 text-left text-xs font-semibold text-gray-900 sm:pl-3 cursor-pointer select-none"
                         key={header.id}
                         onClick={header.column.getToggleSortingHandler()}
                       >
@@ -148,24 +149,28 @@ export const BasicTable = ({ data, columns }: BasicTableProps) => {
                 ))}
               </tbody>
             </table>
-            <div className={"flex flex-row bg-default-100 rounded-xl my-2 p-2"}>
-              {table.getAllLeafColumns().map((column) => {
-                return (
-                  <div key={column.id} className="px-1">
-                    <label>
-                      <input
-                        {...{
-                          type: "checkbox",
-                          checked: column.getIsVisible(),
-                          onChange: column.getToggleVisibilityHandler(),
-                        }}
-                      />{" "}
-                      {String(column.columnDef.header)}
-                    </label>
-                  </div>
-                );
-              })}
-            </div>
+            {options && (
+              <div
+                className={"flex flex-row bg-default-100 rounded-xl my-2 p-2"}
+              >
+                {table.getAllLeafColumns().map((column) => {
+                  return (
+                    <div key={column.id} className="px-1">
+                      <label>
+                        <input
+                          {...{
+                            type: "checkbox",
+                            checked: column.getIsVisible(),
+                            onChange: column.getToggleVisibilityHandler(),
+                          }}
+                        />{" "}
+                        {String(column.columnDef.header)}
+                      </label>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
             <div
               className={cn(
                 "flex justify-between items-center mt-4",
