@@ -439,5 +439,10 @@
       "totalEarnings": "შემოსავალი",
       "totalRatings": "რეიტინგი"
     }
+  },
+  "Companies": {
+    "Companies": "კომპანიები",
+    "Company": "კომპანია",
+    "CreateCompany": "კომპანიის შექმნა"
   }
 }
