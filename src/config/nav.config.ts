@@ -92,7 +92,12 @@ export const adminNavItems = [
     icon: CarTaxiFront,
     current: false,
   },
-  { name: "მომხმარებლები", href: "#", icon: UsersRound, current: false },
+  {
+    name: "მომხმარებლები",
+    href: "/manage/users",
+    icon: UsersRound,
+    current: false,
+  },
   { name: "ბლოგი", href: "/manage/articles", icon: Rss, current: false },
   { name: "რაპორტები", href: "#", icon: ChartPieIcon, current: false },
   { name: "პარამეტრები", href: "#", icon: Settings2, current: false },
