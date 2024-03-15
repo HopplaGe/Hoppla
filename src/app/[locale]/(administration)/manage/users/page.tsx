@@ -23,12 +23,12 @@ const UsersManager = () => {
     // console.log(data)
 
     return (
-        <PageWrapper>
-            <SimpleChevronsBreadCrumbs translations={t}/>
-            <div>
-                <BasicTable data={data as any[]} columns={userColumns}/>
-            </div>
-        </PageWrapper>
+      <PageWrapper>
+        <SimpleChevronsBreadCrumbs translations={t} />
+        <div>
+          <BasicTable data={data as any[]} columns={userColumns} />
+        </div>
+      </PageWrapper>
     );
 };
 

@@ -20,7 +20,7 @@ const MainArea = () => {
   }
 
   return (
-    <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6 space-y-6">
+    <div className="px-4 py-6 sm:px-6 lg:pl-8 xl:flex-1 xl:pl-6 space-y-6 relative flex flex-col">
       <SimpleChevronsBreadCrumbs translations={t} />
       <BasicTable data={companies as any[]} columns={companyColumns} />
     </div>

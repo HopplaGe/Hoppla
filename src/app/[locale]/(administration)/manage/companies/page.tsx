@@ -9,14 +9,14 @@ type PageProps = {}
 
 const Page: FC<PageProps> = () => {
     return (
-        <div className="mx-auto w-full h-full grow lg:flex">
-            {/* Left sidebar & main wrapper */}
-            <div className="flex-1 xl:flex">
-                <Sidebar/>
-                <MainArea/>
-            </div>
+      <div className="mx-auto w-full h-auto grow lg:flex">
+        {/* Left sidebar & main wrapper */}
+        <div className="flex-1 xl:flex">
+          {/*<Sidebar />*/}
+          <MainArea />
         </div>
-    )
+      </div>
+    );
 }
 
 export default Page
