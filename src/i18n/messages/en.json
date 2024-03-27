@@ -38,7 +38,9 @@
     "HowItWorks": "How it works",
     "AboutUs": "About us",
     "Support": "Support",
-    "Careers": "Careers"
+    "Careers": "Careers",
+    "PrivacyPolicy": "Privacy Policy",
+    "TermsOfService": "Terms of Service"
   },
   "SearchForm": {
     "From": "From",

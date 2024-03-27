@@ -74,7 +74,7 @@ export const footerNavItems = {
     },
   ],
   agreements: [
-    { name: "TermsOfService", href: "#" },
+    { name: "TermsOfService", href: "/about-us/terms-and-conditions" },
     { name: "PrivacyPolicy", href: "#" },
   ],
 };
