@@ -18,6 +18,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useState } from "react";
 import useCaptureImage from "@/hooks/useCaptureImage";
+import { DirectionsCard } from "@/components/hoppla";
 
 const RideDetails = ({ ride, searchParams }: any) => {
   const session = useSession();
@@ -56,16 +57,27 @@ const RideDetails = ({ ride, searchParams }: any) => {
   return (
     <>
       <div ref={screenRef} className="w-full lg:w-1/2 max-w-7xl">
-        <DirectionsDetails
-          ride={ride}
-          fromDistance={fromDistance}
-          toDistance={toDistance}
+        <DirectionsCard
+          from={ride.from}
+          to={ride.to}
           startLatLng={startLatLng}
           endLatLng={endLatLng}
+          startTime={ride.startTime}
+          duration={ride.duration}
           arrivalTime={arrivalTime}
-          handleOpen={handleOpen}
-          searchParams={searchParams}
+          fromDistance={fromDistance}
+          toDistance={toDistance}
+          requested_seats={searchParams.requested_seats}
           price={ride.price}
+          variant="light"
+          size="lg"
+          color="primary"
+          rounded="xl"
+          shadow="none"
+          animation
+          bordered={false}
+          showPriceSection
+          onClick={handleOpen}
         />
       </div>
       <section className="flex flex-col gap-4 w-full lg:w-1/2">
