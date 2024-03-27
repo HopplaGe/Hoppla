@@ -21,8 +21,9 @@ const Home = async () => {
         </div>
         <SvgMap />
       </div>
-
       <OfferingsSection />
+      test:
+      {process.env.POSTGRES_USER}
       <MobileAppBlock />
     </>
   );
