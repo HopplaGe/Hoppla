@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import MainStats from './stats/MainStats';
 
 type AdminAsideComponentsProps = {
     props: any
@@ -10,9 +11,7 @@ const AdminAsideComponents = ({
 
 
     return (
-        <div>
-            <h1>AdminAsideComponents</h1>
-        </div>
+        <MainStats />
     );
 };
 
