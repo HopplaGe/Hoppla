@@ -1,18 +1,18 @@
-import {FC} from "react";
-import {Plus} from "lucide-react";
+import { FC } from "react";
+import { Plus } from "lucide-react";
 import MainStats from "@/components/administration/stats/MainStats";
 
-import {rolePermissions} from "@/lib/tools/rolePermissions";
-import {auth} from "@/lib/auth";
+import { rolePermissions } from "@/lib/tools/rolePermissions";
+import { auth } from "@/lib/auth";
 import AdminWidgets from "@/components/administration/widgets/AdminWidgets";
 
-type pageProps = {}
+type pageProps = {};
 
 const secondaryNavigation = [
-    {name: 'Last 7 days', href: '#', current: true},
-    {name: 'Last 30 days', href: '#', current: false},
-    {name: 'All-time', href: '#', current: false},
-]
+  { name: "Last 7 days", href: "#", current: true },
+  { name: "Last 30 days", href: "#", current: false },
+  { name: "All-time", href: "#", current: false },
+];
 
 const page: FC<pageProps> = async () => {
   const session = await auth();
@@ -29,11 +29,9 @@ const page: FC<pageProps> = async () => {
 
   return (
     <div className="relative">
-      <MainStats />
-
       <AdminWidgets />
     </div>
   );
-}
+};
 
 export default page;
